@@ -3,13 +3,25 @@ from app.config import settings
 from app.models import Base
 
 connect_args = {}
+engine_kwargs = {
+    "echo": False,
+    "pool_pre_ping": True,
+}
+
 if settings.DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
+else:
+    # PostgreSQL / Neon production pool settings
+    engine_kwargs.update({
+        "pool_size": 10,
+        "max_overflow": 20,
+        "pool_recycle": 300,
+    })
 
 engine = create_async_engine(
     settings.DATABASE_URL,
-    echo=False,
     connect_args=connect_args,
+    **engine_kwargs,
 )
 
 async_session = async_sessionmaker(
