@@ -106,6 +106,7 @@ class Report(Base):
     device_id = Column(String(36), nullable=False, index=True)
     confirmations = Column(Integer, default=0, nullable=False)
     is_flagged = Column(Boolean, default=False, nullable=False)
+    is_seed = Column(Boolean, default=False, nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)
 
     __table_args__ = (

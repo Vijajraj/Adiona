@@ -1,0 +1,302 @@
+__source_file,__source_sheet,approx_lat,approx_lng,category,location_name
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),13.0761,80.1992,unsafe_road_no_footpath,Inner Ring Road near Koyambedu
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.9493,80.255,unsafe_road_no_footpath,East Coast Road (Neelankarai-Akkarai stretch)
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.8969,80.2326,unsafe_road_no_footpath,OMR at Sholinganallur junction
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.835,80.2,unsafe_road_no_footpath,OMR at Navalur
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.835,80.2,unsafe_road_no_footpath,OMR at Siruseri
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),13.0604,80.2496,unsafe_road_no_footpath,Padur (OMR bypass)
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),13.084954,80.206512,poor_lighting,Anna Nagar
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.975971,80.221209,poor_lighting,Velachery
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),13.0418,80.2341,poor_lighting,T. Nagar
+chennai_safety_seed_data(1).csv.xlsx,chennai_safety_seed_data(1),12.965363,80.201653,poor_lighting,Madipakkam
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1148,80.1553,unsafe_road_no_footpath,Ambattur Estate Third Main Road / Ambattur Telephone Exchange
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1157,80.1604,poor_lighting,"Ambattur Estate High Road, 2nd Avenue junction to Chennai Bypass"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1157,80.1604,robbery_theft_prone,"Ambattur Estate High Road, 2nd Avenue junction to Chennai Bypass"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9791,80.19,poor_lighting,Nanganallur 5th Main Road
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9706,80.198,poor_lighting,"Sadhasivam Nagar First Link Street, Madipakkam"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9667,80.2465,poor_lighting,"Kallukuttai, Perungudi — Bharani Street"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0865,80.2062,poor_lighting,"VOC Nagar, Anna Nagar"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9508,80.1815,poor_lighting,Pallavaram-Thoraipakkam Radial Road
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9628,80.1915,physical_harassment,Pallavaram-Thoraipakkam Radial Road near Pallikaranai/lake-side section
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9508,80.1815,stray_animal_risk,Pallavaram-Thoraipakkam Radial Road
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.159,80.3016,unsafe_transport_stop,Thiruvottiyur bus stand / junction
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9543,80.2547,poor_lighting,"Vettuvankeni, East Coast Road"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9469,80.2583,unsafe_road_no_footpath,"Neelankarai-Akkarai stretch, East Coast Road"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9706,80.1396,poor_lighting,"Mappedu Junction, Tambaram Eastern Bypass"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9706,80.1396,unsafe_road_no_footpath,"Mappedu Junction, Tambaram Eastern Bypass"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1302,80.2904,unsafe_road_no_footpath,Tondiarpet zone
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.142,80.287,poor_lighting,Tondiarpet-George Town-Thiruvottiyur project area
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.142,80.287,unsafe_transport_stop,Tondiarpet-George Town-Thiruvottiyur project area
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1178,80.2767,unsafe_transport_stop,Korukkupet bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1064,80.2673,unsafe_transport_stop,Ambedkar College bus shelter (towards Central/Red Hills)
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0338,80.2128,unsafe_transport_stop,Ashok Pillar bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.169,80.292,unsafe_transport_stop,IOC Nagar bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1665,80.289,unsafe_transport_stop,Muthamizh Nagar bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1087,80.2581,unsafe_transport_stop,Vyasarpadi Market bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.106,80.2255,unsafe_transport_stop,"SIDCO bus shelter, Chennai"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0218,80.2578,unsafe_transport_stop,Vasuki Nagar bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0648,80.2764,unsafe_transport_stop,"Teacher Training College bus shelter, Chennai"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0227,80.2225,unsafe_transport_stop,Saidapet bus shelter
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9255,80.1926,catcalling_harassment,"Quaide Milleth College for Men vicinity, Medavakkam"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0661,80.2824,physical_harassment,High Court Metro Railway Station
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,12.9417,80.2329,stalking,"Pillaiyar Kovil Street, Thoraipakkam"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0078,80.2387,unsafe_road_no_footpath,"Sardar Patel Road, Guindy-Adyar corridor"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0122,80.2434,unsafe_road_no_footpath,"Gandhi Mandapam Road, Chennai"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.1076,80.2335,unsafe_road_no_footpath,"Medavakkam Tank Road, Ayanavaram"
+chennai_safety_seed_data.csv.xlsx,chennai_safety_seed_data,13.0383,80.1452,stray_animal_risk,Tharapakkam service road near Maduravoyal bypass
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9667,80.2465,poor_lighting,"Kallukuttai, Perungudi — Bharani Street"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0755,80.211,unsafe_road_no_footpath,"Poonamallee High Road, Arumbakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0982,80.2674,unsafe_road_no_footpath,"Basin Bridge Road, Chennai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1115,80.2475,unsafe_road_no_footpath,"Perambur High Road, Stephenson Road to Perambur railway station"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1112,80.246,unsafe_transport_stop,Jamalia pedestrian subway near Perambur railway station
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0878,80.252,unsafe_road_no_footpath,"Valliammal Road, Purasawalkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1226,80.2805,unsafe_road_no_footpath,Korukkupet railway crossing
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0387,80.2238,poor_lighting,"Ellaiamman Koil Street, West Mambalam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9619,80.2438,unsafe_road_no_footpath,"MGR Salai, Kandhanchavadi, Perungudi"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0847,80.2668,unsafe_road_no_footpath,"Choolai High Road, Ramalinga Vilas Hotel to Choolai High Road Roundabout"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.052,80.2155,unsafe_road_no_footpath,"Viswanathapuram Main Road, Kodambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.053,80.2152,unsafe_road_no_footpath,Rangarajapuram Main Road / Viswanathapuram Main Road junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0348,80.215,unsafe_road_no_footpath,"Second Avenue, Ashok Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1094,80.2504,unsafe_road_no_footpath,"Kumarasamy Street, Perambur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1096,80.2459,unsafe_road_no_footpath,"Perambur High Road North, Saraswati Nagar opposite Perambur railway station"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0982,80.2674,unsafe_road_no_footpath,"Basin Bridge Road, GCC Zone 5"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1076,80.2335,unsafe_road_no_footpath,"Medavakkam Tank Road, Konnur High Road to Ayanavaram Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9667,80.2465,poor_lighting,"Bharani Street, Kallukuttai, Perungudi"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0725,80.2408,poor_lighting,Path between Dr Guruswamy Bridge and Chetpet Eco Park / Chetpet railway station
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0526,80.2592,unsafe_road_no_footpath,"Srinivasa Perumal Sannathi 2nd Street, Gopalapuram Police Quarters, Royapettah"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0414,80.235,unsafe_road_no_footpath,"Sir Thyagaraya Road near Pondy Bazaar, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0875,80.2882,unsafe_road_no_footpath,RBI Subway near Parry's
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0222,80.224,unsafe_road_no_footpath,"CP Pavalavannan Subway, Saidapet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.069,80.197,unsafe_road_no_footpath,"Koyambedu Market East Road, CMDA office to omnibus terminus"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0348,80.2672,unsafe_road_no_footpath,"Veera Perumal Koil Street, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0358,80.2638,unsafe_road_no_footpath,"Mundagakanni Amman Koil Street, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.132,80.29,unsafe_road_no_footpath,"Ennore High Road, Tondiarpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1125,80.2515,unsafe_road_no_footpath,"Gurumurthy Garden Street, Perambur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1655,80.3045,unsafe_road_no_footpath,"Shanmugapuram 2nd Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.166,80.305,unsafe_road_no_footpath,"Shanmugapuram 3rd Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1665,80.3055,unsafe_road_no_footpath,"Shanmugapuram 6th Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.167,80.306,unsafe_road_no_footpath,"Shanmugapuram 10th Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1645,80.3065,unsafe_road_no_footpath,"Jothi Nagar Main Road, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.165,80.307,unsafe_road_no_footpath,"Jothi Nagar Main Cross Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.168,80.309,unsafe_road_no_footpath,"VP Nagar 6th Extension, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.169,80.31,unsafe_road_no_footpath,"AD Colony 15th Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1695,80.311,unsafe_road_no_footpath,"Bajanai Koil 2nd Cross Street, Tiruvottiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9948,80.2045,unsafe_road_no_footpath,"Brindavan Nagar Main Road, Adambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0485,80.2125,unsafe_road_no_footpath,"Arcot Road, Kodambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0727,80.2419,unsafe_road_no_footpath,"Mayor Ramanathan Salai (Spurtank Road), Chetpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0552,80.2504,unsafe_road_no_footpath,Khader Nawaz Khan Road pedestrian plaza
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0355,80.2325,unsafe_road_no_footpath,"Venkatanarayana Road, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0407,80.2335,unsafe_road_no_footpath,"Usman Road, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0284,80.184,unsafe_road_no_footpath,"Valluvar Salai, Ramapuram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0275,80.1805,unsafe_road_no_footpath,"Bharathi Salai, Ramapuram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.03,80.185,unsafe_road_no_footpath,Ramapuram Main Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.112,80.254,unsafe_road_no_footpath,"Poleri Amman Koil Street / AA Road railway culvert, Perambur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.036,80.233,unsafe_transport_stop,"Venkatanarayana Road, Natesan Park bus stop"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1165,80.2875,stalking,"MC Road, Washermenpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.148,80.231,physical_harassment,"Grand Northern Trunk Road (GNT Road), Madhavaram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0402,80.249,catcalling_harassment,"KB Dasan Road, Teynampet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0505,80.2115,physical_harassment,"100 Feet Road, Vadapalani"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.068,80.277,physical_harassment,Government Estate Metro Station subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0588,80.258,physical_harassment,Thousand Lights Metro Station
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0315,80.243,unsafe_road_no_footpath,"Nandanam, Government Arts College vicinity"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.061,80.281,unsafe_road_no_footpath,"Chepauk, New State Guest House vicinity"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.979,80.2185,unsafe_road_no_footpath,Velachery 100 Feet Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1245,80.2895,unsafe_road_no_footpath,"Thiruvottiyur High Road, Tondiarpet — SWD work stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.114,80.158,unsafe_road_no_footpath,"Murugappa Reddy Street, Vivekanandar Nagar, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1135,80.1575,unsafe_road_no_footpath,"First Cross Street, Vivekanandar Nagar, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.113,80.1585,unsafe_road_no_footpath,"Kanniah Chetty Street, Vivekanandar Nagar, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1125,80.159,unsafe_road_no_footpath,"Balaji Street, Vivekanandar Nagar, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1105,80.1605,unsafe_road_no_footpath,"Thiruvengada Nagar, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1095,80.1615,unsafe_road_no_footpath,"West Main Road, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.006,80.256,unsafe_road_no_footpath,Adyar Bridge Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1135,80.287,unsafe_road_no_footpath,"Monegar Choultry Road (MC Road), cemetery junction to BSNL junction"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.072,80.205,unsafe_road_no_footpath,"Arumbakkam 100 Feet Road, near SAF Games Village"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0705,80.1645,unsafe_road_no_footpath,Nolambur-Poonamallee High Road Junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0985,80.267,unsafe_road_no_footpath,"Basin Bridge four-way junction, GNT Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9805,80.22,physical_harassment,"Velachery road, Chennai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1225,80.2878,unsafe_transport_stop,"Maharani Theatre bus stop, Tiruvottiyur High Road, Old Washermenpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0758,80.2595,unsafe_road_no_footpath,Gengu Reddy Road subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0615,80.2435,unsafe_road_no_footpath,Nungambakkam subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.073,80.24,unsafe_road_no_footpath,Harrington Road subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.108,80.1835,unsafe_road_no_footpath,Korattur subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.107,80.2055,unsafe_road_no_footpath,Villivakkam subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1075,80.256,physical_harassment,"Vyasarpadi bus stop, MTC route 38-A"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.056,80.2425,physical_harassment,"Nungambakkam — walking route to work, location reported in July 2026 case"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0225,80.224,stalking,Saidapet college exit area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0365,80.244,unsafe_road_no_footpath,"Anna Salai, Teynampet–Saidapet flyover diversion stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.041,80.2515,unsafe_road_no_footpath,"Cenotaph Road, Teynampet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0528,80.2425,unsafe_road_no_footpath,"Valluvar Kottam High Road, Valluvar Kottam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0725,80.2408,unsafe_road_no_footpath,"Guruswamy Bridge footpath, Chetpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9955,80.2455,unsafe_road_no_footpath,"Madhya Kailash Junction, Taramani"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9948,80.245,unsafe_road_no_footpath,Rajiv Gandhi IT Expressway near Institute of Chemical Technology / Taramani U-shaped bridge
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1078,80.2495,unsafe_road_no_footpath,"Perambur High Road, Jamalia Higher Secondary School to Cooks Road junction"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1065,80.232,physical_harassment,"Semmbiam area, MTC bus route 242 toward Shenoy Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.051,80.2095,catcalling_harassment,"Avichi School bus stop, Vadapalani"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0345,80.202,physical_harassment,"KK Nagar, MTC bus route 70V"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1225,80.2878,unsafe_transport_stop,"Maharani Theatre bus stop, Tiruvottiyur High Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.044,80.249,unsafe_road_no_footpath,"Ellaiamman Colony, Teynampet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0305,80.2555,unsafe_road_no_footpath,"CIT Colony interior streets, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.165,80.2105,unsafe_road_no_footpath,"Kamarajar Salai, Manjambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9615,80.2445,unsafe_road_no_footpath,"OMR service road near World Trade Centre Chennai, Perungudi"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0325,80.2195,unsafe_road_no_footpath,"Lake View Road, West Mambalam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0615,80.2055,unsafe_road_no_footpath,"100 Feet Jawaharlal Nehru Road, Koyambedu–Ashok Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0625,80.2245,unsafe_road_no_footpath,"West Namasivaya Bridge, Choolaimedu"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1205,80.218,unsafe_road_no_footpath,"Poompuhar Nagar 1st Main Road, Kolathur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0725,80.263,unsafe_road_no_footpath,Pantheon Road near Amma Unavagam
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1025,80.1555,unsafe_road_no_footpath,Ambattur-Vanagaram Road near Athipet
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.188,80.27,unsafe_road_no_footpath,Manali New Town Phase 1
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.19,80.274,unsafe_road_no_footpath,Manali New Town Phase 2
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.186,80.276,unsafe_road_no_footpath,"Dwaraka Nagar, Manali New Town"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.161,80.26,unsafe_road_no_footpath,"Kadumbadi Amman Koil Street, Selaivayal, Kodungaiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.109,80.2555,unsafe_road_no_footpath,"AA Road, Vyasarpadi commercial stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1095,80.2525,unsafe_road_no_footpath,"Dr Ambedkar College Road, Jamalia Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0595,80.2525,unsafe_road_no_footpath,Greams Road near Shafee Muhammad Road junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.155,80.197,unsafe_road_no_footpath,Redhills-Tiruvallur Highway opposite Bethal Church
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1615,80.261,unsafe_road_no_footpath,"Selaivayal, Kodungaiyur SWD-work stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0345,80.202,poor_lighting,"Anna Main Road, KK Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9865,80.249,poor_lighting,"Tidel Park U-turn flyover, Tiruvanmiyur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9315,80.23,unsafe_road_no_footpath,"Eswaran Koil Street / Kannagi Nagar Main Road, Thoraipakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.112,80.1845,unsafe_road_no_footpath,"Palla Street, Agraharam, Korattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.147,80.232,unsafe_road_no_footpath,"Thattankulam Road, Madhavaram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.078,80.221,unsafe_road_no_footpath,Poonamallee High Road near Shenoy Nagar traffic signal
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0715,80.2405,unsafe_road_no_footpath,"Ormes Road, Kilpauk"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1005,80.221,unsafe_road_no_footpath,"Constable Road, Ayanavaram–Villivakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.02,80.199,unsafe_road_no_footpath,"100 Feet Road near Kalaimagal Nagar bus stop, Ekkattuthangal"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0785,80.225,stray_animal_risk,"Ayyavoo Second Lane, Shenoy Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0575,80.224,unsafe_road_no_footpath,"Thiruvengadapuram Main Road, Choolaimedu"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0585,80.2225,unsafe_road_no_footpath,"Ameerjan Street, Choolaimedu"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.059,80.2215,unsafe_road_no_footpath,"Abdullah Street, Choolaimedu"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0595,80.2205,unsafe_road_no_footpath,"Khan Street, Choolaimedu"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0735,80.2605,poor_lighting,"Halls Road, Egmore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0725,80.2055,unsafe_transport_stop,"Razzak Garden Main Road, MMDA Colony, Arumbakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.072,80.2045,unsafe_road_no_footpath,"MMDA Colony Main Road / Vinayakapuram Main Road junction, Arumbakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.109,80.2485,unsafe_road_no_footpath,Perambur High Road near Perambur Railway Station
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1095,80.2475,unsafe_road_no_footpath,Perambur Railway Station approach footpath
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0805,80.239,unsafe_road_no_footpath,Kilpauk Garden Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0305,80.267,unsafe_road_no_footpath,"MRC Nagar Main Road, RA Puram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0285,80.2675,unsafe_road_no_footpath,"South Beach Avenue, RA Puram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.029,80.269,unsafe_road_no_footpath,"Janaki Avenue, RA Puram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0295,80.27,unsafe_road_no_footpath,"Kasthuri Avenue, RA Puram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.03,80.2685,unsafe_road_no_footpath,"Thandavarayan Street, RA Puram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1135,80.2575,unsafe_road_no_footpath,Vyasarpadi Cooperative Industrial Estate internal roads
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1135,80.2575,poor_lighting,Vyasarpadi Cooperative Industrial Estate
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0065,80.2385,unsafe_road_no_footpath,Sardar Patel Road near CLRI
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.078,80.2555,unsafe_road_no_footpath,Taylors Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.08,80.254,unsafe_road_no_footpath,Flowers Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.122,80.278,unsafe_road_no_footpath,"Chigirintha Palayam 3rd Street, Korukkupet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1225,80.2785,unsafe_road_no_footpath,"Chigirintha Palayam 4th Street, Korukkupet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.123,80.279,unsafe_road_no_footpath,"Chigirintha Palayam 5th Street, Korukkupet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0635,80.2815,unsafe_transport_stop,"Bells Road bus stop, Chepauk"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0885,80.2115,unsafe_transport_stop,"14th MTC bus stop, Anna Nagar 3rd Avenue East"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.109,80.2485,unsafe_road_no_footpath,Madhavaram High Road near Perambur Railway Station
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9635,80.206,unsafe_road_no_footpath,"Rajalakshmi Nagar 3rd Street, Pallikaranai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.006,80.2195,unsafe_road_no_footpath,"Race Course Road, Guindy"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.979,80.218,unsafe_road_no_footpath,Velachery Bypass Road (SH48C)
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.991,80.237,unsafe_road_no_footpath,Taramani Link Road (SH48B)
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.065,80.26,poor_lighting,Anna Salai subway opposite Higginbothams
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.053,80.257,unsafe_transport_stop,"Ameer Mahal bus stop, Royapettah"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.119,80.166,unsafe_transport_stop,"Balaji Nagar bus stop, Kallikuppam, Ambattur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0535,80.192,unsafe_transport_stop,Virugambakkam bus stop
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0875,80.2545,unsafe_transport_stop,Pattalam bus shelter
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.035,80.267,unsafe_transport_stop,"Thiruvalluvar Statue bus stop, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9975,80.2005,unsafe_transport_stop,"Asar Khana bus stop, Alandur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.006,80.2195,unsafe_transport_stop,"Race Course Road bus stop, Guindy"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.082,80.2845,unsafe_road_no_footpath,NSC Bose Road outside Madras High Court
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.004,80.2565,unsafe_road_no_footpath,"Besant Avenue Road, Adyar health-walk track near Karpagam Garden police booth"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.989,80.254,unsafe_road_no_footpath,"West Avenue Road, Thiruvanmiyur, near OMR approach"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.969,80.204,unsafe_road_no_footpath,"200 Feet Radial Road service lanes, Pallavaram–Thoraipakkam section within Chennai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.975,80.2115,unsafe_road_no_footpath,"Velachery Main Road junction, 200 Feet Radial Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0805,80.252,unsafe_road_no_footpath,New Avadi Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.081,80.251,unsafe_road_no_footpath,Vasu Street / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0815,80.25,unsafe_road_no_footpath,Alagappa Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.082,80.249,unsafe_road_no_footpath,Dr Nair Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0758,80.2595,unsafe_road_no_footpath,Gengu Reddy Subway Road / EVR Periyar Salai junction
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0415,80.235,unsafe_road_no_footpath,Sir Thyagaraya Road near Pondy Bazaar
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.033,80.2185,unsafe_road_no_footpath,"Ellaiamman Kovil Street, West Mambalam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9395,80.2325,unsafe_road_no_footpath,"Pillaiyar Koil Street, SBI Colony, Thoraipakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0335,80.2195,unsafe_road_no_footpath,"Kavarai Street, West Mambalam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0315,80.242,unsafe_road_no_footpath,Nandanam near Government Arts College footpath
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.061,80.2805,unsafe_road_no_footpath,Chepauk near New State Guest House footpath
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.072,80.2185,robbery_theft_prone,"NSK Nagar 4th Street, Aminjikarai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.046,80.261,unsafe_road_no_footpath,"Dr Radhakrishnan Salai / Royapettah High Road junction, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.119,80.2915,unsafe_road_no_footpath,"Kalmandapam near marriage hall, Royapuram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.016,80.236,unsafe_road_no_footpath,"Gandhi Mandapam Road, Anna University–Adyar stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1165,80.292,unsafe_road_no_footpath,"Suriya Narayanan Chetty Street, Royapuram"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.039,80.2345,unsafe_road_no_footpath,"Ranganathan Street, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0185,80.1715,unsafe_road_no_footpath,"Dr Ambedkar Nagar 3rd Main Road, Manapakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.969,80.1995,unsafe_road_no_footpath,"Ramamurthy Nagar Main Road, Madipakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.968,80.2005,unsafe_road_no_footpath,"Ram Nagar South 7th Main Road, Madipakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1165,80.258,unsafe_transport_stop,"Mullai bus stop, Sathya Murthy Nagar, Vyasarpadi"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.097,80.146,unsafe_road_no_footpath,"Galaxy Road, Ayanambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.097,80.146,poor_lighting,"Galaxy Road, Ayanambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.055,80.2585,unsafe_road_no_footpath,"Whites Road, Royapettah"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.054,80.2605,unsafe_road_no_footpath,"Peters Road, Royapettah"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0555,80.2615,unsafe_road_no_footpath,"Pattulos Road, Royapettah"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.15,80.294,unsafe_road_no_footpath,"Ennore Express Highway, Tiruvottiyur manhole/barricade incident stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.062,80.236,unsafe_road_no_footpath,"Nungambakkam Subway, Nelson Manickam Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.037,80.2245,unsafe_road_no_footpath,"Duraisamy Subway, T Nagar–West Mambalam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.036,80.2225,unsafe_road_no_footpath,"Madley Subway, West Mambalam–T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.048,80.2375,unsafe_transport_stop,"Thirumalai Pillai Road near Vidyodaya School bus stop, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0825,80.2735,unsafe_road_no_footpath,Wall Tax Road near Chennai Central Railway Station
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.113,80.2515,unsafe_road_no_footpath,Low-height railway culvert linking Poleri Amman Koil Street/AA Road to Perambur High Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1265,80.291,unsafe_road_no_footpath,"Vaithyanathan Road, Tondiarpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1175,80.2055,unsafe_road_no_footpath,"Teacher's Colony 1st Cross Street, Kolathur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.119,80.207,poor_lighting,"VV Nagar 3rd Street, Kolathur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.064,80.278,unsafe_road_no_footpath,"Swami Sivananda Salai, section beyond MLA Hostel"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.035,80.209,unsafe_road_no_footpath,"11th Avenue, Ashok Nagar near 67th Cross Street"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0195,80.2075,unsafe_road_no_footpath,"School Street, West Jafferkhanpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.085,80.257,poor_lighting,"GCC Herbal Park, Purasawalkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.085,80.257,no_cctv,"GCC Herbal Park, Purasawalkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.114,80.2585,poor_lighting,Vyasarpadi railway-station approach pathway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0865,80.282,poor_lighting,Broadway Bus Terminus
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.006,80.22,poor_lighting,Guindy Bus Terminus
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.135,80.245,unsafe_transport_stop,"IOC Bus Stand, Chennai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.126,80.257,unsafe_transport_stop,KKD Nagar Bus Depot
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.137,80.258,unsafe_transport_stop,Muthamizh Nagar Bus Depot
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1095,80.2525,unsafe_transport_stop,Ambedkar College Bus Stop
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.036,80.212,unsafe_transport_stop,Ashok Pillar Bus Stop
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0255,80.2635,poor_lighting,Mandaveli CMRL pedestrian walkway starting from V K Iyer Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0255,80.2635,no_cctv,Mandaveli CMRL pedestrian walkway starting from V K Iyer Road
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.033,80.2675,poor_lighting,Luz Church Road CMRL pedestrian walkway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.033,80.2675,no_cctv,Luz Church Road CMRL pedestrian walkway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0405,80.2325,poor_lighting,"Venkatanarayana Road–Sivagnanam Street CMRL walkway, T Nagar"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.06,80.257,poor_lighting,"Thousand Lights CMRL pedestrian walkway/crossover, Anna Salai"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.07,80.241,poor_lighting,Sterling Road CMRL pedestrian walkway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.04,80.234,unsafe_road_no_footpath,Pondy Bazaar pedestrian plaza–Venkatanarayana Road CMRL walkway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1145,80.205,poor_lighting,"Srinivasan Nagar CMRL pedestrian walkway, Kolathur"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0545,80.2215,unsafe_road_no_footpath,"Rathinammal Street / Dr Ambedkar Road junction, Kodambakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.9385,80.2295,unsafe_road_no_footpath,"3rd Main Road, Secretariat Colony, Thoraipakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.032,80.2695,unsafe_road_no_footpath,"Appu Street, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0315,80.269,unsafe_road_no_footpath,"Chitrakulam North Street / Appu Street intersection, Mylapore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0375,80.2095,poor_lighting,Vaigai 1st Cross Street near Ashok Nagar 12th Avenue
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0375,80.2095,unsafe_road_no_footpath,Vaigai 1st Cross Street near Ashok Nagar 12th Avenue
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0285,80.2745,unsafe_road_no_footpath,"Madha Church Road, Santhome"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.083,80.2765,unsafe_road_no_footpath,"Southern Railway Headquarters pavement, EVR Periyar Salai / PH Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.107,80.2545,unsafe_road_no_footpath,"Gurumurthy Garden Street, Perambur Corporation Girls High School frontage"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1255,80.29,unsafe_road_no_footpath,"Thiruvottiyur High Road, Tondiarpet — 500 m SWD-work stretch"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.164,80.301,unsafe_road_no_footpath,Wimco Nagar Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1585,80.3035,unsafe_road_no_footpath,Thiruvottriyur Theradi Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1395,80.292,unsafe_road_no_footpath,"Tollgate Metro station access area, Tondiarpet"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0915,80.285,unsafe_road_no_footpath,Mannadi Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0695,80.273,unsafe_road_no_footpath,Government Estate Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0825,80.285,unsafe_road_no_footpath,High Court Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.077,80.2425,unsafe_road_no_footpath,Kilpauk Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,12.994,80.1985,unsafe_road_no_footpath,St Thomas Mount Metro station access area
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.115,80.234,poor_lighting,Perambur Loco Works Railway Station pedestrian subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.115,80.234,isolated_area,Perambur Loco Works Railway Station pedestrian subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.073,80.245,poor_lighting,Dr Guruswamy Bridge–Chetpet Eco Park railway-station pathway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.073,80.245,isolated_area,Dr Guruswamy Bridge–Chetpet Eco Park railway-station pathway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.119,80.257,unsafe_road_no_footpath,"MKB Nagar 11th Cross Street, Vyasarpadi"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.129,80.26,unsafe_road_no_footpath,Tondiarpet High Road opposite Kodungaiyur dump yard
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.073,80.264,unsafe_transport_stop,"Gandhi Irwin Road, Nest Hotel bus stop near Mayor Radhakrishnan Stadium"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1085,80.253,unsafe_transport_stop,"Jamalia Bus Stop, Perambur High Road South"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.108,80.2505,unsafe_transport_stop,"Mangalapuram Bus Stop, Perambur High Road South"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.019,80.2045,unsafe_road_no_footpath,"Sardar Colony 4th Street, Ekkatuthangal"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.086,80.21,unsafe_road_no_footpath,Anna Nagar 2nd Avenue near Anna Nagar Post Office
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0625,80.2245,unsafe_road_no_footpath,Choolaimedu High Road / West Namasivaya Bridge pedestrian walkway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0895,80.2635,unsafe_transport_stop,"Otteri Bus Stop, Brick Kiln Road"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.216,80.322,unsafe_transport_stop,"Nehru Nagar Bus Stop, Ennore"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1085,80.1835,poor_lighting,Korattur Railway Station pedestrian subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.1085,80.1835,isolated_area,Korattur Railway Station pedestrian subway
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.0775,80.2075,unsafe_road_no_footpath,"Poonamallee High Road footpath near DG Vaishnav College, Arumbakkam"
+chennai_street_precise_safety_seed_data_v26(1).csv,,13.05,80.214,unsafe_transport_stop,"Saamiyar Madam bus stop, Subbarayan Nagar, Kodambakkam"
