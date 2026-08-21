@@ -13,7 +13,7 @@ import { ReportModal } from './ReportModal';
 import { ConfirmPrompt } from './ConfirmPrompt';
 import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
-import { Sun, Moon, Plus, Shield, Info, Layers, RefreshCw } from 'lucide-react';
+import { Sun, Moon, Plus, Shield, Info, RefreshCw } from 'lucide-react';
 
 const HEATMAP_SOURCE_ID = 'safety-reports-source';
 const HEATMAP_LAYER_ID = 'safety-reports-heatmap';
@@ -41,146 +41,91 @@ export function MapView({ deviceId }) {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [loadingHeatmap, setLoadingHeatmap] = useState(false);
 
-  // Load heatmap data from backend
-  const loadHeatmapData = useCallback(async () => {
-    setLoadingHeatmap(true);
-    try {
-      const data = await fetchHeatmap(filters);
-      setHeatmapData(data);
-    } catch (err) {
-      console.error('Failed to load heatmap:', err);
-    } finally {
-      setLoadingHeatmap(false);
-    }
-  }, [filters]);
+  // Helper to convert data to GeoJSON
+  const createGeoJSON = useCallback((data) => ({
+    type: 'FeatureCollection',
+    features: (data || []).map((point) => ({
+      type: 'Feature',
+      id: point.id,
+      properties: {
+        id: point.id,
+        category: point.category,
+        status: point.status,
+        confirmations: point.confirmations || 0,
+        weight: point.weight || 1,
+        lat: point.lat,
+        lng: point.lng,
+      },
+      geometry: {
+        type: 'Point',
+        coordinates: [point.lng, point.lat],
+      },
+    })),
+  }), []);
 
-  // Update GeoJSON source when heatmapData changes
-  useEffect(() => {
-    if (!mapRef.current || !mapLoaded) return;
+  // Configure layers onto the map instance
+  const setupHeatmapLayers = useCallback((map, data) => {
+    if (!map) return;
 
-    const source = mapRef.current.getSource(HEATMAP_SOURCE_ID);
-    if (!source) return;
+    const geojson = createGeoJSON(data);
 
-    const geojson = {
-      type: 'FeatureCollection',
-      features: (heatmapData || []).map((point, index) => ({
-        type: 'Feature',
-        id: index,
-        properties: {
-          weight: point.weight || 1,
-          lat: point.lat,
-          lng: point.lng,
-        },
-        geometry: {
-          type: 'Point',
-          coordinates: [point.lng, point.lat],
-        },
-      })),
-    };
-
-    source.setData(geojson);
-  }, [heatmapData, mapLoaded]);
-
-  // Initial Map Setup
-  useEffect(() => {
-    if (mapRef.current) return;
-
-    const map = new maplibregl.Map({
-      container: mapContainerRef.current,
-      style: isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL,
-      center: CHENNAI_CENTER,
-      zoom: DEFAULT_ZOOM,
-      minZoom: 10,
-      maxZoom: 19,
-      maxBounds: CHENNAI_BOUNDS,
-      attributionControl: false,
-    });
-
-    mapRef.current = map;
-
-    // Controls
-    map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
-    map.addControl(
-      new maplibregl.GeolocateControl({
-        positionOptions: { enableHighAccuracy: true },
-        trackUserLocation: false,
-      }),
-      'bottom-right'
-    );
-    map.addControl(
-      new maplibregl.AttributionControl({
-        compact: true,
-        customAttribution: '© OpenFreeMap © OpenStreetMap contributors',
-      }),
-      'bottom-left'
-    );
-
-    map.on('load', () => {
-      setMapLoaded(true);
-
-      // Add Heatmap Source
+    if (!map.getSource(HEATMAP_SOURCE_ID)) {
       map.addSource(HEATMAP_SOURCE_ID, {
         type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: [],
+        data: geojson,
+      });
+    } else {
+      map.getSource(HEATMAP_SOURCE_ID).setData(geojson);
+    }
+
+    if (!map.getLayer(HEATMAP_LAYER_ID)) {
+      map.addLayer({
+        id: HEATMAP_LAYER_ID,
+        type: 'heatmap',
+        source: HEATMAP_SOURCE_ID,
+        maxzoom: 17,
+        paint: {
+          'heatmap-weight': [
+            'interpolate',
+            ['linear'],
+            ['get', 'weight'],
+            0, 0,
+            1, 0.4,
+            3, 0.7,
+            5, 1.0,
+            10, 1.5,
+          ],
+          'heatmap-color': [
+            'interpolate',
+            ['linear'],
+            ['heatmap-density'],
+            0, 'rgba(0, 0, 0, 0)',
+            0.15, 'rgb(65, 182, 196)',
+            0.35, 'rgb(254, 217, 118)',
+            0.65, 'rgb(254, 153, 41)',
+            0.85, 'rgb(227, 26, 28)',
+            1.0, 'rgb(128, 0, 38)',
+          ],
+          'heatmap-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            10, 15,
+            13, 25,
+            16, 45,
+          ],
+          'heatmap-opacity': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            14, 0.85,
+            17, 0.65,
+          ],
         },
       });
+    }
 
-      // Add Heatmap Visual Layer
-      map.addLayer(
-        {
-          id: HEATMAP_LAYER_ID,
-          type: 'heatmap',
-          source: HEATMAP_SOURCE_ID,
-          maxzoom: 17,
-          paint: {
-            // Increase weight based on report weight property
-            'heatmap-weight': [
-              'interpolate',
-              ['linear'],
-              ['get', 'weight'],
-              0, 0,
-              1, 0.4,
-              3, 0.7,
-              5, 1.0,
-              10, 1.5,
-            ],
-            // Heatmap color ramp: transparent blue -> cyan -> yellow -> orange -> crimson red
-            'heatmap-color': [
-              'interpolate',
-              ['linear'],
-              ['heatmap-density'],
-              0, 'rgba(0, 0, 0, 0)',
-              0.15, 'rgb(65, 182, 196)',
-              0.35, 'rgb(254, 217, 118)',
-              0.65, 'rgb(254, 153, 41)',
-              0.85, 'rgb(227, 26, 28)',
-              1.0, 'rgb(128, 0, 38)',
-            ],
-            // Radius of influence by zoom level
-            'heatmap-radius': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              10, 15,
-              13, 25,
-              16, 45,
-            ],
-            // Fade out heatmap layer slightly at higher zoom
-            'heatmap-opacity': [
-              'interpolate',
-              ['linear'],
-              ['zoom'],
-              14, 0.85,
-              17, 0.65,
-            ],
-          },
-        },
-        // Put heatmap below labels if available
-      );
-
-      // Add Circle Point Layer for discrete clicks and zoom-in inspection
+    if (!map.getLayer(POINTS_LAYER_ID)) {
       map.addLayer({
         id: POINTS_LAYER_ID,
         type: 'circle',
@@ -208,20 +153,92 @@ export function MapView({ deviceId }) {
         },
       });
 
-      // Cursor styling
       map.on('mouseenter', POINTS_LAYER_ID, () => {
         map.getCanvas().style.cursor = 'pointer';
       });
       map.on('mouseleave', POINTS_LAYER_ID, () => {
         map.getCanvas().style.cursor = 'crosshair';
       });
+    }
+  }, [createGeoJSON]);
+
+  // Load heatmap data from backend
+  const loadHeatmapData = useCallback(async () => {
+    setLoadingHeatmap(true);
+    try {
+      const data = await fetchHeatmap(filters);
+      setHeatmapData(data);
+    } catch (err) {
+      console.error('Failed to load heatmap:', err);
+    } finally {
+      setLoadingHeatmap(false);
+    }
+  }, [filters]);
+
+  // Update GeoJSON source when heatmapData changes
+  useEffect(() => {
+    if (!mapRef.current || !mapLoaded) return;
+    const source = mapRef.current.getSource(HEATMAP_SOURCE_ID);
+    if (source) {
+      source.setData(createGeoJSON(heatmapData));
+    } else {
+      setupHeatmapLayers(mapRef.current, heatmapData);
+    }
+  }, [heatmapData, mapLoaded, createGeoJSON, setupHeatmapLayers]);
+
+  // Keyboard accessibility: Escape to close modals
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        handleModalClose();
+        setIsPrivacyModalOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Initial Map Setup
+  useEffect(() => {
+    if (mapRef.current) return;
+
+    const map = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL,
+      center: CHENNAI_CENTER,
+      zoom: DEFAULT_ZOOM,
+      minZoom: 10,
+      maxZoom: 19,
+      maxBounds: CHENNAI_BOUNDS,
+      attributionControl: false,
     });
 
-    // Map Click Listener for Reporting / Confirming
+    mapRef.current = map;
+
+    map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
+    map.addControl(
+      new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: false,
+      }),
+      'bottom-right'
+    );
+    map.addControl(
+      new maplibregl.AttributionControl({
+        compact: true,
+        customAttribution: '© OpenFreeMap © OpenStreetMap contributors',
+      }),
+      'bottom-left'
+    );
+
+    map.on('load', () => {
+      setMapLoaded(true);
+      setupHeatmapLayers(map, heatmapData);
+    });
+
     map.on('click', (e) => {
       const { lng, lat } = e.lngLat;
 
-      // Check bounds
       if (
         lng < CHENNAI_BOUNDS[0][0] ||
         lng > CHENNAI_BOUNDS[1][0] ||
@@ -231,20 +248,24 @@ export function MapView({ deviceId }) {
         return;
       }
 
-      // Check if user clicked an existing feature on POINTS_LAYER_ID
+      // Check if user clicked an existing point
       const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
       if (features && features.length > 0) {
         const feature = features[0];
-        const { lat: fLat, lng: fLng, weight } = feature.properties;
-        setExistingReportToConfirm({
-          lat: fLat,
-          lng: fLng,
-          confirmations: Math.max(0, weight - 1),
-          id: feature.properties.id || 'point',
-        });
-        setSelectedCoords({ lat, lng });
-        setIsConfirmModalOpen(true);
-        return;
+        const props = feature.properties || {};
+        if (props.id) {
+          setExistingReportToConfirm({
+            id: props.id,
+            lat: props.lat || lat,
+            lng: props.lng || lng,
+            category: props.category,
+            status: props.status,
+            confirmations: props.confirmations || 0,
+          });
+          setSelectedCoords({ lat, lng });
+          setIsConfirmModalOpen(true);
+          return;
+        }
       }
 
       // Show temporary pin on click
@@ -270,15 +291,17 @@ export function MapView({ deviceId }) {
     loadHeatmapData();
   }, [loadHeatmapData]);
 
-  // Style toggle (light/dark)
+  // Robust Map Style Toggle (Light <-> Dark)
   const toggleMapStyle = () => {
     if (!mapRef.current) return;
-    const nextStyle = !isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
-    setIsDarkMode(!isDarkMode);
+    const nextDarkMode = !isDarkMode;
+    setIsDarkMode(nextDarkMode);
+
+    const nextStyle = nextDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
     mapRef.current.setStyle(nextStyle);
-    // Source and layers will be re-added on map style.load event
+
     mapRef.current.once('style.load', () => {
-      loadHeatmapData();
+      setupHeatmapLayers(mapRef.current, heatmapData);
     });
   };
 

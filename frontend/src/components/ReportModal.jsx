@@ -288,7 +288,7 @@ export function ReportModal({
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={submitting || !selectedCategory}
+              disabled={submitting}
             >
               {submitting ? (
                 <>

@@ -47,3 +47,7 @@ class HeatmapPoint(BaseModel):
     lat: float
     lng: float
     weight: float
+    id: Optional[str] = None
+    category: Optional[ReportCategory] = None
+    status: Optional[ReportStatus] = None
+    confirmations: Optional[int] = None

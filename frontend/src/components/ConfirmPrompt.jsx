@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { ShieldCheck, CheckCircle2, AlertCircle, Loader2, X, PlusCircle } from 'lucide-react';
 import { confirmReport } from '../utils/api';
+import { ALL_CATEGORIES } from '../utils/categories';
 
 export function ConfirmPrompt({
   isOpen,
@@ -15,6 +16,9 @@ export function ConfirmPrompt({
   const [successMessage, setSuccessMessage] = useState('');
 
   if (!isOpen || !existingReport) return null;
+
+  const categoryMeta = ALL_CATEGORIES.find((c) => c.id === existingReport.category);
+  const categoryLabel = categoryMeta ? categoryMeta.label : (existingReport.category?.replace(/_/g, ' ') || 'Safety Concern');
 
   const handleConfirm = async () => {
     setErrorMessage('');
@@ -71,7 +75,7 @@ export function ConfirmPrompt({
           <div className="existing-report-card">
             <div className="card-row">
               <span className="label">Category:</span>
-              <span className="value capitalize">{existingReport.category?.replace(/_/g, ' ') || 'Safety Concern'}</span>
+              <span className="value font-medium">{categoryLabel}</span>
             </div>
             <div className="card-row">
               <span className="label">Status:</span>

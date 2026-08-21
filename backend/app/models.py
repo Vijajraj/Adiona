@@ -14,6 +14,7 @@ from sqlalchemy import (
     UniqueConstraint,
     ForeignKey,
     Enum,
+    Index,
 )
 from sqlalchemy.orm import DeclarativeBase
 
@@ -106,6 +107,11 @@ class Report(Base):
     confirmations = Column(Integer, default=0, nullable=False)
     is_flagged = Column(Boolean, default=False, nullable=False)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)
+
+    __table_args__ = (
+        Index("ix_reports_grid_lat_lng", "grid_lat", "grid_lng"),
+        Index("ix_reports_device_created", "device_id", "created_at"),
+    )
 
 
 class Confirmation(Base):

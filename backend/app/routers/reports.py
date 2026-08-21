@@ -151,11 +151,15 @@ async def get_heatmap(
     """
     from datetime import datetime, timedelta, timezone
 
-    # Base query: group by grid cell, compute weight
+    # Base query: group by grid cell, compute weight and cell metadata
     query = select(
         Report.grid_lat.label("lat"),
         Report.grid_lng.label("lng"),
         (func.count(Report.id) + func.coalesce(func.sum(Report.confirmations), 0)).label("weight"),
+        func.max(Report.id).label("id"),
+        func.max(Report.category).label("category"),
+        func.max(Report.status).label("status"),
+        func.coalesce(func.sum(Report.confirmations), 0).label("confirmations"),
     ).group_by(Report.grid_lat, Report.grid_lng)
 
     # Optional filters
@@ -173,6 +177,14 @@ async def get_heatmap(
     rows = result.all()
 
     return [
-        HeatmapPoint(lat=row.lat, lng=row.lng, weight=float(row.weight))
+        HeatmapPoint(
+            lat=row.lat,
+            lng=row.lng,
+            weight=float(row.weight),
+            id=row.id,
+            category=row.category,
+            status=row.status,
+            confirmations=row.confirmations,
+        )
         for row in rows
     ]
