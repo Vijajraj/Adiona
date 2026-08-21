@@ -1,0 +1,417 @@
+import React, { useEffect, useRef, useState, useCallback } from 'react';
+import * as maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import {
+  CHENNAI_BOUNDS,
+  CHENNAI_CENTER,
+  DEFAULT_ZOOM,
+  MAP_STYLE_URL,
+  MAP_STYLE_DARK_URL,
+} from '../utils/bounds';
+import { fetchHeatmap } from '../utils/api';
+import { ReportModal } from './ReportModal';
+import { ConfirmPrompt } from './ConfirmPrompt';
+import { FilterBar } from './FilterBar';
+import { PrivacyNoticeModal } from './PrivacyNotice';
+import { Sun, Moon, Plus, Shield, Info, Layers, RefreshCw } from 'lucide-react';
+
+const HEATMAP_SOURCE_ID = 'safety-reports-source';
+const HEATMAP_LAYER_ID = 'safety-reports-heatmap';
+const POINTS_LAYER_ID = 'safety-reports-points';
+
+export function MapView({ deviceId }) {
+  const mapContainerRef = useRef(null);
+  const mapRef = useRef(null);
+  const clickMarkerRef = useRef(null);
+
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [heatmapData, setHeatmapData] = useState([]);
+  const [filters, setFilters] = useState({
+    category: null,
+    hours_back: null,
+    affected_group: null,
+  });
+
+  // Modals state
+  const [selectedCoords, setSelectedCoords] = useState(null);
+  const [isReportModalOpen, setIsReportModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [existingReportToConfirm, setExistingReportToConfirm] = useState(null);
+  const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [loadingHeatmap, setLoadingHeatmap] = useState(false);
+
+  // Load heatmap data from backend
+  const loadHeatmapData = useCallback(async () => {
+    setLoadingHeatmap(true);
+    try {
+      const data = await fetchHeatmap(filters);
+      setHeatmapData(data);
+    } catch (err) {
+      console.error('Failed to load heatmap:', err);
+    } finally {
+      setLoadingHeatmap(false);
+    }
+  }, [filters]);
+
+  // Update GeoJSON source when heatmapData changes
+  useEffect(() => {
+    if (!mapRef.current || !mapLoaded) return;
+
+    const source = mapRef.current.getSource(HEATMAP_SOURCE_ID);
+    if (!source) return;
+
+    const geojson = {
+      type: 'FeatureCollection',
+      features: (heatmapData || []).map((point, index) => ({
+        type: 'Feature',
+        id: index,
+        properties: {
+          weight: point.weight || 1,
+          lat: point.lat,
+          lng: point.lng,
+        },
+        geometry: {
+          type: 'Point',
+          coordinates: [point.lng, point.lat],
+        },
+      })),
+    };
+
+    source.setData(geojson);
+  }, [heatmapData, mapLoaded]);
+
+  // Initial Map Setup
+  useEffect(() => {
+    if (mapRef.current) return;
+
+    const map = new maplibregl.Map({
+      container: mapContainerRef.current,
+      style: isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL,
+      center: CHENNAI_CENTER,
+      zoom: DEFAULT_ZOOM,
+      minZoom: 10,
+      maxZoom: 19,
+      maxBounds: CHENNAI_BOUNDS,
+      attributionControl: false,
+    });
+
+    mapRef.current = map;
+
+    // Controls
+    map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
+    map.addControl(
+      new maplibregl.GeolocateControl({
+        positionOptions: { enableHighAccuracy: true },
+        trackUserLocation: false,
+      }),
+      'bottom-right'
+    );
+    map.addControl(
+      new maplibregl.AttributionControl({
+        compact: true,
+        customAttribution: '© OpenFreeMap © OpenStreetMap contributors',
+      }),
+      'bottom-left'
+    );
+
+    map.on('load', () => {
+      setMapLoaded(true);
+
+      // Add Heatmap Source
+      map.addSource(HEATMAP_SOURCE_ID, {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: [],
+        },
+      });
+
+      // Add Heatmap Visual Layer
+      map.addLayer(
+        {
+          id: HEATMAP_LAYER_ID,
+          type: 'heatmap',
+          source: HEATMAP_SOURCE_ID,
+          maxzoom: 17,
+          paint: {
+            // Increase weight based on report weight property
+            'heatmap-weight': [
+              'interpolate',
+              ['linear'],
+              ['get', 'weight'],
+              0, 0,
+              1, 0.4,
+              3, 0.7,
+              5, 1.0,
+              10, 1.5,
+            ],
+            // Heatmap color ramp: transparent blue -> cyan -> yellow -> orange -> crimson red
+            'heatmap-color': [
+              'interpolate',
+              ['linear'],
+              ['heatmap-density'],
+              0, 'rgba(0, 0, 0, 0)',
+              0.15, 'rgb(65, 182, 196)',
+              0.35, 'rgb(254, 217, 118)',
+              0.65, 'rgb(254, 153, 41)',
+              0.85, 'rgb(227, 26, 28)',
+              1.0, 'rgb(128, 0, 38)',
+            ],
+            // Radius of influence by zoom level
+            'heatmap-radius': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              10, 15,
+              13, 25,
+              16, 45,
+            ],
+            // Fade out heatmap layer slightly at higher zoom
+            'heatmap-opacity': [
+              'interpolate',
+              ['linear'],
+              ['zoom'],
+              14, 0.85,
+              17, 0.65,
+            ],
+          },
+        },
+        // Put heatmap below labels if available
+      );
+
+      // Add Circle Point Layer for discrete clicks and zoom-in inspection
+      map.addLayer({
+        id: POINTS_LAYER_ID,
+        type: 'circle',
+        source: HEATMAP_SOURCE_ID,
+        minzoom: 13,
+        paint: {
+          'circle-radius': [
+            'interpolate',
+            ['linear'],
+            ['zoom'],
+            13, 5,
+            16, 10,
+          ],
+          'circle-color': [
+            'interpolate',
+            ['linear'],
+            ['get', 'weight'],
+            1, '#f59e0b',
+            5, '#ef4444',
+            10, '#991b1b',
+          ],
+          'circle-stroke-color': '#ffffff',
+          'circle-stroke-width': 1.5,
+          'circle-opacity': 0.85,
+        },
+      });
+
+      // Cursor styling
+      map.on('mouseenter', POINTS_LAYER_ID, () => {
+        map.getCanvas().style.cursor = 'pointer';
+      });
+      map.on('mouseleave', POINTS_LAYER_ID, () => {
+        map.getCanvas().style.cursor = 'crosshair';
+      });
+    });
+
+    // Map Click Listener for Reporting / Confirming
+    map.on('click', (e) => {
+      const { lng, lat } = e.lngLat;
+
+      // Check bounds
+      if (
+        lng < CHENNAI_BOUNDS[0][0] ||
+        lng > CHENNAI_BOUNDS[1][0] ||
+        lat < CHENNAI_BOUNDS[0][1] ||
+        lat > CHENNAI_BOUNDS[1][1]
+      ) {
+        return;
+      }
+
+      // Check if user clicked an existing feature on POINTS_LAYER_ID
+      const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
+      if (features && features.length > 0) {
+        const feature = features[0];
+        const { lat: fLat, lng: fLng, weight } = feature.properties;
+        setExistingReportToConfirm({
+          lat: fLat,
+          lng: fLng,
+          confirmations: Math.max(0, weight - 1),
+          id: feature.properties.id || 'point',
+        });
+        setSelectedCoords({ lat, lng });
+        setIsConfirmModalOpen(true);
+        return;
+      }
+
+      // Show temporary pin on click
+      if (clickMarkerRef.current) {
+        clickMarkerRef.current.remove();
+      }
+      clickMarkerRef.current = new maplibregl.Marker({ color: '#4f46e5' })
+        .setLngLat([lng, lat])
+        .addTo(map);
+
+      setSelectedCoords({ lat, lng });
+      setIsReportModalOpen(true);
+    });
+
+    return () => {
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  // Fetch heatmap on mount & filter changes
+  useEffect(() => {
+    loadHeatmapData();
+  }, [loadHeatmapData]);
+
+  // Style toggle (light/dark)
+  const toggleMapStyle = () => {
+    if (!mapRef.current) return;
+    const nextStyle = !isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
+    setIsDarkMode(!isDarkMode);
+    mapRef.current.setStyle(nextStyle);
+    // Source and layers will be re-added on map style.load event
+    mapRef.current.once('style.load', () => {
+      loadHeatmapData();
+    });
+  };
+
+  const handleFilterChange = (key, value) => {
+    setFilters((prev) => ({ ...prev, [key]: value }));
+  };
+
+  const handleResetFilters = () => {
+    setFilters({ category: null, hours_back: null, affected_group: null });
+  };
+
+  const handleReportSuccess = () => {
+    if (clickMarkerRef.current) {
+      clickMarkerRef.current.remove();
+      clickMarkerRef.current = null;
+    }
+    loadHeatmapData();
+  };
+
+  const handleModalClose = () => {
+    if (clickMarkerRef.current) {
+      clickMarkerRef.current.remove();
+      clickMarkerRef.current = null;
+    }
+    setIsReportModalOpen(false);
+    setIsConfirmModalOpen(false);
+  };
+
+  return (
+    <div className="map-view-root">
+      {/* Top Header Bar */}
+      <header className="app-header">
+        <div className="header-brand">
+          <div className="brand-icon">
+            <Shield size={22} className="text-white" />
+          </div>
+          <div>
+            <h1 className="brand-title">Chennai Safety Map</h1>
+            <p className="brand-subtitle">Hyperlocal Open Crowdsourced Safety Network</p>
+          </div>
+        </div>
+
+        <div className="header-actions">
+          {/* Refresh Button */}
+          <button
+            type="button"
+            className="action-btn"
+            onClick={loadHeatmapData}
+            title="Refresh heatmap data"
+            aria-label="Refresh data"
+          >
+            <RefreshCw size={18} className={loadingHeatmap ? 'animate-spin' : ''} />
+          </button>
+
+          {/* Style Toggle */}
+          <button
+            type="button"
+            className="action-btn"
+            onClick={toggleMapStyle}
+            title={isDarkMode ? 'Switch to Light Map' : 'Switch to Dark Map'}
+            aria-label="Toggle map theme"
+          >
+            {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+
+          {/* Privacy Disclosure Button */}
+          <button
+            type="button"
+            className="action-btn privacy-btn"
+            onClick={() => setIsPrivacyModalOpen(true)}
+            title="Privacy & Anonymity Disclosure"
+          >
+            <Info size={18} />
+            <span className="hidden sm:inline">Anonymity & Privacy</span>
+          </button>
+        </div>
+      </header>
+
+      {/* Map Canvas */}
+      <div ref={mapContainerRef} className="map-canvas" />
+
+      {/* Floating Instructions Banner */}
+      <div className="map-instructions-badge">
+        <Plus size={16} />
+        <span>Click anywhere on Chennai map to report or confirm a spot</span>
+      </div>
+
+      {/* Heatmap Legend */}
+      <div className="heatmap-legend">
+        <div className="legend-title">Safety Density</div>
+        <div className="legend-gradient" />
+        <div className="legend-labels">
+          <span>Low Concern</span>
+          <span>Moderate</span>
+          <span>High Severity</span>
+        </div>
+      </div>
+
+      {/* Filter Bar Component */}
+      <FilterBar
+        filters={filters}
+        onFilterChange={handleFilterChange}
+        onResetFilters={handleResetFilters}
+      />
+
+      {/* Report Modal */}
+      <ReportModal
+        isOpen={isReportModalOpen}
+        onClose={handleModalClose}
+        coordinates={selectedCoords}
+        deviceId={deviceId}
+        onReportSubmitted={handleReportSuccess}
+        onOpenPrivacy={() => setIsPrivacyModalOpen(true)}
+      />
+
+      {/* Confirm Modal */}
+      <ConfirmPrompt
+        isOpen={isConfirmModalOpen}
+        onClose={handleModalClose}
+        existingReport={existingReportToConfirm}
+        deviceId={deviceId}
+        onConfirmed={handleReportSuccess}
+        onProceedWithNewReport={() => {
+          setIsConfirmModalOpen(false);
+          setIsReportModalOpen(true);
+        }}
+      />
+
+      {/* Full Privacy Disclosure Modal */}
+      <PrivacyNoticeModal
+        isOpen={isPrivacyModalOpen}
+        onClose={() => setIsPrivacyModalOpen(false)}
+      />
+    </div>
+  );
+}
