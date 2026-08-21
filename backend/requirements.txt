@@ -1,0 +1,16 @@
+fastapi
+uvicorn[standard]
+sqlalchemy[asyncio]
+asyncpg
+aiosqlite
+pydantic
+pydantic-settings
+slowapi
+python-dotenv
+httpx
+pytest
+pytest-asyncio
+
+# Optional — requires scikit-learn (needs pre-built wheel; works on Python <=3.12,
+# no wheel yet for 3.14).  profanity.py degrades to a no-op if unavailable.
+# alt-profanity-check
