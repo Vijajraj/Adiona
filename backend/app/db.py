@@ -1,6 +1,6 @@
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
-
 from app.config import settings
+from app.models import Base
 
 connect_args = {}
 if settings.DATABASE_URL.startswith("sqlite"):
@@ -15,6 +15,12 @@ engine = create_async_engine(
 async_session = async_sessionmaker(
     engine, class_=AsyncSession, expire_on_commit=False
 )
+
+
+async def init_db():
+    """Create all database tables."""
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
 
 
 async def get_db():

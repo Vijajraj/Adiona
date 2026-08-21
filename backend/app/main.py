@@ -8,8 +8,7 @@ from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 
 from app.config import settings
-from app.db import engine
-from app.models import Base
+from app.db import init_db
 from app.routers.reports import limiter, router as reports_router
 
 
@@ -19,8 +18,7 @@ from app.routers.reports import limiter, router as reports_router
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Create database tables on startup (idempotent)."""
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+    await init_db()
     yield
 
 
