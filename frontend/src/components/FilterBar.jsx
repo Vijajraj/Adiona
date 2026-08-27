@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Filter, X, Clock, Users, Layers, RotateCcw } from 'lucide-react';
 import {
   GENERAL_SAFETY_CATEGORIES,
@@ -21,6 +21,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
         className={`filter-toggle-btn ${hasActiveFilters ? 'has-active' : ''}`}
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle map filters"
+        aria-expanded={isOpen}
       >
         <Filter size={18} />
         <span>Filters</span>
@@ -29,7 +30,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
 
       {/* Filter panel */}
       {isOpen && (
-        <div className="filter-panel">
+        <div className="filter-panel" role="region" aria-label="Map filters panel">
           <div className="filter-panel-header">
             <div className="flex items-center gap-2">
               <Filter size={16} />

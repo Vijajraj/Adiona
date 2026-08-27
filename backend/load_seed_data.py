@@ -11,8 +11,6 @@ import logging
 import os
 import sys
 
-from sqlalchemy.ext.asyncio import AsyncSession
-
 from app.db import async_session, init_db
 from app.models import Report, ReportCategory, ReportStatus
 from app.services.geo_validator import validate_chennai_bounds

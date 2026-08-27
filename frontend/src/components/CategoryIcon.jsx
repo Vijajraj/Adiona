@@ -1,4 +1,3 @@
-import React from 'react';
 import {
   LightbulbOff,
   Compass,
@@ -12,19 +11,6 @@ import {
   ShieldAlert,
   Bus,
   AlertOctagon,
-  Shield,
-  ShieldCheck,
-  CheckCircle2,
-  Info,
-  X,
-  Filter,
-  Clock,
-  Users,
-  MapPin,
-  Layers,
-  Sun,
-  Moon,
-  Plus,
 } from 'lucide-react';
 
 const iconMap = {
@@ -40,19 +26,6 @@ const iconMap = {
   ShieldAlert,
   Bus,
   AlertOctagon,
-  Shield,
-  ShieldCheck,
-  CheckCircle2,
-  Info,
-  X,
-  Filter,
-  Clock,
-  Users,
-  MapPin,
-  Layers,
-  Sun,
-  Moon,
-  Plus,
 };
 
 export function CategoryIcon({ name, size = 18, className = '' }) {

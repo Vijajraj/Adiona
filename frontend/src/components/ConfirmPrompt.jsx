@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { ShieldCheck, CheckCircle2, AlertCircle, Loader2, X, PlusCircle } from 'lucide-react';
 import { confirmReport } from '../utils/api';
 import { ALL_CATEGORIES } from '../utils/categories';
@@ -15,10 +15,37 @@ export function ConfirmPrompt({
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  const confirmTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (confirmTimeoutRef.current) {
+        clearTimeout(confirmTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Reset errors when opened/changed
+  useEffect(() => {
+    if (isOpen) {
+      setErrorMessage('');
+      setSuccessMessage('');
+    }
+  }, [isOpen, existingReport]);
+
   if (!isOpen || !existingReport) return null;
 
   const categoryMeta = ALL_CATEGORIES.find((c) => c.id === existingReport.category);
   const categoryLabel = categoryMeta ? categoryMeta.label : (existingReport.category?.replace(/_/g, ' ') || 'Safety Concern');
+
+  const handleClose = () => {
+    if (confirmTimeoutRef.current) {
+      clearTimeout(confirmTimeoutRef.current);
+    }
+    setErrorMessage('');
+    setSuccessMessage('');
+    onClose();
+  };
 
   const handleConfirm = async () => {
     setErrorMessage('');
@@ -28,9 +55,9 @@ export function ConfirmPrompt({
     try {
       const result = await confirmReport(existingReport.id, deviceId);
       setSuccessMessage(`Report confirmed! Total confirmations: ${result.confirmations}`);
-      setTimeout(() => {
+      confirmTimeoutRef.current = setTimeout(() => {
         onConfirmed(result);
-        onClose();
+        handleClose();
       }, 1000);
     } catch (err) {
       setErrorMessage(err.message || 'Failed to confirm report.');
@@ -40,14 +67,20 @@ export function ConfirmPrompt({
   };
 
   return (
-    <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content confirm-modal" onClick={(e) => e.stopPropagation()}>
+    <div className="modal-overlay" onClick={handleClose}>
+      <div
+        className="modal-content confirm-modal"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="confirm-modal-title"
+      >
         <div className="modal-header">
           <div className="modal-title-row">
             <ShieldCheck className="text-amber-500" size={24} />
-            <h2>Existing Report Nearby</h2>
+            <h2 id="confirm-modal-title">Existing Report Nearby</h2>
           </div>
-          <button className="close-button" onClick={onClose} aria-label="Close modal">
+          <button className="close-button" onClick={handleClose} aria-label="Close modal">
             <X size={20} />
           </button>
         </div>
@@ -59,15 +92,15 @@ export function ConfirmPrompt({
           </p>
 
           {errorMessage && (
-            <div className="alert-banner alert-error">
-              <AlertCircle size={18} />
+            <div className="alert-banner alert-error flex items-center gap-2" role="alert">
+              <AlertCircle size={18} className="flex-shrink-0" />
               <span>{errorMessage}</span>
             </div>
           )}
 
           {successMessage && (
-            <div className="alert-banner alert-success">
-              <CheckCircle2 size={18} />
+            <div className="alert-banner alert-success flex items-center gap-2" role="status">
+              <CheckCircle2 size={18} className="flex-shrink-0" />
               <span>{successMessage}</span>
             </div>
           )}
@@ -106,7 +139,7 @@ export function ConfirmPrompt({
             type="button"
             className="btn btn-primary flex items-center justify-center gap-2"
             onClick={handleConfirm}
-            disabled={confirming}
+            disabled={confirming || !!successMessage}
           >
             {confirming ? (
               <>

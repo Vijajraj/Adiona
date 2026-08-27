@@ -22,6 +22,7 @@ async def check_device_daily_limit(db: AsyncSession, device_id: str) -> None:
     result = await db.execute(
         select(func.count(Report.id)).where(
             Report.device_id == device_id,
+            Report.is_seed == False,  # Exclude seed records
             Report.created_at >= cutoff,
         )
     )
@@ -48,6 +49,7 @@ async def check_grid_cell_cooldown(
     result = await db.execute(
         select(func.count(Report.id)).where(
             Report.device_id == device_id,
+            Report.is_seed == False,  # Exclude seed records
             Report.grid_lat == grid_lat,
             Report.grid_lng == grid_lng,
             Report.created_at >= cutoff,

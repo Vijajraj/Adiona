@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import {
@@ -23,6 +23,7 @@ export function MapView({ deviceId }) {
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const clickMarkerRef = useRef(null);
+  const abortControllerRef = useRef(null);
 
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
@@ -154,22 +155,30 @@ export function MapView({ deviceId }) {
       });
 
       map.on('mouseenter', POINTS_LAYER_ID, () => {
-        map.getCanvas().style.cursor = 'pointer';
+        if (map.getCanvas()) map.getCanvas().style.cursor = 'pointer';
       });
       map.on('mouseleave', POINTS_LAYER_ID, () => {
-        map.getCanvas().style.cursor = 'crosshair';
+        if (map.getCanvas()) map.getCanvas().style.cursor = 'crosshair';
       });
     }
   }, [createGeoJSON]);
 
-  // Load heatmap data from backend
+  // Load heatmap data from backend with AbortController to prevent race conditions
   const loadHeatmapData = useCallback(async () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort();
+    }
+    const controller = new AbortController();
+    abortControllerRef.current = controller;
+
     setLoadingHeatmap(true);
     try {
-      const data = await fetchHeatmap(filters);
+      const data = await fetchHeatmap(filters, controller.signal);
       setHeatmapData(data);
     } catch (err) {
-      console.error('Failed to load heatmap:', err);
+      if (err.name !== 'AbortError') {
+        console.error('Failed to load heatmap:', err);
+      }
     } finally {
       setLoadingHeatmap(false);
     }
@@ -186,16 +195,42 @@ export function MapView({ deviceId }) {
     }
   }, [heatmapData, mapLoaded, createGeoJSON, setupHeatmapLayers]);
 
-  // Keyboard accessibility: Escape to close modals
+  // Close helper
+  const handleModalClose = useCallback(() => {
+    if (clickMarkerRef.current) {
+      clickMarkerRef.current.remove();
+      clickMarkerRef.current = null;
+    }
+    setIsReportModalOpen(false);
+    setIsConfirmModalOpen(false);
+    setIsPrivacyModalOpen(false);
+  }, []);
+
+  const handleModalCloseRef = useRef(handleModalClose);
+  useEffect(() => {
+    handleModalCloseRef.current = handleModalClose;
+  }, [handleModalClose]);
+
+  // Keyboard accessibility: Escape to close modals (using ref to avoid stale closures)
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
-        handleModalClose();
-        setIsPrivacyModalOpen(false);
+        handleModalCloseRef.current();
       }
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  // Handle window resizing to keep map canvas synced
+  useEffect(() => {
+    const handleResize = () => {
+      if (mapRef.current) {
+        mapRef.current.resize();
+      }
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   // Initial Map Setup
@@ -233,7 +268,6 @@ export function MapView({ deviceId }) {
 
     map.on('load', () => {
       setMapLoaded(true);
-      setupHeatmapLayers(map, heatmapData);
     });
 
     map.on('click', (e) => {
@@ -248,23 +282,26 @@ export function MapView({ deviceId }) {
         return;
       }
 
-      // Check if user clicked an existing point
-      const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
-      if (features && features.length > 0) {
-        const feature = features[0];
-        const props = feature.properties || {};
-        if (props.id) {
-          setExistingReportToConfirm({
-            id: props.id,
-            lat: props.lat || lat,
-            lng: props.lng || lng,
-            category: props.category,
-            status: props.status,
-            confirmations: props.confirmations || 0,
-          });
-          setSelectedCoords({ lat, lng });
-          setIsConfirmModalOpen(true);
-          return;
+      // Check if user clicked an existing point (guard against unmounted layer)
+      const pointsLayerExists = map.getLayer(POINTS_LAYER_ID);
+      if (pointsLayerExists) {
+        const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
+        if (features && features.length > 0) {
+          const feature = features[0];
+          const props = feature.properties || {};
+          if (props.id) {
+            setExistingReportToConfirm({
+              id: props.id,
+              lat: props.lat || lat,
+              lng: props.lng || lng,
+              category: props.category,
+              status: props.status,
+              confirmations: props.confirmations || 0,
+            });
+            setSelectedCoords({ lat, lng });
+            setIsConfirmModalOpen(true);
+            return;
+          }
         }
       }
 
@@ -281,6 +318,13 @@ export function MapView({ deviceId }) {
     });
 
     return () => {
+      if (abortControllerRef.current) {
+        abortControllerRef.current.abort();
+      }
+      if (clickMarkerRef.current) {
+        clickMarkerRef.current.remove();
+        clickMarkerRef.current = null;
+      }
       map.remove();
       mapRef.current = null;
     };
@@ -319,15 +363,6 @@ export function MapView({ deviceId }) {
       clickMarkerRef.current = null;
     }
     loadHeatmapData();
-  };
-
-  const handleModalClose = () => {
-    if (clickMarkerRef.current) {
-      clickMarkerRef.current.remove();
-      clickMarkerRef.current = null;
-    }
-    setIsReportModalOpen(false);
-    setIsConfirmModalOpen(false);
   };
 
   return (

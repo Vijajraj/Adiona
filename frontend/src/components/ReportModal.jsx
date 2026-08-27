@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import {
   X,
   MapPin,
@@ -37,6 +37,25 @@ export function ReportModal({
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
 
+  const submitTimeoutRef = useRef(null);
+
+  // Clear timeout and reset state on unmount
+  useEffect(() => {
+    return () => {
+      if (submitTimeoutRef.current) {
+        clearTimeout(submitTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  // Reset errors when coordinates or modal visibility changes
+  useEffect(() => {
+    if (isOpen) {
+      setErrorMessage('');
+      setSuccessMessage('');
+    }
+  }, [isOpen, coordinates]);
+
   if (!isOpen || !coordinates) return null;
 
   const { lat, lng } = coordinates;
@@ -70,10 +89,10 @@ export function ReportModal({
 
       const result = await submitReport(payload);
       setSuccessMessage('Report submitted successfully! Thank you for contributing.');
-      setTimeout(() => {
+      submitTimeoutRef.current = setTimeout(() => {
         onReportSubmitted(result);
         handleResetAndClose();
-      }, 1200);
+      }, 1000);
     } catch (err) {
       setErrorMessage(err.message || 'Failed to submit report. Please try again.');
     } finally {
@@ -82,6 +101,9 @@ export function ReportModal({
   };
 
   const handleResetAndClose = () => {
+    if (submitTimeoutRef.current) {
+      clearTimeout(submitTimeoutRef.current);
+    }
     setSelectedCategory('');
     setNote('');
     setStatus('unsafe');
@@ -94,53 +116,54 @@ export function ReportModal({
 
   return (
     <div className="modal-overlay" onClick={handleResetAndClose}>
-      <div className="modal-content report-modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-content report-modal"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="report-modal-title"
+      >
         <div className="modal-header">
           <div className="modal-title-row">
             <MapPin className="text-indigo-600" size={22} />
             <div>
-              <h2>Submit Safety Report</h2>
-              <p className="coords-text">
-                Location: {lat.toFixed(5)}, {lng.toFixed(5)} (~100m grid cell)
+              <h2 id="report-modal-title" className="modal-title">
+                Report Safety Issue
+              </h2>
+              <p className="modal-subtitle">
+                Snapped to ~100m grid ({lat.toFixed(4)}, {lng.toFixed(4)})
               </p>
             </div>
           </div>
-          <button className="close-button" onClick={handleResetAndClose} aria-label="Close modal">
+          <button
+            type="button"
+            className="modal-close-btn"
+            onClick={handleResetAndClose}
+            aria-label="Close report dialog"
+          >
             <X size={20} />
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="modal-body space-y-5">
-          {errorMessage && (
-            <div className="alert-banner alert-error">
-              <AlertCircle size={18} />
-              <span>{errorMessage}</span>
-            </div>
-          )}
-
-          {successMessage && (
-            <div className="alert-banner alert-success">
-              <CheckCircle2 size={18} />
-              <span>{successMessage}</span>
-            </div>
-          )}
-
-          {/* Safe / Unsafe Status Toggle */}
+        <form onSubmit={handleSubmit} className="report-form space-y-5">
+          {/* Status Selector */}
           <div className="form-group">
-            <label className="section-label">Safety Status</label>
+            <label className="form-label">Safety Status</label>
             <div className="status-toggle-group">
               <button
                 type="button"
-                className={`status-btn unsafe-btn ${status === 'unsafe' ? 'active' : ''}`}
+                className={`status-btn ${status === 'unsafe' ? 'active-unsafe' : ''}`}
                 onClick={() => setStatus('unsafe')}
+                aria-pressed={status === 'unsafe'}
               >
                 <ShieldAlert size={18} />
-                <span>Unsafe / Issue</span>
+                <span>Unsafe / Concern</span>
               </button>
               <button
                 type="button"
-                className={`status-btn safe-btn ${status === 'safe' ? 'active' : ''}`}
+                className={`status-btn ${status === 'safe' ? 'active-safe' : ''}`}
                 onClick={() => setStatus('safe')}
+                aria-pressed={status === 'safe'}
               >
                 <ShieldCheck size={18} />
                 <span>Safe Spot</span>
@@ -148,102 +171,109 @@ export function ReportModal({
             </div>
           </div>
 
-          {/* Categories: Two separate lists */}
+          {/* Category Section: General Safety */}
           <div className="form-group">
-            <label className="section-label">Select Problem Category</label>
-            
-            {/* List 1: General Safety */}
-            <div className="category-section">
-              <div className="category-section-header">
-                <span className="badge badge-general">General Safety (Affects Everyone)</span>
-              </div>
-              <div className="category-grid">
-                {GENERAL_SAFETY_CATEGORIES.map((cat) => (
+            <label className="form-label">
+              General Safety Categories
+              <span className="required-star">*</span>
+            </label>
+            <div className="category-grid" role="group" aria-label="General safety categories">
+              {GENERAL_SAFETY_CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory === cat.id;
+                return (
                   <button
                     key={cat.id}
                     type="button"
-                    className={`category-card ${selectedCategory === cat.id ? 'selected' : ''}`}
+                    className={`category-card ${isSelected ? 'selected' : ''}`}
                     onClick={() => setSelectedCategory(cat.id)}
+                    aria-pressed={isSelected}
                   >
-                    <div className="cat-icon-wrap">
-                      <CategoryIcon name={cat.icon} size={18} />
-                    </div>
-                    <div className="cat-text">
-                      <div className="cat-title">{cat.label}</div>
-                      <div className="cat-desc">{cat.description}</div>
+                    <CategoryIcon name={cat.icon} size={20} />
+                    <div className="category-card-text">
+                      <div className="category-label">{cat.label}</div>
+                      <div className="category-desc">{cat.description}</div>
                     </div>
                   </button>
-                ))}
-              </div>
-            </div>
-
-            {/* List 2: Women Safety (Kept distinct, not merged) */}
-            <div className="category-section mt-4">
-              <div className="category-section-header">
-                <span className="badge badge-women">Women Safety</span>
-              </div>
-              <div className="category-grid">
-                {WOMEN_SAFETY_CATEGORIES.map((cat) => (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`category-card ${selectedCategory === cat.id ? 'selected' : ''}`}
-                    onClick={() => setSelectedCategory(cat.id)}
-                  >
-                    <div className="cat-icon-wrap">
-                      <CategoryIcon name={cat.icon} size={18} />
-                    </div>
-                    <div className="cat-text">
-                      <div className="cat-title">{cat.label}</div>
-                      <div className="cat-desc">{cat.description}</div>
-                    </div>
-                  </button>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
 
-          {/* Optional Note Field (Max 240 Chars) */}
+          {/* Category Section: Women Safety */}
+          <div className="form-group mt-4">
+            <label className="form-label women-safety-label">
+              Women Safety Categories
+              <span className="badge-women-safety">Dedicated Concern</span>
+            </label>
+            <div className="category-grid" role="group" aria-label="Women safety categories">
+              {WOMEN_SAFETY_CATEGORIES.map((cat) => {
+                const isSelected = selectedCategory === cat.id;
+                return (
+                  <button
+                    key={cat.id}
+                    type="button"
+                    className={`category-card women-card ${isSelected ? 'selected' : ''}`}
+                    onClick={() => setSelectedCategory(cat.id)}
+                    aria-pressed={isSelected}
+                  >
+                    <CategoryIcon name={cat.icon} size={20} />
+                    <div className="category-card-text">
+                      <div className="category-label">{cat.label}</div>
+                      <div className="category-desc">{cat.description}</div>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Optional Note Field */}
           <div className="form-group">
-            <div className="label-with-count">
-              <label htmlFor="report-note" className="section-label">
-                Additional Details / Note {selectedCategory?.startsWith('other') ? '(Required for "Other")' : '(Optional)'}
+            <div className="flex justify-between items-center mb-1">
+              <label htmlFor="report-note" className="form-label mb-0">
+                Details / Landmark (Optional)
               </label>
-              <span className={`char-count ${note.length > 220 ? 'text-amber-600' : ''}`}>
-                {note.length} / 240
+              <span
+                className={`char-count text-xs ${
+                  note.length > 200 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+                }`}
+              >
+                {note.length}/240
               </span>
             </div>
             <textarea
               id="report-note"
               className="form-textarea"
-              rows={3}
+              rows="3"
               maxLength={240}
-              placeholder="Provide relevant details (e.g. broken streetlight near bus stand, deserted stretch after 9 PM)..."
+              placeholder={
+                selectedCategory.startsWith('other')
+                  ? 'Please describe the safety issue or specific landmark...'
+                  : 'Add brief context, nearby landmark, or specific hazard (no personal names)...'
+              }
               value={note}
               onChange={(e) => setNote(e.target.value)}
             />
           </div>
 
-          {/* User-controlled Affected Group Toggle (Opt-in, Hidden by Default) */}
-          <div className="form-group affected-group-accordion">
+          {/* Affected Group Opt-in Toggle */}
+          <div className="affected-group-section">
             <button
               type="button"
               className="accordion-toggle"
               onClick={() => setShowAffectedGroup(!showAffectedGroup)}
+              aria-expanded={showAffectedGroup}
             >
               <div className="flex items-center gap-2">
                 <Users size={16} />
-                <span>Specify Affected Demographic (Optional)</span>
+                <span>Specify who is most affected (Optional)</span>
               </div>
               {showAffectedGroup ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
 
             {showAffectedGroup && (
               <div className="accordion-content">
-                <p className="help-text">
-                  Used for safety analysis and filtering. Not required to submit.
-                </p>
-                <div className="radio-pills">
+                <div className="radio-group-pills">
                   {AFFECTED_GROUPS.map((group) => (
                     <label
                       key={group.id}
@@ -259,24 +289,32 @@ export function ReportModal({
                       <span>{group.label}</span>
                     </label>
                   ))}
-                  {affectedGroup && (
-                    <button
-                      type="button"
-                      className="clear-pill"
-                      onClick={() => setAffectedGroup('')}
-                    >
-                      Clear
-                    </button>
-                  )}
                 </div>
               </div>
             )}
           </div>
 
-          {/* Inline Privacy Notice per Spec §12 */}
-          <InlinePrivacyNotice onOpenFull={onOpenPrivacy} />
+          {/* Inline Privacy Notice (Mandatory per Spec §12) */}
+          <InlinePrivacyNotice onLearnMore={onOpenPrivacy} />
 
-          <div className="modal-footer">
+          {/* Error Message Display */}
+          {errorMessage && (
+            <div className="error-banner flex items-center gap-2" role="alert">
+              <AlertCircle size={18} className="flex-shrink-0" />
+              <span>{errorMessage}</span>
+            </div>
+          )}
+
+          {/* Success Message Display */}
+          {successMessage && (
+            <div className="success-banner flex items-center gap-2" role="status">
+              <CheckCircle2 size={18} className="flex-shrink-0" />
+              <span>{successMessage}</span>
+            </div>
+          )}
+
+          {/* Form Actions */}
+          <div className="modal-actions">
             <button
               type="button"
               className="btn btn-secondary"
@@ -287,16 +325,16 @@ export function ReportModal({
             </button>
             <button
               type="submit"
-              className="btn btn-primary"
-              disabled={submitting}
+              className="btn btn-primary flex items-center justify-center gap-2"
+              disabled={submitting || !!successMessage}
             >
               {submitting ? (
                 <>
-                  <Loader2 size={16} className="animate-spin" />
+                  <Loader2 size={18} className="animate-spin" />
                   <span>Submitting...</span>
                 </>
               ) : (
-                'Submit Safety Report'
+                <span>Submit Safety Report</span>
               )}
             </button>
           </div>

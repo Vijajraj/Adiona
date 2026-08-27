@@ -18,6 +18,8 @@ from sqlalchemy import (
 )
 from sqlalchemy.orm import DeclarativeBase
 
+from app.config import settings
+
 
 class Base(DeclarativeBase):
     pass
@@ -102,7 +104,7 @@ class Report(Base):
     status = Column(Enum(ReportStatus, native_enum=False), nullable=False)
     category = Column(Enum(ReportCategory, native_enum=False), nullable=False)
     affected_group = Column(Enum(AffectedGroup, native_enum=False), nullable=True)
-    note = Column(String(240), nullable=True)
+    note = Column(String(settings.NOTE_MAX_LENGTH), nullable=True)
     device_id = Column(String(36), nullable=False, index=True)
     confirmations = Column(Integer, default=0, nullable=False)
     is_flagged = Column(Boolean, default=False, nullable=False)
@@ -121,7 +123,7 @@ class Confirmation(Base):
 
     id = Column(String(36), primary_key=True, default=_uuid)
     report_id = Column(
-        String(36), ForeignKey("reports.id", ondelete="CASCADE"), nullable=False
+        String(36), ForeignKey("reports.id", ondelete="CASCADE"), nullable=False, index=True
     )
     device_id = Column(String(36), nullable=False)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)

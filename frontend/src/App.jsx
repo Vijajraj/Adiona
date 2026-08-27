@@ -1,14 +1,16 @@
-import React from 'react';
 import { useDeviceId } from './hooks/useDeviceId';
 import { MapView } from './components/MapView';
+import { ErrorBoundary } from './components/ErrorBoundary';
 
 function App() {
   const deviceId = useDeviceId();
 
   return (
-    <div className="app-container">
-      <MapView deviceId={deviceId} />
-    </div>
+    <ErrorBoundary>
+      <div className="app-container">
+        <MapView deviceId={deviceId} />
+      </div>
+    </ErrorBoundary>
   );
 }
 

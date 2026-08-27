@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { ReportModal } from '../components/ReportModal';
@@ -19,12 +18,12 @@ describe('ReportModal Component', () => {
     render(<ReportModal {...defaultProps} />);
 
     // Status buttons
-    expect(screen.getByText('Unsafe / Issue')).toBeInTheDocument();
+    expect(screen.getByText('Unsafe / Concern')).toBeInTheDocument();
     expect(screen.getByText('Safe Spot')).toBeInTheDocument();
 
     // Two distinct category section headers
-    expect(screen.getByText('General Safety (Affects Everyone)')).toBeInTheDocument();
-    expect(screen.getByText('Women Safety')).toBeInTheDocument();
+    expect(screen.getByText(/General Safety Categories/i)).toBeInTheDocument();
+    expect(screen.getByText(/Women Safety Categories/i)).toBeInTheDocument();
 
     // Categories in General list
     expect(screen.getByText('Poor / No Lighting')).toBeInTheDocument();
@@ -35,8 +34,8 @@ describe('ReportModal Component', () => {
     expect(screen.getByText('Physical Harassment / Groping')).toBeInTheDocument();
 
     // Note textarea
-    expect(screen.getByPlaceholderText(/Provide relevant details/i)).toBeInTheDocument();
-    expect(screen.getByText('0 / 240')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Add brief context/i)).toBeInTheDocument();
+    expect(screen.getByText('0/240')).toBeInTheDocument();
   });
 
   it('toggles user-controlled demographic accordion on click (collapsed by default)', () => {
@@ -46,7 +45,7 @@ describe('ReportModal Component', () => {
     expect(screen.queryByText('Woman')).not.toBeInTheDocument();
 
     // Click accordion toggle
-    const toggleBtn = screen.getByText(/Specify Affected Demographic/i);
+    const toggleBtn = screen.getByText(/Specify who is most affected/i);
     fireEvent.click(toggleBtn);
 
     // Demographics should now be visible
@@ -72,9 +71,9 @@ describe('ReportModal Component', () => {
     fireEvent.click(catBtn);
 
     // Type in note field
-    const textarea = screen.getByPlaceholderText(/Provide relevant details/i);
+    const textarea = screen.getByPlaceholderText(/Add brief context/i);
     fireEvent.change(textarea, { target: { value: 'Broken light post near bus terminal' } });
 
-    expect(screen.getByText('35 / 240')).toBeInTheDocument();
+    expect(screen.getByText('35/240')).toBeInTheDocument();
   });
 });

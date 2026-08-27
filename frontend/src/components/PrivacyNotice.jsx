@@ -1,4 +1,3 @@
-import React from 'react';
 import { ShieldCheck, X, Check, AlertCircle } from 'lucide-react';
 
 export function PrivacyNoticeModal({ isOpen, onClose }) {
@@ -6,11 +5,17 @@ export function PrivacyNoticeModal({ isOpen, onClose }) {
 
   return (
     <div className="modal-overlay" onClick={onClose}>
-      <div className="modal-content privacy-modal" onClick={(e) => e.stopPropagation()}>
+      <div
+        className="modal-content privacy-modal"
+        onClick={(e) => e.stopPropagation()}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="privacy-modal-title"
+      >
         <div className="modal-header">
           <div className="modal-title-row">
             <ShieldCheck className="text-emerald-500" size={24} />
-            <h2>Privacy & Anonymity Disclosure</h2>
+            <h2 id="privacy-modal-title">Privacy & Anonymity Disclosure</h2>
           </div>
           <button className="close-button" onClick={onClose} aria-label="Close modal">
             <X size={20} />
@@ -70,15 +75,18 @@ export function PrivacyNoticeModal({ isOpen, onClose }) {
   );
 }
 
-export function InlinePrivacyNotice({ onOpenFull }) {
+export function InlinePrivacyNotice({ onOpenFull, onLearnMore }) {
+  const handleOpen = onOpenFull || onLearnMore;
   return (
     <div className="inline-privacy-banner">
       <ShieldCheck size={16} className="text-emerald-600 flex-shrink-0" />
       <span>
         <strong>Zero-login & Anonymous:</strong> Snapped to ~100m grid.{' '}
-        <button type="button" className="privacy-link" onClick={onOpenFull}>
-          Privacy details
-        </button>
+        {handleOpen && (
+          <button type="button" className="privacy-link" onClick={handleOpen}>
+            Privacy details
+          </button>
+        )}
       </span>
     </div>
   );

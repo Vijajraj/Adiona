@@ -5,18 +5,20 @@ POST /reports/{id}/confirm → confirm an existing report
 GET  /reports/heatmap      → aggregated heatmap data
 """
 
+import uuid
+from datetime import datetime, timedelta, timezone
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
-from sqlalchemy import func, select
+from sqlalchemy import func, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.db import get_db
-from app.models import Confirmation, Report
+from app.models import AffectedGroup, Confirmation, Report, ReportCategory
 from app.schemas import (
     ConfirmRequest,
     ConfirmResponse,
@@ -34,7 +36,7 @@ from app.services.rate_limiter import (
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 
-# IP-level rate limiter — 7 requests/day on POST endpoints (spec §10)
+# IP-level rate limiter
 limiter = Limiter(key_func=get_remote_address)
 
 
@@ -101,7 +103,14 @@ async def confirm_report(
     """Confirm an existing report — increments its weight on the heatmap.
 
     One confirm per device per report (spec §9).
+    Uses atomic SQL increment to prevent race conditions.
     """
+    # Validate report_id UUID format
+    try:
+        uuid.UUID(report_id)
+    except (ValueError, AttributeError, TypeError):
+        raise HTTPException(status_code=400, detail="Invalid report_id format.")
+
     # Check report exists
     result = await db.execute(select(Report).where(Report.id == report_id))
     report = result.scalar_one_or_none()
@@ -128,29 +137,39 @@ async def confirm_report(
             status_code=409, detail="You have already confirmed this report."
         )
 
-    # Increment counter
-    report.confirmations += 1
+    # Atomic SQL increment to avoid read-modify-write race condition
+    await db.execute(
+        update(Report)
+        .where(Report.id == report_id)
+        .values(confirmations=Report.confirmations + 1)
+    )
     await db.commit()
 
-    return ConfirmResponse(confirmations=report.confirmations)
+    # Fetch updated confirmation count
+    updated_result = await db.execute(
+        select(Report.confirmations).where(Report.id == report_id)
+    )
+    new_count = updated_result.scalar_one()
+
+    return ConfirmResponse(confirmations=new_count)
 
 
 # --------------------------------------------------------------------------
 # GET /reports/heatmap
 # --------------------------------------------------------------------------
 @router.get("/heatmap", response_model=list[HeatmapPoint])
+@limiter.limit("120/minute")
 async def get_heatmap(
-    category: Optional[str] = None,
-    hours_back: Optional[int] = None,
-    affected_group: Optional[str] = None,
+    request: Request,
+    category: Optional[ReportCategory] = None,
+    hours_back: Optional[int] = Query(None, ge=1, le=8760, description="Time window in hours"),
+    affected_group: Optional[AffectedGroup] = None,
     db: AsyncSession = Depends(get_db),
 ):
     """Return aggregated heatmap data.
 
     Weight = count of reports in grid cell + sum of confirmations (spec §8).
     """
-    from datetime import datetime, timedelta, timezone
-
     # Base query: group by grid cell, compute weight and cell metadata
     query = select(
         Report.grid_lat.label("lat"),
@@ -162,7 +181,7 @@ async def get_heatmap(
         func.coalesce(func.sum(Report.confirmations), 0).label("confirmations"),
     ).group_by(Report.grid_lat, Report.grid_lng)
 
-    # Optional filters
+    # Strongly-typed filters
     if category:
         query = query.where(Report.category == category)
 

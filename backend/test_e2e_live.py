@@ -105,16 +105,19 @@ async def run_live_checks():
             print(f"   -> Point: {pt}")
         assert resp.status_code == 200
         assert len(heatmap) >= 1
-        assert heatmap[0]["weight"] >= 2  # 1 report + 1 confirmation = weight 2
+        marina_point = next(
+            (p for p in heatmap if abs(p["lat"] - 13.0470715) < 0.0001 and abs(p["lng"] - 80.2825743) < 0.0001),
+            None,
+        )
+        assert marina_point is not None
+        assert marina_point["weight"] >= 2  # 1 report + 1 confirmation = weight 2
 
         # 9. Filtered Heatmap
-        print("\n9. Testing category filter (category=poor_lighting vs category=stalking)...")
+        print("\n9. Testing category filter (category=poor_lighting)...")
         resp_match = await client.get("/reports/heatmap?category=poor_lighting")
-        resp_empty = await client.get("/reports/heatmap?category=stalking")
         print(f"   poor_lighting points: {len(resp_match.json())}")
-        print(f"   stalking points: {len(resp_empty.json())}")
         assert len(resp_match.json()) >= 1
-        assert len(resp_empty.json()) == 0
+        assert all(p["category"] == "poor_lighting" for p in resp_match.json())
 
         # 10. Device Daily Limit (5 reports max)
         print("\n10. Testing device 5 reports/day daily limit...")
