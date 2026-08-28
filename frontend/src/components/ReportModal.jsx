@@ -39,7 +39,7 @@ export function ReportModal({
 
   const submitTimeoutRef = useRef(null);
 
-  // Clear timeout and reset state on unmount
+  // Clear timeout on unmount
   useEffect(() => {
     return () => {
       if (submitTimeoutRef.current) {
@@ -123,9 +123,10 @@ export function ReportModal({
         aria-modal="true"
         aria-labelledby="report-modal-title"
       >
+        {/* Modal Header */}
         <div className="modal-header">
           <div className="modal-title-row">
-            <MapPin className="text-indigo-600" size={22} />
+            <MapPin className="text-indigo-600 flex-shrink-0" size={22} />
             <div>
               <h2 id="report-modal-title" className="modal-title">
                 Report Safety Issue
@@ -145,176 +146,180 @@ export function ReportModal({
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="report-form space-y-5">
-          {/* Status Selector */}
-          <div className="form-group">
-            <label className="form-label">Safety Status</label>
-            <div className="status-toggle-group">
-              <button
-                type="button"
-                className={`status-btn ${status === 'unsafe' ? 'active-unsafe' : ''}`}
-                onClick={() => setStatus('unsafe')}
-                aria-pressed={status === 'unsafe'}
-              >
-                <ShieldAlert size={18} />
-                <span>Unsafe / Concern</span>
-              </button>
-              <button
-                type="button"
-                className={`status-btn ${status === 'safe' ? 'active-safe' : ''}`}
-                onClick={() => setStatus('safe')}
-                aria-pressed={status === 'safe'}
-              >
-                <ShieldCheck size={18} />
-                <span>Safe Spot</span>
-              </button>
-            </div>
-          </div>
-
-          {/* Category Section: General Safety */}
-          <div className="form-group">
-            <label className="form-label">
-              General Safety Categories
-              <span className="required-star">*</span>
-            </label>
-            <div className="category-grid" role="group" aria-label="General safety categories">
-              {GENERAL_SAFETY_CATEGORIES.map((cat) => {
-                const isSelected = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`category-card ${isSelected ? 'selected' : ''}`}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    aria-pressed={isSelected}
-                  >
-                    <CategoryIcon name={cat.icon} size={20} />
-                    <div className="category-card-text">
-                      <div className="category-label">{cat.label}</div>
-                      <div className="category-desc">{cat.description}</div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Category Section: Women Safety */}
-          <div className="form-group mt-4">
-            <label className="form-label women-safety-label">
-              Women Safety Categories
-              <span className="badge-women-safety">Dedicated Concern</span>
-            </label>
-            <div className="category-grid" role="group" aria-label="Women safety categories">
-              {WOMEN_SAFETY_CATEGORIES.map((cat) => {
-                const isSelected = selectedCategory === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`category-card women-card ${isSelected ? 'selected' : ''}`}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    aria-pressed={isSelected}
-                  >
-                    <CategoryIcon name={cat.icon} size={20} />
-                    <div className="category-card-text">
-                      <div className="category-label">{cat.label}</div>
-                      <div className="category-desc">{cat.description}</div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Optional Note Field */}
-          <div className="form-group">
-            <div className="flex justify-between items-center mb-1">
-              <label htmlFor="report-note" className="form-label mb-0">
-                Details / Landmark (Optional)
-              </label>
-              <span
-                className={`char-count text-xs ${
-                  note.length > 200 ? 'text-amber-600 font-semibold' : 'text-slate-400'
-                }`}
-              >
-                {note.length}/240
-              </span>
-            </div>
-            <textarea
-              id="report-note"
-              className="form-textarea"
-              rows="3"
-              maxLength={240}
-              placeholder={
-                selectedCategory.startsWith('other')
-                  ? 'Please describe the safety issue or specific landmark...'
-                  : 'Add brief context, nearby landmark, or specific hazard (no personal names)...'
-              }
-              value={note}
-              onChange={(e) => setNote(e.target.value)}
-            />
-          </div>
-
-          {/* Affected Group Opt-in Toggle */}
-          <div className="affected-group-section">
-            <button
-              type="button"
-              className="accordion-toggle"
-              onClick={() => setShowAffectedGroup(!showAffectedGroup)}
-              aria-expanded={showAffectedGroup}
-            >
-              <div className="flex items-center gap-2">
-                <Users size={16} />
-                <span>Specify who is most affected (Optional)</span>
+        {/* Modal Form Container */}
+        <form onSubmit={handleSubmit} className="report-form flex flex-col flex-1 overflow-hidden">
+          {/* Scrollable Form Body */}
+          <div className="modal-body space-y-5">
+            {/* Status Selector */}
+            <div className="form-group">
+              <label className="form-label">Safety Status</label>
+              <div className="status-toggle-group">
+                <button
+                  type="button"
+                  className={`status-btn ${status === 'unsafe' ? 'active-unsafe' : ''}`}
+                  onClick={() => setStatus('unsafe')}
+                  aria-pressed={status === 'unsafe'}
+                >
+                  <ShieldAlert size={18} />
+                  <span>Unsafe / Concern</span>
+                </button>
+                <button
+                  type="button"
+                  className={`status-btn ${status === 'safe' ? 'active-safe' : ''}`}
+                  onClick={() => setStatus('safe')}
+                  aria-pressed={status === 'safe'}
+                >
+                  <ShieldCheck size={18} />
+                  <span>Safe Spot</span>
+                </button>
               </div>
-              {showAffectedGroup ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
-            </button>
+            </div>
 
-            {showAffectedGroup && (
-              <div className="accordion-content">
-                <div className="radio-group-pills">
-                  {AFFECTED_GROUPS.map((group) => (
-                    <label
-                      key={group.id}
-                      className={`radio-pill ${affectedGroup === group.id ? 'active' : ''}`}
+            {/* Category Section: General Safety */}
+            <div className="form-group">
+              <label className="form-label">
+                <span>General Safety Categories</span>
+                <span className="required-star">*</span>
+              </label>
+              <div className="category-grid" role="group" aria-label="General safety categories">
+                {GENERAL_SAFETY_CATEGORIES.map((cat) => {
+                  const isSelected = selectedCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      className={`category-card ${isSelected ? 'selected' : ''}`}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      aria-pressed={isSelected}
                     >
-                      <input
-                        type="radio"
-                        name="affected_group"
-                        value={group.id}
-                        checked={affectedGroup === group.id}
-                        onChange={(e) => setAffectedGroup(e.target.value)}
-                      />
-                      <span>{group.label}</span>
-                    </label>
-                  ))}
+                      <CategoryIcon name={cat.icon} size={20} />
+                      <div className="category-card-text">
+                        <div className="category-label">{cat.label}</div>
+                        <div className="category-desc">{cat.description}</div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Category Section: Women Safety */}
+            <div className="form-group mt-4">
+              <div className="form-label flex justify-between items-center w-full mb-2">
+                <span className="font-semibold text-slate-800">Women Safety Categories</span>
+                <span className="badge-women-safety">Dedicated Concern</span>
+              </div>
+              <div className="category-grid" role="group" aria-label="Women safety categories">
+                {WOMEN_SAFETY_CATEGORIES.map((cat) => {
+                  const isSelected = selectedCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      className={`category-card women-card ${isSelected ? 'selected' : ''}`}
+                      onClick={() => setSelectedCategory(cat.id)}
+                      aria-pressed={isSelected}
+                    >
+                      <CategoryIcon name={cat.icon} size={20} />
+                      <div className="category-card-text">
+                        <div className="category-label">{cat.label}</div>
+                        <div className="category-desc">{cat.description}</div>
+                      </div>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Optional Note Field */}
+            <div className="form-group">
+              <div className="flex justify-between items-center mb-1">
+                <label htmlFor="report-note" className="form-label mb-0">
+                  Details / Landmark (Optional)
+                </label>
+                <span
+                  className={`char-count text-xs ${
+                    note.length > 200 ? 'text-amber-600 font-semibold' : 'text-slate-400'
+                  }`}
+                >
+                  {note.length}/240
+                </span>
+              </div>
+              <textarea
+                id="report-note"
+                className="form-textarea"
+                rows="3"
+                maxLength={240}
+                placeholder={
+                  selectedCategory.startsWith('other')
+                    ? 'Please describe the safety issue or specific landmark...'
+                    : 'Add brief context, nearby landmark, or specific hazard (no personal names)...'
+                }
+                value={note}
+                onChange={(e) => setNote(e.target.value)}
+              />
+            </div>
+
+            {/* Affected Group Opt-in Toggle */}
+            <div className="affected-group-section">
+              <button
+                type="button"
+                className="accordion-toggle"
+                onClick={() => setShowAffectedGroup(!showAffectedGroup)}
+                aria-expanded={showAffectedGroup}
+              >
+                <div className="flex items-center gap-2">
+                  <Users size={16} />
+                  <span>Specify who is most affected (Optional)</span>
                 </div>
+                {showAffectedGroup ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+              </button>
+
+              {showAffectedGroup && (
+                <div className="accordion-content">
+                  <div className="radio-group-pills">
+                    {AFFECTED_GROUPS.map((group) => (
+                      <label
+                        key={group.id}
+                        className={`radio-pill ${affectedGroup === group.id ? 'active' : ''}`}
+                      >
+                        <input
+                          type="radio"
+                          name="affected_group"
+                          value={group.id}
+                          checked={affectedGroup === group.id}
+                          onChange={(e) => setAffectedGroup(e.target.value)}
+                        />
+                        <span>{group.label}</span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {/* Inline Privacy Notice (Mandatory per Spec §12) */}
+            <InlinePrivacyNotice onLearnMore={onOpenPrivacy} />
+
+            {/* Error Message Display */}
+            {errorMessage && (
+              <div className="error-banner flex items-center gap-2" role="alert">
+                <AlertCircle size={18} className="flex-shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
+
+            {/* Success Message Display */}
+            {successMessage && (
+              <div className="success-banner flex items-center gap-2" role="status">
+                <CheckCircle2 size={18} className="flex-shrink-0" />
+                <span>{successMessage}</span>
               </div>
             )}
           </div>
 
-          {/* Inline Privacy Notice (Mandatory per Spec §12) */}
-          <InlinePrivacyNotice onLearnMore={onOpenPrivacy} />
-
-          {/* Error Message Display */}
-          {errorMessage && (
-            <div className="error-banner flex items-center gap-2" role="alert">
-              <AlertCircle size={18} className="flex-shrink-0" />
-              <span>{errorMessage}</span>
-            </div>
-          )}
-
-          {/* Success Message Display */}
-          {successMessage && (
-            <div className="success-banner flex items-center gap-2" role="status">
-              <CheckCircle2 size={18} className="flex-shrink-0" />
-              <span>{successMessage}</span>
-            </div>
-          )}
-
-          {/* Form Actions */}
-          <div className="modal-actions">
+          {/* Sticky Modal Footer Actions */}
+          <div className="modal-footer">
             <button
               type="button"
               className="btn btn-secondary"

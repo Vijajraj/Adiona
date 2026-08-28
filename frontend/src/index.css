@@ -427,15 +427,35 @@ body {
   padding: 20px;
   overflow-y: auto;
   flex: 1;
+  scroll-behavior: smooth;
+}
+
+.modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+
+.modal-body::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.modal-body::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+.modal-body::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
 }
 
 .modal-footer {
   padding: 14px 20px;
-  background: #f8fafc;
+  background: #ffffff;
   border-top: 1px solid var(--border-color);
   display: flex;
   justify-content: flex-end;
   gap: 10px;
+  flex-shrink: 0;
+  z-index: 10;
 }
 
 /* Status Buttons */
@@ -468,25 +488,26 @@ body {
   font-size: 0.9rem;
   font-weight: 600;
   transition: all 0.2s ease;
+  color: var(--text-secondary);
 }
 
-.unsafe-btn {
-  color: var(--accent-unsafe);
+.status-btn:hover {
+  background: #f8fafc;
 }
 
+.status-btn.active-unsafe,
 .unsafe-btn.active {
-  background: var(--accent-unsafe-bg);
-  border-color: var(--accent-unsafe);
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #dc2626;
   box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2);
 }
 
-.safe-btn {
-  color: var(--accent-safe);
-}
-
+.status-btn.active-safe,
 .safe-btn.active {
-  background: var(--accent-safe-bg);
-  border-color: var(--accent-safe);
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #059669;
   box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
 }
 
@@ -510,9 +531,15 @@ body {
   color: #0369a1;
 }
 
-.badge-women {
+.badge-women,
+.badge-women-safety {
   background: #fce7f3;
   color: #be185d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 9999px;
+  border: 1px solid #fbcfe8;
 }
 
 .category-grid {
