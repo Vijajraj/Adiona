@@ -155,7 +155,7 @@ async def confirm_report(
 
 
 # --------------------------------------------------------------------------
-# GET /reports/heatmap
+# GET /reports/heatmap — with Spec §4.2 Time-Decay Heatmap Weighting
 # --------------------------------------------------------------------------
 @router.get("/heatmap", response_model=list[HeatmapPoint])
 @limiter.limit("120/minute")
@@ -166,20 +166,23 @@ async def get_heatmap(
     affected_group: Optional[AffectedGroup] = None,
     db: AsyncSession = Depends(get_db),
 ):
-    """Return aggregated heatmap data.
+    """Return aggregated heatmap data with Spec §4.2 Time-Decay Weighting.
 
-    Weight = count of reports in grid cell + sum of confirmations (spec §8).
+    Older reports without recent confirmations gradually decay in weight (half-life ~30 days,
+    floored at 0.1), while confirmed spots retain high intensity.
     """
-    # Base query: group by grid cell, compute weight and cell metadata
+    import math
+
+    # Query all matching reports to calculate precise time-decay weights per cell
     query = select(
-        Report.grid_lat.label("lat"),
-        Report.grid_lng.label("lng"),
-        (func.count(Report.id) + func.coalesce(func.sum(Report.confirmations), 0)).label("weight"),
-        func.max(Report.id).label("id"),
-        func.max(Report.category).label("category"),
-        func.max(Report.status).label("status"),
-        func.coalesce(func.sum(Report.confirmations), 0).label("confirmations"),
-    ).group_by(Report.grid_lat, Report.grid_lng)
+        Report.grid_lat,
+        Report.grid_lng,
+        Report.id,
+        Report.category,
+        Report.status,
+        Report.confirmations,
+        Report.created_at,
+    )
 
     # Strongly-typed filters
     if category:
@@ -193,17 +196,53 @@ async def get_heatmap(
         query = query.where(Report.created_at >= cutoff)
 
     result = await db.execute(query)
-    rows = result.all()
+    reports = result.all()
+
+    now = datetime.now(timezone.utc)
+
+    # Group by grid cell and compute time-decayed weight
+    cells: dict[tuple[float, float], dict] = {}
+
+    for r in reports:
+        key = (r.grid_lat, r.grid_lng)
+
+        # Ensure created_at is timezone-aware
+        created_at = r.created_at
+        if created_at.tzinfo is None:
+            created_at = created_at.replace(tzinfo=timezone.utc)
+
+        age_days = (now - created_at).total_seconds() / 86400.0
+        # Time decay exponential formula: e^(-0.023 * age_days) -> ~30 day half-life, min floor 0.10
+        base_decayed_weight = max(0.10, math.exp(-0.023 * max(0.0, age_days)))
+        report_weight = base_decayed_weight + float(r.confirmations or 0)
+
+        if key not in cells:
+            cells[key] = {
+                "lat": r.grid_lat,
+                "lng": r.grid_lng,
+                "weight": 0.0,
+                "id": r.id,
+                "category": r.category,
+                "status": r.status,
+                "confirmations": 0,
+            }
+
+        cells[key]["weight"] += report_weight
+        cells[key]["confirmations"] += int(r.confirmations or 0)
+        # Keep latest report id/category for primary metadata
+        cells[key]["id"] = r.id
+        cells[key]["category"] = r.category
+        cells[key]["status"] = r.status
 
     return [
         HeatmapPoint(
-            lat=row.lat,
-            lng=row.lng,
-            weight=float(row.weight),
-            id=row.id,
-            category=row.category,
-            status=row.status,
-            confirmations=row.confirmations,
+            lat=c["lat"],
+            lng=c["lng"],
+            weight=round(c["weight"], 3),
+            id=c["id"],
+            category=c["category"],
+            status=c["status"],
+            confirmations=c["confirmations"],
         )
-        for row in rows
+        for c in cells.values()
     ]

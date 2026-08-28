@@ -14,11 +14,49 @@ import { ConfirmPrompt } from './ConfirmPrompt';
 import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
 import { ModerationModal } from './ModerationModal';
-import { Sun, Moon, Plus, Shield, Info, RefreshCw } from 'lucide-react';
+import { SearchBar } from './SearchBar';
+import { Sun, Moon, Plus, Shield, Info, RefreshCw, Share2, Check } from 'lucide-react';
 
 const HEATMAP_SOURCE_ID = 'safety-reports-source';
 const HEATMAP_LAYER_ID = 'safety-reports-heatmap';
 const POINTS_LAYER_ID = 'safety-reports-points';
+
+// Helper to parse deep-linked URL params (Spec §4.2)
+function getInitialMapParams() {
+  if (typeof window === 'undefined') {
+    return { initialCenter: CHENNAI_CENTER, initialZoom: DEFAULT_ZOOM };
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const lat = parseFloat(params.get('lat'));
+  const lng = parseFloat(params.get('lng'));
+  const zoom = parseFloat(params.get('zoom'));
+
+  const minLng = CHENNAI_BOUNDS[0][0];
+  const minLat = CHENNAI_BOUNDS[0][1];
+  const maxLng = CHENNAI_BOUNDS[1][0];
+  const maxLat = CHENNAI_BOUNDS[1][1];
+
+  let initialCenter = CHENNAI_CENTER;
+  let initialZoom = DEFAULT_ZOOM;
+
+  if (
+    !isNaN(lat) &&
+    !isNaN(lng) &&
+    lat >= minLat &&
+    lat <= maxLat &&
+    lng >= minLng &&
+    lng <= maxLng
+  ) {
+    initialCenter = [lng, lat];
+  }
+
+  if (!isNaN(zoom) && zoom >= 10 && zoom <= 19) {
+    initialZoom = zoom;
+  }
+
+  return { initialCenter, initialZoom };
+}
 
 export function MapView({ deviceId }) {
   const mapContainerRef = useRef(null);
@@ -29,6 +67,7 @@ export function MapView({ deviceId }) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [heatmapData, setHeatmapData] = useState([]);
+  const [showShareToast, setShowShareToast] = useState(false);
   const [filters, setFilters] = useState({
     category: null,
     hours_back: null,
@@ -214,7 +253,7 @@ export function MapView({ deviceId }) {
     handleModalCloseRef.current = handleModalClose;
   }, [handleModalClose]);
 
-  // Keyboard accessibility: Escape to close modals (using ref to avoid stale closures)
+  // Keyboard accessibility: Escape to close modals
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
@@ -236,15 +275,17 @@ export function MapView({ deviceId }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Initial Map Setup
+  // Initial Map Setup & Deep Linking
   useEffect(() => {
     if (mapRef.current) return;
+
+    const { initialCenter, initialZoom } = getInitialMapParams();
 
     const map = new maplibregl.Map({
       container: mapContainerRef.current,
       style: isDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL,
-      center: CHENNAI_CENTER,
-      zoom: DEFAULT_ZOOM,
+      center: initialCenter,
+      zoom: initialZoom,
       minZoom: 10,
       maxZoom: 19,
       maxBounds: CHENNAI_BOUNDS,
@@ -273,6 +314,18 @@ export function MapView({ deviceId }) {
       setMapLoaded(true);
     });
 
+    // Update URL query params on pan/zoom (Spec §4.2 URL Coordinate Sharing)
+    map.on('moveend', () => {
+      if (!mapRef.current) return;
+      const center = mapRef.current.getCenter();
+      const currentZoom = Math.round(mapRef.current.getZoom());
+      const url = new URL(window.location.href);
+      url.searchParams.set('lat', center.lat.toFixed(4));
+      url.searchParams.set('lng', center.lng.toFixed(4));
+      url.searchParams.set('zoom', currentZoom.toString());
+      window.history.replaceState({}, '', url.toString());
+    });
+
     map.on('click', (e) => {
       const { lng, lat } = e.lngLat;
 
@@ -285,7 +338,7 @@ export function MapView({ deviceId }) {
         return;
       }
 
-      // Check if user clicked an existing point (guard against unmounted layer)
+      // Check if user clicked an existing point
       const pointsLayerExists = map.getLayer(POINTS_LAYER_ID);
       if (pointsLayerExists) {
         const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
@@ -338,7 +391,34 @@ export function MapView({ deviceId }) {
     loadHeatmapData();
   }, [loadHeatmapData]);
 
-  // Robust Map Style Toggle (Light <-> Dark)
+  // Handle locality selection from Nominatim SearchBar
+  const handleSelectLocality = (location) => {
+    if (!mapRef.current) return;
+    mapRef.current.flyTo({
+      center: [location.lng, location.lat],
+      zoom: 15,
+      essential: true,
+    });
+
+    // Temporary pin highlight
+    if (clickMarkerRef.current) {
+      clickMarkerRef.current.remove();
+    }
+    clickMarkerRef.current = new maplibregl.Marker({ color: '#10b981' })
+      .setLngLat([location.lng, location.lat])
+      .addTo(mapRef.current);
+  };
+
+  // URL Share link generator with Clipboard Toast
+  const handleShareLink = () => {
+    const currentUrl = window.location.href;
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      setShowShareToast(true);
+      setTimeout(() => setShowShareToast(false), 2500);
+    });
+  };
+
+  // Map Style Toggle
   const toggleMapStyle = () => {
     if (!mapRef.current) return;
     const nextDarkMode = !isDarkMode;
@@ -382,7 +462,22 @@ export function MapView({ deviceId }) {
           </div>
         </div>
 
+        {/* Search Bar (Spec §4.2) */}
+        <SearchBar onSelectLocation={handleSelectLocality} />
+
         <div className="header-actions">
+          {/* Share Link Button (Spec §4.2) */}
+          <button
+            type="button"
+            className="action-btn share-btn"
+            onClick={handleShareLink}
+            title="Share current map view URL"
+            aria-label="Share location link"
+          >
+            <Share2 size={18} />
+            <span className="hidden sm:inline">Share</span>
+          </button>
+
           {/* Refresh Button */}
           <button
             type="button"
@@ -456,6 +551,14 @@ export function MapView({ deviceId }) {
         onFilterChange={handleFilterChange}
         onResetFilters={handleResetFilters}
       />
+
+      {/* Share Toast Banner */}
+      {showShareToast && (
+        <div className="share-toast-badge" role="status">
+          <Check size={18} />
+          <span>Shareable map link copied to clipboard!</span>
+        </div>
+      )}
 
       {/* Report Modal */}
       <ReportModal
