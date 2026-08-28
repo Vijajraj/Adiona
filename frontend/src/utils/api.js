@@ -71,3 +71,77 @@ export async function confirmReport(reportId, deviceId, signal = null) {
   }
   return data;
 }
+
+export async function fetchFlaggedReports(adminKey, signal = null) {
+  const fetchOptions = {
+    headers: {
+      'X-Admin-Key': adminKey,
+    },
+  };
+  if (signal) {
+    fetchOptions.signal = signal;
+  }
+
+  const res = await fetch(`${API_BASE_URL}/moderation/reports`, fetchOptions);
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(formatErrorMessage(errorData, 'Failed to fetch flagged reports'));
+  }
+  return res.json();
+}
+
+export async function fetchModerationStats(adminKey, signal = null) {
+  const fetchOptions = {
+    headers: {
+      'X-Admin-Key': adminKey,
+    },
+  };
+  if (signal) {
+    fetchOptions.signal = signal;
+  }
+
+  const res = await fetch(`${API_BASE_URL}/moderation/stats`, fetchOptions);
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(formatErrorMessage(errorData, 'Failed to fetch moderation stats'));
+  }
+  return res.json();
+}
+
+export async function approveFlaggedReport(reportId, adminKey, signal = null) {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'X-Admin-Key': adminKey,
+    },
+  };
+  if (signal) {
+    fetchOptions.signal = signal;
+  }
+
+  const res = await fetch(`${API_BASE_URL}/moderation/reports/${reportId}/approve`, fetchOptions);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(formatErrorMessage(data, 'Failed to approve report'));
+  }
+  return data;
+}
+
+export async function deleteFlaggedReport(reportId, adminKey, signal = null) {
+  const fetchOptions = {
+    method: 'DELETE',
+    headers: {
+      'X-Admin-Key': adminKey,
+    },
+  };
+  if (signal) {
+    fetchOptions.signal = signal;
+  }
+
+  const res = await fetch(`${API_BASE_URL}/moderation/reports/${reportId}`, fetchOptions);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(formatErrorMessage(data, 'Failed to delete report'));
+  }
+  return data;
+}

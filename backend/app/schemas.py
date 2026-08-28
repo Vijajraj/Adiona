@@ -84,3 +84,27 @@ class HeatmapPoint(BaseModel):
     category: Optional[ReportCategory] = None
     status: Optional[ReportStatus] = None
     confirmations: Optional[int] = None
+
+
+class FlaggedReportResponse(BaseModel):
+    id: str
+    grid_lat: float
+    grid_lng: float
+    status: ReportStatus
+    category: ReportCategory
+    affected_group: Optional[AffectedGroup] = None
+    note: Optional[str] = None
+    device_id: str
+    confirmations: int
+    is_flagged: bool
+    is_seed: bool
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class ModerationActionResponse(BaseModel):
+    success: bool
+    message: str
+    report_id: str
+

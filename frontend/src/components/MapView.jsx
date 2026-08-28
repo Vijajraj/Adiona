@@ -13,6 +13,7 @@ import { ReportModal } from './ReportModal';
 import { ConfirmPrompt } from './ConfirmPrompt';
 import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
+import { ModerationModal } from './ModerationModal';
 import { Sun, Moon, Plus, Shield, Info, RefreshCw } from 'lucide-react';
 
 const HEATMAP_SOURCE_ID = 'safety-reports-source';
@@ -40,6 +41,7 @@ export function MapView({ deviceId }) {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
   const [existingReportToConfirm, setExistingReportToConfirm] = useState(null);
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
+  const [isModerationModalOpen, setIsModerationModalOpen] = useState(false);
   const [loadingHeatmap, setLoadingHeatmap] = useState(false);
 
   // Helper to convert data to GeoJSON
@@ -204,6 +206,7 @@ export function MapView({ deviceId }) {
     setIsReportModalOpen(false);
     setIsConfirmModalOpen(false);
     setIsPrivacyModalOpen(false);
+    setIsModerationModalOpen(false);
   }, []);
 
   const handleModalCloseRef = useRef(handleModalClose);
@@ -402,6 +405,18 @@ export function MapView({ deviceId }) {
             {isDarkMode ? <Sun size={18} /> : <Moon size={18} />}
           </button>
 
+          {/* Moderation Queue Button */}
+          <button
+            type="button"
+            className="action-btn moderation-btn"
+            onClick={() => setIsModerationModalOpen(true)}
+            title="Moderation Queue"
+            aria-label="Open moderation queue"
+          >
+            <Shield size={18} />
+            <span className="hidden sm:inline">Moderation</span>
+          </button>
+
           {/* Privacy Disclosure Button */}
           <button
             type="button"
@@ -469,6 +484,13 @@ export function MapView({ deviceId }) {
       <PrivacyNoticeModal
         isOpen={isPrivacyModalOpen}
         onClose={() => setIsPrivacyModalOpen(false)}
+      />
+
+      {/* Moderation Modal */}
+      <ModerationModal
+        isOpen={isModerationModalOpen}
+        onClose={() => setIsModerationModalOpen(false)}
+        onRefreshMap={loadHeatmapData}
       />
     </div>
   );

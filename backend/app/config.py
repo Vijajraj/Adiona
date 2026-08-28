@@ -15,6 +15,9 @@ class Settings(BaseSettings):
     # Note field
     NOTE_MAX_LENGTH: int = 240
 
+    # Moderation Admin Secret Key (Spec §10)
+    ADMIN_SECRET: str = "chennai-safety-admin-key"
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 

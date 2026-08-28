@@ -992,3 +992,135 @@ body {
   .sm\:inline { display: inline !important; }
   .sm\:flex-row { flex-direction: row !important; }
 }
+
+/* ==========================================================================
+   Moderation Modal & Stats Layout
+   ========================================================================== */
+
+.moderation-modal {
+  max-width: 680px;
+  width: 95%;
+}
+
+.moderation-stats-banner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+@media (max-width: 580px) {
+  .moderation-stats-banner {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.stat-num {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #4f46e5;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 4px;
+}
+
+.flagged-list-container {
+  max-height: 420px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+.flagged-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.flagged-item-card {
+  background-color: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.flagged-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.badge-flagged {
+  background-color: #fef2f2;
+  color: #ef4444;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 9999px;
+  border: 1px solid #fee2e2;
+}
+
+.report-time-stamp {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.flagged-note {
+  font-size: 0.9rem;
+  color: #f8fafc;
+  background-color: #0f172a;
+  border-left: 3px solid #ef4444;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 4px 0;
+  line-height: 1.4;
+}
+
+.flagged-metadata-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.flagged-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 6px;
+  border-top: 1px solid #334155;
+  padding-top: 10px;
+}
+
+.action-approve:hover {
+  background-color: #10b98122 !important;
+  border-color: #10b981 !important;
+}
+
+.action-delete:hover {
+  background-color: #ef444422 !important;
+  border-color: #ef4444 !important;
+}
+

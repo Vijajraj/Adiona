@@ -12,6 +12,7 @@ from sqlalchemy import text
 
 from app.config import settings
 from app.db import engine, init_db
+from app.routers.moderation import router as moderation_router
 from app.routers.reports import limiter, router as reports_router
 
 logger = logging.getLogger(__name__)
@@ -66,12 +67,13 @@ app.add_middleware(
         "http://127.0.0.1:4173",
     ],
     allow_credentials=False,
-    allow_methods=["GET", "POST", "OPTIONS"],
+    allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
 # Mount routers
 app.include_router(reports_router)
+app.include_router(moderation_router)
 
 
 # --------------------------------------------------------------------------
