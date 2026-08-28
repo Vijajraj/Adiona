@@ -112,6 +112,7 @@ class Report(Base):
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)
 
     __table_args__ = (
+        UniqueConstraint("device_id", "grid_lat", "grid_lng", name="uq_reports_device_grid"),
         Index("ix_reports_grid_lat_lng", "grid_lat", "grid_lng"),
         Index("ix_reports_device_created", "device_id", "created_at"),
     )

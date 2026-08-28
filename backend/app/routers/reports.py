@@ -71,7 +71,7 @@ async def create_report(
     # 5. Profanity check — flag, don't reject (spec §10)
     is_flagged = check_profanity(body.note)
 
-    # 6. Insert
+    # 6. Insert with DB constraint protection against race conditions
     report = Report(
         grid_lat=grid_lat,
         grid_lng=grid_lng,
@@ -83,8 +83,16 @@ async def create_report(
         is_flagged=is_flagged,
     )
     db.add(report)
-    await db.commit()
-    await db.refresh(report)
+    try:
+        await db.commit()
+    except Exception as exc:
+        await db.rollback()
+        if isinstance(exc, IntegrityError) or "UNIQUE" in str(exc).upper() or "uq_reports" in str(exc):
+            raise HTTPException(
+                status_code=429,
+                detail="You have already reported this location within the last 24 hours.",
+            )
+        raise exc
 
     return report
 
