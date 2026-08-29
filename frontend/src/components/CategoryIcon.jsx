@@ -11,6 +11,11 @@ import {
   ShieldAlert,
   Bus,
   AlertOctagon,
+  Sun,
+  Video,
+  Users,
+  ShieldCheck,
+  Shield,
 } from 'lucide-react';
 
 const iconMap = {
@@ -26,6 +31,11 @@ const iconMap = {
   ShieldAlert,
   Bus,
   AlertOctagon,
+  Sun,
+  Video,
+  Users,
+  ShieldCheck,
+  Shield,
 };
 
 export function CategoryIcon({ name, size = 18, className = '' }) {

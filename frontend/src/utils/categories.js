@@ -76,9 +76,49 @@ export const WOMEN_SAFETY_CATEGORIES = [
   },
 ];
 
+export const SAFE_SPOT_CATEGORIES = [
+  {
+    id: 'well_lit',
+    label: 'Well Lit & Bright Area',
+    icon: 'Sun',
+    description: 'Bright streetlights, well illuminated walkways & active shops',
+  },
+  {
+    id: 'cctv_monitored',
+    label: 'CCTV Monitored / Guarded',
+    icon: 'Video',
+    description: 'Visible CCTV cameras, active security guards, monitored area',
+  },
+  {
+    id: 'active_crowd',
+    label: 'Active & Busy Public Space',
+    icon: 'Users',
+    description: 'Friendly crowds, open shops, active street life & pedestrian density',
+  },
+  {
+    id: 'police_patrol',
+    label: 'Police Booth / Patrol Zone',
+    icon: 'Shield',
+    description: 'Nearby police station, help desk, or active patrolling presence',
+  },
+  {
+    id: 'safe_transport_stop',
+    label: 'Safe Public Transport Hub',
+    icon: 'Bus',
+    description: 'Well-lit bus stand, metro station, active & organized auto stand',
+  },
+  {
+    id: 'other_general',
+    label: 'Other Safe Spot / Landmark',
+    icon: 'HelpCircle',
+    description: 'Other verified safe location, community hub, or safe landmark',
+  },
+];
+
 export const ALL_CATEGORIES = [
   ...GENERAL_SAFETY_CATEGORIES,
   ...WOMEN_SAFETY_CATEGORIES,
+  ...SAFE_SPOT_CATEGORIES,
 ];
 
 export const AFFECTED_GROUPS = [

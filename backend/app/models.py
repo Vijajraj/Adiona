@@ -54,6 +54,13 @@ class ReportCategory(str, enum.Enum):
     unsafe_transport = "unsafe_transport"
     other_women = "other_women"
 
+    # ---- Safe spot indicators ----
+    well_lit = "well_lit"
+    cctv_monitored = "cctv_monitored"
+    active_crowd = "active_crowd"
+    police_patrol = "police_patrol"
+    safe_transport_stop = "safe_transport_stop"
+
 
 # Convenience sets for validation / filtering
 GENERAL_SAFETY_CATEGORIES = frozenset({
@@ -72,6 +79,15 @@ WOMEN_SAFETY_CATEGORIES = frozenset({
     ReportCategory.physical_harassment,
     ReportCategory.unsafe_transport,
     ReportCategory.other_women,
+})
+
+SAFE_SPOT_CATEGORIES = frozenset({
+    ReportCategory.well_lit,
+    ReportCategory.cctv_monitored,
+    ReportCategory.active_crowd,
+    ReportCategory.police_patrol,
+    ReportCategory.safe_transport_stop,
+    ReportCategory.other_general,
 })
 
 

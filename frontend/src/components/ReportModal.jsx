@@ -14,6 +14,7 @@ import {
 import {
   GENERAL_SAFETY_CATEGORIES,
   WOMEN_SAFETY_CATEGORIES,
+  SAFE_SPOT_CATEGORIES,
   AFFECTED_GROUPS,
 } from '../utils/categories';
 import { CategoryIcon } from './CategoryIcon';
@@ -59,6 +60,14 @@ export function ReportModal({
   if (!isOpen || !coordinates) return null;
 
   const { lat, lng } = coordinates;
+
+  const handleStatusChange = (newStatus) => {
+    if (newStatus !== status) {
+      setStatus(newStatus);
+      setSelectedCategory('');
+      setErrorMessage('');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -157,7 +166,7 @@ export function ReportModal({
                 <button
                   type="button"
                   className={`status-btn ${status === 'unsafe' ? 'active-unsafe' : ''}`}
-                  onClick={() => setStatus('unsafe')}
+                  onClick={() => handleStatusChange('unsafe')}
                   aria-pressed={status === 'unsafe'}
                 >
                   <ShieldAlert size={18} />
@@ -166,7 +175,7 @@ export function ReportModal({
                 <button
                   type="button"
                   className={`status-btn ${status === 'safe' ? 'active-safe' : ''}`}
-                  onClick={() => setStatus('safe')}
+                  onClick={() => handleStatusChange('safe')}
                   aria-pressed={status === 'safe'}
                 >
                   <ShieldCheck size={18} />
@@ -175,61 +184,98 @@ export function ReportModal({
               </div>
             </div>
 
-            {/* Category Section: General Safety */}
-            <div className="form-group">
-              <label className="form-label">
-                <span>General Safety Categories</span>
-                <span className="required-star">*</span>
-              </label>
-              <div className="category-grid" role="group" aria-label="General safety categories">
-                {GENERAL_SAFETY_CATEGORIES.map((cat) => {
-                  const isSelected = selectedCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      type="button"
-                      className={`category-card ${isSelected ? 'selected' : ''}`}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      aria-pressed={isSelected}
-                    >
-                      <CategoryIcon name={cat.icon} size={20} />
-                      <div className="category-card-text">
-                        <div className="category-label">{cat.label}</div>
-                        <div className="category-desc">{cat.description}</div>
-                      </div>
-                    </button>
-                  );
-                })}
+            {/* Dynamic Category Sections based on Status */}
+            {status === 'safe' ? (
+              /* Safe Spot Categories */
+              <div className="form-group">
+                <div className="form-label flex justify-between items-center w-full mb-2">
+                  <span className="font-semibold text-emerald-800 flex items-center gap-1.5">
+                    Safe Spot Positive Indicators
+                    <span className="required-star">*</span>
+                  </span>
+                  <span className="badge-safe-spot">Safe Haven</span>
+                </div>
+                <div className="category-grid" role="group" aria-label="Safe spot categories">
+                  {SAFE_SPOT_CATEGORIES.map((cat) => {
+                    const isSelected = selectedCategory === cat.id;
+                    return (
+                      <button
+                        key={cat.id}
+                        type="button"
+                        className={`category-card safe-card ${isSelected ? 'selected-safe' : ''}`}
+                        onClick={() => setSelectedCategory(cat.id)}
+                        aria-pressed={isSelected}
+                      >
+                        <CategoryIcon name={cat.icon} size={20} className={isSelected ? 'text-emerald-600' : 'text-slate-500'} />
+                        <div className="category-card-text">
+                          <div className="category-label">{cat.label}</div>
+                          <div className="category-desc">{cat.description}</div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
               </div>
-            </div>
+            ) : (
+              /* Unsafe Categories: General Safety + Women Safety */
+              <>
+                {/* Category Section: General Safety */}
+                <div className="form-group">
+                  <label className="form-label">
+                    <span>General Safety Categories</span>
+                    <span className="required-star">*</span>
+                  </label>
+                  <div className="category-grid" role="group" aria-label="General safety categories">
+                    {GENERAL_SAFETY_CATEGORIES.map((cat) => {
+                      const isSelected = selectedCategory === cat.id;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          className={`category-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => setSelectedCategory(cat.id)}
+                          aria-pressed={isSelected}
+                        >
+                          <CategoryIcon name={cat.icon} size={20} />
+                          <div className="category-card-text">
+                            <div className="category-label">{cat.label}</div>
+                            <div className="category-desc">{cat.description}</div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
 
-            {/* Category Section: Women Safety */}
-            <div className="form-group mt-4">
-              <div className="form-label flex justify-between items-center w-full mb-2">
-                <span className="font-semibold text-slate-800">Women Safety Categories</span>
-                <span className="badge-women-safety">Dedicated Concern</span>
-              </div>
-              <div className="category-grid" role="group" aria-label="Women safety categories">
-                {WOMEN_SAFETY_CATEGORIES.map((cat) => {
-                  const isSelected = selectedCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      type="button"
-                      className={`category-card women-card ${isSelected ? 'selected' : ''}`}
-                      onClick={() => setSelectedCategory(cat.id)}
-                      aria-pressed={isSelected}
-                    >
-                      <CategoryIcon name={cat.icon} size={20} />
-                      <div className="category-card-text">
-                        <div className="category-label">{cat.label}</div>
-                        <div className="category-desc">{cat.description}</div>
-                      </div>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
+                {/* Category Section: Women Safety */}
+                <div className="form-group mt-4">
+                  <div className="form-label flex justify-between items-center w-full mb-2">
+                    <span className="font-semibold text-slate-800">Women Safety Categories</span>
+                    <span className="badge-women-safety">Dedicated Concern</span>
+                  </div>
+                  <div className="category-grid" role="group" aria-label="Women safety categories">
+                    {WOMEN_SAFETY_CATEGORIES.map((cat) => {
+                      const isSelected = selectedCategory === cat.id;
+                      return (
+                        <button
+                          key={cat.id}
+                          type="button"
+                          className={`category-card women-card ${isSelected ? 'selected' : ''}`}
+                          onClick={() => setSelectedCategory(cat.id)}
+                          aria-pressed={isSelected}
+                        >
+                          <CategoryIcon name={cat.icon} size={20} />
+                          <div className="category-card-text">
+                            <div className="category-label">{cat.label}</div>
+                            <div className="category-desc">{cat.description}</div>
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </>
+            )}
 
             {/* Optional Note Field */}
             <div className="form-group">
@@ -251,7 +297,9 @@ export function ReportModal({
                 rows="3"
                 maxLength={240}
                 placeholder={
-                  selectedCategory.startsWith('other')
+                  status === 'safe'
+                    ? 'Describe why this area feels safe or details about security/lighting...'
+                    : selectedCategory.startsWith('other')
                     ? 'Please describe the safety issue or specific landmark...'
                     : 'Add brief context, nearby landmark, or specific hazard (no personal names)...'
                 }
