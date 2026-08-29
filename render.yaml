@@ -1,0 +1,22 @@
+# render.yaml — place this at the REPO ROOT (not inside backend/)
+# Render reads this automatically when you connect the repo via "Blueprint"
+# instead of manually clicking through the New Web Service UI.
+
+services:
+  - type: web
+    name: chennai-safety-map-backend
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn app.main:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: DATABASE_URL
+        sync: false   # set manually in Render dashboard — never commit this
+      - key: FRONTEND_URL
+        sync: false   # set manually in Render dashboard
+      - key: ADMIN_SECRET
+        sync: false   # set manually in Render dashboard
+      - key: PYTHON_VERSION
+        value: "3.11.9"
+    healthCheckPath: /health
