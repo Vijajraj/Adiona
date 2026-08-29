@@ -19,13 +19,29 @@ logger = logging.getLogger(__name__)
 
 
 # --------------------------------------------------------------------------
-# Lifespan: create tables on startup
+# Lifespan: create tables & start background tasks on startup
 # --------------------------------------------------------------------------
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Create database tables on startup (idempotent)."""
+    """Create database tables & handle background tasks on startup/shutdown."""
+    import asyncio
     await init_db()
+
+    keep_alive_task = None
+    if settings.ENABLE_KEEP_ALIVE:
+        from app.services.keep_alive import start_keep_alive_loop
+        keep_alive_task = asyncio.create_task(start_keep_alive_loop())
+        logger.info("Keep-Alive background pinger task started.")
+
     yield
+
+    if keep_alive_task and not keep_alive_task.done():
+        keep_alive_task.cancel()
+        try:
+            await keep_alive_task
+        except asyncio.CancelledError:
+            pass
+        logger.info("Keep-Alive background task stopped.")
 
 
 # --------------------------------------------------------------------------

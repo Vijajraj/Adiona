@@ -1,0 +1,33 @@
+name: Render Keep-Alive Pinger
+
+on:
+  schedule:
+    # Run every 10 minutes to prevent Render free-tier cold starts (spins down at 15 mins)
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+    # Allows manual triggering from GitHub Actions tab
+
+jobs:
+  ping-health:
+    name: Ping Deployed Backend Health Endpoint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Backend GET /health
+        run: |
+          URL="${{ secrets.BACKEND_PUBLIC_URL }}"
+          if [ -z "$URL" ]; then
+            URL="https://adiona-backend.onrender.com"
+          fi
+          
+          HEALTH_URL="${URL%/}/health"
+          echo "Pinging health endpoint: $HEALTH_URL"
+          
+          RESPONSE=$(curl -s -o /dev/null -w "%{http_code}" --max-time 30 "$HEALTH_URL")
+          echo "HTTP Response Status: $RESPONSE"
+          
+          if [ "$RESPONSE" -eq 200 ] || [ "$RESPONSE" -eq 301 ] || [ "$RESPONSE" -eq 302 ]; then
+            echo "SUCCESS: Backend is warm and responsive!"
+          else
+            echo "WARNING: Unexpected HTTP status code: $RESPONSE"
+            exit 1
+          fi

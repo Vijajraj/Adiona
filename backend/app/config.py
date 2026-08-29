@@ -18,6 +18,10 @@ class Settings(BaseSettings):
     # Moderation Admin Secret Key (Spec §10)
     ADMIN_SECRET: str = "chennai-safety-admin-key"
 
+    # Render Cold-Start Keep-Alive settings
+    ENABLE_KEEP_ALIVE: bool = False
+    BACKEND_PUBLIC_URL: str = ""
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 
