@@ -8,6 +8,6 @@ export const CHENNAI_BOUNDS = [
 export const CHENNAI_CENTER = [80.2707, 13.0827]; // [lng, lat]
 export const DEFAULT_ZOOM = 12;
 
-// OpenFreeMap vector tile style URL
+// OpenFreeMap vector tile style URL (Light) & CartoDB Dark Matter (High-contrast Dark)
 export const MAP_STYLE_URL = 'https://tiles.openfreemap.org/styles/liberty';
-export const MAP_STYLE_DARK_URL = 'https://tiles.openfreemap.org/styles/dark';
+export const MAP_STYLE_DARK_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
