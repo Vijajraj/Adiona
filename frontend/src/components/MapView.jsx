@@ -312,6 +312,7 @@ export function MapView({ deviceId }) {
 
     map.on('load', () => {
       setMapLoaded(true);
+      map.resize();
     });
 
     // Update URL query params on pan/zoom (Spec §4.2 URL Coordinate Sharing)
