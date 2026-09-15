@@ -8,7 +8,43 @@ export const CHENNAI_BOUNDS = [
 export const CHENNAI_CENTER = [80.2707, 13.0827]; // [lng, lat]
 export const DEFAULT_ZOOM = 12;
 
-// CARTO Positron vector tile style (Light) & CARTO Dark Matter (High-contrast Dark)
-// Served globally via Cloudflare CDN with guaranteed 100% uptime and CORS support
-export const MAP_STYLE_URL = 'https://basemaps.cartocdn.com/gl/positron-gl-style/style.json';
-export const MAP_STYLE_DARK_URL = 'https://basemaps.cartocdn.com/gl/dark-matter-gl-style/style.json';
+// Inline style objects using raster tiles — guaranteed to load without
+// external style-JSON fetches, API keys, or vector-tile CORS issues.
+
+export const MAP_STYLE_URL = {
+  version: 8,
+  name: 'OSM Liberty Light',
+  sources: {
+    osm: {
+      type: 'raster',
+      tiles: [
+        'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        'https://c.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      ],
+      tileSize: 256,
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxzoom: 19,
+    },
+  },
+  layers: [{ id: 'osm-tiles', type: 'raster', source: 'osm' }],
+};
+
+export const MAP_STYLE_DARK_URL = {
+  version: 8,
+  name: 'CartoDB Dark Matter',
+  sources: {
+    'carto-dark': {
+      type: 'raster',
+      tiles: [
+        'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+        'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+        'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+      ],
+      tileSize: 256,
+      attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxzoom: 20,
+    },
+  },
+  layers: [{ id: 'carto-dark-tiles', type: 'raster', source: 'carto-dark' }],
+};
