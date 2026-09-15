@@ -160,6 +160,7 @@ export function MapView({ deviceId }) {
             'interpolate',
             ['linear'],
             ['zoom'],
+            10, 0.9,
             14, 0.85,
             17, 0.65,
           ],
@@ -172,7 +173,7 @@ export function MapView({ deviceId }) {
         id: POINTS_LAYER_ID,
         type: 'circle',
         source: HEATMAP_SOURCE_ID,
-        minzoom: 13,
+        minzoom: 11,
         paint: {
           'circle-radius': [
             'interpolate',
