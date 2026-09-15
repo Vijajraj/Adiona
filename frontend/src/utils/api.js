@@ -1,4 +1,7 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://chennai-safety-map-backend.onrender.com';
+const API_BASE_URL =
+  import.meta.env.VITE_API_BASE_URL ||
+  import.meta.env.VITE_API_URL ||
+  'https://chennai-safety-map-backend.onrender.com';
 
 function formatErrorMessage(errorData, fallback) {
   if (typeof errorData?.detail === 'string') {
