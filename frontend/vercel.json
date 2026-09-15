@@ -17,7 +17,7 @@
       "destination": "https://chennai-safety-map-backend.onrender.com/health"
     },
     {
-      "source": "/(.*)",
+      "source": "/((?!assets/).*)",
       "destination": "/index.html"
     }
   ]
