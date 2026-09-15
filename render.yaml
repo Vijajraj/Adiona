@@ -8,6 +8,7 @@ services:
     runtime: python
     plan: free
     rootDir: backend
+    autoDeploy: true
     buildCommand: "pip install -r requirements.txt || pip install -r backend/requirements.txt"
     startCommand: "PYTHONPATH=backend:. uvicorn app.main:app --host 0.0.0.0 --port $PORT"
     envVars:
