@@ -10,7 +10,9 @@ import csv
 import logging
 import os
 import sys
+import uuid
 
+from sqlalchemy.exc import IntegrityError
 from app.db import async_session, init_db
 from app.models import Report, ReportCategory, ReportStatus
 from app.services.geo_validator import validate_chennai_bounds
@@ -39,8 +41,6 @@ CATEGORY_MAP = {
     "other_general": ReportCategory.other_general,
     "other_women": ReportCategory.other_women,
 }
-
-SEED_DEVICE_ID = "00000000-0000-0000-0000-000000000001"
 
 
 async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
@@ -76,7 +76,7 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
                 # Validate Chennai bounding box
                 try:
                     validate_chennai_bounds(raw_lat, raw_lng)
-                except Exception as e:
+                except Exception:
                     logger.warning(
                         f"Row {row_idx}: Location ({raw_lat}, {raw_lng}) '{location_name}' out of bounds. Skipping."
                     )
@@ -87,6 +87,9 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
                 # Snap to grid
                 grid_lat, grid_lng = snap_to_grid(raw_lat, raw_lng)
 
+                # Generate unique deterministic seed device_id per row to avoid constraint collisions
+                seed_device_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"chennai-seed-{row_idx}-{grid_lat}-{grid_lng}"))
+
                 # Prepare report object
                 report = Report(
                     grid_lat=grid_lat,
@@ -95,7 +98,7 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
                     category=category,
                     affected_group=None,
                     note=location_name[:240] if location_name else None,
-                    device_id=SEED_DEVICE_ID,
+                    device_id=seed_device_id,
                     confirmations=0,
                     is_flagged=False,
                     is_seed=True,
@@ -108,12 +111,16 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
 
     async with async_session() as session:
         for r in records_to_insert:
-            session.add(r)
-        await session.commit()
-        inserted_count = len(records_to_insert)
+            try:
+                session.add(r)
+                await session.commit()
+                inserted_count += 1
+            except IntegrityError:
+                await session.rollback()
+                skipped_count += 1
 
     logger.info("=" * 60)
-    logger.info(f"SEED DATA LOAD COMPLETE:")
+    logger.info("SEED DATA LOAD COMPLETE:")
     logger.info(f"  Successfully Inserted: {inserted_count}")
     logger.info(f"  Skipped Total:         {skipped_count}")
     logger.info(f"    (Out of Bounds:      {out_of_bounds_count})")

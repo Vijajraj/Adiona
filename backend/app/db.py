@@ -2,16 +2,24 @@ from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, Asyn
 from app.config import settings
 from app.models import Base
 
+db_url = settings.DATABASE_URL
 connect_args = {}
 engine_kwargs = {
     "echo": False,
     "pool_pre_ping": True,
 }
 
-if settings.DATABASE_URL.startswith("sqlite"):
+if db_url.startswith("sqlite"):
     connect_args = {"check_same_thread": False}
 else:
-    # PostgreSQL / Neon production pool settings
+    # Handle PostgreSQL / Neon asyncpg SSL parameters cleanly
+    if "sslmode=" in db_url or "channel_binding=" in db_url:
+        import re
+        db_url = re.sub(r"[\?&](sslmode|channel_binding)=[^&]*", "", db_url)
+        if "?" not in db_url and "&" in db_url:
+            db_url = db_url.replace("&", "?", 1)
+        connect_args["ssl"] = "require"
+
     engine_kwargs.update({
         "pool_size": 10,
         "max_overflow": 20,
@@ -19,7 +27,7 @@ else:
     })
 
 engine = create_async_engine(
-    settings.DATABASE_URL,
+    db_url,
     connect_args=connect_args,
     **engine_kwargs,
 )
