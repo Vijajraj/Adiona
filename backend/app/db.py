@@ -3,6 +3,11 @@ from app.config import settings
 from app.models import Base
 
 db_url = settings.DATABASE_URL
+
+# Auto-convert postgresql:// to postgresql+asyncpg:// for async engine
+if db_url.startswith("postgresql://"):
+    db_url = db_url.replace("postgresql://", "postgresql+asyncpg://", 1)
+
 connect_args = {}
 engine_kwargs = {
     "echo": False,
