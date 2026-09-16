@@ -5,8 +5,16 @@
   "framework": "vite",
   "rewrites": [
     {
+      "source": "/reports",
+      "destination": "https://adiona.onrender.com/reports"
+    },
+    {
       "source": "/reports/:path*",
       "destination": "https://adiona.onrender.com/reports/:path*"
+    },
+    {
+      "source": "/moderation",
+      "destination": "https://adiona.onrender.com/moderation"
     },
     {
       "source": "/moderation/:path*",
