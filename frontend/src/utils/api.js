@@ -1,7 +1,11 @@
-const rawBaseUrl =
+let rawBaseUrl =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
   'https://adiona.onrender.com';
+
+if (!rawBaseUrl || rawBaseUrl.includes('chennai-safety-map-backend.onrender.com')) {
+  rawBaseUrl = 'https://adiona.onrender.com';
+}
 
 const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
 
