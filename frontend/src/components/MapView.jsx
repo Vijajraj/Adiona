@@ -131,8 +131,8 @@ export function MapView({ deviceId }) {
             'interpolate',
             ['linear'],
             ['get', 'weight'],
-            0, 0.4,
-            1, 0.7,
+            0, 0.5,
+            1, 0.8,
             3, 1.0,
             5, 1.5,
           ],
@@ -141,17 +141,17 @@ export function MapView({ deviceId }) {
             ['linear'],
             ['heatmap-density'],
             0, 'rgba(0, 0, 0, 0)',
-            0.15, 'rgb(65, 182, 196)',
-            0.35, 'rgb(254, 217, 118)',
-            0.65, 'rgb(254, 153, 41)',
-            0.85, 'rgb(227, 26, 28)',
+            0.05, 'rgb(65, 182, 196)',
+            0.2, 'rgb(254, 217, 118)',
+            0.5, 'rgb(254, 153, 41)',
+            0.8, 'rgb(227, 26, 28)',
             1.0, 'rgb(128, 0, 38)',
           ],
           'heatmap-radius': [
             'interpolate',
             ['linear'],
             ['zoom'],
-            2, 12,
+            2, 15,
             10, 25,
             13, 35,
             16, 55,
@@ -173,15 +173,15 @@ export function MapView({ deviceId }) {
         id: POINTS_LAYER_ID,
         type: 'circle',
         source: HEATMAP_SOURCE_ID,
-        minzoom: 8,
         paint: {
           'circle-radius': [
             'interpolate',
             ['linear'],
             ['zoom'],
-            8, 3,
-            12, 6,
-            16, 11,
+            2, 4,
+            8, 6,
+            12, 8,
+            16, 14,
           ],
           'circle-color': [
             'match',
@@ -192,7 +192,7 @@ export function MapView({ deviceId }) {
           ],
           'circle-stroke-color': '#ffffff',
           'circle-stroke-width': 1.5,
-          'circle-opacity': 0.85,
+          'circle-opacity': 0.9,
         },
       });
 
@@ -226,16 +226,11 @@ export function MapView({ deviceId }) {
     }
   }, [filters]);
 
-  // Update GeoJSON source when heatmapData changes
+  // Update GeoJSON source and ensure layers exist whenever heatmapData or mapLoaded changes
   useEffect(() => {
     if (!mapRef.current || !mapLoaded) return;
-    const source = mapRef.current.getSource(HEATMAP_SOURCE_ID);
-    if (source) {
-      source.setData(createGeoJSON(heatmapData));
-    } else {
-      setupHeatmapLayers(mapRef.current, heatmapData);
-    }
-  }, [heatmapData, mapLoaded, createGeoJSON, setupHeatmapLayers]);
+    setupHeatmapLayers(mapRef.current, heatmapData);
+  }, [heatmapData, mapLoaded, setupHeatmapLayers]);
 
   // Close helper
   const handleModalClose = useCallback(() => {
