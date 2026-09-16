@@ -6,15 +6,15 @@
   "rewrites": [
     {
       "source": "/reports/:path*",
-      "destination": "https://chennai-safety-map-backend.onrender.com/reports/:path*"
+      "destination": "https://adiona.onrender.com/reports/:path*"
     },
     {
       "source": "/moderation/:path*",
-      "destination": "https://chennai-safety-map-backend.onrender.com/moderation/:path*"
+      "destination": "https://adiona.onrender.com/moderation/:path*"
     },
     {
       "source": "/health",
-      "destination": "https://chennai-safety-map-backend.onrender.com/health"
+      "destination": "https://adiona.onrender.com/health"
     },
     {
       "source": "/((?!assets/).*)",
