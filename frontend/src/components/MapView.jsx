@@ -15,6 +15,7 @@ import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
 import { ModerationModal } from './ModerationModal';
 import { SearchBar } from './SearchBar';
+import { HeatmapLayer } from './HeatmapLayer';
 import { Sun, Moon, Plus, Shield, Info, RefreshCw, Share2, Check } from 'lucide-react';
 
 const HEATMAP_SOURCE_ID = 'safety-reports-source';
@@ -67,6 +68,7 @@ export function MapView({ deviceId }) {
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [heatmapData, setHeatmapData] = useState([]);
+  const [refreshKey, setRefreshKey] = useState(0);
   const [showShareToast, setShowShareToast] = useState(false);
   const [filters, setFilters] = useState({
     category: null,
@@ -441,11 +443,17 @@ export function MapView({ deviceId }) {
       clickMarkerRef.current.remove();
       clickMarkerRef.current = null;
     }
-    loadHeatmapData();
+    setRefreshKey((prev) => prev + 1);
   };
 
   return (
     <div className="map-view-root">
+      <HeatmapLayer
+        map={mapRef.current}
+        mapLoaded={mapLoaded}
+        filters={filters}
+        refreshKey={refreshKey}
+      />
       {/* Top Header Bar */}
       <header className="app-header">
         <div className="header-brand">
