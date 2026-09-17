@@ -14,8 +14,19 @@ export function ConfirmPrompt({
   const [confirming, setConfirming] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [slowServerNotice, setSlowServerNotice] = useState(false);
 
   const confirmTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    let timer;
+    if (confirming) {
+      timer = setTimeout(() => setSlowServerNotice(true), 4000);
+    } else {
+      setSlowServerNotice(false);
+    }
+    return () => clearTimeout(timer);
+  }, [confirming]);
 
   useEffect(() => {
     return () => {
@@ -154,6 +165,11 @@ export function ConfirmPrompt({
             )}
           </button>
         </div>
+        {slowServerNotice && confirming && (
+          <p className="text-xs text-amber-600 dark:text-amber-400 text-center animate-pulse px-4 pb-3">
+            Cloud server is waking up from idle state (~30-60s), please hold on...
+          </p>
+        )}
       </div>
     </div>
   );
