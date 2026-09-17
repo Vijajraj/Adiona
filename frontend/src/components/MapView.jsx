@@ -8,19 +8,14 @@ import {
   MAP_STYLE_URL,
   MAP_STYLE_DARK_URL,
 } from '../utils/bounds';
-import { fetchHeatmap } from '../utils/api';
 import { ReportModal } from './ReportModal';
 import { ConfirmPrompt } from './ConfirmPrompt';
 import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
 import { ModerationModal } from './ModerationModal';
 import { SearchBar } from './SearchBar';
-import { HeatmapLayer } from './HeatmapLayer';
+import { HeatmapLayer, POINTS_LAYER_ID } from './HeatmapLayer';
 import { Sun, Moon, Plus, Shield, Info, RefreshCw, Share2, Check } from 'lucide-react';
-
-const HEATMAP_SOURCE_ID = 'safety-reports-source';
-const HEATMAP_LAYER_ID = 'safety-reports-heatmap';
-const POINTS_LAYER_ID = 'safety-reports-points';
 
 // Helper to parse deep-linked URL params (Spec §4.2)
 function getInitialMapParams() {
@@ -66,6 +61,7 @@ export function MapView({ deviceId }) {
   const abortControllerRef = useRef(null);
 
   const [mapLoaded, setMapLoaded] = useState(false);
+  const [mapInstance, setMapInstance] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [showShareToast, setShowShareToast] = useState(false);
@@ -140,6 +136,7 @@ export function MapView({ deviceId }) {
     });
 
     mapRef.current = map;
+    setMapInstance(map);
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
     map.addControl(
@@ -231,6 +228,7 @@ export function MapView({ deviceId }) {
       }
       map.remove();
       mapRef.current = null;
+      setMapInstance(null);
     };
   }, []);
 
@@ -291,7 +289,7 @@ export function MapView({ deviceId }) {
   return (
     <div className="map-view-root">
       <HeatmapLayer
-        map={mapRef.current}
+        map={mapInstance}
         mapLoaded={mapLoaded}
         filters={filters}
         refreshKey={refreshKey}
