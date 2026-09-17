@@ -4,7 +4,7 @@
 
 services:
   - type: web
-    name: chennai-safety-map-backend
+    name: adiona
     runtime: python
     plan: free
     rootDir: backend
