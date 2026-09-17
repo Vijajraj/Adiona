@@ -154,10 +154,16 @@ export function MapView({ deviceId }) {
       'bottom-left'
     );
 
-    map.on('load', () => {
+    const handleMapLoad = () => {
       setMapLoaded(true);
       map.resize();
-    });
+    };
+
+    if (map.loaded()) {
+      handleMapLoad();
+    } else {
+      map.once('load', handleMapLoad);
+    }
 
     // Update URL query params on pan/zoom (Spec §4.2 URL Coordinate Sharing)
     map.on('moveend', () => {
