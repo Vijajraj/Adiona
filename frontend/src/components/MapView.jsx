@@ -234,10 +234,6 @@ export function MapView({ deviceId }) {
     };
   }, []);
 
-  // Fetch heatmap on mount & filter changes
-  useEffect(() => {
-    loadHeatmapData();
-  }, [loadHeatmapData]);
 
   // Handle locality selection from Nominatim SearchBar
   const handleSelectLocality = (location) => {
