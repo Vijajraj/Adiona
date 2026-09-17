@@ -28,37 +28,55 @@ export async function fetchHeatmap(filters = {}, signal = null) {
   const queryString = params.toString();
   const url = `${API_BASE_URL}/reports/heatmap${queryString ? `?${queryString}` : ''}`;
 
-  const fetchOptions = {};
-  if (signal) {
-    fetchOptions.signal = signal;
-  }
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 90000);
 
-  const res = await fetch(url, fetchOptions);
-  if (!res.ok) {
-    const errorData = await res.json().catch(() => ({}));
-    throw new Error(formatErrorMessage(errorData, 'Failed to fetch heatmap data'));
+  const fetchOptions = {
+    signal: signal || controller.signal,
+  };
+
+  try {
+    const res = await fetch(url, fetchOptions);
+    clearTimeout(timeoutId);
+    if (!res.ok) {
+      const errorData = await res.json().catch(() => ({}));
+      throw new Error(formatErrorMessage(errorData, 'Failed to fetch heatmap data'));
+    }
+    return res.json();
+  } catch (err) {
+    clearTimeout(timeoutId);
+    throw err;
   }
-  return res.json();
 }
 
 export async function submitReport(reportData, signal = null) {
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 90000);
+
   const fetchOptions = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(reportData),
+    signal: signal || controller.signal,
   };
-  if (signal) {
-    fetchOptions.signal = signal;
-  }
 
-  const res = await fetch(`${API_BASE_URL}/reports`, fetchOptions);
-  const data = await res.json().catch(() => ({}));
-  if (!res.ok) {
-    throw new Error(formatErrorMessage(data, 'Failed to submit report'));
+  try {
+    const res = await fetch(`${API_BASE_URL}/reports`, fetchOptions);
+    clearTimeout(timeoutId);
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) {
+      throw new Error(formatErrorMessage(data, 'Failed to submit report'));
+    }
+    return data;
+  } catch (err) {
+    clearTimeout(timeoutId);
+    if (err.name === 'AbortError') {
+      throw new Error('Connection timed out. The cloud server may be waking up from idle state. Please try again.');
+    }
+    throw err;
   }
-  return data;
 }
 
 export async function confirmReport(reportId, deviceId, signal = null) {

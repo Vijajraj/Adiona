@@ -32,8 +32,9 @@ export function toGeoJSON(heatmapData) {
   };
 }
 
-export function HeatmapLayer({ map, mapLoaded, filters, refreshKey, onPointClick }) {
+export function HeatmapLayer({ map, mapLoaded, filters, refreshKey, onLoadingChange }) {
   const abortControllerRef = useRef(null);
+  const retryTimeoutRef = useRef(null);
 
   const loadAndApplyHeatmap = useCallback(async () => {
     if (!map || !mapLoaded) return;
@@ -44,9 +45,15 @@ export function HeatmapLayer({ map, mapLoaded, filters, refreshKey, onPointClick
     const controller = new AbortController();
     abortControllerRef.current = controller;
 
+    if (onLoadingChange) onLoadingChange(true);
+
     try {
       const data = await fetchHeatmap(filters, controller.signal);
       const geojson = toGeoJSON(data);
+
+      if (!map.isStyleLoaded()) {
+        await new Promise((resolve) => map.once('style.load', resolve));
+      }
 
       // Add or update MapLibre GeoJSON source
       const existingSource = map.getSource(HEATMAP_SOURCE_ID);
@@ -144,18 +151,41 @@ export function HeatmapLayer({ map, mapLoaded, filters, refreshKey, onPointClick
           if (map.getCanvas()) map.getCanvas().style.cursor = 'crosshair';
         });
       }
+
+      if (onLoadingChange) onLoadingChange(false);
     } catch (err) {
       if (err.name !== 'AbortError') {
-        console.error('Failed to load heatmap data:', err);
+        console.warn('Heatmap fetch encountered an error, retrying in 5s for cloud backend spinup...', err);
+        if (onLoadingChange) onLoadingChange(false);
+        // Automatic single retry in case backend was cold-starting
+        if (retryTimeoutRef.current) clearTimeout(retryTimeoutRef.current);
+        retryTimeoutRef.current = setTimeout(() => {
+          loadAndApplyHeatmap();
+        }, 5000);
       }
     }
-  }, [map, mapLoaded, filters]);
+  }, [map, mapLoaded, filters, onLoadingChange]);
+
+  // Handle map style changes (e.g. Dark/Light toggle)
+  useEffect(() => {
+    if (!map) return;
+    const handleStyleLoad = () => {
+      loadAndApplyHeatmap();
+    };
+    map.on('style.load', handleStyleLoad);
+    return () => {
+      map.off('style.load', handleStyleLoad);
+    };
+  }, [map, loadAndApplyHeatmap]);
 
   useEffect(() => {
     loadAndApplyHeatmap();
     return () => {
       if (abortControllerRef.current) {
         abortControllerRef.current.abort();
+      }
+      if (retryTimeoutRef.current) {
+        clearTimeout(retryTimeoutRef.current);
       }
     };
   }, [loadAndApplyHeatmap, refreshKey]);

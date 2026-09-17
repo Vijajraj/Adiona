@@ -67,7 +67,6 @@ export function MapView({ deviceId }) {
 
   const [mapLoaded, setMapLoaded] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
-  const [heatmapData, setHeatmapData] = useState([]);
   const [refreshKey, setRefreshKey] = useState(0);
   const [showShareToast, setShowShareToast] = useState(false);
   const [filters, setFilters] = useState({
@@ -84,155 +83,6 @@ export function MapView({ deviceId }) {
   const [isPrivacyModalOpen, setIsPrivacyModalOpen] = useState(false);
   const [isModerationModalOpen, setIsModerationModalOpen] = useState(false);
   const [loadingHeatmap, setLoadingHeatmap] = useState(false);
-
-  // Helper to convert data to GeoJSON
-  const createGeoJSON = useCallback((data) => ({
-    type: 'FeatureCollection',
-    features: (data || []).map((point) => ({
-      type: 'Feature',
-      id: point.id,
-      properties: {
-        id: point.id,
-        category: point.category,
-        status: point.status,
-        confirmations: point.confirmations || 0,
-        weight: point.weight || 1,
-        lat: point.lat,
-        lng: point.lng,
-      },
-      geometry: {
-        type: 'Point',
-        coordinates: [point.lng, point.lat],
-      },
-    })),
-  }), []);
-
-  // Configure layers onto the map instance
-  const setupHeatmapLayers = useCallback((map, data) => {
-    if (!map) return;
-
-    const geojson = createGeoJSON(data);
-
-    if (!map.getSource(HEATMAP_SOURCE_ID)) {
-      map.addSource(HEATMAP_SOURCE_ID, {
-        type: 'geojson',
-        data: geojson,
-      });
-    } else {
-      map.getSource(HEATMAP_SOURCE_ID).setData(geojson);
-    }
-
-    if (!map.getLayer(HEATMAP_LAYER_ID)) {
-      map.addLayer({
-        id: HEATMAP_LAYER_ID,
-        type: 'heatmap',
-        source: HEATMAP_SOURCE_ID,
-        maxzoom: 17,
-        paint: {
-          'heatmap-weight': [
-            'interpolate',
-            ['linear'],
-            ['get', 'weight'],
-            0, 0.5,
-            1, 0.8,
-            3, 1.0,
-            5, 1.5,
-          ],
-          'heatmap-color': [
-            'interpolate',
-            ['linear'],
-            ['heatmap-density'],
-            0, 'rgba(0, 0, 0, 0)',
-            0.05, 'rgb(65, 182, 196)',
-            0.2, 'rgb(254, 217, 118)',
-            0.5, 'rgb(254, 153, 41)',
-            0.8, 'rgb(227, 26, 28)',
-            1.0, 'rgb(128, 0, 38)',
-          ],
-          'heatmap-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            2, 15,
-            10, 25,
-            13, 35,
-            16, 55,
-          ],
-          'heatmap-opacity': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            2, 0.95,
-            14, 0.85,
-            17, 0.65,
-          ],
-        },
-      });
-    }
-
-    if (!map.getLayer(POINTS_LAYER_ID)) {
-      map.addLayer({
-        id: POINTS_LAYER_ID,
-        type: 'circle',
-        source: HEATMAP_SOURCE_ID,
-        paint: {
-          'circle-radius': [
-            'interpolate',
-            ['linear'],
-            ['zoom'],
-            2, 4,
-            8, 6,
-            12, 8,
-            16, 14,
-          ],
-          'circle-color': [
-            'match',
-            ['get', 'status'],
-            'unsafe', '#ef4444',
-            'safe', '#10b981',
-            '#f59e0b'
-          ],
-          'circle-stroke-color': '#ffffff',
-          'circle-stroke-width': 1.5,
-          'circle-opacity': 0.9,
-        },
-      });
-
-      map.on('mouseenter', POINTS_LAYER_ID, () => {
-        if (map.getCanvas()) map.getCanvas().style.cursor = 'pointer';
-      });
-      map.on('mouseleave', POINTS_LAYER_ID, () => {
-        if (map.getCanvas()) map.getCanvas().style.cursor = 'crosshair';
-      });
-    }
-  }, [createGeoJSON]);
-
-  // Load heatmap data from backend with AbortController to prevent race conditions
-  const loadHeatmapData = useCallback(async () => {
-    if (abortControllerRef.current) {
-      abortControllerRef.current.abort();
-    }
-    const controller = new AbortController();
-    abortControllerRef.current = controller;
-
-    setLoadingHeatmap(true);
-    try {
-      const data = await fetchHeatmap(filters, controller.signal);
-      setHeatmapData(data);
-    } catch (err) {
-      if (err.name !== 'AbortError') {
-        console.error('Failed to load heatmap:', err);
-      }
-    } finally {
-      setLoadingHeatmap(false);
-    }
-  }, [filters]);
-
-  // Update GeoJSON source and ensure layers exist whenever heatmapData or mapLoaded changes
-  useEffect(() => {
-    if (!mapRef.current || !mapLoaded) return;
-    setupHeatmapLayers(mapRef.current, heatmapData);
-  }, [heatmapData, mapLoaded, setupHeatmapLayers]);
 
   // Close helper
   const handleModalClose = useCallback(() => {
@@ -424,10 +274,6 @@ export function MapView({ deviceId }) {
 
     const nextStyle = nextDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
     mapRef.current.setStyle(nextStyle);
-
-    mapRef.current.once('style.load', () => {
-      setupHeatmapLayers(mapRef.current, heatmapData);
-    });
   };
 
   const handleFilterChange = (key, value) => {
@@ -453,6 +299,7 @@ export function MapView({ deviceId }) {
         mapLoaded={mapLoaded}
         filters={filters}
         refreshKey={refreshKey}
+        onLoadingChange={setLoadingHeatmap}
       />
       {/* Top Header Bar */}
       <header className="app-header">
@@ -486,7 +333,7 @@ export function MapView({ deviceId }) {
           <button
             type="button"
             className="action-btn"
-            onClick={loadHeatmapData}
+            onClick={() => setRefreshKey((k) => k + 1)}
             title="Refresh heatmap data"
             aria-label="Refresh data"
           >
@@ -597,7 +444,7 @@ export function MapView({ deviceId }) {
       <ModerationModal
         isOpen={isModerationModalOpen}
         onClose={() => setIsModerationModalOpen(false)}
-        onRefreshMap={loadHeatmapData}
+        onRefreshMap={() => setRefreshKey((k) => k + 1)}
       />
     </div>
   );

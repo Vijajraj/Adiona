@@ -37,8 +37,19 @@ export function ReportModal({
   const [submitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
+  const [slowServerNotice, setSlowServerNotice] = useState(false);
 
   const submitTimeoutRef = useRef(null);
+
+  useEffect(() => {
+    let timer;
+    if (submitting) {
+      timer = setTimeout(() => setSlowServerNotice(true), 4000);
+    } else {
+      setSlowServerNotice(false);
+    }
+    return () => clearTimeout(timer);
+  }, [submitting]);
 
   // Clear timeout on unmount
   useEffect(() => {
@@ -391,6 +402,11 @@ export function ReportModal({
               )}
             </button>
           </div>
+          {slowServerNotice && submitting && (
+            <p className="text-xs text-amber-600 dark:text-amber-400 text-center animate-pulse px-4 pb-2">
+              Cloud server is waking up from idle state (~30-60s), please hold on...
+            </p>
+          )}
         </form>
       </div>
     </div>

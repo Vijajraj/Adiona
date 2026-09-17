@@ -5,7 +5,27 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/reports",
+      "destination": "https://adiona.onrender.com/reports"
+    },
+    {
+      "source": "/reports/:path*",
+      "destination": "https://adiona.onrender.com/reports/:path*"
+    },
+    {
+      "source": "/moderation",
+      "destination": "https://adiona.onrender.com/moderation"
+    },
+    {
+      "source": "/moderation/:path*",
+      "destination": "https://adiona.onrender.com/moderation/:path*"
+    },
+    {
+      "source": "/health",
+      "destination": "https://adiona.onrender.com/health"
+    },
+    {
+      "source": "/((?!assets/).*)",
       "destination": "/index.html"
     }
   ]
