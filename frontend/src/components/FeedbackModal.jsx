@@ -11,8 +11,11 @@ import {
   Bug,
   ShieldAlert,
   MessageCircle,
+  Mail,
 } from 'lucide-react';
 import { submitFeedback } from '../utils/api';
+
+const RECIPIENT_EMAIL = 'vraj122006@gmail.com';
 
 const CATEGORIES = [
   { id: 'suggestion', label: 'Suggestion', icon: Lightbulb, color: 'text-amber-500' },
@@ -70,25 +73,48 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
 
     try {
       await submitFeedback(payload);
-      setSuccessMessage('Thank you! Your feedback helps make Chennai safer.');
-      // Clear form
+      setSuccessMessage(`Thank you! Your feedback has been forwarded directly to ${RECIPIENT_EMAIL}.`);
       setMessage('');
       closeTimeoutRef.current = setTimeout(() => {
         onClose();
-      }, 1600);
+      }, 1800);
     } catch (err) {
-      // Local storage fallback so user feedback is NEVER lost
+      // Direct FormSubmit fallback to vraj122006@gmail.com
       try {
-        const stored = JSON.parse(localStorage.getItem('adiona_feedback_backup') || '[]');
-        stored.push({ ...payload, timestamp: new Date().toISOString() });
-        localStorage.setItem('adiona_feedback_backup', JSON.stringify(stored));
-        setSuccessMessage('Feedback saved offline! Thank you for sharing your thoughts.');
+        await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Accept: 'application/json',
+          },
+          body: JSON.stringify({
+            _subject: `[Adiona Feedback] ${category.toUpperCase()} (${rating || 0} Stars)`,
+            Category: category,
+            Rating: `${rating || 'None'} / 5`,
+            Message: trimmed,
+            'Device ID': payload.device_id,
+            _template: 'table',
+          }),
+        });
+        setSuccessMessage(`Thank you! Your feedback was emailed directly to ${RECIPIENT_EMAIL}.`);
         setMessage('');
         closeTimeoutRef.current = setTimeout(() => {
           onClose();
-        }, 1600);
+        }, 1800);
       } catch {
-        setErrorMessage(err.message || 'Failed to submit feedback. Please try again.');
+        // Local storage backup
+        try {
+          const stored = JSON.parse(localStorage.getItem('adiona_feedback_backup') || '[]');
+          stored.push({ ...payload, timestamp: new Date().toISOString() });
+          localStorage.setItem('adiona_feedback_backup', JSON.stringify(stored));
+          setSuccessMessage('Feedback saved offline! Thank you for sharing your thoughts.');
+          setMessage('');
+          closeTimeoutRef.current = setTimeout(() => {
+            onClose();
+          }, 1800);
+        } catch {
+          setErrorMessage(err.message || 'Failed to submit feedback. Please try again.');
+        }
       }
     } finally {
       setSubmitting(false);
@@ -112,7 +138,7 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
                 Community Feedback
               </h2>
               <p className="modal-subtitle text-xs text-slate-400">
-                Help improve Adiona — Chennai's open safety map
+                Delivered directly to <span className="text-indigo-400 font-medium">{RECIPIENT_EMAIL}</span>
               </p>
             </div>
           </div>
@@ -229,33 +255,45 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
             />
           </div>
 
-          {/* Footer Submit */}
-          <div className="modal-footer flex items-center justify-end gap-2 pt-2 border-t border-slate-100 dark:border-slate-800">
-            <button
-              type="button"
-              className="btn btn-secondary px-4 py-2 text-sm font-semibold rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-              onClick={onClose}
-              disabled={submitting}
+          {/* Footer Submit & Direct Mailto */}
+          <div className="modal-footer flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
+            <a
+              href={`mailto:${RECIPIENT_EMAIL}?subject=Chennai%20Safety%20Map%20Feedback%20[${category}]&body=${encodeURIComponent(message)}`}
+              className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              className="btn btn-primary flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm disabled:opacity-60"
-              disabled={submitting || message.trim().length < 3 || !!successMessage}
-            >
-              {submitting ? (
-                <>
-                  <Loader2 size={16} className="animate-spin" />
-                  <span>Submitting...</span>
-                </>
-              ) : (
-                <>
-                  <Send size={15} />
-                  <span>Send Feedback</span>
-                </>
-              )}
-            </button>
+              <Mail size={14} />
+              <span>Or email directly to {RECIPIENT_EMAIL}</span>
+            </a>
+
+            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
+              <button
+                type="button"
+                className="btn btn-secondary px-4 py-2 text-sm font-semibold rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+                onClick={onClose}
+                disabled={submitting}
+              >
+                Cancel
+              </button>
+              <button
+                type="submit"
+                className="btn btn-primary flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm disabled:opacity-60"
+                disabled={submitting || message.trim().length < 3 || !!successMessage}
+              >
+                {submitting ? (
+                  <>
+                    <Loader2 size={16} className="animate-spin" />
+                    <span>Submitting...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send size={15} />
+                    <span>Send Feedback</span>
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </form>
       </div>

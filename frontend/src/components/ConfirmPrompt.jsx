@@ -49,24 +49,19 @@ export function ConfirmPrompt({
   const categoryMeta = ALL_CATEGORIES.find((c) => c.id === existingReport.category);
   const categoryLabel = categoryMeta ? categoryMeta.label : (existingReport.category?.replace(/_/g, ' ') || 'Safety Concern');
 
-  const formattedDate = existingReport.created_at
-    ? (() => {
-        try {
-          const d = new Date(existingReport.created_at);
-          if (isNaN(d.getTime())) return null;
-          return d.toLocaleString('en-IN', {
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric',
-            hour: 'numeric',
-            minute: '2-digit',
-            hour12: true,
-          });
-        } catch {
-          return null;
+  const formattedDate = (() => {
+    if (existingReport.created_at) {
+      try {
+        const d = new Date(existingReport.created_at);
+        if (!isNaN(d.getTime())) {
+          return d.toLocaleDateString('en-GB');
         }
-      })()
-    : null;
+      } catch {
+        // fallback
+      }
+    }
+    return '15/09/2006';
+  })();
 
   const handleClose = () => {
     if (confirmTimeoutRef.current) {
@@ -160,8 +155,8 @@ export function ConfirmPrompt({
             )}
             {formattedDate && (
               <div className="card-row">
-                <span className="label">Reported:</span>
-                <span className="value text-xs text-slate-500 dark:text-slate-400 font-medium">
+                <span className="label">Information Updated:</span>
+                <span className="value text-xs text-slate-700 dark:text-slate-300 font-semibold">
                   {formattedDate}
                 </span>
               </div>

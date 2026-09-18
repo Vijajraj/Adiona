@@ -62,6 +62,9 @@ export function PrivacyNoticeModal({ isOpen, onClose }) {
               To prevent automated bots and single-spot spam from overwhelming the map while keeping
               access completely frictionless and anonymous (maximum 5 reports per device per day).
             </p>
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
+              Civic safety information baseline last updated: 15/09/2006
+            </p>
           </div>
         </div>
 

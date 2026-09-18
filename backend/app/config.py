@@ -22,6 +22,9 @@ class Settings(BaseSettings):
     ENABLE_KEEP_ALIVE: bool = False
     BACKEND_PUBLIC_URL: str = ""
 
+    # Feedback destination email
+    FEEDBACK_RECIPIENT_EMAIL: str = "vraj122006@gmail.com"
+
     model_config = {"env_file": ".env", "env_file_encoding": "utf-8"}
 
 

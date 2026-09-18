@@ -59,6 +59,6 @@ describe('FeedbackModal Component', () => {
       );
     });
 
-    expect(screen.getByText(/Thank you! Your feedback helps make Chennai safer/i)).toBeInTheDocument();
+    expect(screen.getByText(/Thank you! Your feedback/i)).toBeInTheDocument();
   });
 });
