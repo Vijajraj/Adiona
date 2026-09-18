@@ -31,22 +31,6 @@ export const MAP_STYLE_URL = {
   layers: [{ id: 'osm-tiles', type: 'raster', source: 'osm' }],
 };
 
-export const MAP_STYLE_DARK_URL = {
-  version: 8,
-  name: 'CartoDB Dark Matter',
-  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
-  sources: {
-    'carto-dark': {
-      type: 'raster',
-      tiles: [
-        'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-        'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-        'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
-      ],
-      tileSize: 256,
-      attribution: '&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-      maxzoom: 20,
-    },
-  },
-  layers: [{ id: 'carto-dark-tiles', type: 'raster', source: 'carto-dark' }],
-};
+// Dark style: OpenFreeMap Dark — completely free, open-source vector style
+// with zero API keys, no usage limits, and no watermarks.
+export const MAP_STYLE_DARK_URL = 'https://tiles.openfreemap.org/styles/dark';

@@ -63,11 +63,19 @@ export default function ReportMarkersLayer({
 
       const geojson = toGeoJSON(data);
 
-      // If the map's style isn't loaded yet, wait for it before touching sources/layers.
-      if (!map.isStyleLoaded() && (!map.loaded || !map.loaded())) {
-        map.once("load", () => setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef));
+      // If the map's style isn't loaded yet (or transitioning styles), wait for styledata
+      const applyLayers = () => {
+        if (map.isStyleLoaded()) {
+          setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
+        } else {
+          map.once("styledata", applyLayers);
+        }
+      };
+
+      if (!map.isStyleLoaded()) {
+        map.once("styledata", applyLayers);
       } else {
-        setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
+        applyLayers();
       }
     }
 
