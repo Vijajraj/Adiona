@@ -25,7 +25,7 @@
       "destination": "https://adiona.onrender.com/health"
     },
     {
-      "source": "/((?!assets/).*)",
+      "source": "/((?!assets/|.*\\.(?:js|mjs|css|png|svg|ico|json|woff2?|map)).*)",
       "destination": "/index.html"
     }
   ]

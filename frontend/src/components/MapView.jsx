@@ -1,6 +1,11 @@
 import { useEffect, useRef, useState, useCallback } from 'react';
 import * as maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
+
+// Ensure MapLibre Web Worker loads correctly in Vite / Vercel production
+if (typeof window !== 'undefined' && typeof maplibregl.setWorkerUrl === 'function') {
+  maplibregl.setWorkerUrl('/assets/maplibre-gl-worker.mjs');
+}
 import {
   CHENNAI_BOUNDS,
   CHENNAI_CENTER,
