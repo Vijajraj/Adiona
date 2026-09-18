@@ -2,7 +2,12 @@ import { useState } from 'react';
 import { Shield, ChevronDown, ChevronUp, Info, EyeOff, MapPin, Users } from 'lucide-react';
 
 export function AppContextCard() {
-  const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth >= 768;
+    }
+    return true;
+  });
 
   if (!isExpanded) {
     return (

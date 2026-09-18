@@ -1,30 +1,38 @@
 import { useEffect, useRef } from "react";
 import * as maplibregl from "maplibre-gl";
 
+import seedReports from "../data/seedReports.json";
+
 export const REPORTS_SOURCE_ID = "reports";
 export const CLUSTERS_LAYER_ID = "clusters";
 export const CLUSTER_COUNT_LAYER_ID = "cluster-count";
 export const UNCLUSTERED_LAYER_ID = "unclustered-point";
 
-/**
- * ReportMarkersLayer
- *
- * Fetches report data from the backend and renders it as clustered markers
- * on an existing MapLibre GL map instance.
- *
- * CRITICAL: MapLibre will silently fail — no error, nothing rendered — if
- * you call map.addSource()/map.addLayer() before the map's style has
- * finished loading. This is the single most common cause of "data is fine
- * but nothing shows up." This component guards against that explicitly.
- *
- * Usage in MapView.jsx:
- *   <ReportMarkersLayer map={mapInstance} apiBaseUrl={import.meta.env.VITE_API_BASE_URL} />
- *
- * `map` must be the actual MapLibre GL map object (from useRef / onLoad),
- * not a ref wrapper.
- */
-// In-memory cache so toggling dark mode or re-mounting renders clusters instantly (0ms)
-let cachedHeatmapGeoJSON = null;
+export function toGeoJSON(heatmapData) {
+  return {
+    type: "FeatureCollection",
+    features: (heatmapData || []).map((point) => ({
+      type: "Feature",
+      geometry: {
+        type: "Point",
+        coordinates: [point.lng, point.lat], // GeoJSON order: [lng, lat]
+      },
+      properties: {
+        id: point.id,
+        weight: point.weight,
+        status: point.status,
+        category: point.category,
+        confirmations: point.confirmations,
+        note: point.note,
+        created_at: point.created_at,
+      },
+    })),
+  };
+}
+
+// Pre-initialize in-memory cache with curated Chennai reports so ANY device (mobile, Safari,
+// cold-start Render, offline) immediately renders clusters and report markers in 0ms!
+let cachedHeatmapGeoJSON = toGeoJSON(seedReports);
 
 export default function ReportMarkersLayer({
   map,
@@ -59,7 +67,7 @@ export default function ReportMarkersLayer({
   useEffect(() => {
     if (!map) return;
 
-    // If we already have cached data in memory, render it IMMEDIATELY without waiting for network!
+    // Immediately render cached seed data without waiting for network!
     if (cachedHeatmapGeoJSON && map.isStyleLoaded()) {
       if (!map.getSource(REPORTS_SOURCE_ID)) {
         setupOrUpdateLayers(map, cachedHeatmapGeoJSON, sourceAddedRef, onSelectReportRef);
@@ -68,24 +76,52 @@ export default function ReportMarkersLayer({
       }
     }
 
-    async function fetchAndRender() {
-      let data;
-      try {
-        const resolvedBaseUrl = (
-          apiBaseUrl ||
-          import.meta.env.VITE_API_BASE_URL ||
-          import.meta.env.VITE_API_URL ||
-          "https://adiona.onrender.com"
-        ).replace(/\/+$/, "");
+    let isSubscribed = true;
 
-        const res = await fetch(`${resolvedBaseUrl}/reports/heatmap`);
-        if (!res.ok) {
-          console.error("Heatmap fetch failed:", res.status, await res.text());
-          return;
+    async function fetchAndRender(retryCount = 0) {
+      const endpointsToTry = [];
+
+      // 1. First try relative /reports/heatmap (handled by Vite dev proxy or Vercel proxy)
+      if (typeof window !== "undefined" && !apiBaseUrl) {
+        endpointsToTry.push("/reports/heatmap");
+      }
+
+      // 2. Absolute production backend URL (Render)
+      const resolvedBaseUrl = (
+        apiBaseUrl ||
+        import.meta.env.VITE_API_BASE_URL ||
+        import.meta.env.VITE_API_URL ||
+        "https://adiona.onrender.com"
+      ).replace(/\/+$/, "");
+      endpointsToTry.push(`${resolvedBaseUrl}/reports/heatmap`);
+
+      let data = null;
+
+      for (const url of endpointsToTry) {
+        try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 20000);
+          const res = await fetch(url, { signal: controller.signal });
+          clearTimeout(timeoutId);
+
+          if (res.ok) {
+            data = await res.json();
+            break;
+          }
+        } catch (err) {
+          // Keep trying next endpoint
         }
-        data = await res.json();
-      } catch (err) {
-        console.error("Heatmap fetch error:", err);
+      }
+
+      if (!isSubscribed) return;
+
+      if (!data || !Array.isArray(data)) {
+        // If server is cold-starting, retry up to 3 times with a 6-second interval
+        if (retryCount < 3) {
+          setTimeout(() => {
+            if (isSubscribed) fetchAndRender(retryCount + 1);
+          }, 6000);
+        }
         return;
       }
 
@@ -93,6 +129,7 @@ export default function ReportMarkersLayer({
       cachedHeatmapGeoJSON = geojson;
 
       const applyLayers = () => {
+        if (!isSubscribed) return;
         if (map.isStyleLoaded()) {
           setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
         } else {
@@ -108,33 +145,16 @@ export default function ReportMarkersLayer({
     }
 
     fetchAndRender();
+
+    return () => {
+      isSubscribed = false;
+    };
   }, [map, apiBaseUrl, refreshTrigger, refreshKey]);
 
   return null; // this component only manages map layers, renders nothing itself
 }
 
 export { ReportMarkersLayer };
-
-export function toGeoJSON(heatmapData) {
-  return {
-    type: "FeatureCollection",
-    features: (heatmapData || []).map((point) => ({
-      type: "Feature",
-      geometry: {
-        type: "Point",
-        coordinates: [point.lng, point.lat], // GeoJSON order: [lng, lat]
-      },
-      properties: {
-        weight: point.weight,
-        status: point.status,
-        category: point.category,
-        confirmations: point.confirmations,
-        note: point.note,
-        created_at: point.created_at,
-      },
-    })),
-  };
-}
 
 function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef) {
   const sourceId = "reports";
