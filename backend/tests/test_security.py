@@ -375,23 +375,23 @@ class TestA5_GetHeatmapRateLimiting:
 
     @pytest.mark.asyncio
     async def test_heatmap_get_rate_limited(self, client_with_ip_limiter):
-        """Fire 125 rapid GET /reports/heatmap requests. The endpoint is
-        limited to 120/minute. Requests beyond that should get 429."""
+        """Fire rapid GET /reports/heatmap requests. The endpoint is
+        limited to 600/minute. Requests beyond that should get 429."""
         results = []
-        for i in range(125):
+        for i in range(605):
             resp = await client_with_ip_limiter.get("/reports/heatmap")
             results.append(resp.status_code)
 
         count_200 = results.count(200)
         count_429 = results.count(429)
 
-        # At least some should be rate-limited after 120
+        # At least some should be rate-limited after 600
         assert count_429 > 0, (
             f"No rate limiting detected on GET /heatmap. "
             f"All {count_200} requests returned 200. "
-            f"Expected 429 after ~120 requests."
+            f"Expected 429 after ~600 requests."
         )
-        # The first 120 should mostly succeed
-        assert count_200 >= 115, (
-            f"Too many early requests failed: {count_200} of 120 expected successes"
+        # The first 600 should mostly succeed
+        assert count_200 >= 590, (
+            f"Too many early requests failed: {count_200} of 600 expected successes"
         )

@@ -12,6 +12,21 @@ from typing import Optional
 from fastapi import APIRouter, Depends, HTTPException, Query, Request
 from slowapi import Limiter
 from slowapi.util import get_remote_address
+
+
+def get_real_ip(request: Request) -> str:
+    """Read the real client IP behind reverse proxies (Render, Cloudflare, etc.).
+
+    Render's load balancer sets X-Forwarded-For but the raw socket always shows
+    the proxy's internal IP.  slowapi's default ``get_remote_address`` reads the
+    socket, so *every* user on the planet shares one rate-limit bucket — which
+    is why the heatmap endpoint was returning 429 almost permanently.
+    """
+    forwarded = request.headers.get("x-forwarded-for")
+    if forwarded:
+        # X-Forwarded-For: client, proxy1, proxy2 — take the leftmost (client)
+        return forwarded.split(",")[0].strip()
+    return get_remote_address(request)
 from sqlalchemy import func, select, update
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -36,8 +51,8 @@ from app.services.rate_limiter import (
 
 router = APIRouter(prefix="/reports", tags=["reports"])
 
-# IP-level rate limiter
-limiter = Limiter(key_func=get_remote_address)
+# IP-level rate limiter — uses get_real_ip to read X-Forwarded-For behind proxies
+limiter = Limiter(key_func=get_real_ip)
 
 
 # --------------------------------------------------------------------------
@@ -166,7 +181,7 @@ async def confirm_report(
 # GET /reports/heatmap — with Spec §4.2 Time-Decay Heatmap Weighting
 # --------------------------------------------------------------------------
 @router.get("/heatmap", response_model=list[HeatmapPoint])
-@limiter.limit("120/minute")
+@limiter.limit("600/minute")
 async def get_heatmap(
     request: Request,
     category: Optional[ReportCategory] = None,

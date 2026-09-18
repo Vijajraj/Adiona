@@ -45,6 +45,7 @@ export function ReportMarkersLayer({
 }) {
   const abortControllerRef = useRef(null);
   const retryTimeoutRef = useRef(null);
+  const retryCountRef = useRef(0);
   const activePopupRef = useRef(null);
 
   const loadAndApplyReports = useCallback(async () => {
@@ -244,15 +245,24 @@ export function ReportMarkersLayer({
         if (map.getCanvas()) map.getCanvas().style.cursor = 'crosshair';
       });
 
+      retryCountRef.current = 0; // Reset on success
       if (onLoadingChange) onLoadingChange(false);
     } catch (err) {
       if (err.name !== 'AbortError') {
-        console.error('[Adiona] Clustered markers fetch error, retrying in 5s:', err);
+        const MAX_RETRIES = 3;
+        retryCountRef.current += 1;
         if (onLoadingChange) onLoadingChange(false);
-        if (retryTimeoutRef.current) clearTimeout(retryTimeoutRef.current);
-        retryTimeoutRef.current = setTimeout(() => {
-          loadAndApplyReports();
-        }, 5000);
+
+        if (retryCountRef.current <= MAX_RETRIES) {
+          const delay = 5000 * Math.pow(2, retryCountRef.current - 1); // 5s, 10s, 20s
+          console.warn(`[Adiona] Fetch failed (attempt ${retryCountRef.current}/${MAX_RETRIES}), retrying in ${delay / 1000}s:`, err.message);
+          if (retryTimeoutRef.current) clearTimeout(retryTimeoutRef.current);
+          retryTimeoutRef.current = setTimeout(() => {
+            loadAndApplyReports();
+          }, delay);
+        } else {
+          console.error(`[Adiona] Fetch failed after ${MAX_RETRIES} retries, giving up. Reload the page to try again.`, err.message);
+        }
       }
     }
   }, [map, mapLoaded, filters, onLoadingChange, onPointSelect]);
