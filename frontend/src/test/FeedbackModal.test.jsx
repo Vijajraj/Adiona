@@ -41,7 +41,7 @@ describe('FeedbackModal Component', () => {
       />
     );
 
-    const textarea = screen.getByPlaceholderText(/What features would you love to see/i);
+    const textarea = screen.getByPlaceholderText(/What features or improvements/i);
     fireEvent.change(textarea, {
       target: { value: 'Please add more details about street lighting.' },
     });

@@ -18,25 +18,35 @@ router = APIRouter(prefix="/feedback", tags=["feedback"])
 
 
 async def _forward_feedback_email(feedback_data: dict) -> None:
-    """Forward feedback submission directly to vraj122006@gmail.com via FormSubmit."""
+    """Forward feedback submission directly to the maintainer email via FormSubmit."""
     recipient = settings.FEEDBACK_RECIPIENT_EMAIL or "vraj122006@gmail.com"
     endpoint = f"https://formsubmit.co/ajax/{recipient}"
 
+    category_raw = str(feedback_data.get("category", "Feedback"))
+    category_title = category_raw.replace("_", " ").title()
+    rating_val = feedback_data.get("rating")
+    rating_display = f"{'★' * rating_val}{'☆' * (5 - rating_val)} ({rating_val} / 5)" if rating_val else "Not rated"
+
     payload = {
-        "_subject": f"[Adiona Feedback] {feedback_data.get('category', 'Feedback').title()} ({feedback_data.get('rating') or 'No'} Stars)",
-        "Topic / Category": feedback_data.get("category"),
-        "Rating": f"{feedback_data.get('rating') or 'N/A'} / 5",
-        "Feedback Message": feedback_data.get("message"),
-        "Device ID": feedback_data.get("device_id"),
-        "Timestamp (UTC)": str(feedback_data.get("created_at")),
+        "_subject": f"[Adiona Feedback] {category_title} - {rating_val or 'No'} Stars",
+        "Category / Topic": category_title,
+        "User Rating": rating_display,
+        "Feedback Message": feedback_data.get("message", "").strip(),
+        "Anonymous Device ID": feedback_data.get("device_id", "anonymous"),
+        "Submitted At (UTC)": str(feedback_data.get("created_at", "")),
+        "_captcha": "false",
         "_template": "table",
     }
 
     try:
-        async with httpx.AsyncClient(timeout=8.0) as client:
-            resp = await client.post(endpoint, json=payload)
+        async with httpx.AsyncClient(timeout=10.0) as client:
+            resp = await client.post(
+                endpoint,
+                json=payload,
+                headers={"Accept": "application/json", "Content-Type": "application/json"},
+            )
             if resp.is_success:
-                logger.info("Feedback email forwarded to %s", recipient)
+                logger.info("Feedback email successfully forwarded to maintainer")
             else:
                 logger.warning("Feedback email forward status %s: %s", resp.status_code, resp.text)
     except Exception as err:
@@ -69,7 +79,7 @@ async def submit_feedback(
             status_code=500, detail="Failed to record feedback. Please try again."
         )
 
-    # Queue background task to forward email directly to vraj122006@gmail.com
+    # Queue background task to forward email directly to configured recipient
     background_tasks.add_task(
         _forward_feedback_email,
         {

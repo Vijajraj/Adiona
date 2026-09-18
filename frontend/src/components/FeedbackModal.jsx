@@ -11,18 +11,31 @@ import {
   Bug,
   ShieldAlert,
   MessageCircle,
-  Mail,
+  ShieldCheck,
 } from 'lucide-react';
 import { submitFeedback } from '../utils/api';
 
-const RECIPIENT_EMAIL = 'vraj122006@gmail.com';
-
 const CATEGORIES = [
-  { id: 'suggestion', label: 'Suggestion', icon: Lightbulb, color: 'text-amber-500' },
-  { id: 'bug', label: 'Bug Report', icon: Bug, color: 'text-rose-500' },
-  { id: 'safety', label: 'Safety Note', icon: ShieldAlert, color: 'text-indigo-500' },
-  { id: 'general', label: 'General', icon: MessageCircle, color: 'text-teal-500' },
+  { id: 'suggestion', label: 'Suggestion', icon: Lightbulb, color: '#f59e0b' },
+  { id: 'bug', label: 'Bug Report', icon: Bug, color: '#ef4444' },
+  { id: 'safety', label: 'Safety Note', icon: ShieldAlert, color: '#4f46e5' },
+  { id: 'general', label: 'General', icon: MessageCircle, color: '#0d9488' },
 ];
+
+const CATEGORY_PLACEHOLDERS = {
+  suggestion: 'What features or improvements would help you feel safer in Chennai?',
+  bug: 'What went wrong? Please share steps to reproduce or details about your browser/device...',
+  safety: 'Have observations about street lighting, patrol points, or safety trends in Chennai?',
+  general: 'Share your thoughts, suggestions, or words of encouragement for the team...',
+};
+
+const RATING_LABELS = {
+  5: '⭐⭐⭐⭐⭐ Outstanding',
+  4: '⭐⭐⭐⭐ Great experience',
+  3: '⭐⭐⭐ Good, can improve',
+  2: '⭐⭐ Needs improvement',
+  1: '⭐ Having issues',
+};
 
 export function FeedbackModal({ isOpen, onClose, deviceId }) {
   const [category, setCategory] = useState('suggestion');
@@ -73,48 +86,24 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
 
     try {
       await submitFeedback(payload);
-      setSuccessMessage(`Thank you! Your feedback has been forwarded directly to ${RECIPIENT_EMAIL}.`);
+      setSuccessMessage('Thank you! Your feedback has been sent directly to the development team.');
       setMessage('');
       closeTimeoutRef.current = setTimeout(() => {
         onClose();
       }, 1800);
     } catch (err) {
-      // Direct FormSubmit fallback to vraj122006@gmail.com
+      // Offline fallback: save to localStorage
       try {
-        await fetch(`https://formsubmit.co/ajax/${RECIPIENT_EMAIL}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json',
-          },
-          body: JSON.stringify({
-            _subject: `[Adiona Feedback] ${category.toUpperCase()} (${rating || 0} Stars)`,
-            Category: category,
-            Rating: `${rating || 'None'} / 5`,
-            Message: trimmed,
-            'Device ID': payload.device_id,
-            _template: 'table',
-          }),
-        });
-        setSuccessMessage(`Thank you! Your feedback was emailed directly to ${RECIPIENT_EMAIL}.`);
+        const stored = JSON.parse(localStorage.getItem('adiona_feedback_backup') || '[]');
+        stored.push({ ...payload, timestamp: new Date().toISOString() });
+        localStorage.setItem('adiona_feedback_backup', JSON.stringify(stored));
+        setSuccessMessage('Feedback saved offline! Thank you for sharing your thoughts.');
         setMessage('');
         closeTimeoutRef.current = setTimeout(() => {
           onClose();
         }, 1800);
       } catch {
-        // Local storage backup
-        try {
-          const stored = JSON.parse(localStorage.getItem('adiona_feedback_backup') || '[]');
-          stored.push({ ...payload, timestamp: new Date().toISOString() });
-          localStorage.setItem('adiona_feedback_backup', JSON.stringify(stored));
-          setSuccessMessage('Feedback saved offline! Thank you for sharing your thoughts.');
-          setMessage('');
-          closeTimeoutRef.current = setTimeout(() => {
-            onClose();
-          }, 1800);
-        } catch {
-          setErrorMessage(err.message || 'Failed to submit feedback. Please try again.');
-        }
+        setErrorMessage(err.message || 'Failed to submit feedback. Please try again.');
       }
     } finally {
       setSubmitting(false);
@@ -130,21 +119,24 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
         aria-modal="true"
         aria-labelledby="feedback-modal-title"
       >
+        {/* Modal Header */}
         <div className="modal-header">
-          <div className="modal-title-row flex items-center gap-2">
-            <MessageSquareHeart className="text-indigo-500" size={22} />
+          <div className="modal-title-row">
+            <div className="feedback-modal-header-icon">
+              <MessageSquareHeart size={20} />
+            </div>
             <div>
-              <h2 id="feedback-modal-title" className="modal-title font-bold text-lg">
+              <h2 id="feedback-modal-title" className="modal-title">
                 Community Feedback
               </h2>
-              <p className="modal-subtitle text-xs text-slate-400">
-                Delivered directly to <span className="text-indigo-400 font-medium">{RECIPIENT_EMAIL}</span>
+              <p className="modal-subtitle">
+                Help improve Chennai's open safety map • Delivered directly to maintainers
               </p>
             </div>
           </div>
           <button
             type="button"
-            className="modal-close-btn"
+            className="close-button"
             onClick={onClose}
             aria-label="Close feedback modal"
           >
@@ -152,148 +144,148 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
           </button>
         </div>
 
-        <form onSubmit={handleSubmit} className="feedback-form flex flex-col gap-4 p-5">
-          {errorMessage && (
-            <div className="alert-banner alert-error flex items-center gap-2" role="alert">
-              <AlertCircle size={18} className="flex-shrink-0" />
-              <span>{errorMessage}</span>
-            </div>
-          )}
+        {/* Modal Form */}
+        <form onSubmit={handleSubmit} className="feedback-form">
+          <div className="modal-body space-y-4">
+            {/* Feedback Alerts */}
+            {errorMessage && (
+              <div className="alert-banner alert-error" role="alert">
+                <AlertCircle size={18} className="flex-shrink-0" />
+                <span>{errorMessage}</span>
+              </div>
+            )}
 
-          {successMessage && (
-            <div className="alert-banner alert-success flex items-center gap-2" role="status">
-              <CheckCircle2 size={18} className="flex-shrink-0 text-emerald-500" />
-              <span className="text-emerald-700 dark:text-emerald-300 font-medium">
-                {successMessage}
+            {successMessage && (
+              <div className="alert-banner alert-success" role="status">
+                <CheckCircle2 size={18} className="flex-shrink-0" />
+                <span>{successMessage}</span>
+              </div>
+            )}
+
+            {/* Topic Selection */}
+            <div className="form-group">
+              <label className="section-label">Topic</label>
+              <div className="feedback-topic-grid" role="radiogroup" aria-label="Feedback topics">
+                {CATEGORIES.map((cat) => {
+                  const IconComponent = cat.icon;
+                  const isSelected = category === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      type="button"
+                      className={`feedback-topic-btn ${isSelected ? 'active' : ''}`}
+                      onClick={() => setCategory(cat.id)}
+                      role="radio"
+                      aria-checked={isSelected}
+                    >
+                      <div className="topic-icon-badge">
+                        <IconComponent size={16} style={{ color: cat.color }} />
+                      </div>
+                      <span className="feedback-topic-title">{cat.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Star Rating */}
+            <div className="form-group">
+              <label className="section-label">Rate your experience</label>
+              <div className="feedback-rating-box">
+                <div
+                  className="feedback-stars-row"
+                  role="radiogroup"
+                  aria-label="Rating stars"
+                >
+                  {[1, 2, 3, 4, 5].map((star) => {
+                    const isFilled = (hoverRating || rating) >= star;
+                    return (
+                      <button
+                        key={star}
+                        type="button"
+                        className="star-interactive-btn"
+                        onClick={() => setRating(star)}
+                        onMouseEnter={() => setHoverRating(star)}
+                        onMouseLeave={() => setHoverRating(0)}
+                        aria-label={`${star} star${star > 1 ? 's' : ''}`}
+                        role="radio"
+                        aria-checked={rating === star}
+                      >
+                        <Star
+                          className={`star-icon-svg ${isFilled ? 'star-filled' : 'star-empty'}`}
+                        />
+                      </button>
+                    );
+                  })}
+                </div>
+                <span className="feedback-rating-tag">
+                  {RATING_LABELS[rating] || 'Select rating'}
+                </span>
+              </div>
+            </div>
+
+            {/* Feedback Message */}
+            <div className="form-group">
+              <div className="label-with-count mb-1">
+                <label htmlFor="feedback-message" className="section-label mb-0">
+                  Your Thoughts / Suggestions
+                </label>
+                <span
+                  className={`char-count ${
+                    message.length > 900 ? 'text-amber-600 font-semibold' : ''
+                  }`}
+                >
+                  {message.length}/1000
+                </span>
+              </div>
+              <textarea
+                id="feedback-message"
+                className="feedback-textarea"
+                rows={4}
+                maxLength={1000}
+                placeholder={CATEGORY_PLACEHOLDERS[category]}
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                required
+              />
+            </div>
+
+            {/* Privacy Guarantee Banner */}
+            <div className="feedback-privacy-guarantee">
+              <ShieldCheck size={16} className="flex-shrink-0 text-emerald-600" />
+              <span>
+                <strong>100% Anonymous:</strong> No email, accounts, or personal data stored. Delivered directly to the maintainers.
               </span>
             </div>
-          )}
-
-          {/* Feedback Type Category Chips */}
-          <div className="form-group">
-            <label className="form-label text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
-              Topic
-            </label>
-            <div className="feedback-category-grid grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {CATEGORIES.map((cat) => {
-                const IconComponent = cat.icon;
-                const isSelected = category === cat.id;
-                return (
-                  <button
-                    key={cat.id}
-                    type="button"
-                    className={`category-chip flex items-center justify-center gap-2 py-2 px-3 rounded-lg border text-xs font-semibold transition-all ${
-                      isSelected
-                        ? 'border-indigo-500 bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-300 shadow-sm'
-                        : 'border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800'
-                    }`}
-                    onClick={() => setCategory(cat.id)}
-                  >
-                    <IconComponent size={14} className={cat.color} />
-                    <span>{cat.label}</span>
-                  </button>
-                );
-              })}
-            </div>
           </div>
 
-          {/* Rating */}
-          <div className="form-group">
-            <label className="form-label text-xs font-semibold text-slate-400 uppercase tracking-wider block mb-2">
-              Rate your experience
-            </label>
-            <div className="flex items-center gap-1.5" role="radiogroup" aria-label="Rating stars">
-              {[1, 2, 3, 4, 5].map((star) => {
-                const isFilled = (hoverRating || rating) >= star;
-                return (
-                  <button
-                    key={star}
-                    type="button"
-                    className="p-1 text-slate-300 hover:scale-110 transition-transform focus:outline-none"
-                    onClick={() => setRating(star)}
-                    onMouseEnter={() => setHoverRating(star)}
-                    onMouseLeave={() => setHoverRating(0)}
-                    aria-label={`${star} star${star > 1 ? 's' : ''}`}
-                  >
-                    <Star
-                      size={24}
-                      className={
-                        isFilled
-                          ? 'fill-amber-400 text-amber-400 drop-shadow-sm'
-                          : 'text-slate-300 dark:text-slate-700'
-                      }
-                    />
-                  </button>
-                );
-              })}
-              <span className="text-xs font-medium text-slate-400 ml-2">
-                {rating === 5 && 'Outstanding'}
-                {rating === 4 && 'Good'}
-                {rating === 3 && 'Average'}
-                {rating === 2 && 'Needs improvement'}
-                {rating === 1 && 'Poor'}
-              </span>
-            </div>
-          </div>
-
-          {/* Message Textarea */}
-          <div className="form-group">
-            <div className="flex justify-between items-center mb-1.5">
-              <label className="form-label text-xs font-semibold text-slate-400 uppercase tracking-wider">
-                Your Thoughts / Suggestions
-              </label>
-              <span className="text-xs text-slate-400">{message.length}/1000</span>
-            </div>
-            <textarea
-              className="feedback-textarea w-full p-3 rounded-lg border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-100 text-sm focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 resize-none transition-all"
-              rows={4}
-              maxLength={1000}
-              placeholder="What features would you love to see? Found a bug? Or have safety ideas for Chennai?"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              required
-            />
-          </div>
-
-          {/* Footer Submit & Direct Mailto */}
-          <div className="modal-footer flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-100 dark:border-slate-800">
-            <a
-              href={`mailto:${RECIPIENT_EMAIL}?subject=Chennai%20Safety%20Map%20Feedback%20[${category}]&body=${encodeURIComponent(message)}`}
-              className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1.5"
-              target="_blank"
-              rel="noopener noreferrer"
+          {/* Modal Footer */}
+          <div className="feedback-modal-footer">
+            <button
+              type="button"
+              className="btn btn-secondary"
+              onClick={onClose}
+              disabled={submitting}
             >
-              <Mail size={14} />
-              <span>Or email directly to {RECIPIENT_EMAIL}</span>
-            </a>
-
-            <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
-              <button
-                type="button"
-                className="btn btn-secondary px-4 py-2 text-sm font-semibold rounded-lg border border-slate-200 dark:border-slate-800 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
-                onClick={onClose}
-                disabled={submitting}
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="btn btn-primary flex items-center gap-2 px-5 py-2 text-sm font-semibold text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg transition-colors shadow-sm disabled:opacity-60"
-                disabled={submitting || message.trim().length < 3 || !!successMessage}
-              >
-                {submitting ? (
-                  <>
-                    <Loader2 size={16} className="animate-spin" />
-                    <span>Submitting...</span>
-                  </>
-                ) : (
-                  <>
-                    <Send size={15} />
-                    <span>Send Feedback</span>
-                  </>
-                )}
-              </button>
-            </div>
+              Cancel
+            </button>
+            <button
+              type="submit"
+              className="btn btn-primary"
+              disabled={submitting || message.trim().length < 3 || !!successMessage}
+            >
+              {submitting ? (
+                <>
+                  <Loader2 size={16} className="animate-spin" />
+                  <span>Sending...</span>
+                </>
+              ) : (
+                <>
+                  <Send size={15} />
+                  <span>Send Feedback</span>
+                </>
+              )}
+            </button>
           </div>
         </form>
       </div>
