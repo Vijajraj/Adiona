@@ -181,7 +181,6 @@ async def confirm_report(
 # GET /reports/heatmap — with Spec §4.2 Time-Decay Heatmap Weighting
 # --------------------------------------------------------------------------
 @router.get("/heatmap", response_model=list[HeatmapPoint])
-@limiter.limit("600/minute")
 async def get_heatmap(
     request: Request,
     category: Optional[ReportCategory] = None,
