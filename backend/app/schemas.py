@@ -85,6 +85,36 @@ class HeatmapPoint(BaseModel):
     status: Optional[ReportStatus] = None
     confirmations: Optional[int] = None
     note: Optional[str] = None
+    created_at: Optional[datetime] = None
+
+
+class FeedbackCreate(BaseModel):
+    device_id: str
+    category: str = Field("suggestion", max_length=50)
+    rating: Optional[int] = Field(None, ge=1, le=5)
+    message: str = Field(..., min_length=2, max_length=1000)
+
+    @field_validator("device_id")
+    @classmethod
+    def validate_device_id(cls, v: str) -> str:
+        return _parse_uuid(v)
+
+    @field_validator("message")
+    @classmethod
+    def sanitize_message(cls, v: str) -> str:
+        cleaned = v.strip()
+        if len(cleaned) < 2:
+            raise ValueError("Message must be at least 2 characters.")
+        return html.escape(cleaned[:1000])
+
+
+class FeedbackResponse(BaseModel):
+    id: str
+    message: str
+    created_at: datetime
+
+    model_config = {"from_attributes": True}
+
 
 
 class FlaggedReportResponse(BaseModel):

@@ -12,6 +12,7 @@ from sqlalchemy import text
 
 from app.config import settings
 from app.db import engine, init_db
+from app.routers.feedback import router as feedback_router
 from app.routers.moderation import router as moderation_router
 from app.routers.reports import limiter, router as reports_router
 
@@ -84,6 +85,7 @@ app.add_middleware(
 # Mount routers
 app.include_router(reports_router)
 app.include_router(moderation_router)
+app.include_router(feedback_router)
 
 
 # --------------------------------------------------------------------------

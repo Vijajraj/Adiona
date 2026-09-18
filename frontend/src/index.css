@@ -1581,4 +1581,118 @@ body {
   animation: fadeIn 0.2s ease-out;
 }
 
+/* ==========================================================================
+   Header Buttons: GitHub Star, Feedback, Live Freshness
+   ========================================================================== */
+
+.github-star-btn {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+  border-color: #334155 !important;
+  text-decoration: none;
+}
+
+.github-star-btn:hover {
+  background: #1e293b !important;
+  border-color: #f59e0b !important;
+  box-shadow: 0 0 10px rgba(245, 158, 11, 0.25);
+}
+
+.github-star-btn .star-icon {
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.github-star-btn:hover .star-icon {
+  transform: scale(1.2) rotate(12deg);
+}
+
+.feedback-btn {
+  color: #e11d48 !important;
+  background: #fff1f2 !important;
+  border-color: #fecdd3 !important;
+}
+
+.feedback-btn:hover {
+  background: #ffe4e6 !important;
+  border-color: #fda4af !important;
+  color: #be123c !important;
+}
+
+.dark .feedback-btn {
+  background: rgba(225, 29, 72, 0.15) !important;
+  border-color: rgba(225, 29, 72, 0.3) !important;
+  color: #fb7185 !important;
+}
+
+.dark .feedback-btn:hover {
+  background: rgba(225, 29, 72, 0.25) !important;
+}
+
+/* Live Pulse Dot */
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: livePulse 2s infinite cubic-bezier(0.45, 0, 0.55, 1);
+  display: inline-block;
+}
+
+@keyframes livePulse {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+/* Search Bar Enhanced Dropdown */
+.search-result-item.active-highlight {
+  background-color: #334155;
+  outline: none;
+}
+
+.result-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(99, 102, 241, 0.18);
+  color: #818cf8;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+  letter-spacing: 0.02em;
+}
+
+.result-icon-wrap {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Feedback Modal Styles */
+.feedback-modal {
+  max-width: 500px;
+}
+
+.feedback-textarea {
+  min-height: 100px;
+}
+
+.category-chip {
+  cursor: pointer;
+}
+
+
 

@@ -94,6 +94,7 @@ export function toGeoJSON(heatmapData) {
         category: point.category,
         confirmations: point.confirmations,
         note: point.note,
+        created_at: point.created_at,
       },
     })),
   };
@@ -204,6 +205,7 @@ function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef) {
         status: props.status,
         confirmations: props.confirmations,
         note: props.note,
+        created_at: props.created_at,
         lat: coordinates[1],
         lng: coordinates[0],
       });

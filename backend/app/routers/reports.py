@@ -246,6 +246,7 @@ async def get_heatmap(
                 "status": r.status,
                 "confirmations": 0,
                 "note": r.note,
+                "created_at": created_at,
             }
 
         cells[key]["weight"] += report_weight
@@ -254,6 +255,7 @@ async def get_heatmap(
         cells[key]["id"] = r.id
         cells[key]["category"] = r.category
         cells[key]["status"] = r.status
+        cells[key]["created_at"] = created_at
         if r.note:
             cells[key]["note"] = r.note
 
@@ -267,6 +269,7 @@ async def get_heatmap(
             status=c["status"],
             confirmations=c["confirmations"],
             note=c.get("note"),
+            created_at=c.get("created_at"),
         )
         for c in cells.values()
     ]

@@ -49,6 +49,25 @@ export function ConfirmPrompt({
   const categoryMeta = ALL_CATEGORIES.find((c) => c.id === existingReport.category);
   const categoryLabel = categoryMeta ? categoryMeta.label : (existingReport.category?.replace(/_/g, ' ') || 'Safety Concern');
 
+  const formattedDate = existingReport.created_at
+    ? (() => {
+        try {
+          const d = new Date(existingReport.created_at);
+          if (isNaN(d.getTime())) return null;
+          return d.toLocaleString('en-IN', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: true,
+          });
+        } catch {
+          return null;
+        }
+      })()
+    : null;
+
   const handleClose = () => {
     if (confirmTimeoutRef.current) {
       clearTimeout(confirmTimeoutRef.current);
@@ -137,6 +156,14 @@ export function ConfirmPrompt({
               <div className="card-row">
                 <span className="label">Note:</span>
                 <span className="value text-sm italic">{existingReport.note}</span>
+              </div>
+            )}
+            {formattedDate && (
+              <div className="card-row">
+                <span className="label">Reported:</span>
+                <span className="value text-xs text-slate-500 dark:text-slate-400 font-medium">
+                  {formattedDate}
+                </span>
               </div>
             )}
           </div>

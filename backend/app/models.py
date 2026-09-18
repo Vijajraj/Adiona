@@ -150,3 +150,15 @@ class Confirmation(Base):
             "report_id", "device_id", name="uq_confirmation_device_report"
         ),
     )
+
+
+class Feedback(Base):
+    """User feedback and suggestions."""
+    __tablename__ = "feedback"
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    device_id = Column(String(36), nullable=False, index=True)
+    category = Column(String(50), default="suggestion", nullable=False)
+    rating = Column(Integer, nullable=True)
+    message = Column(String(1000), nullable=False)
+    created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)

@@ -99,6 +99,26 @@ export async function confirmReport(reportId, deviceId, signal = null) {
   return data;
 }
 
+export async function submitFeedback(feedbackData, signal = null) {
+  const fetchOptions = {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(feedbackData),
+  };
+  if (signal) {
+    fetchOptions.signal = signal;
+  }
+
+  const res = await fetch(`${API_BASE_URL}/feedback`, fetchOptions);
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) {
+    throw new Error(formatErrorMessage(data, 'Failed to submit feedback'));
+  }
+  return data;
+}
+
 export async function fetchFlaggedReports(adminKey, signal = null) {
   const fetchOptions = {
     headers: {
