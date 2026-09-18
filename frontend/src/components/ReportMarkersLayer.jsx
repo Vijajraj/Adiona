@@ -96,12 +96,12 @@ export function toGeoJSON(heatmapData) {
 function setupOrUpdateLayers(map, geojson, sourceAddedRef) {
   const sourceId = "reports";
 
-  if ((sourceAddedRef.current || map.getSource(sourceId)) && map.getSource(sourceId)) {
+  if (sourceAddedRef.current && map.getSource(sourceId)) {
     // Source already exists — just update its data (e.g. after a new report submission).
     map.getSource(sourceId).setData(geojson);
-    sourceAddedRef.current = true;
     return;
   }
+  sourceAddedRef.current = false; // source was wiped (e.g. style change) — rebuild below
 
   map.addSource(sourceId, {
     type: "geojson",

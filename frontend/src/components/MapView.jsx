@@ -276,6 +276,9 @@ export function MapView({ deviceId }) {
 
     const nextStyle = nextDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
     mapRef.current.setStyle(nextStyle);
+    mapRef.current.once('styledata', () => {
+      setRefreshKey((k) => k + 1); // forces ReportMarkersLayer to re-add source/layers
+    });
   };
 
   const handleFilterChange = (key, value) => {
@@ -297,7 +300,7 @@ export function MapView({ deviceId }) {
   return (
     <div className="map-view-root">
       <ReportMarkersLayer
-        map={mapInstance}
+        map={mapLoaded ? mapInstance : null}
         apiBaseUrl={import.meta.env.VITE_API_BASE_URL}
         refreshTrigger={refreshKey}
       />
