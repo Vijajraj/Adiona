@@ -15,13 +15,10 @@ from slowapi.util import get_remote_address
 
 
 def get_real_ip(request: Request) -> str:
-    """Read the real client IP behind reverse proxies (Render, Cloudflare, etc.).
-
-    Render's load balancer sets X-Forwarded-For but the raw socket always shows
-    the proxy's internal IP.  slowapi's default ``get_remote_address`` reads the
-    socket, so *every* user on the planet shares one rate-limit bucket — which
-    is why the heatmap endpoint was returning 429 almost permanently.
-    """
+    """Read the real client IP behind reverse proxies (Render, Cloudflare, etc.)."""
+    cf_ip = request.headers.get("cf-connecting-ip")
+    if cf_ip:
+        return cf_ip.strip()
     forwarded = request.headers.get("x-forwarded-for")
     if forwarded:
         # X-Forwarded-For: client, proxy1, proxy2 — take the leftmost (client)
