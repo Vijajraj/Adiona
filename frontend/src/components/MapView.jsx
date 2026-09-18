@@ -292,21 +292,8 @@ export function MapView({ deviceId }) {
     <div className="map-view-root">
       <ReportMarkersLayer
         map={mapInstance}
-        mapLoaded={mapLoaded}
-        filters={filters}
-        refreshKey={refreshKey}
-        onLoadingChange={setLoadingHeatmap}
-        onPointSelect={(point) => {
-          setExistingReportToConfirm({
-            id: point.id,
-            lat: point.lat,
-            lng: point.lng,
-            category: point.category,
-            status: point.status,
-            confirmations: point.confirmations || 0,
-          });
-          setSelectedCoords({ lat: point.lat, lng: point.lng });
-        }}
+        apiBaseUrl={import.meta.env.VITE_API_BASE_URL}
+        refreshTrigger={refreshKey}
       />
       {/* Top Header Bar */}
       <header className="app-header">
