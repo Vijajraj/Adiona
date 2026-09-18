@@ -20,6 +20,7 @@ import { PrivacyNoticeModal } from './PrivacyNotice';
 import { ModerationModal } from './ModerationModal';
 import { FeedbackModal } from './FeedbackModal';
 import { SearchBar } from './SearchBar';
+import { AppContextCard } from './AppContextCard';
 import {
   ReportMarkersLayer,
   UNCLUSTERED_LAYER_ID,
@@ -343,6 +344,13 @@ export function MapView({ deviceId }) {
     });
   };
 
+  // Preload dark mode style JSON in the background so switching is instantaneous
+  useEffect(() => {
+    if (typeof MAP_STYLE_DARK_URL === 'string') {
+      fetch(MAP_STYLE_DARK_URL).catch(() => {});
+    }
+  }, []);
+
   // Map Style Toggle
   const toggleMapStyle = () => {
     if (!mapRef.current) return;
@@ -351,9 +359,6 @@ export function MapView({ deviceId }) {
 
     const nextStyle = nextDarkMode ? MAP_STYLE_DARK_URL : MAP_STYLE_URL;
     mapRef.current.setStyle(nextStyle);
-    mapRef.current.once('styledata', () => {
-      setRefreshKey((k) => k + 1); // forces ReportMarkersLayer to re-add source/layers
-    });
   };
 
   const handleFilterChange = (key, value) => {
@@ -501,6 +506,9 @@ export function MapView({ deviceId }) {
         <span className="opacity-40 hidden md:inline">•</span>
         <span className="hidden md:inline">Click anywhere to report</span>
       </div>
+
+      {/* Small Context Side Card About WebApp */}
+      <AppContextCard />
 
       {/* Heatmap Legend */}
       <div className="heatmap-legend">

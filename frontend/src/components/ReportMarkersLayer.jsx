@@ -23,6 +23,9 @@ export const UNCLUSTERED_LAYER_ID = "unclustered-point";
  * `map` must be the actual MapLibre GL map object (from useRef / onLoad),
  * not a ref wrapper.
  */
+// In-memory cache so toggling dark mode or re-mounting renders clusters instantly (0ms)
+let cachedHeatmapGeoJSON = null;
+
 export default function ReportMarkersLayer({
   map,
   apiBaseUrl,
@@ -37,8 +40,33 @@ export default function ReportMarkersLayer({
     onSelectReportRef.current = onSelectReport;
   }, [onSelectReport]);
 
+  // Immediately re-attach clusters as soon as the map style finishes loading or swapping
   useEffect(() => {
     if (!map) return;
+
+    const handleStyleData = () => {
+      if (map.isStyleLoaded() && cachedHeatmapGeoJSON) {
+        if (!map.getSource(REPORTS_SOURCE_ID)) {
+          setupOrUpdateLayers(map, cachedHeatmapGeoJSON, sourceAddedRef, onSelectReportRef);
+        }
+      }
+    };
+
+    map.on("styledata", handleStyleData);
+    return () => map.off("styledata", handleStyleData);
+  }, [map]);
+
+  useEffect(() => {
+    if (!map) return;
+
+    // If we already have cached data in memory, render it IMMEDIATELY without waiting for network!
+    if (cachedHeatmapGeoJSON && map.isStyleLoaded()) {
+      if (!map.getSource(REPORTS_SOURCE_ID)) {
+        setupOrUpdateLayers(map, cachedHeatmapGeoJSON, sourceAddedRef, onSelectReportRef);
+      } else {
+        map.getSource(REPORTS_SOURCE_ID).setData(cachedHeatmapGeoJSON);
+      }
+    }
 
     async function fetchAndRender() {
       let data;
@@ -62,8 +90,8 @@ export default function ReportMarkersLayer({
       }
 
       const geojson = toGeoJSON(data);
+      cachedHeatmapGeoJSON = geojson;
 
-      // If the map's style isn't loaded yet (or transitioning styles), wait for styledata
       const applyLayers = () => {
         if (map.isStyleLoaded()) {
           setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
