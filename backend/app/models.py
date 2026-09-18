@@ -160,5 +160,5 @@ class Feedback(Base):
     device_id = Column(String(36), nullable=False, index=True)
     category = Column(String(50), default="suggestion", nullable=False)
     rating = Column(Integer, nullable=True)
-    message = Column(String(1000), nullable=False)
+    message = Column(String(1000), nullable=True)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)

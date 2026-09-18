@@ -389,7 +389,7 @@ export function MapView({ deviceId }) {
           <div>
             <h1 className="brand-title">Chennai Safety Map</h1>
             <p className="brand-subtitle">
-              Hyperlocal Open Safety Network <span className="opacity-40">•</span> Information updated: 15/09/2006
+              Hyperlocal Open Safety Network <span className="opacity-40">•</span> Information updated: 15/09/2026
             </p>
           </div>
         </div>
@@ -497,7 +497,7 @@ export function MapView({ deviceId }) {
         <span className="live-dot" />
         <span className="text-emerald-400 font-semibold">Live</span>
         <span className="opacity-40">•</span>
-        <span>Information updated: 15/09/2006</span>
+        <span>Information updated: 15/09/2026</span>
         <span className="opacity-40 hidden md:inline">•</span>
         <span className="hidden md:inline">Click anywhere to report</span>
       </div>
@@ -512,7 +512,7 @@ export function MapView({ deviceId }) {
           <span>High Severity</span>
         </div>
         <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 pt-1 border-t border-slate-200 dark:border-slate-800">
-          Information updated: 15/09/2006
+          Information updated: 15/09/2026
         </div>
       </div>
 

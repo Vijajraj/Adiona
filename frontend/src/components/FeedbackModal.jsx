@@ -68,10 +68,6 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const trimmed = message.trim();
-    if (!trimmed || trimmed.length < 3) {
-      setErrorMessage('Please enter at least 3 characters of feedback.');
-      return;
-    }
 
     setSubmitting(true);
     setErrorMessage('');
@@ -81,7 +77,7 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
       device_id: deviceId || 'anonymous-device-uuid',
       category,
       rating: rating > 0 ? rating : null,
-      message: trimmed,
+      message: trimmed || null,
     };
 
     try {
@@ -228,7 +224,7 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
             <div className="form-group">
               <div className="label-with-count mb-1">
                 <label htmlFor="feedback-message" className="section-label mb-0">
-                  Your Thoughts / Suggestions
+                  Your Thoughts / Suggestions (Optional)
                 </label>
                 <span
                   className={`char-count ${
@@ -246,7 +242,6 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
                 placeholder={CATEGORY_PLACEHOLDERS[category]}
                 value={message}
                 onChange={(e) => setMessage(e.target.value)}
-                required
               />
             </div>
 
@@ -272,7 +267,7 @@ export function FeedbackModal({ isOpen, onClose, deviceId }) {
             <button
               type="submit"
               className="btn btn-primary"
-              disabled={submitting || message.trim().length < 3 || !!successMessage}
+              disabled={submitting || !!successMessage}
             >
               {submitting ? (
                 <>

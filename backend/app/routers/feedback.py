@@ -27,11 +27,14 @@ async def _forward_feedback_email(feedback_data: dict) -> None:
     rating_val = feedback_data.get("rating")
     rating_display = f"{'★' * rating_val}{'☆' * (5 - rating_val)} ({rating_val} / 5)" if rating_val else "Not rated"
 
+    message_val = (feedback_data.get("message") or "").strip()
+    message_display = message_val if message_val else "(No written comment provided - rating & category only)"
+
     payload = {
         "_subject": f"[Adiona Feedback] {category_title} - {rating_val or 'No'} Stars",
         "Category / Topic": category_title,
         "User Rating": rating_display,
-        "Feedback Message": feedback_data.get("message", "").strip(),
+        "Feedback Message": message_display,
         "Anonymous Device ID": feedback_data.get("device_id", "anonymous"),
         "Submitted At (UTC)": str(feedback_data.get("created_at", "")),
         "_captcha": "false",

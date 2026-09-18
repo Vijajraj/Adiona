@@ -65,6 +65,21 @@ async def test_submit_feedback_success(client: AsyncClient):
 
 
 @pytest.mark.asyncio
+async def test_submit_feedback_without_message(client: AsyncClient):
+    payload = {
+        "device_id": str(uuid.uuid4()),
+        "category": "suggestion",
+        "rating": 5,
+        "message": None,
+    }
+    response = await client.post("/feedback", json=payload)
+    assert response.status_code == 201
+    data = response.json()
+    assert "id" in data
+    assert "Thank you" in data["message"]
+
+
+@pytest.mark.asyncio
 async def test_submit_feedback_validation_error(client: AsyncClient):
     payload = {
         "device_id": str(uuid.uuid4()),

@@ -61,4 +61,36 @@ describe('FeedbackModal Component', () => {
 
     expect(screen.getByText(/Thank you! Your feedback/i)).toBeInTheDocument();
   });
+
+  it('submits feedback successfully without entering message (optional thoughts)', async () => {
+    const mockSubmit = vi.spyOn(api, 'submitFeedback').mockResolvedValue({
+      id: 'feedback-124',
+      message: 'Thank you!',
+      created_at: new Date().toISOString(),
+    });
+
+    render(
+      <FeedbackModal
+        isOpen={true}
+        onClose={vi.fn()}
+        deviceId="test-device-uuid"
+      />
+    );
+
+    const submitBtn = screen.getByRole('button', { name: /Send Feedback/i });
+    fireEvent.click(submitBtn);
+
+    await waitFor(() => {
+      expect(mockSubmit).toHaveBeenCalledWith(
+        expect.objectContaining({
+          device_id: 'test-device-uuid',
+          category: 'suggestion',
+          rating: 5,
+          message: null,
+        })
+      );
+    });
+
+    expect(screen.getByText(/Thank you! Your feedback/i)).toBeInTheDocument();
+  });
 });

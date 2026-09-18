@@ -92,7 +92,7 @@ class FeedbackCreate(BaseModel):
     device_id: str
     category: str = Field("suggestion", max_length=50)
     rating: Optional[int] = Field(None, ge=1, le=5)
-    message: str = Field(..., min_length=2, max_length=1000)
+    message: Optional[str] = Field(None, max_length=1000)
 
     @field_validator("device_id")
     @classmethod
@@ -101,8 +101,12 @@ class FeedbackCreate(BaseModel):
 
     @field_validator("message")
     @classmethod
-    def sanitize_message(cls, v: str) -> str:
+    def sanitize_message(cls, v: Optional[str]) -> Optional[str]:
+        if v is None:
+            return None
         cleaned = v.strip()
+        if not cleaned:
+            return None
         if len(cleaned) < 2:
             raise ValueError("Message must be at least 2 characters.")
         return html.escape(cleaned[:1000])
