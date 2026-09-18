@@ -141,6 +141,9 @@ export function MapView({ deviceId }) {
 
     mapRef.current = map;
     setMapInstance(map);
+    if (typeof window !== 'undefined') {
+      window.map = map;
+    }
 
     map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
     map.addControl(
@@ -231,6 +234,9 @@ export function MapView({ deviceId }) {
       map.remove();
       mapRef.current = null;
       setMapInstance(null);
+      if (typeof window !== 'undefined') {
+        window.map = null;
+      }
     };
   }, []);
 
