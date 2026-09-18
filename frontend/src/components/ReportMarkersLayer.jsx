@@ -28,8 +28,14 @@ export default function ReportMarkersLayer({
   apiBaseUrl,
   refreshTrigger,
   refreshKey,
+  onSelectReport,
 }) {
   const sourceAddedRef = useRef(false);
+  const onSelectReportRef = useRef(onSelectReport);
+
+  useEffect(() => {
+    onSelectReportRef.current = onSelectReport;
+  }, [onSelectReport]);
 
   useEffect(() => {
     if (!map) return;
@@ -59,9 +65,9 @@ export default function ReportMarkersLayer({
 
       // If the map's style isn't loaded yet, wait for it before touching sources/layers.
       if (!map.isStyleLoaded() && (!map.loaded || !map.loaded())) {
-        map.once("load", () => setupOrUpdateLayers(map, geojson, sourceAddedRef));
+        map.once("load", () => setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef));
       } else {
-        setupOrUpdateLayers(map, geojson, sourceAddedRef);
+        setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
       }
     }
 
@@ -93,7 +99,7 @@ export function toGeoJSON(heatmapData) {
   };
 }
 
-function setupOrUpdateLayers(map, geojson, sourceAddedRef) {
+function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef) {
   const sourceId = "reports";
 
   if (sourceAddedRef.current && map.getSource(sourceId)) {
@@ -107,8 +113,8 @@ function setupOrUpdateLayers(map, geojson, sourceAddedRef) {
     type: "geojson",
     data: geojson,
     cluster: true,
-    clusterMaxZoom: 14,
-    clusterRadius: 50,
+    clusterMaxZoom: 13,
+    clusterRadius: 35,
   });
 
   // Cluster circles, sized/colored by point count
@@ -169,7 +175,7 @@ function setupOrUpdateLayers(map, geojson, sourceAddedRef) {
     },
   });
 
-  // Click a cluster -> zoom in and expand it
+  // Click a cluster -> zoom directly into dots in one smooth step
   map.on("click", "clusters", (e) => {
     const features = map.queryRenderedFeatures(e.point, { layers: ["clusters"] });
     if (!features || !features.length) return;
@@ -178,25 +184,30 @@ function setupOrUpdateLayers(map, geojson, sourceAddedRef) {
     if (!src || !src.getClusterExpansionZoom) return;
     src.getClusterExpansionZoom(clusterId, (err, zoom) => {
       if (err) return;
-      map.easeTo({ center: features[0].geometry.coordinates, zoom });
+      const currentZoom = map.getZoom();
+      // Jump directly past clusterMaxZoom (>= 14) or at least +2.5 zoom levels
+      const targetZoom = Math.min(18, Math.max(zoom || (currentZoom + 2.5), 14, currentZoom + 2.5));
+      map.easeTo({ center: features[0].geometry.coordinates, zoom: targetZoom, duration: 350 });
     });
   });
 
-  // Click an individual point -> popup with details
+  // Click an individual point -> trigger interactive confirm / report prompt
   map.on("click", "unclustered-point", (e) => {
     if (!e.features || !e.features.length) return;
     const props = e.features[0].properties;
     const coordinates = e.features[0].geometry.coordinates.slice();
 
-    new maplibregl.Popup()
-      .setLngLat(coordinates)
-      .setHTML(
-        `<strong>${(props.category || "Report").replace(/_/g, " ")}</strong><br/>
-         Status: ${props.status}<br/>
-         Confirmations: ${props.confirmations || 0}<br/>
-         ${props.note ? props.note : ""}`
-      )
-      .addTo(map);
+    if (onSelectReportRef?.current) {
+      onSelectReportRef.current({
+        id: props.id,
+        category: props.category,
+        status: props.status,
+        confirmations: props.confirmations,
+        note: props.note,
+        lat: coordinates[1],
+        lng: coordinates[0],
+      });
+    }
   });
 
   map.on("mouseenter", "clusters", () => {

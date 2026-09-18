@@ -133,6 +133,12 @@ export function ConfirmPrompt({
                 <span className="font-semibold">{existingReport.confirmations}</span>
               </div>
             )}
+            {existingReport.note && (
+              <div className="card-row">
+                <span className="label">Note:</span>
+                <span className="value text-sm italic">{existingReport.note}</span>
+              </div>
+            )}
           </div>
         </div>
 

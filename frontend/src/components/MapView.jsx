@@ -89,6 +89,22 @@ export function MapView({ deviceId }) {
   const [isModerationModalOpen, setIsModerationModalOpen] = useState(false);
   const [loadingHeatmap, setLoadingHeatmap] = useState(false);
 
+  // Handle selecting an existing report from map markers
+  const handleSelectReport = useCallback((report) => {
+    if (clickMarkerRef.current) {
+      clickMarkerRef.current.remove();
+      clickMarkerRef.current = null;
+    }
+    setSelectedCoords({ lat: report.lat, lng: report.lng });
+    setExistingReportToConfirm(report);
+    setIsConfirmModalOpen(true);
+  }, []);
+
+  const handleSelectReportRef = useRef(handleSelectReport);
+  useEffect(() => {
+    handleSelectReportRef.current = handleSelectReport;
+  }, [handleSelectReport]);
+
   // Close helper
   const handleModalClose = useCallback(() => {
     if (clickMarkerRef.current) {
@@ -212,7 +228,19 @@ export function MapView({ deviceId }) {
       if (map.getLayer(UNCLUSTERED_LAYER_ID)) {
         const pointFeatures = map.queryRenderedFeatures(e.point, { layers: [UNCLUSTERED_LAYER_ID] });
         if (pointFeatures && pointFeatures.length > 0) {
-          return; // Handled by unclustered point popup
+          const feature = pointFeatures[0];
+          const props = feature.properties || {};
+          const coords = feature.geometry.coordinates;
+          handleSelectReportRef.current?.({
+            id: props.id,
+            category: props.category,
+            status: props.status,
+            confirmations: props.confirmations,
+            note: props.note,
+            lat: coords[1],
+            lng: coords[0],
+          });
+          return;
         }
       }
 
@@ -308,6 +336,7 @@ export function MapView({ deviceId }) {
         map={mapLoaded ? mapInstance : null}
         apiBaseUrl={import.meta.env.VITE_API_BASE_URL}
         refreshTrigger={refreshKey}
+        onSelectReport={handleSelectReport}
       />
       {/* Top Header Bar */}
       <header className="app-header">
@@ -438,6 +467,14 @@ export function MapView({ deviceId }) {
         onConfirmed={handleReportSuccess}
         onProceedWithNewReport={() => {
           setIsConfirmModalOpen(false);
+          if (mapRef.current && selectedCoords) {
+            if (clickMarkerRef.current) {
+              clickMarkerRef.current.remove();
+            }
+            clickMarkerRef.current = new maplibregl.Marker({ color: '#4f46e5' })
+              .setLngLat([selectedCoords.lng, selectedCoords.lat])
+              .addTo(mapRef.current);
+          }
           setIsReportModalOpen(true);
         }}
       />
