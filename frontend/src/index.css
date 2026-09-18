@@ -23,6 +23,7 @@
 
 html {
   height: 100%;
+  height: 100dvh;
   width: 100%;
 }
 
@@ -30,6 +31,7 @@ html {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  -webkit-tap-highlight-color: transparent;
 }
 
 body {
@@ -38,13 +40,16 @@ body {
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
   overflow: hidden;
   height: 100%;
+  height: 100dvh;
   width: 100%;
 }
 
 #root {
   height: 100%;
+  height: 100dvh;
   width: 100%;
 }
 
@@ -52,6 +57,7 @@ body {
 .app-container {
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   position: relative;
   overflow: hidden;
 }
@@ -75,9 +81,9 @@ body {
 /* Header */
 .app-header {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: 12px;
+  top: max(10px, env(safe-area-inset-top));
+  left: max(10px, env(safe-area-inset-left));
+  right: max(10px, env(safe-area-inset-right));
   z-index: 10;
   display: flex;
   justify-content: space-between;
@@ -970,32 +976,282 @@ body {
   }
 }
 
-/* Responsive adjustments */
-@media (max-width: 640px) {
-  .app-header {
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    padding: 8px 12px;
+/* ==========================================================================
+   Comprehensive All-Device Adaptability (Mobile, Tablet, Desktop)
+   ========================================================================== */
+
+@keyframes slideUpMobile {
+  from {
+    transform: translateY(100%);
+    opacity: 0.8;
   }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Tablets & Small Laptops (max-width: 1024px) */
+@media (max-width: 1024px) {
+  .category-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Phablets & Mobile Landscape (max-width: 768px) */
+@media (max-width: 768px) {
+  .app-header {
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    padding: 8px 12px;
+    top: max(8px, env(safe-area-inset-top));
+    left: max(8px, env(safe-area-inset-left));
+    right: max(8px, env(safe-area-inset-right));
+  }
+
+  .header-brand {
+    flex: 1 1 auto;
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: var(--radius-sm);
+  }
+
   .brand-title {
     font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
+
   .brand-subtitle {
     display: none;
   }
-  .privacy-grid {
-    grid-template-columns: 1fr;
+
+  .header-actions {
+    flex: 0 0 auto;
+    gap: 6px;
   }
+
+  .action-btn {
+    padding: 7px 9px;
+    min-width: 36px;
+    min-height: 36px;
+    justify-content: center;
+  }
+
+  .action-btn span {
+    display: none !important;
+  }
+
+  .search-bar-container {
+    order: 3;
+    width: 100% !important;
+    flex: 1 1 100%;
+    margin-top: 2px;
+  }
+
+  .search-input {
+    height: 38px;
+    font-size: 0.88rem;
+  }
+
+  .search-results-dropdown {
+    top: 44px;
+    max-height: 200px;
+  }
+
+  .filter-bar-container {
+    top: 116px;
+    left: max(10px, env(safe-area-inset-left));
+  }
+
+  .map-instructions-badge {
+    top: auto;
+    bottom: max(76px, calc(env(safe-area-inset-bottom) + 68px));
+    font-size: 0.74rem;
+    padding: 5px 12px;
+    max-width: calc(100vw - 32px);
+    text-align: center;
+    white-space: normal;
+  }
+
+  .maplibregl-ctrl-bottom-right {
+    bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    right: max(8px, env(safe-area-inset-right)) !important;
+  }
+
+  .maplibregl-ctrl-bottom-left {
+    bottom: max(14px, env(safe-area-inset-bottom)) !important;
+    left: max(8px, env(safe-area-inset-left)) !important;
+  }
+}
+
+/* Mobile Devices & Small Phones (max-width: 640px) */
+@media (max-width: 640px) {
+  /* Bottom-Sheet Mobile Presentation */
+  .modal-overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .modal-content,
+  .report-modal,
+  .moderation-modal {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 20px 20px 0 0;
+    max-height: 90dvh;
+    height: auto;
+    box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.4);
+    animation: slideUpMobile 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-header {
+    padding: 14px 16px 10px;
+    position: relative;
+  }
+
+  /* Grab handle indicator for bottom sheet */
+  .modal-header::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 36px;
+    height: 4px;
+    background: #cbd5e1;
+    border-radius: 2px;
+  }
+
+  .modal-title-row h2 {
+    font-size: 1rem;
+  }
+
+  .modal-body {
+    padding: 14px 16px;
+    max-height: calc(90dvh - 130px);
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .modal-footer {
+    padding: 12px 16px max(14px, env(safe-area-inset-bottom));
+  }
+
+  .modal-footer .btn {
+    flex: 1;
+    min-height: 44px;
+    justify-content: center;
+    font-size: 0.9rem;
+  }
+
+  .status-toggle-group {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .status-btn {
+    min-height: 48px;
+    padding: 10px;
+    font-size: 0.88rem;
+  }
+
   .category-grid {
     grid-template-columns: 1fr;
+    gap: 8px;
   }
+
+  .category-card {
+    padding: 12px;
+    min-height: 52px;
+  }
+
+  .cat-title {
+    font-size: 0.88rem;
+  }
+
+  .cat-desc {
+    font-size: 0.74rem;
+  }
+
+  .privacy-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
   .heatmap-legend {
-    width: calc(100% - 28px);
-    bottom: 12px;
+    width: auto;
+    max-width: 175px;
+    bottom: max(14px, env(safe-area-inset-bottom));
+    left: max(8px, env(safe-area-inset-left));
+    padding: 6px 10px;
+    font-size: 0.68rem;
   }
+
+  .legend-title {
+    font-size: 0.65rem;
+    margin-bottom: 3px;
+  }
+
+  .legend-gradient {
+    height: 6px;
+  }
+
   .filter-panel {
-    width: calc(100vw - 32px);
+    width: calc(100vw - 20px);
+    max-height: 65vh;
+    overflow-y: auto;
+  }
+
+  .moderation-stats-banner {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .flagged-card-actions {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .flagged-card-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .share-toast-badge {
+    bottom: max(20px, env(safe-area-inset-bottom));
+    font-size: 0.8rem;
+    padding: 8px 16px;
+    max-width: 90vw;
+  }
+}
+
+/* Extra-Small Mobile Devices (max-width: 380px) */
+@media (max-width: 380px) {
+  .brand-title {
+    font-size: 0.88rem;
+  }
+
+  .brand-icon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .status-btn {
+    font-size: 0.8rem;
+    gap: 4px;
+    padding: 8px 4px;
+  }
+
+  .action-btn {
+    min-width: 32px;
+    min-height: 32px;
+    padding: 6px;
   }
 }
 
