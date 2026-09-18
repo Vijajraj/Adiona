@@ -14,7 +14,11 @@ import { FilterBar } from './FilterBar';
 import { PrivacyNoticeModal } from './PrivacyNotice';
 import { ModerationModal } from './ModerationModal';
 import { SearchBar } from './SearchBar';
-import { HeatmapLayer, POINTS_LAYER_ID } from './HeatmapLayer';
+import {
+  ReportMarkersLayer,
+  UNCLUSTERED_LAYER_ID,
+  CLUSTERS_LAYER_ID,
+} from './ReportMarkersLayer';
 import { Sun, Moon, Plus, Shield, Info, RefreshCw, Share2, Check } from 'lucide-react';
 
 // Helper to parse deep-linked URL params (Spec §4.2)
@@ -189,26 +193,18 @@ export function MapView({ deviceId }) {
         return;
       }
 
-      // Check if user clicked an existing point
-      const pointsLayerExists = map.getLayer(POINTS_LAYER_ID);
-      if (pointsLayerExists) {
-        const features = map.queryRenderedFeatures(e.point, { layers: [POINTS_LAYER_ID] });
-        if (features && features.length > 0) {
-          const feature = features[0];
-          const props = feature.properties || {};
-          if (props.id) {
-            setExistingReportToConfirm({
-              id: props.id,
-              lat: props.lat || lat,
-              lng: props.lng || lng,
-              category: props.category,
-              status: props.status,
-              confirmations: props.confirmations || 0,
-            });
-            setSelectedCoords({ lat, lng });
-            setIsConfirmModalOpen(true);
-            return;
-          }
+      // Check if user clicked a cluster or unclustered marker
+      if (map.getLayer(CLUSTERS_LAYER_ID)) {
+        const clusterFeatures = map.queryRenderedFeatures(e.point, { layers: [CLUSTERS_LAYER_ID] });
+        if (clusterFeatures && clusterFeatures.length > 0) {
+          return; // Handled by cluster zoom expansion
+        }
+      }
+
+      if (map.getLayer(UNCLUSTERED_LAYER_ID)) {
+        const pointFeatures = map.queryRenderedFeatures(e.point, { layers: [UNCLUSTERED_LAYER_ID] });
+        if (pointFeatures && pointFeatures.length > 0) {
+          return; // Handled by unclustered point popup
         }
       }
 
@@ -294,12 +290,23 @@ export function MapView({ deviceId }) {
 
   return (
     <div className="map-view-root">
-      <HeatmapLayer
+      <ReportMarkersLayer
         map={mapInstance}
         mapLoaded={mapLoaded}
         filters={filters}
         refreshKey={refreshKey}
         onLoadingChange={setLoadingHeatmap}
+        onPointSelect={(point) => {
+          setExistingReportToConfirm({
+            id: point.id,
+            lat: point.lat,
+            lng: point.lng,
+            category: point.category,
+            status: point.status,
+            confirmations: point.confirmations || 0,
+          });
+          setSelectedCoords({ lat: point.lat, lng: point.lng });
+        }}
       />
       {/* Top Header Bar */}
       <header className="app-header">

@@ -190,6 +190,7 @@ async def get_heatmap(
         Report.status,
         Report.confirmations,
         Report.created_at,
+        Report.note,
     )
 
     # Strongly-typed filters
@@ -233,14 +234,17 @@ async def get_heatmap(
                 "category": r.category,
                 "status": r.status,
                 "confirmations": 0,
+                "note": r.note,
             }
 
         cells[key]["weight"] += report_weight
         cells[key]["confirmations"] += int(r.confirmations or 0)
-        # Keep latest report id/category for primary metadata
+        # Keep latest report metadata
         cells[key]["id"] = r.id
         cells[key]["category"] = r.category
         cells[key]["status"] = r.status
+        if r.note:
+            cells[key]["note"] = r.note
 
     return [
         HeatmapPoint(
@@ -251,6 +255,7 @@ async def get_heatmap(
             category=c["category"],
             status=c["status"],
             confirmations=c["confirmations"],
+            note=c.get("note"),
         )
         for c in cells.values()
     ]

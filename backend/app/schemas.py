@@ -84,6 +84,7 @@ class HeatmapPoint(BaseModel):
     category: Optional[ReportCategory] = None
     status: Optional[ReportStatus] = None
     confirmations: Optional[int] = None
+    note: Optional[str] = None
 
 
 class FlaggedReportResponse(BaseModel):

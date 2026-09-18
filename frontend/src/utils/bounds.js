@@ -14,6 +14,7 @@ export const DEFAULT_ZOOM = 12;
 export const MAP_STYLE_URL = {
   version: 8,
   name: 'OSM Liberty Light',
+  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
   sources: {
     osm: {
       type: 'raster',
@@ -33,6 +34,7 @@ export const MAP_STYLE_URL = {
 export const MAP_STYLE_DARK_URL = {
   version: 8,
   name: 'CartoDB Dark Matter',
+  glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf',
   sources: {
     'carto-dark': {
       type: 'raster',
