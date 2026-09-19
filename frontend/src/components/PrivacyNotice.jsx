@@ -63,7 +63,7 @@ export function PrivacyNoticeModal({ isOpen, onClose }) {
               access completely frictionless and anonymous (maximum 5 reports per device per day).
             </p>
             <p className="mt-2 text-xs text-slate-500 dark:text-slate-400 font-medium">
-              Civic safety information baseline last updated: 15/09/2026
+              Civic safety information baseline last updated: 18/09/2026
             </p>
           </div>
         </div>

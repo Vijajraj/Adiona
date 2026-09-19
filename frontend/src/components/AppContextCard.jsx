@@ -75,7 +75,7 @@ export function AppContextCard() {
         {/* Footer info pill */}
         <div className="context-footer-pill">
           <span className="live-dot-mini" />
-          <span>Active across Chennai • 15/09/2026</span>
+          <span>Active across Chennai • 18/09/2026</span>
         </div>
       </div>
     </aside>
