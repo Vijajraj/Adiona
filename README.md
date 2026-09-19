@@ -1,6 +1,20 @@
 # Adiona — Chennai Safety Map
 
-Adiona is a crowdsourced, privacy-first safety mapping platform built specifically for Chennai City. It allows citizens to report and visualize localized infrastructure hazards, lighting concerns, and women's safety issues without requiring account creation, login credentials, or personal tracking.
+Adiona is a crowdsourced, privacy-first civic safety mapping platform built specifically for Chennai City. It empowers citizens to report and visualize localized infrastructure hazards, lighting concerns, and women's safety issues without requiring account creation, login credentials, or personal tracking.
+
+---
+
+## Key Features
+
+- **100% Anonymous & Privacy-First**: No sign-ups, phone numbers, or cookies. User click coordinates are snapped server-side to ~100m grid cell centroids before database storage.
+- **Cross-Device Clustered Map**: Powered by MapLibre GL with self-contained Vite worker bundling. Runs smoothly on all mobile devices, iOS Safari, Android WebViews, tablets, and desktops.
+- **Instant 0ms Cluster Rendering**: Bundled with 289 pre-verified Chennai seed safety reports. Markers and clusters render instantly even during backend cold-starts.
+- **0ms Instant Dark / Light Map Themes**: Uses high-performance vector tiles from OpenFreeMap (`bright` and `dark`) with in-memory GeoJSON caching for instant theme switching.
+- **Hyperlocal Instant Search**: Combines a curated instant cache of 40+ major Chennai localities (T. Nagar, Velachery, Anna Nagar, Adyar, OMR, etc.) with OpenStreetMap Nominatim geocoding.
+- **Private Community Feedback**: In-app feedback system routed through secure backend background tasks directly to maintainers with zero email exposure in frontend code.
+- **Time-Decay Heatmap Algorithm**: Older unverified reports fade gracefully using an exponential decay schedule (~30-day half-life), while community-confirmed reports remain visible.
+- **Automated ML Profanity Moderation**: Notes are screened via an `alt-profanity-check` machine learning classifier. Flagged reports are held in a secure moderation queue.
+- **Deep-Link Coordinate Sharing**: Shareable URLs that sync map center coordinates and zoom levels in real time.
 
 ---
 
@@ -8,11 +22,13 @@ Adiona is a crowdsourced, privacy-first safety mapping platform built specifical
 
 ```mermaid
 graph TD
-    subgraph Client Layer [Frontend - React + Vite + MapLibre GL]
-        UI[User Interface]
-        Map[Leaflet / MapLibre Map Canvas]
-        Search[OSM Nominatim Geocoder]
-        Share[URL Coordinate Deep-Link Sync]
+    subgraph Client Layer [Frontend - React 19 + Vite + MapLibre GL]
+        UI[User Interface & Modals]
+        Map[MapLibre GL Vector Canvas]
+        Worker[Vite-Bundled Web Worker]
+        Search[Instant Localities + Nominatim]
+        Context[Collapsible About Card]
+        FeedUI[Feedback Modal]
         ModUI[Admin Moderation Dashboard]
     end
 
@@ -23,6 +39,7 @@ graph TD
         RateLimiter[IP & Device Rate Limiter]
         MLFilter[alt-profanity-check ML Classifier]
         DecayEngine[Time-Decay Weight Calculator]
+        FeedbackSvc[Async Background Feedback Dispatcher]
     end
 
     subgraph Storage Layer [Database - SQLite / Neon PostgreSQL]
@@ -32,8 +49,10 @@ graph TD
 
     UI --> Search
     UI --> Map
+    Map <--> Worker
     Map -->|POST /reports| Router
     Map -->|GET /reports/heatmap| Router
+    FeedUI -->|POST /feedback| Router
     ModUI -->|X-Admin-Key /moderation/*| Router
 
     Router --> BoundsCheck
@@ -44,13 +63,14 @@ graph TD
     Router --> DecayEngine
     DecayEngine --> DBReports
     Router --> DBConfirms
+    Router --> FeedbackSvc
 ```
 
 ---
 
 ## Privacy & Anonymity Pipeline
 
-Adiona enforces privacy-by-design. Exact click coordinates are transformed server-side into grid cell centers before storage, ensuring exact locations cannot be reverse-engineered.
+Adiona enforces privacy-by-design. Exact GPS/click coordinates are transformed server-side into grid cell centers before storage, ensuring exact user locations cannot be reverse-engineered.
 
 ```
 [Exact User Click] -> (13.0827419, 80.2707123)
@@ -91,9 +111,9 @@ sequenceDiagram
 
 ---
 
-## Category Specifications
+## Safety Categories
 
-Safety categories are kept strictly separated to maintain clear semantic distinctions between general infrastructure hazards and targeted concerns.
+Categories maintain a strict semantic separation between general public infrastructure hazards and targeted women's safety concerns:
 
 | Category Type | Category ID | Display Label | Description |
 |---|---|---|---|
@@ -114,7 +134,7 @@ Safety categories are kept strictly separated to maintain clear semantic distinc
 
 ## Time-Decay Heatmap Weighting Algorithm
 
-Heatmap point intensity automatically decays over time using an exponential decay function with a ~30-day half-life, floored at `0.10` so older unconfirmed reports fade gracefully while confirmed reports maintain visibility.
+Heatmap point intensity decays over time using an exponential decay function with a ~30-day half-life, floored at `0.10` so older unconfirmed reports fade gracefully while confirmed spots maintain visibility:
 
 $$W(t) = \max\left(0.10, e^{-0.023 \cdot t_{\text{days}}}\right) + \text{confirmations}$$
 
@@ -130,9 +150,9 @@ $$W(t) = \max\left(0.10, e^{-0.023 \cdot t_{\text{days}}}\right) + \text{confirm
 
 ---
 
-## Moderation Queue Workflow (Spec §10)
+## Moderation Queue Workflow
 
-Reports flagged by the machine learning profanity classifier (`is_flagged = True`) do not appear on the public heatmap immediately. They are routed to the Moderation Queue for review.
+Reports flagged by the machine learning profanity classifier (`is_flagged = True`) do not appear on the public heatmap immediately. They are held in the Moderation Queue for admin review:
 
 ```
 [User Submits Note] 
@@ -158,6 +178,7 @@ Reports flagged by the machine learning profanity classifier (`is_flagged = True
 | `POST` | `/reports` | Public | Submit a grid-snapped safety report |
 | `GET` | `/reports/heatmap` | Public | Query heatmap points with category, hours_back, and group filters |
 | `POST` | `/reports/{id}/confirm` | Public | Confirm an existing safety report (1 per device) |
+| `POST` | `/feedback` | Public | Submit user feedback, suggestions, ratings, or bug reports |
 | `GET` | `/moderation/reports` | Admin Key | List flagged reports requiring admin review |
 | `POST` | `/moderation/reports/{id}/approve` | Admin Key | Approve a flagged report and publish to heatmap |
 | `DELETE` | `/moderation/reports/{id}` | Admin Key | Permanently delete a report from database |
@@ -168,21 +189,41 @@ Reports flagged by the machine learning profanity classifier (`is_flagged = True
 
 ## Quality Assurance & Evaluation Matrix
 
-Adiona underwent a 6-phase evaluation pass prior to deployment:
+Adiona runs comprehensive automated test suites across frontend and backend:
 
-| Phase | Evaluation Scope | Test File | Test Count | Result |
-|---|---|---|---|---|
-| **Phase A** | Security Testing | `backend/tests/test_security.py` | 17 tests | **PASSED** (0 SQLi, 0 out-of-bounds leaks, DB race fixed) |
-| **Phase B** | Privacy Testing | `backend/tests/test_privacy.py` | 5 tests | **PASSED** (0 device_id leaks in public responses) |
-| **Phase C** | Safety-Specific Risk | `backend/tests/test_safety_risk.py` | 3 tests | **PASSED** (Time-decay & moderation surfacing verified) |
-| **Phase D** | Integration & Edge | `backend/tests/test_integration_edge.py` | 6 tests | **PASSED** (Full E2E flow, midnight window, edge bounds) |
-| **Phase E** | Performance & Scale | `backend/tests/test_performance.py` | 2 benchmarks | **PASSED** (500 reqs < 5ms avg; 100k rows = 20.98 MB) |
-| **Phase F** | Accessibility Audit | `frontend/src/test/Accessibility.test.jsx` | 24 tests | **PASSED** (Keyboard nav, screen readers, color-blind independence) |
+| Scope | Test File / Suite | Test Count | Result |
+|---|---|---|---|
+| **Security & Limits** | `backend/tests/test_security.py` | 28 tests | **PASSED** (0 SQLi, 0 out-of-bounds leaks, concurrency safe) |
+| **Privacy & Anonymity** | `backend/tests/test_privacy.py` | 5 tests | **PASSED** (0 device_id leaks in public responses) |
+| **Feedback System** | `backend/tests/test_feedback.py` | 4 tests | **PASSED** (Optional suggestions, rating bounds, async dispatch) |
+| **Safety & Decay** | `backend/tests/test_safety_risk.py` | 3 tests | **PASSED** (Time-decay & moderation surfacing verified) |
+| **Integration & Edge** | `backend/tests/test_integration_edge.py` | 6 tests | **PASSED** (Full E2E flow, midnight window, edge bounds) |
+| **Performance & Scale** | `backend/tests/test_performance.py` | 2 benchmarks | **PASSED** (500 reqs < 5ms avg; 100k rows = 20.98 MB) |
+| **Frontend Unit & A11y** | `frontend/src/test/*.test.jsx` | 29 tests | **PASSED** (Worker bundler, theme switch, modals, keyboard nav) |
 
 ### Test Suite Totals
-- **Backend Test Suite (`pytest`)**: 73 / 73 Passed
-- **Frontend Test Suite (`vitest`)**: 24 / 24 Passed
-- **Production Build (`vite build`)**: Clean Succeeded
+- **Backend Test Suite (`pytest`)**: **77 / 77 Passed**
+- **Frontend Test Suite (`vitest`)**: **29 / 29 Passed**
+- **Production Build (`vite build`)**: **Clean Succeeded**
+
+---
+
+## Deployment Strategies (No Docker / No Kubernetes)
+
+Adiona is designed to deploy easily to modern cloud platforms without requiring Docker or Kubernetes:
+
+### 1. Recommended: Vercel (Frontend) + Railway / Render (Backend)
+- **Frontend**: Connect your GitHub repository to [Vercel](https://vercel.com). Root configuration is handled automatically by [`vercel.json`](vercel.json).
+- **Backend**: Connect repo to [Railway](https://railway.app) or [Render](https://render.com) using native Python. Set start command to `uvicorn app.main:app --host 0.0.0.0 --port $PORT`.
+- **Database**: Use a free serverless PostgreSQL database from [Neon](https://neon.tech) by setting `DATABASE_URL=postgresql+asyncpg://...`.
+- **Blue-Green Zero Downtime**: Vercel and Railway automatically perform atomic zero-downtime Blue-Green deployments on every Git push.
+
+### 2. Alternative: Single Cloud VPS (Hetzner / DigitalOcean)
+- Run FastAPI as a native `systemd` service (`adiona.service`).
+- Build frontend with `npm run build` and serve `/dist` via **Nginx**.
+- Nginx proxies `/reports`, `/feedback`, and `/moderation` to `http://127.0.0.1:8000`.
+- SQLite database `safety_map.db` stays permanently stored on the VPS disk with zero data loss.
+- Zero-downtime Blue-Green deploys can be achieved via Nginx upstream switching between port 8000 and 8001 with `nginx -s reload`.
 
 ---
 
@@ -228,6 +269,7 @@ Adiona/
 │   │   ├── schemas.py             # Pydantic request/response validation schemas
 │   │   ├── routers/
 │   │   │   ├── reports.py         # POST /reports, GET /heatmap, POST /confirm
+│   │   │   ├── feedback.py        # POST /feedback (async background task dispatch)
 │   │   │   └── moderation.py      # Moderation queue admin endpoints
 │   │   └── services/
 │   │       ├── geo_validator.py   # Server-side Chennai bounding box validation
@@ -235,31 +277,37 @@ Adiona/
 │   │       ├── keep_alive.py      # Background asyncio pinger loop
 │   │       ├── profanity.py       # alt-profanity-check ML classifier integration
 │   │       └── rate_limiter.py    # IP slowapi & device daily limiters
-│   ├── scripts/
-│   │   └── ping_keep_alive.py     # Standalone pinger script
-│   ├── tests/                     # 73 Pytest unit, integration, and security tests
-│   ├── load_seed_data.py          # Seed data generator for Chennai
+│   ├── tests/                     # 77 Pytest unit, integration, and security tests
+│   ├── seed_data.csv              # Curated historical Chennai safety incidents
+│   ├── load_seed_data.py          # Seed data database loader
 │   └── requirements.txt
-└── frontend/
-    ├── src/
-    │   ├── components/
-    │   │   ├── CategoryIcon.jsx   # Dynamic Lucide icon mapper
-    │   │   ├── ConfirmPrompt.jsx  # Confirmation modal dialog
-    │   │   ├── FilterBar.jsx      # Category, time range, demographic filter panel
-    │   │   ├── MapView.jsx        # MapLibre GL map canvas & URL parameter sync
-    │   │   ├── ModerationModal.jsx# Admin moderation queue dashboard
-    │   │   ├── PrivacyNotice.jsx  # Privacy notice dialog & inline banner
-    │   │   ├── ReportModal.jsx   # Report safety issue dialog with scrollable body
-    │   │   └── SearchBar.jsx      # OSM Nominatim Chennai locality search bar
-    │   ├── hooks/
-    │   │   └── useDeviceId.js     # Persistent client UUID generator (localStorage)
-    │   ├── test/                  # 24 Vitest frontend & accessibility tests
-    │   ├── utils/                 # API client, bounds, categories, & map constants
-    │   ├── App.jsx
-    │   ├── index.css              # Custom styling & scrollbar rules
-    │   └── main.jsx
-    ├── package.json
-    └── vite.config.js
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   │   ├── AppContextCard.jsx # Collapsible About Adiona information card
+│   │   │   ├── CategoryIcon.jsx   # Dynamic Lucide icon mapper
+│   │   │   ├── ConfirmPrompt.jsx  # Confirmation modal dialog
+│   │   │   ├── FeedbackModal.jsx  # Community feedback and star rating dialog
+│   │   │   ├── FilterBar.jsx      # Category, time range, demographic filter panel
+│   │   │   ├── MapView.jsx        # MapLibre GL map canvas & URL parameter sync
+│   │   │   ├── ModerationModal.jsx# Admin moderation queue dashboard
+│   │   │   ├── PrivacyNotice.jsx  # Privacy notice dialog & inline banner
+│   │   │   ├── ReportMarkersLayer.jsx # Clustered markers layer with instant seed fallback
+│   │   │   ├── ReportModal.jsx    # Report safety issue dialog with scrollable body
+│   │   │   └── SearchBar.jsx      # Instant local cache + OSM Nominatim search
+│   │   ├── data/
+│   │   │   └── seedReports.json   # 289 pre-bundled Chennai reports for 0ms initial render
+│   │   ├── hooks/
+│   │   │   └── useDeviceId.js     # Persistent client UUID generator (localStorage)
+│   │   ├── test/                  # 29 Vitest frontend & accessibility tests
+│   │   ├── utils/                 # API client, bounds, categories, & map constants
+│   │   ├── App.jsx
+│   │   ├── index.css              # Custom styling & responsive media rules
+│   │   └── main.jsx
+│   ├── package.json
+│   └── vite.config.js
+├── vercel.json                    # Vercel SPA routing, API rewrites, and asset headers
+└── README.md
 ```
 
 ---
@@ -288,7 +336,7 @@ uvicorn app.main:app --reload --port 8000
 ```
 
 Backend API running at: `http://127.0.0.1:8000`  
-Swagger Documentation: `http://127.0.0.1:8000/docs`
+Interactive Swagger Docs: `http://127.0.0.1:8000/docs`
 
 ### 2. Frontend Setup
 
@@ -303,11 +351,11 @@ Frontend application running at: `http://localhost:5173`
 ### 3. Running Test Suites
 
 ```bash
-# Run backend test suite (73 tests)
+# Run backend test suite (77 tests)
 cd backend
-python -m pytest tests/ -v
+pytest tests/ -v
 
-# Run frontend test suite (24 tests)
+# Run frontend test suite (29 tests)
 cd frontend
 npx vitest run
 ```
