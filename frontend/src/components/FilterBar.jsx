@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Filter, X, Clock, Users, Layers, RotateCcw } from 'lucide-react';
+import { Filter, X, Clock, Users, Layers, RotateCcw, Sparkles } from 'lucide-react';
 import {
   GENERAL_SAFETY_CATEGORIES,
   WOMEN_SAFETY_CATEGORIES,
@@ -9,9 +9,13 @@ import {
 export function FilterBar({ filters, onFilterChange, onResetFilters }) {
   const [isOpen, setIsOpen] = useState(false);
 
-  const hasActiveFilters = Boolean(
-    filters.category || filters.hours_back || filters.affected_group
-  );
+  const activeCount = [
+    filters.category,
+    filters.hours_back,
+    filters.affected_group,
+  ].filter(Boolean).length;
+
+  const hasActiveFilters = activeCount > 0;
 
   return (
     <div className="filter-bar-container">
@@ -24,7 +28,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
         aria-expanded={isOpen}
       >
         <Filter size={18} />
-        <span>Filters</span>
+        <span>Filters{activeCount > 0 ? ` (${activeCount})` : ''}</span>
         {hasActiveFilters && <span className="filter-active-dot" />}
       </button>
 
@@ -35,6 +39,11 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
             <div className="flex items-center gap-2">
               <Filter size={16} />
               <h3>Heatmap Filters</h3>
+              {activeCount > 0 && (
+                <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
+                  {activeCount} active
+                </span>
+              )}
             </div>
             <div className="flex items-center gap-2">
               {hasActiveFilters && (
@@ -55,6 +64,77 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                 aria-label="Close filter panel"
               >
                 <X size={16} />
+              </button>
+            </div>
+          </div>
+
+          {/* Quick presets */}
+          <div className="px-4 pt-3 pb-1 border-b border-slate-700/40">
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2 flex items-center gap-1.5">
+              <Sparkles size={12} className="text-amber-400" />
+              <span>Quick Presets</span>
+            </div>
+            <div className="flex flex-wrap gap-1.5 pb-2">
+              <button
+                type="button"
+                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
+                  filters.affected_group === 'woman'
+                    ? 'bg-pink-500/25 border-pink-400 text-pink-300 font-medium'
+                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
+                }`}
+                onClick={() =>
+                  onFilterChange(
+                    'affected_group',
+                    filters.affected_group === 'woman' ? null : 'woman'
+                  )
+                }
+              >
+                👩 Women Safety
+              </button>
+              <button
+                type="button"
+                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
+                  filters.category === 'poor_lighting'
+                    ? 'bg-amber-500/25 border-amber-400 text-amber-300 font-medium'
+                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
+                }`}
+                onClick={() =>
+                  onFilterChange(
+                    'category',
+                    filters.category === 'poor_lighting' ? null : 'poor_lighting'
+                  )
+                }
+              >
+                💡 Poor Lighting
+              </button>
+              <button
+                type="button"
+                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
+                  filters.category === 'unsafe_road'
+                    ? 'bg-indigo-500/25 border-indigo-400 text-indigo-300 font-medium'
+                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
+                }`}
+                onClick={() =>
+                  onFilterChange(
+                    'category',
+                    filters.category === 'unsafe_road' ? null : 'unsafe_road'
+                  )
+                }
+              >
+                🚧 Accident Spots
+              </button>
+              <button
+                type="button"
+                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
+                  filters.hours_back === 24
+                    ? 'bg-emerald-500/25 border-emerald-400 text-emerald-300 font-medium'
+                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
+                }`}
+                onClick={() =>
+                  onFilterChange('hours_back', filters.hours_back === 24 ? null : 24)
+                }
+              >
+                ⏱️ Past 24h
               </button>
             </div>
           </div>

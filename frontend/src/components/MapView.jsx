@@ -319,22 +319,31 @@ export function MapView({ deviceId }) {
   }, []);
 
 
-  // Handle locality selection from Nominatim SearchBar
+  // Handle locality selection from SearchBar (local curated + Nominatim + GPS)
   const handleSelectLocality = (location) => {
     if (!mapRef.current) return;
     mapRef.current.flyTo({
       center: [location.lng, location.lat],
-      zoom: 15,
+      zoom: 15.5,
+      duration: 1200,
       essential: true,
     });
 
-    // Temporary pin highlight
+    // Temporary pin highlight that automatically clears after 5 seconds
     if (clickMarkerRef.current) {
       clickMarkerRef.current.remove();
     }
-    clickMarkerRef.current = new maplibregl.Marker({ color: '#10b981' })
+    const marker = new maplibregl.Marker({ color: '#10b981' })
       .setLngLat([location.lng, location.lat])
       .addTo(mapRef.current);
+    clickMarkerRef.current = marker;
+
+    setTimeout(() => {
+      if (clickMarkerRef.current === marker) {
+        marker.remove();
+        clickMarkerRef.current = null;
+      }
+    }, 5000);
   };
 
   // URL Share link generator with Clipboard Toast
@@ -386,6 +395,7 @@ export function MapView({ deviceId }) {
         apiBaseUrl={import.meta.env.VITE_API_BASE_URL}
         refreshTrigger={refreshKey}
         onSelectReport={handleSelectReport}
+        filters={filters}
       />
       {/* Top Header Bar */}
       <header className="app-header">

@@ -198,6 +198,7 @@ async def get_heatmap(
         Report.grid_lng,
         Report.id,
         Report.category,
+        Report.affected_group,
         Report.status,
         Report.confirmations,
         Report.created_at,
@@ -243,6 +244,7 @@ async def get_heatmap(
                 "weight": 0.0,
                 "id": r.id,
                 "category": r.category,
+                "affected_group": r.affected_group,
                 "status": r.status,
                 "confirmations": 0,
                 "note": r.note,
@@ -254,6 +256,7 @@ async def get_heatmap(
         # Keep latest report metadata
         cells[key]["id"] = r.id
         cells[key]["category"] = r.category
+        cells[key]["affected_group"] = r.affected_group
         cells[key]["status"] = r.status
         cells[key]["created_at"] = created_at
         if r.note:
@@ -266,6 +269,7 @@ async def get_heatmap(
             weight=round(c["weight"], 3),
             id=c["id"],
             category=c["category"],
+            affected_group=c.get("affected_group"),
             status=c["status"],
             confirmations=c["confirmations"],
             note=c.get("note"),

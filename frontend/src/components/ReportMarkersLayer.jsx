@@ -22,11 +22,58 @@ export function toGeoJSON(heatmapData) {
         weight: point.weight,
         status: point.status,
         category: point.category,
+        affected_group: point.affected_group,
         confirmations: point.confirmations,
         note: point.note,
         created_at: point.created_at,
       },
     })),
+  };
+}
+
+/**
+ * Filter GeoJSON features instantaneously on the client side.
+ * Evaluates category, affected demographic group, and time window (hours_back).
+ */
+export function applyFiltersToGeoJSON(geojson, filters = {}) {
+  if (!geojson || !Array.isArray(geojson.features)) return geojson;
+  if (!filters) return geojson;
+
+  const { category, hours_back, affected_group } = filters;
+  if (!category && !hours_back && !affected_group) {
+    return geojson;
+  }
+
+  const now = Date.now();
+  const cutoffTime = hours_back ? now - Number(hours_back) * 3600 * 1000 : null;
+
+  const filteredFeatures = geojson.features.filter((f) => {
+    const props = f.properties || {};
+
+    // 1. Category filter
+    if (category && props.category !== category) {
+      return false;
+    }
+
+    // 2. Affected demographic group filter
+    if (affected_group && props.affected_group !== affected_group) {
+      return false;
+    }
+
+    // 3. Time filter (hours_back)
+    if (cutoffTime && props.created_at) {
+      const createdAtTime = new Date(props.created_at).getTime();
+      if (!isNaN(createdAtTime) && createdAtTime < cutoffTime) {
+        return false;
+      }
+    }
+
+    return true;
+  });
+
+  return {
+    ...geojson,
+    features: filteredFeatures,
   };
 }
 
@@ -40,6 +87,7 @@ export default function ReportMarkersLayer({
   refreshTrigger,
   refreshKey,
   onSelectReport,
+  filters,
 }) {
   const sourceAddedRef = useRef(false);
   const onSelectReportRef = useRef(onSelectReport);
@@ -55,35 +103,65 @@ export default function ReportMarkersLayer({
     const handleStyleData = () => {
       if (map.isStyleLoaded() && cachedHeatmapGeoJSON) {
         if (!map.getSource(REPORTS_SOURCE_ID)) {
-          setupOrUpdateLayers(map, cachedHeatmapGeoJSON, sourceAddedRef, onSelectReportRef);
+          setupOrUpdateLayers(
+            map,
+            applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters),
+            sourceAddedRef,
+            onSelectReportRef
+          );
         }
       }
     };
 
     map.on("styledata", handleStyleData);
     return () => map.off("styledata", handleStyleData);
-  }, [map]);
+  }, [map, filters]);
+
+  // 0ms instant client-side update whenever filters change!
+  useEffect(() => {
+    if (!map || !map.isStyleLoaded()) return;
+
+    const source = map.getSource(REPORTS_SOURCE_ID);
+    if (source && cachedHeatmapGeoJSON) {
+      source.setData(applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters));
+    } else if (!source && cachedHeatmapGeoJSON) {
+      setupOrUpdateLayers(
+        map,
+        applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters),
+        sourceAddedRef,
+        onSelectReportRef
+      );
+    }
+  }, [map, filters]);
 
   useEffect(() => {
     if (!map) return;
 
     // Immediately render cached seed data without waiting for network!
     if (cachedHeatmapGeoJSON && map.isStyleLoaded()) {
+      const displayData = applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters);
       if (!map.getSource(REPORTS_SOURCE_ID)) {
-        setupOrUpdateLayers(map, cachedHeatmapGeoJSON, sourceAddedRef, onSelectReportRef);
+        setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef);
       } else {
-        map.getSource(REPORTS_SOURCE_ID).setData(cachedHeatmapGeoJSON);
+        map.getSource(REPORTS_SOURCE_ID).setData(displayData);
       }
     }
 
     let isSubscribed = true;
 
     async function fetchAndRender(retryCount = 0) {
+      // Build query string for active filters
+      const params = new URLSearchParams();
+      if (filters?.category) params.append("category", filters.category);
+      if (filters?.hours_back) params.append("hours_back", String(filters.hours_back));
+      if (filters?.affected_group) params.append("affected_group", filters.affected_group);
+      const queryString = params.toString() ? `?${params.toString()}` : "";
+
       const endpointsToTry = [];
 
       // 1. First try relative /reports/heatmap (handled by Vite dev proxy or Vercel proxy)
       if (typeof window !== "undefined" && !apiBaseUrl) {
-        endpointsToTry.push("/reports/heatmap");
+        endpointsToTry.push(`/reports/heatmap${queryString}`);
       }
 
       // 2. Absolute production backend URL (Render)
@@ -93,7 +171,7 @@ export default function ReportMarkersLayer({
         import.meta.env.VITE_API_URL ||
         "https://adiona.onrender.com"
       ).replace(/\/+$/, "");
-      endpointsToTry.push(`${resolvedBaseUrl}/reports/heatmap`);
+      endpointsToTry.push(`${resolvedBaseUrl}/reports/heatmap${queryString}`);
 
       let data = null;
 
@@ -126,12 +204,17 @@ export default function ReportMarkersLayer({
       }
 
       const geojson = toGeoJSON(data);
-      cachedHeatmapGeoJSON = geojson;
+      // If no filters were passed in query, update the root cached GeoJSON
+      if (!filters?.category && !filters?.hours_back && !filters?.affected_group) {
+        cachedHeatmapGeoJSON = geojson;
+      }
+
+      const displayData = applyFiltersToGeoJSON(geojson, filters);
 
       const applyLayers = () => {
         if (!isSubscribed) return;
         if (map.isStyleLoaded()) {
-          setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef);
+          setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef);
         } else {
           map.once("styledata", applyLayers);
         }
@@ -149,7 +232,7 @@ export default function ReportMarkersLayer({
     return () => {
       isSubscribed = false;
     };
-  }, [map, apiBaseUrl, refreshTrigger, refreshKey]);
+  }, [map, apiBaseUrl, refreshTrigger, refreshKey, filters]);
 
   return null; // this component only manages map layers, renders nothing itself
 }

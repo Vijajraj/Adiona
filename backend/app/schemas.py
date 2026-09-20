@@ -82,6 +82,7 @@ class HeatmapPoint(BaseModel):
     weight: float
     id: Optional[str] = None
     category: Optional[ReportCategory] = None
+    affected_group: Optional[AffectedGroup] = None
     status: Optional[ReportStatus] = None
     confirmations: Optional[int] = None
     note: Optional[str] = None
