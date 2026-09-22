@@ -4,6 +4,8 @@ import * as maplibregl from "maplibre-gl";
 import seedReports from "../data/seedReports.json";
 
 export const REPORTS_SOURCE_ID = "reports";
+export const HEATMAP_SOURCE_ID = "reports-heatmap";
+export const HEATMAP_LAYER_ID = "safety-heatmap";
 export const CLUSTERS_LAYER_ID = "clusters";
 export const CLUSTER_COUNT_LAYER_ID = "cluster-count";
 export const UNCLUSTERED_LAYER_ID = "unclustered-point";
@@ -19,11 +21,11 @@ export function toGeoJSON(heatmapData) {
       },
       properties: {
         id: point.id,
-        weight: point.weight,
-        status: point.status,
+        weight: Number(point.weight) || 1.5,
+        status: point.status || "unsafe",
         category: point.category,
         affected_group: point.affected_group,
-        confirmations: point.confirmations,
+        confirmations: Number(point.confirmations) || 0,
         note: point.note,
         created_at: point.created_at,
       },
@@ -88,26 +90,80 @@ export default function ReportMarkersLayer({
   refreshKey,
   onSelectReport,
   filters,
+  viewMode = "both", // "both" | "heatmap" | "clusters"
+  onStatsChange,
 }) {
   const sourceAddedRef = useRef(false);
   const onSelectReportRef = useRef(onSelectReport);
+  const prevFiltersRef = useRef(filters);
 
   useEffect(() => {
     onSelectReportRef.current = onSelectReport;
   }, [onSelectReport]);
 
-  // Immediately re-attach clusters as soon as the map style finishes loading or swapping
+  // Immediately notify parent of current stats
+  useEffect(() => {
+    if (onStatsChange && cachedHeatmapGeoJSON) {
+      const displayData = applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters);
+      onStatsChange({
+        totalCount: cachedHeatmapGeoJSON.features.length,
+        filteredCount: displayData.features.length,
+        features: displayData.features,
+      });
+    }
+  }, [filters, onStatsChange]);
+
+  // Adjust layer opacities dynamically when viewMode changes
+  useEffect(() => {
+    if (!map || !map.isStyleLoaded()) return;
+
+    try {
+      if (map.getLayer(HEATMAP_LAYER_ID)) {
+        map.setPaintProperty(
+          HEATMAP_LAYER_ID,
+          "heatmap-opacity",
+          viewMode === "clusters" ? 0 : 0.82
+        );
+      }
+      if (map.getLayer(CLUSTERS_LAYER_ID)) {
+        map.setPaintProperty(
+          CLUSTERS_LAYER_ID,
+          "circle-opacity",
+          viewMode === "heatmap" ? 0 : 0.88
+        );
+      }
+      if (map.getLayer(CLUSTER_COUNT_LAYER_ID)) {
+        map.setPaintProperty(
+          CLUSTER_COUNT_LAYER_ID,
+          "text-opacity",
+          viewMode === "heatmap" ? 0 : 1
+        );
+      }
+      if (map.getLayer(UNCLUSTERED_LAYER_ID)) {
+        map.setPaintProperty(
+          UNCLUSTERED_LAYER_ID,
+          "circle-opacity",
+          viewMode === "heatmap" ? 0.35 : 1
+        );
+      }
+    } catch (err) {
+      // Map style may be changing
+    }
+  }, [map, viewMode]);
+
+  // Immediately re-attach clusters & safety density heatmap as soon as the map style finishes loading or swapping
   useEffect(() => {
     if (!map) return;
 
     const handleStyleData = () => {
       if (map.isStyleLoaded() && cachedHeatmapGeoJSON) {
-        if (!map.getSource(REPORTS_SOURCE_ID)) {
+        if (!map.getSource(REPORTS_SOURCE_ID) || !map.getSource(HEATMAP_SOURCE_ID)) {
           setupOrUpdateLayers(
             map,
             applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters),
             sourceAddedRef,
-            onSelectReportRef
+            onSelectReportRef,
+            viewMode
           );
         }
       }
@@ -115,24 +171,64 @@ export default function ReportMarkersLayer({
 
     map.on("styledata", handleStyleData);
     return () => map.off("styledata", handleStyleData);
-  }, [map, filters]);
+  }, [map, filters, viewMode]);
 
-  // 0ms instant client-side update whenever filters change!
+  // 0ms instant client-side update & auto-fit whenever filters change!
   useEffect(() => {
     if (!map || !map.isStyleLoaded()) return;
 
-    const source = map.getSource(REPORTS_SOURCE_ID);
-    if (source && cachedHeatmapGeoJSON) {
-      source.setData(applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters));
-    } else if (!source && cachedHeatmapGeoJSON) {
+    const filteredData = applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters);
+
+    const clusterSrc = map.getSource(REPORTS_SOURCE_ID);
+    const heatmapSrc = map.getSource(HEATMAP_SOURCE_ID);
+
+    if (clusterSrc && heatmapSrc) {
+      clusterSrc.setData(filteredData);
+      heatmapSrc.setData(filteredData);
+    } else {
       setupOrUpdateLayers(
         map,
-        applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters),
+        filteredData,
         sourceAddedRef,
-        onSelectReportRef
+        onSelectReportRef,
+        viewMode
       );
     }
-  }, [map, filters]);
+
+    // Check if filters changed to a narrower view -> auto-fit bounds to make difference executive & obvious
+    const hasActiveFilters = Boolean(
+      filters?.category || filters?.hours_back || filters?.affected_group
+    );
+    const hadActiveFilters = Boolean(
+      prevFiltersRef.current?.category ||
+      prevFiltersRef.current?.hours_back ||
+      prevFiltersRef.current?.affected_group
+    );
+    prevFiltersRef.current = filters;
+
+    if (hasActiveFilters && filteredData.features.length > 0 && filteredData.features.length < cachedHeatmapGeoJSON.features.length) {
+      try {
+        const bounds = new maplibregl.LngLatBounds();
+        filteredData.features.forEach((f) => {
+          bounds.extend(f.geometry.coordinates);
+        });
+        map.fitBounds(bounds, {
+          padding: { top: 90, bottom: 90, left: 60, right: 60 },
+          maxZoom: 13.5,
+          duration: 800,
+        });
+      } catch (err) {
+        // bounds calculation guard
+      }
+    } else if (!hasActiveFilters && hadActiveFilters) {
+      // Returned to all-time default view
+      map.flyTo({
+        center: [80.22, 13.04],
+        zoom: 11,
+        duration: 700,
+      });
+    }
+  }, [map, filters, viewMode]);
 
   useEffect(() => {
     if (!map) return;
@@ -140,10 +236,11 @@ export default function ReportMarkersLayer({
     // Immediately render cached seed data without waiting for network!
     if (cachedHeatmapGeoJSON && map.isStyleLoaded()) {
       const displayData = applyFiltersToGeoJSON(cachedHeatmapGeoJSON, filters);
-      if (!map.getSource(REPORTS_SOURCE_ID)) {
-        setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef);
+      if (!map.getSource(REPORTS_SOURCE_ID) || !map.getSource(HEATMAP_SOURCE_ID)) {
+        setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef, viewMode);
       } else {
         map.getSource(REPORTS_SOURCE_ID).setData(displayData);
+        map.getSource(HEATMAP_SOURCE_ID).setData(displayData);
       }
     }
 
@@ -194,7 +291,6 @@ export default function ReportMarkersLayer({
       if (!isSubscribed) return;
 
       if (!data || !Array.isArray(data)) {
-        // If server is cold-starting, retry up to 3 times with a 6-second interval
         if (retryCount < 3) {
           setTimeout(() => {
             if (isSubscribed) fetchAndRender(retryCount + 1);
@@ -204,7 +300,6 @@ export default function ReportMarkersLayer({
       }
 
       const geojson = toGeoJSON(data);
-      // If no filters were passed in query, update the root cached GeoJSON
       if (!filters?.category && !filters?.hours_back && !filters?.affected_group) {
         cachedHeatmapGeoJSON = geojson;
       }
@@ -214,7 +309,7 @@ export default function ReportMarkersLayer({
       const applyLayers = () => {
         if (!isSubscribed) return;
         if (map.isStyleLoaded()) {
-          setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef);
+          setupOrUpdateLayers(map, displayData, sourceAddedRef, onSelectReportRef, viewMode);
         } else {
           map.once("styledata", applyLayers);
         }
@@ -232,107 +327,186 @@ export default function ReportMarkersLayer({
     return () => {
       isSubscribed = false;
     };
-  }, [map, apiBaseUrl, refreshTrigger, refreshKey, filters]);
+  }, [map, apiBaseUrl, refreshTrigger, refreshKey, filters, viewMode]);
 
-  return null; // this component only manages map layers, renders nothing itself
+  return null; // manages map layers only
 }
 
 export { ReportMarkersLayer };
 
-function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef) {
-  const sourceId = "reports";
+function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef, viewMode = "both") {
+  const clusterSourceId = REPORTS_SOURCE_ID;
+  const heatmapSourceId = HEATMAP_SOURCE_ID;
 
-  if (sourceAddedRef.current && map.getSource(sourceId)) {
-    // Source already exists — just update its data (e.g. after a new report submission).
-    map.getSource(sourceId).setData(geojson);
-    return;
+  // 1. Update or create the Safety Density Heatmap Source (unclustered for pure smooth density)
+  if (map.getSource(heatmapSourceId)) {
+    map.getSource(heatmapSourceId).setData(geojson);
+  } else {
+    map.addSource(heatmapSourceId, {
+      type: "geojson",
+      data: geojson,
+      cluster: false,
+    });
   }
-  sourceAddedRef.current = false; // source was wiped (e.g. style change) — rebuild below
 
-  map.addSource(sourceId, {
-    type: "geojson",
-    data: geojson,
-    cluster: true,
-    clusterMaxZoom: 13,
-    clusterRadius: 35,
-  });
+  // 2. Update or create the Clustered Reports Source
+  if (map.getSource(clusterSourceId)) {
+    map.getSource(clusterSourceId).setData(geojson);
+    sourceAddedRef.current = true;
+  } else {
+    map.addSource(clusterSourceId, {
+      type: "geojson",
+      data: geojson,
+      cluster: true,
+      clusterMaxZoom: 13,
+      clusterRadius: 35,
+    });
+    sourceAddedRef.current = true;
+  }
 
-  // Cluster circles, sized/colored by point count
-  map.addLayer({
-    id: "clusters",
-    type: "circle",
-    source: sourceId,
-    filter: ["has", "point_count"],
-    paint: {
-      "circle-color": [
-        "step",
-        ["get", "point_count"],
-        "#f1c40f", // < 10 points: yellow
-        10,
-        "#e67e22", // 10-30 points: orange
-        30,
-        "#e74c3c", // 30+ points: red
-      ],
-      "circle-radius": ["step", ["get", "point_count"], 15, 10, 20, 30, 25],
-      "circle-opacity": 0.85,
-    },
-  });
+  // 3. Safety Density Heatmap Layer (underneath clusters)
+  if (!map.getLayer(HEATMAP_LAYER_ID)) {
+    map.addLayer({
+      id: HEATMAP_LAYER_ID,
+      type: "heatmap",
+      source: heatmapSourceId,
+      maxzoom: 16,
+      paint: {
+        // Increase the heatmap weight based on report weight (1.0 to 5.0)
+        "heatmap-weight": [
+          "interpolate",
+          ["linear"],
+          ["get", "weight"],
+          0, 0.2,
+          1, 0.5,
+          2, 0.8,
+          4, 1.2,
+        ],
+        // Increase heatmap intensity based on zoom level
+        "heatmap-intensity": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 0.8,
+          11, 1.4,
+          13, 2.2,
+          15, 3.0,
+        ],
+        // Color ramp matches the exact gradient in .legend-gradient:
+        // linear-gradient(to right, rgb(65, 182, 196), rgb(254, 217, 118), rgb(254, 153, 41), rgb(227, 26, 28), rgb(128, 0, 38))
+        "heatmap-color": [
+          "interpolate",
+          ["linear"],
+          ["heatmap-density"],
+          0, "rgba(65, 182, 196, 0)",
+          0.15, "rgb(65, 182, 196)", // Low Concern cyan
+          0.35, "rgb(254, 217, 118)", // yellow
+          0.55, "rgb(254, 153, 41)",  // Moderate orange
+          0.8, "rgb(227, 26, 28)",   // High Severity red
+          1.0, "rgb(128, 0, 38)",    // Critical dark red
+        ],
+        // Heatmap blur radius expands as you zoom in
+        "heatmap-radius": [
+          "interpolate",
+          ["linear"],
+          ["zoom"],
+          9, 16,
+          11, 24,
+          13, 36,
+          15, 48,
+        ],
+        "heatmap-opacity": viewMode === "clusters" ? 0 : 0.82,
+      },
+    });
+  }
 
-  // Cluster count labels
-  map.addLayer({
-    id: "cluster-count",
-    type: "symbol",
-    source: sourceId,
-    filter: ["has", "point_count"],
-    layout: {
-      "text-field": ["get", "point_count_abbreviated"],
-      "text-size": 13,
-    },
-    paint: {
-      "text-color": "#ffffff",
-    },
-  });
+  // 4. Cluster circles, sized/colored by point count
+  if (!map.getLayer(CLUSTERS_LAYER_ID)) {
+    map.addLayer({
+      id: CLUSTERS_LAYER_ID,
+      type: "circle",
+      source: clusterSourceId,
+      filter: ["has", "point_count"],
+      paint: {
+        "circle-color": [
+          "step",
+          ["get", "point_count"],
+          "#f1c40f", // < 10 points: yellow
+          10,
+          "#e67e22", // 10-30 points: orange
+          30,
+          "#e74c3c", // 30+ points: red
+        ],
+        "circle-radius": ["step", ["get", "point_count"], 15, 10, 20, 30, 25],
+        "circle-opacity": viewMode === "heatmap" ? 0 : 0.88,
+        "circle-stroke-width": 1.5,
+        "circle-stroke-color": "#ffffff",
+      },
+    });
+  }
 
-  // Individual unclustered points, colored by status
-  map.addLayer({
-    id: "unclustered-point",
-    type: "circle",
-    source: sourceId,
-    filter: ["!", ["has", "point_count"]],
-    paint: {
-      "circle-color": [
-        "match",
-        ["get", "status"],
-        "unsafe",
-        "#e74c3c",
-        "safe",
-        "#2ecc71",
-        "#95a5a6", // fallback color
-      ],
-      "circle-radius": 8,
-      "circle-stroke-width": 1,
-      "circle-stroke-color": "#ffffff",
-    },
-  });
+  // 5. Cluster count labels
+  if (!map.getLayer(CLUSTER_COUNT_LAYER_ID)) {
+    map.addLayer({
+      id: CLUSTER_COUNT_LAYER_ID,
+      type: "symbol",
+      source: clusterSourceId,
+      filter: ["has", "point_count"],
+      layout: {
+        "text-field": ["get", "point_count_abbreviated"],
+        "text-size": 13,
+      },
+      paint: {
+        "text-color": "#ffffff",
+        "text-opacity": viewMode === "heatmap" ? 0 : 1,
+      },
+    });
+  }
+
+  // 6. Individual unclustered points, colored by status
+  if (!map.getLayer(UNCLUSTERED_LAYER_ID)) {
+    map.addLayer({
+      id: UNCLUSTERED_LAYER_ID,
+      type: "circle",
+      source: clusterSourceId,
+      filter: ["!", ["has", "point_count"]],
+      paint: {
+        "circle-color": [
+          "match",
+          ["get", "status"],
+          "unsafe",
+          "#e74c3c",
+          "safe",
+          "#2ecc71",
+          "#95a5a6", // fallback color
+        ],
+        "circle-radius": 7,
+        "circle-stroke-width": 1.5,
+        "circle-stroke-color": "#ffffff",
+        "circle-opacity": viewMode === "heatmap" ? 0.35 : 1,
+      },
+    });
+  }
 
   // Click a cluster -> zoom directly into dots in one smooth step
-  map.on("click", "clusters", (e) => {
-    const features = map.queryRenderedFeatures(e.point, { layers: ["clusters"] });
+  map.off("click", CLUSTERS_LAYER_ID);
+  map.on("click", CLUSTERS_LAYER_ID, (e) => {
+    const features = map.queryRenderedFeatures(e.point, { layers: [CLUSTERS_LAYER_ID] });
     if (!features || !features.length) return;
     const clusterId = features[0].properties.cluster_id;
-    const src = map.getSource(sourceId);
+    const src = map.getSource(clusterSourceId);
     if (!src || !src.getClusterExpansionZoom) return;
     src.getClusterExpansionZoom(clusterId, (err, zoom) => {
       if (err) return;
       const currentZoom = map.getZoom();
-      // Jump directly past clusterMaxZoom (>= 14) or at least +2.5 zoom levels
       const targetZoom = Math.min(18, Math.max(zoom || (currentZoom + 2.5), 14, currentZoom + 2.5));
       map.easeTo({ center: features[0].geometry.coordinates, zoom: targetZoom, duration: 350 });
     });
   });
 
   // Click an individual point -> trigger interactive confirm / report prompt
-  map.on("click", "unclustered-point", (e) => {
+  map.off("click", UNCLUSTERED_LAYER_ID);
+  map.on("click", UNCLUSTERED_LAYER_ID, (e) => {
     if (!e.features || !e.features.length) return;
     const props = e.features[0].properties;
     const coordinates = e.features[0].geometry.coordinates.slice();
@@ -351,18 +525,16 @@ function setupOrUpdateLayers(map, geojson, sourceAddedRef, onSelectReportRef) {
     }
   });
 
-  map.on("mouseenter", "clusters", () => {
+  map.on("mouseenter", CLUSTERS_LAYER_ID, () => {
     if (map.getCanvas()) map.getCanvas().style.cursor = "pointer";
   });
-  map.on("mouseleave", "clusters", () => {
+  map.on("mouseleave", CLUSTERS_LAYER_ID, () => {
     if (map.getCanvas()) map.getCanvas().style.cursor = "";
   });
-  map.on("mouseenter", "unclustered-point", () => {
+  map.on("mouseenter", UNCLUSTERED_LAYER_ID, () => {
     if (map.getCanvas()) map.getCanvas().style.cursor = "pointer";
   });
-  map.on("mouseleave", "unclustered-point", () => {
+  map.on("mouseleave", UNCLUSTERED_LAYER_ID, () => {
     if (map.getCanvas()) map.getCanvas().style.cursor = "";
   });
-
-  sourceAddedRef.current = true;
 }

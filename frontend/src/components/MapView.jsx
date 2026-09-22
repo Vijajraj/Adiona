@@ -28,7 +28,26 @@ import {
   UNCLUSTERED_LAYER_ID,
   CLUSTERS_LAYER_ID,
 } from './ReportMarkersLayer';
-import { Sun, Moon, Plus, Shield, Info, RefreshCw, Share2, Check, Star, MessageSquareHeart } from 'lucide-react';
+import {
+  GENERAL_SAFETY_CATEGORIES,
+  WOMEN_SAFETY_CATEGORIES,
+  AFFECTED_GROUPS,
+} from '../utils/categories';
+import {
+  Sun,
+  Moon,
+  Plus,
+  Shield,
+  Info,
+  RefreshCw,
+  Share2,
+  Check,
+  Star,
+  MessageSquareHeart,
+  Flame,
+  AlertTriangle,
+  X,
+} from 'lucide-react';
 
 function GithubIcon({ size = 16, className = '' }) {
   return (
@@ -102,6 +121,35 @@ export function MapView({ deviceId }) {
     hours_back: null,
     affected_group: null,
   });
+
+  const [viewMode, setViewMode] = useState('both'); // 'both' | 'heatmap' | 'clusters'
+  const [filterStats, setFilterStats] = useState({ totalCount: 306, filteredCount: 306 });
+
+  const hasActiveFilters = Boolean(
+    filters.category || filters.hours_back || filters.affected_group
+  );
+
+  const activeFilterLabel = useMemo(() => {
+    const parts = [];
+    if (filters.affected_group === 'woman') {
+      parts.push('Women Safety');
+    } else if (filters.affected_group) {
+      const group = AFFECTED_GROUPS.find((g) => g.id === filters.affected_group);
+      if (group) parts.push(group.label);
+    }
+
+    if (filters.category) {
+      const allCats = [...GENERAL_SAFETY_CATEGORIES, ...WOMEN_SAFETY_CATEGORIES];
+      const cat = allCats.find((c) => c.id === filters.category);
+      if (cat) parts.push(cat.label);
+    }
+
+    if (filters.hours_back) {
+      parts.push(`Past ${filters.hours_back}h`);
+    }
+
+    return parts.length > 0 ? parts.join(' • ') : 'All Incidents';
+  }, [filters]);
 
   // Modals state
   const [selectedCoords, setSelectedCoords] = useState(null);
@@ -396,6 +444,8 @@ export function MapView({ deviceId }) {
         refreshTrigger={refreshKey}
         onSelectReport={handleSelectReport}
         filters={filters}
+        viewMode={viewMode}
+        onStatsChange={setFilterStats}
       />
       {/* Top Header Bar */}
       <header className="app-header">
@@ -522,17 +572,102 @@ export function MapView({ deviceId }) {
       {/* Small Context Side Card About WebApp */}
       <AppContextCard />
 
-      {/* Heatmap Legend */}
-      <div className="heatmap-legend">
-        <div className="legend-title">Safety Density</div>
+      {/* Active Filter Floating HUD Banner */}
+      {hasActiveFilters && (
+        <div className="active-filter-hud-container" role="status" aria-live="polite">
+          <div className="active-filter-hud-pill">
+            <span className="hud-pulse-dot" />
+            <span className="hud-count-badge">
+              {filterStats.filteredCount} {filterStats.filteredCount === 1 ? 'incident' : 'incidents'}
+            </span>
+            <span className="hud-sep">•</span>
+            <span className="hud-label-text">{activeFilterLabel}</span>
+            <button
+              type="button"
+              className="hud-clear-btn"
+              onClick={handleResetFilters}
+              title="Reset all filters"
+            >
+              <X size={13} />
+              <span>Clear</span>
+            </button>
+          </div>
+
+          {filterStats.filteredCount === 0 && (
+            <div className="empty-filter-notice-card">
+              <AlertTriangle size={15} className="text-amber-400 flex-shrink-0" />
+              <div className="text-xs text-slate-200 flex-1">
+                <span>No incidents match this filter window.</span>{' '}
+                <span className="text-slate-400">306 verified reports are recorded in the 18/09/2026 baseline.</span>
+              </div>
+              <button
+                type="button"
+                className="btn-switch-all-time"
+                onClick={handleResetFilters}
+              >
+                Show All Time (306)
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Executive Safety Density Widget */}
+      <div className="heatmap-legend executive-safety-panel" role="region" aria-label="Safety Density Legend">
+        <div className="legend-header-row flex items-center justify-between gap-2 mb-1.5">
+          <div className="flex items-center gap-1.5 font-bold tracking-wider text-xs uppercase text-slate-200">
+            <Flame size={14} className="text-amber-400" />
+            <span>Safety Density</span>
+          </div>
+          <span className="density-count-pill">
+            {filterStats.filteredCount} {filterStats.filteredCount === 1 ? 'spot' : 'spots'}
+          </span>
+        </div>
+
+        {/* Layer View Mode Toggle: Both, Heatmap, Clusters */}
+        <div className="view-mode-toggle" role="group" aria-label="Layer view mode">
+          <button
+            type="button"
+            className={`view-mode-btn ${viewMode === 'both' ? 'active' : ''}`}
+            onClick={() => setViewMode('both')}
+            title="Display both safety density heatmap and clusters"
+          >
+            ✨ Both
+          </button>
+          <button
+            type="button"
+            className={`view-mode-btn ${viewMode === 'heatmap' ? 'active' : ''}`}
+            onClick={() => setViewMode('heatmap')}
+            title="Display pure safety density heatmap"
+          >
+            🔥 Heatmap
+          </button>
+          <button
+            type="button"
+            className={`view-mode-btn ${viewMode === 'clusters' ? 'active' : ''}`}
+            onClick={() => setViewMode('clusters')}
+            title="Display numeric incident clusters"
+          >
+            🔵 Clusters
+          </button>
+        </div>
+
         <div className="legend-gradient" />
         <div className="legend-labels">
           <span>Low Concern</span>
           <span>Moderate</span>
           <span>High Severity</span>
         </div>
-        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5 pt-1 border-t border-slate-200 dark:border-slate-800">
-          Information updated: 18/09/2026
+
+        {hasActiveFilters && (
+          <div className="active-filter-legend-tag">
+            <span className="text-amber-400 font-semibold">Filter:</span> {activeFilterLabel} ({filterStats.filteredCount})
+          </div>
+        )}
+
+        <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 pt-1 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
+          <span>Updated: 18/09/2026</span>
+          <span className="opacity-60">{filterStats.totalCount} total</span>
         </div>
       </div>
 
