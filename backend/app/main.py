@@ -26,7 +26,11 @@ logger = logging.getLogger(__name__)
 async def lifespan(app: FastAPI):
     """Create database tables & handle background tasks on startup/shutdown."""
     import asyncio
-    await init_db()
+    try:
+        await init_db()
+        logger.info("Database initialized successfully.")
+    except Exception as e:
+        logger.warning(f"Database initialization notice on startup (will retry on query): {e}")
 
     keep_alive_task = None
     if settings.ENABLE_KEEP_ALIVE:
