@@ -60,7 +60,7 @@ export function ConfirmPrompt({
         // fallback
       }
     }
-    return '18/09/2026';
+    return '24/09/2026';
   })();
 
   const handleClose = () => {

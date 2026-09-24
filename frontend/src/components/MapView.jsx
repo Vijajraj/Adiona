@@ -123,7 +123,7 @@ export function MapView({ deviceId }) {
   });
 
   const [viewMode, setViewMode] = useState('both'); // 'both' | 'heatmap' | 'clusters'
-  const [filterStats, setFilterStats] = useState({ totalCount: 306, filteredCount: 306 });
+  const [filterStats, setFilterStats] = useState({ totalCount: 321, filteredCount: 321 });
 
   const hasActiveFilters = Boolean(
     filters.category || filters.hours_back || filters.affected_group
@@ -456,7 +456,7 @@ export function MapView({ deviceId }) {
           <div>
             <h1 className="brand-title">Chennai Safety Map</h1>
             <p className="brand-subtitle">
-              Hyperlocal Open Safety Network <span className="opacity-40">•</span> Information updated: 18/09/2026
+              Hyperlocal Open Safety Network <span className="opacity-40">•</span> Information updated: 24/09/2026
             </p>
           </div>
         </div>
@@ -564,7 +564,7 @@ export function MapView({ deviceId }) {
         <span className="live-dot" />
         <span className="text-emerald-400 font-semibold">Live</span>
         <span className="opacity-40">•</span>
-        <span>Information updated: 18/09/2026</span>
+        <span>Information updated: 24/09/2026</span>
         <span className="opacity-40 hidden md:inline">•</span>
         <span className="hidden md:inline">Click anywhere to report</span>
       </div>
@@ -598,14 +598,14 @@ export function MapView({ deviceId }) {
               <AlertTriangle size={15} className="text-amber-400 flex-shrink-0" />
               <div className="text-xs text-slate-200 flex-1">
                 <span>No incidents match this filter window.</span>{' '}
-                <span className="text-slate-400">306 verified reports are recorded in the 18/09/2026 baseline.</span>
+                <span className="text-slate-400">{filterStats.totalCount} verified reports are recorded in the 24/09/2026 baseline.</span>
               </div>
               <button
                 type="button"
                 className="btn-switch-all-time"
                 onClick={handleResetFilters}
               >
-                Show All Time (306)
+                Show All Time ({filterStats.totalCount})
               </button>
             </div>
           )}
@@ -666,7 +666,7 @@ export function MapView({ deviceId }) {
         )}
 
         <div className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 pt-1 border-t border-slate-200 dark:border-slate-800 flex items-center justify-between">
-          <span>Updated: 18/09/2026</span>
+          <span>Updated: 24/09/2026</span>
           <span className="opacity-60">{filterStats.totalCount} total</span>
         </div>
       </div>

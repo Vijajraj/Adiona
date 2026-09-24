@@ -1,6 +1,6 @@
 [
   {
-    "id": "f7eab1cc-8126-4a2e-b813-91f3be3e29b5",
+    "id": "466c930f-1b9a-5606-8560-0703a46f5b4c",
     "lat": 13.1144448,
     "lng": 80.1553465,
     "weight": 2.0,
@@ -9,10 +9,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ambattur Estate Third Main Road / Ambattur Telephone Exchange: Named accident blackspot; report says at least 700 accidents were recorded near Ambattur Telephone Exchange over three years, with potholes and poor lighting. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1822b39f-bbce-484b-9e2b-c6b96ea952da",
+    "id": "77f51b6a-18ed-55a8-9a11-af140d2c0e5c",
     "lat": 13.1153432,
     "lng": 80.1599562,
     "weight": 2.0,
@@ -21,10 +21,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ambattur Estate High Road, 2nd Avenue junction to Chennai Bypass: About 200 m reported without streetlights; local residents also reported chain-snatching and theft on the stretch. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "93f8f747-f34c-42ce-b697-aef01347c7af",
+    "id": "f2cb351d-b4a3-5492-8b28-38ad0e71d96c",
     "lat": 13.1153432,
     "lng": 80.1599562,
     "weight": 2.0,
@@ -33,10 +33,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ambattur Estate High Road, 2nd Avenue junction to Chennai Bypass: Area-level/road-stretch report: residents complained of a spike in chain-snatching and theft. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "11c1997f-6625-4723-8d92-25e581e26f59",
+    "id": "4592ebf4-ebfc-55c9-9ce2-a0f1f15cb1f4",
     "lat": 12.9787999,
     "lng": 80.1903803,
     "weight": 2.0,
@@ -45,10 +45,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nanganallur 5th Main Road: GCC was reported to have found 1,375 non-working streetlight locations; the article specifically identifies Nanganallur 5th Main Road as lacking street lamps, with improvised bulbs. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b8aa41a0-dd37-4f7b-8a4d-21ed9f15026f",
+    "id": "3dbea10d-4029-5b97-9f44-c18c007162b8",
     "lat": 12.9707151,
     "lng": 80.1977558,
     "weight": 2.0,
@@ -57,10 +57,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sadhasivam Nagar First Link Street, Madipakkam: Residents reported no streetlights; one resident said a flashlight was needed for about 150 m. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "98e26864-f835-40cd-8b1a-51d578537f31",
+    "id": "3e1af53d-f805-520e-8a08-db65d6c7396b",
     "lat": 12.9671218,
     "lng": 80.2466186,
     "weight": 2.0,
@@ -69,10 +69,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kallukuttai, Perungudi \u2014 Bharani Street: Named as a dark location; local councillor had fixed LED bulbs to TANGEDCO poles instead of dedicated streetlights. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "62f90409-4a62-4697-82c6-28f7c1381678",
+    "id": "5cb9836a-bb6f-591f-9ba3-66c1c42913a8",
     "lat": 13.1593604,
     "lng": 80.301935,
     "weight": 2.0,
@@ -81,10 +81,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Thiruvottiyur bus stand / junction: High-mast lamp was reported non-functional; commuters found crossing difficult and the bus stand was described as unsafe for women at night. Historical report.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "36c8e77d-11f9-4b35-842a-21205b5c24a2",
+    "id": "f1145259-501b-53cb-8bc6-4ca5ce1ef7d0",
     "lat": 13.1180381,
     "lng": 80.2770427,
     "weight": 2.0,
@@ -93,10 +93,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Korukkupet bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as one of the city bus stops/shelters found unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "fb155aa4-26a3-46a3-aa9f-c67ab35d23f5",
+    "id": "48ee6669-29eb-5cb5-a74c-04297051c3bb",
     "lat": 13.10636,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -105,10 +105,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Ambedkar College bus shelter (towards Central/Red Hills): Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e3032442-b022-4e4b-8a2d-36b2ac2d1bd4",
+    "id": "4df3dcef-ab8c-578a-9e87-84b6696cd437",
     "lat": 13.0335968,
     "lng": 80.2125068,
     "weight": 2.0,
@@ -117,10 +117,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Ashok Pillar bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "50d400f0-b959-48ff-b79b-93ac746ca2db",
+    "id": "977b7a61-d25c-51cf-b6c6-731ab101ab5c",
     "lat": 13.1692418,
     "lng": 80.2917937,
     "weight": 2.0,
@@ -129,10 +129,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "IOC Nagar bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bd2ecb0f-bbdf-42a1-ba34-873da6718856",
+    "id": "5337979f-e22d-5d51-9362-0361b2f7e638",
     "lat": 13.1665469,
     "lng": 80.2890279,
     "weight": 2.0,
@@ -141,10 +141,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Muthamizh Nagar bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0715d254-d07d-40c4-8135-d1473002b9af",
+    "id": "1b01c033-7441-5cdb-b64f-4d4cfc0bcc3f",
     "lat": 13.109055,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -153,10 +153,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Vyasarpadi Market bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "10a66be1-b14a-4f1a-ac88-e3acb246e2c8",
+    "id": "557422e8-169d-5460-8982-8b0b1ee74d93",
     "lat": 13.10636,
     "lng": 80.225414,
     "weight": 2.0,
@@ -165,10 +165,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "SIDCO bus shelter, Chennai: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "554d518b-6ed1-4eaa-acf7-950a8ff72b5c",
+    "id": "2cdec031-d109-5449-92cf-919327155347",
     "lat": 13.0219188,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -177,10 +177,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Vasuki Nagar bus shelter: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1949bd8b-e30f-4be6-a8b3-ee723d207ddf",
+    "id": "7e0a9bcf-6e5f-54e1-b154-b75236ed8fe4",
     "lat": 13.0650377,
     "lng": 80.2761207,
     "weight": 2.0,
@@ -189,10 +189,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Teacher Training College bus shelter, Chennai: Named in a 2023 GCC/Safetipin/Prajnya safety audit as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bc69af44-55cd-41d0-b5c3-96ddfa59b209",
+    "id": "ad5fcec9-391b-5706-90c7-369bf82c2867",
     "lat": 13.0228171,
     "lng": 80.2226482,
     "weight": 2.0,
@@ -201,10 +201,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Saidapet bus shelter: Named in the 2023 city bus-shelter safety audit; article notes this shelter was maintained by the highways department.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5bd2594a-c139-4806-b36c-14b2cfd3ae1a",
+    "id": "e0a10d14-caea-5a81-a2cd-37cf5453ab3c",
     "lat": 12.9419691,
     "lng": 80.2327895,
     "weight": 2.0,
@@ -213,10 +213,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Pillaiyar Kovil Street, Thoraipakkam: 2026 police report of repeated stalking/harassment reported by a woman on this street; CCTV was used in the investigation. Location-only seed; no personal identifiers included.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a4cbe2b7-8da0-4d5b-a576-70dafa25f2c1",
+    "id": "f0f68d42-7545-56c1-92ba-b43b66ab91ad",
     "lat": 13.0075458,
     "lng": 80.2383212,
     "weight": 2.0,
@@ -225,10 +225,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sardar Patel Road, Guindy-Adyar corridor: 2025 report says road-extension work nearly halved footpath width, forcing pedestrians onto the carriageway. Area/stretch seed.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "66566f8c-17a0-493d-9b28-33aacdcbf2fa",
+    "id": "9376112d-db27-52b7-940c-c6f45b9b0655",
     "lat": 13.0120374,
     "lng": 80.2438528,
     "weight": 2.0,
@@ -237,10 +237,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gandhi Mandapam Road, Chennai: 2025 report says footpaths were reduced to nearly half their original width and some were too narrow, pushing pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "95dd09fb-3f75-4375-b193-103a362330d2",
+    "id": "482a316a-d132-5fca-9f6c-a21586445d7e",
     "lat": 13.1072584,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -249,10 +249,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Medavakkam Tank Road, Ayanavaram: 2025 report says an unfinished footpath stretch forced pedestrians onto the busy carriageway; rain also made the incomplete section unusable.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "406f88bc-255b-4302-a91d-255205b1b72d",
+    "id": "9069b94f-7fdc-5d92-b9d7-77cd96f28b4b",
     "lat": 13.0758175,
     "lng": 80.2106629,
     "weight": 2.0,
@@ -261,10 +261,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Poonamallee High Road, Arumbakkam: 2025 report: broken and encroached footpaths force pedestrians onto the road; named stretch in Arumbakkam, Chennai.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "45f02bfd-7736-417d-bc6b-0fb6fdb3bdda",
+    "id": "6b7e6b22-2448-5b12-9c88-1f07b6e9f92b",
     "lat": 13.0982752,
     "lng": 80.2678232,
     "weight": 2.0,
@@ -273,10 +273,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Basin Bridge Road, Chennai: 2025 report: damaged/encroached pavement forces pedestrians onto the carriageway; GCC Zone 5 area.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b4db1122-793d-4ecb-aab3-c7178d356754",
+    "id": "8099364b-3cf6-5007-ad66-a1f534df8ed7",
     "lat": 13.1117499,
     "lng": 80.2475406,
     "weight": 2.0,
@@ -285,10 +285,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur High Road, Stephenson Road to Perambur railway station: 2025 report: broken/inaccessible footpaths, missing drain covers and encroachments make pedestrian movement hazardous.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "eed00e87-5d0d-4377-939c-441b56d9a70a",
+    "id": "3dc93e4d-fea3-5d65-bd43-ad6c87891b12",
     "lat": 13.1108516,
     "lng": 80.2456967,
     "weight": 2.0,
@@ -297,10 +297,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Jamalia pedestrian subway near Perambur railway station: 2025 report: subway intended as a safe pedestrian passage is frequently waterlogged and poorly maintained; location is near Perambur railway station.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "78e904c9-0059-46a3-a2a2-ccf44f0635c6",
+    "id": "aebda0b1-959b-56b9-bd6b-6a0bdc4b6cdd",
     "lat": 13.0874955,
     "lng": 80.2521503,
     "weight": 2.0,
@@ -309,10 +309,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Valliammal Road, Purasawalkam: 2025 report calls the road accident-prone due to severe damage and potholes; minor injuries were reported.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0dc8b498-36a9-465b-a1d3-00fe57790b29",
+    "id": "e9835fa9-c8fd-51b0-abe1-e583ba315dcc",
     "lat": 13.1225296,
     "lng": 80.2807304,
     "weight": 2.0,
@@ -321,10 +321,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Korukkupet railway crossing: 2024 report explicitly describes the crossing as accident-prone and documents dangerous congestion when railway gates close.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c01994eb-65e3-4e65-9ea9-1eeeca8dc836",
+    "id": "237b47a1-6dee-5ea7-b52e-9ee3e2584286",
     "lat": 13.0389867,
     "lng": 80.2235701,
     "weight": 2.0,
@@ -333,10 +333,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ellaiamman Koil Street, West Mambalam: 2025 report specifically names Ellaiamman Koil Street; construction, congestion and lack of working streetlights created night safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "20fd3f89-226c-41be-b352-461b9c82d292",
+    "id": "e4cc649d-f345-5e04-807e-329072994217",
     "lat": 12.9617319,
     "lng": 80.2438528,
     "weight": 2.0,
@@ -345,10 +345,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "MGR Salai, Kandhanchavadi, Perungudi: 2026 report: cracked/dislodged pavement forces pedestrians onto the busy arterial road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7ce73be7-703c-4e88-9745-2fa84e006d2d",
+    "id": "e1d76a68-6057-5c78-9a79-e5a0697af1b8",
     "lat": 13.0848006,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -357,10 +357,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Choolai High Road, Ramalinga Vilas Hotel to Choolai High Road Roundabout: 2026 report identifies this exact stretch; parked vehicles occupy footpaths and pedestrians are forced onto the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c8108ad2-90fe-4d22-b548-bc8af142923c",
+    "id": "afeb2c2c-2459-5978-a928-9fa79e5c9f5b",
     "lat": 13.0515631,
     "lng": 80.2152726,
     "weight": 2.0,
@@ -369,10 +369,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Viswanathapuram Main Road, Kodambakkam: 2026 report identifies footpath encroachment and parking at the Rangarajapuram Main Road/Viswanathapuram Main Road junction.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "29a46cca-bd83-443f-b48d-8b64346c386e",
+    "id": "c5ad22d6-9cd6-5c24-8636-54c9b8036fe9",
     "lat": 13.0533597,
     "lng": 80.2152726,
     "weight": 2.0,
@@ -381,10 +381,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rangarajapuram Main Road / Viswanathapuram Main Road junction: 2026 report specifically names the junction as a pedestrian safety problem due to occupied footpaths.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4848723e-9ced-4689-bd15-be4292e2828e",
+    "id": "98ba0c14-ed86-5d65-999a-5e24da54d0a7",
     "lat": 13.0344951,
     "lng": 80.2152726,
     "weight": 2.0,
@@ -393,10 +393,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Second Avenue, Ashok Nagar: 2026 report names Second Avenue; shop displays, merchandise and vehicle parking occupy walkways.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6ed781bb-80b0-4c05-bce6-0c07f7280d9e",
+    "id": "52f51117-0a8b-5ef1-91c2-2104082d0e52",
     "lat": 13.109055,
     "lng": 80.2503064,
     "weight": 2.0,
@@ -405,10 +405,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kumarasamy Street, Perambur: 2026 report: cars regularly park on the pavement, disrupting walking space and pushing pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a5ea721c-3924-4742-af96-158bd0ee0281",
+    "id": "ae511452-7d7d-539c-84d3-942839119c1a",
     "lat": 13.1099533,
     "lng": 80.2456967,
     "weight": 2.0,
@@ -417,10 +417,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur High Road North, Saraswati Nagar opposite Perambur railway station: 2025 report specifically names this location; a wall and shop activity blocked the pavement.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e0eb6348-2cc4-4dac-8afc-4f822f2c989f",
+    "id": "436caaa4-2cf5-5a50-be92-ecf42600fc11",
     "lat": 13.0982752,
     "lng": 80.2678232,
     "weight": 2.0,
@@ -429,10 +429,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Basin Bridge Road, GCC Zone 5: 2025 report specifically identifies the Basin Bridge Road stretch beside the GCC Zone 5 office.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f67086ab-9f11-4d52-82b0-4cfd0889a003",
+    "id": "50e38e21-00b1-50a8-b522-aa28534b29be",
     "lat": 13.1072584,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -441,10 +441,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Medavakkam Tank Road, Konnur High Road to Ayanavaram Road: 2025 report specifies a several-hundred-metre unfinished pavement stretch connecting Konnur High Road and Ayanavaram Road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ff3b3c09-ba8e-4517-8f36-4617a7328848",
+    "id": "7d476097-4ce1-592b-9efb-615ac4339cc9",
     "lat": 13.065936,
     "lng": 80.2825743,
     "weight": 2.0,
@@ -453,10 +453,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "High Court Metro Railway Station: 2024 police-report-based article names the station premises in a sexual-harassment case.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4927dd00-84de-426c-8801-91b4a0bbeb4e",
+    "id": "bb62d334-f786-5400-add2-da4143df5881",
     "lat": 12.9671218,
     "lng": 80.2466186,
     "weight": 2.0,
@@ -465,10 +465,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Bharani Street, Kallukuttai, Perungudi: 2023 report names Bharani Street as a dark location.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "901f1943-c193-4708-b5af-527f3cb0ffa9",
+    "id": "4db38e9d-c616-5cb4-a39d-e6e1eec2642e",
     "lat": 13.0722242,
     "lng": 80.241087,
     "weight": 2.0,
@@ -477,10 +477,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Path between Dr Guruswamy Bridge and Chetpet Eco Park / Chetpet railway station: 2026 report: roughly 150 m pedestrian path to Chetpet railway station has insufficient street lighting; pedestrians avoid it at night for safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e0759156-10fc-4485-9909-9ae05bfbe0f6",
+    "id": "0c70997a-3c58-51dd-b1d4-0a2385830033",
     "lat": 13.0524614,
     "lng": 80.2595258,
     "weight": 2.0,
@@ -489,10 +489,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Srinivasa Perumal Sannathi 2nd Street, Gopalapuram Police Quarters, Royapettah: 2026 report: seized vehicles occupied the footpath for more than two months, forcing schoolchildren, women and residents onto the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ce07f548-9c3f-4ef7-90c0-9256a69efdde",
+    "id": "fe6525ff-d6ef-581a-8e52-a049901ae977",
     "lat": 13.0416816,
     "lng": 80.2346334,
     "weight": 2.0,
@@ -501,10 +501,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sir Thyagaraya Road near Pondy Bazaar, T Nagar: 2026 report: damaged manhole/concrete patch with protruding iron rods creates a major hazard for motorists and pedestrians; similar damaged patches occur toward Dr B Narasimhan Road junction.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "64666b98-ed1f-4229-a518-91a039585e8f",
+    "id": "c67bdd9d-f2b6-5a2c-841f-7e7d39100537",
     "lat": 13.0874955,
     "lng": 80.2881059,
     "weight": 2.0,
@@ -513,10 +513,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "RBI Subway near Parry's: 2025 report: potholes, water stagnation, seepage and uneven resurfacing made the subway accident-prone.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f75c93ac-4ff7-4326-817a-73c40bfff664",
+    "id": "63e387d0-a0df-51e9-89e3-088b3c11d1f2",
     "lat": 13.0219188,
     "lng": 80.2235701,
     "weight": 2.0,
@@ -525,10 +525,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "CP Pavalavannan Subway, Saidapet: 2026 High Court report: persistent water seepage was alleged to have caused frequent vehicular accidents and posed a serious public-safety threat.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d304745b-f54b-47dd-9dd4-7e253a1bce94",
+    "id": "6d6717a5-9c87-5ff8-88f1-9e98c27f14a5",
     "lat": 13.068631,
     "lng": 80.1968338,
     "weight": 2.0,
@@ -537,10 +537,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Koyambedu Market East Road, CMDA office to omnibus terminus: 2025 report: named stretch described as accident-prone; overflowing sewage and uneven road conditions affected commuters and heavy commercial traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "eee82c13-bdf2-4dbf-ad75-6276f1f105c6",
+    "id": "7f9a89e9-cdc0-58b3-93b7-5ba525333d65",
     "lat": 13.0344951,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -549,10 +549,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Veera Perumal Koil Street, Mylapore: 2025 report: road remained unrelaid after stormwater-drain works, creating difficulty for motorists, patients and ambulances; nearby schools also use the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ca50ae62-a6f1-409b-b2db-9f713c3f1f17",
+    "id": "2ad916ea-52a0-5062-a005-2c2778cacca9",
     "lat": 13.0353935,
     "lng": 80.2641355,
     "weight": 2.0,
@@ -561,10 +561,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mundagakanni Amman Koil Street, Mylapore: 2025 report names this street among Mylapore roads left in poor condition after stormwater-drain works.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9715d517-a6a1-4719-9139-17024b303372",
+    "id": "15abb5b3-75d9-54fe-a392-13f8b8ab4f51",
     "lat": 13.1324111,
     "lng": 80.2899498,
     "weight": 2.0,
@@ -573,10 +573,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ennore High Road, Tondiarpet: 2025 report: monsoon water stagnation made the area accident-prone; two-wheelers had skidded and fallen into the waterbody.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3788082d-1657-42e2-a205-5eb4aba38839",
+    "id": "70fbe892-1128-50d4-ae16-d5dbabb178ad",
     "lat": 13.1126482,
     "lng": 80.2512283,
     "weight": 2.0,
@@ -585,10 +585,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gurumurthy Garden Street, Perambur: 2024 report: collapsed compound wall at Corporation Girls High School raised safety concerns; vegetation and rainwater stagnation increased risk around the street.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1c3cb67d-0b0c-48c6-8cb3-0d47fffac4e8",
+    "id": "2625565c-0fb0-5c99-8f6d-123861bf5a98",
     "lat": 13.1656486,
     "lng": 80.3047009,
     "weight": 2.0,
@@ -597,10 +597,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Shanmugapuram 2nd Street, Tiruvottiyur: 2025 report: road left milled/unattended for more than a month, making it accident-prone, particularly for schoolchildren and senior citizens.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "733d9525-8bec-48bc-bda4-d9b15402a22f",
+    "id": "026dee72-029f-59dc-b67e-5a9e19568dcd",
     "lat": 13.1656486,
     "lng": 80.3047009,
     "weight": 2.0,
@@ -609,10 +609,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Shanmugapuram 3rd Street, Tiruvottiyur: 2025 report names the street among Tiruvottiyur roads left milled and unattended, creating accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "fa5eb0b2-b6d4-467b-aae8-e30acc7d5391",
+    "id": "f1ac2179-f08c-575d-9890-4ad569cc9148",
     "lat": 13.1665469,
     "lng": 80.3056228,
     "weight": 2.0,
@@ -621,10 +621,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Shanmugapuram 6th Street, Tiruvottiyur: 2025 report names the street among roads left milled/unattended for more than a month.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "365528a9-4f31-4ffb-a287-b7010d8664e0",
+    "id": "dd04c973-72e7-536b-955f-58dcdfea75e4",
     "lat": 13.1674452,
     "lng": 80.3056228,
     "weight": 2.0,
@@ -633,10 +633,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Shanmugapuram 10th Street, Tiruvottiyur: 2025 report names the street among roads left milled/unattended and describes the wider road condition as accident-prone.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "85a2a296-6b7f-44fb-9359-2a2abe3ea7c3",
+    "id": "14405adb-895a-57d4-9535-9472dd8e8e4b",
     "lat": 13.1647503,
     "lng": 80.3065447,
     "weight": 2.0,
@@ -645,10 +645,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Jothi Nagar Main Road, Tiruvottiyur: 2025 report specifically names Jothi Nagar Main Road among roads left milled and unattended.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e8153df7-59c1-4c61-92c5-74edd9ca9a13",
+    "id": "562addfd-0970-594b-a6d7-5ef7c05d8c88",
     "lat": 13.1647503,
     "lng": 80.3065447,
     "weight": 2.0,
@@ -657,10 +657,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Jothi Nagar Main Cross Street, Tiruvottiyur: 2025 report specifically names Jothi Nagar Main Cross Street among incomplete road-work locations.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b057c3bf-cf73-43cd-aebb-6a96757e51f7",
+    "id": "3eb57d77-12ed-5227-8b9f-74d99e8415bc",
     "lat": 13.1683435,
     "lng": 80.3093106,
     "weight": 2.0,
@@ -669,10 +669,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "VP Nagar 6th Extension, Tiruvottiyur: 2025 report names VP Nagar 6th Extension among roads left milled and unattended.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "56486399-3f81-4aa0-a09b-2c74dad07a1c",
+    "id": "9e482d4d-e892-512b-9d7d-4688b54b1964",
     "lat": 13.1692418,
     "lng": 80.3102325,
     "weight": 2.0,
@@ -681,10 +681,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "AD Colony 15th Street, Tiruvottiyur: 2025 report names AD Colony 15th Street among incomplete road-work locations.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e5c62789-aaf3-44fc-8423-15eb3b7bbeb8",
+    "id": "e3cbda8d-018d-5d5d-ae36-ef7061e287cc",
     "lat": 13.1692418,
     "lng": 80.3111545,
     "weight": 2.0,
@@ -693,10 +693,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Bajanai Koil 2nd Cross Street, Tiruvottiyur: 2025 report names Bajanai Koil 2nd Cross Street among incomplete road-work locations.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8e3f798b-d817-48c4-a34a-d6412db38f7f",
+    "id": "7ac48da6-689e-5b98-b8c0-c83fa0b29ae9",
     "lat": 12.9949695,
     "lng": 80.2042094,
     "weight": 2.0,
@@ -705,10 +705,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Brindavan Nagar Main Road, Adambakkam: 2026 report: shops/vendors completely encroached the newly built footpath, forcing pedestrians onto the busy carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6ba1c198-0701-4315-907c-b157099613df",
+    "id": "1c97b73f-50cd-5a89-93c0-ec3ac2e0e925",
     "lat": 13.0488681,
     "lng": 80.2125068,
     "weight": 2.0,
@@ -717,10 +717,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Arcot Road, Kodambakkam: 2026 report: garbage accumulation turned the footpath into an informal dumping ground, obstructing pedestrians.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f76d7792-14c6-4d0f-acc1-ac9be9393a9e",
+    "id": "82149368-1dcf-5df5-996e-3070089d0008",
     "lat": 13.0731225,
     "lng": 80.2420089,
     "weight": 2.0,
@@ -729,10 +729,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mayor Ramanathan Salai (Spurtank Road), Chetpet: 2026 report: 550-metre pavement was occupied by unremoved concrete slabs and encroachments, forcing pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cc6aa751-d413-4fe7-9f2c-8a8cc7e53eb3",
+    "id": "cf5dc037-584d-5f8d-910e-d2b53d486cb5",
     "lat": 13.0551563,
     "lng": 80.2503064,
     "weight": 2.0,
@@ -741,10 +741,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Khader Nawaz Khan Road pedestrian plaza: 2026 report: vehicles and commercial loading encroached the pedestrian plaza; adjacent lanes also experienced spillover parking.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "31eb46cc-2467-4e18-8e43-b543b1630903",
+    "id": "73275e44-25ec-51ea-8c47-8d60b05bbd19",
     "lat": 13.0353935,
     "lng": 80.2327895,
     "weight": 2.0,
@@ -753,10 +753,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Venkatanarayana Road, T Nagar: 2024 report: cars, two-wheelers, vendors and temple crowds occupied the footpath, forcing pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1cfa5162-7f2b-460f-be47-2a7c0eabb97c",
+    "id": "90a5a0c6-0368-5545-8e9f-bd0f8547f081",
     "lat": 13.0407833,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -765,10 +765,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Usman Road, T Nagar: 2025 report: footpath along Usman Road/Pondy Bazaar area was heavily occupied by commercial activity, leaving little usable walking space.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0377e490-4bdb-4455-8d8f-0a2a8d149592",
+    "id": "92f8ceac-55ed-5516-8527-38048ba3acb7",
     "lat": 13.028207,
     "lng": 80.1839267,
     "weight": 2.0,
@@ -777,10 +777,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Valluvar Salai, Ramapuram: 2023 report: shops encroach road edges; pedestrians walk on the carriageway because Ramapuram lacks adequate footpaths.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4bd9e9fe-604c-41bb-8db3-2314e80fce6b",
+    "id": "4af87e66-3b82-51a3-97d8-7c21b7dc7c60",
     "lat": 13.0273087,
     "lng": 80.1802389,
     "weight": 2.0,
@@ -789,10 +789,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Bharathi Salai, Ramapuram: 2023 report: parked vehicles consume pedestrian space; untethered cattle also increase pedestrian risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "93bc7483-799f-4e9f-bc5f-796a500f791e",
+    "id": "c539d55d-1d13-5a39-9dbe-10bc0d244a31",
     "lat": 13.0300036,
     "lng": 80.1848486,
     "weight": 2.0,
@@ -801,10 +801,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ramapuram Main Road: 2023 report identifies Ramapuram Main Road among major local roads without adequate pedestrian footpaths.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "22b2f27f-57cf-4ae0-bf25-8e05e18e46df",
+    "id": "982fa0d2-a36a-5a20-ba2e-fc5fe9cc362c",
     "lat": 13.1117499,
     "lng": 80.2539941,
     "weight": 2.0,
@@ -813,10 +813,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Poleri Amman Koil Street / AA Road railway culvert, Perambur: 2026 report: low-height culvert used by pedestrians and two-wheelers has restricted headroom and hazardous movement.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ecc06ca4-da39-4a18-bf25-ffc223152646",
+    "id": "6903c4a6-e8c1-53cd-83e7-c97796945a9e",
     "lat": 13.0362918,
     "lng": 80.2327895,
     "weight": 2.0,
@@ -825,10 +825,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Venkatanarayana Road, Natesan Park bus stop: 2025 report: buses stopped on the opposite lane, forcing commuters to run across the busy road and centre median to board.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0d7f0b14-88f9-4cdf-849c-4ccf630961f9",
+    "id": "d45f147d-e8d6-5f46-91bd-f3f5047b5fb6",
     "lat": 13.1162415,
     "lng": 80.287184,
     "weight": 2.0,
@@ -837,10 +837,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "MC Road, Washermenpet: 2025 police report names MC Road in a stalking/threatening case involving a woman employee. No personal identifiers included.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "62215fb7-e3bd-42e7-af5e-5cca3ea765a5",
+    "id": "a920a03d-43b4-584b-8b7a-72e26883273b",
     "lat": 13.1476824,
     "lng": 80.2309456,
     "weight": 2.0,
@@ -849,10 +849,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Grand Northern Trunk Road (GNT Road), Madhavaram: 2025 police report: a woman delivery worker reported inappropriate touching and threats at a tea shop on GNT Road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "fcbfc57a-9e6b-47d6-8f82-d33c336dae49",
+    "id": "c90add88-bcce-506d-b54b-03a16be1e4e1",
     "lat": 13.039885,
     "lng": 80.2493844,
     "weight": 2.0,
@@ -861,10 +861,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "KB Dasan Road, Teynampet: 2025 police report of verbal harassment of a woman during a parking dispute on KB Dasan Road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "efcc934d-e437-448c-bbfd-97a5a4777530",
+    "id": "2ef8a534-80c4-5f22-b899-98c7e78aa959",
     "lat": 13.0506648,
     "lng": 80.2115849,
     "weight": 2.0,
@@ -873,10 +873,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "100 Feet Road, Vadapalani: 2025 police report: a woman walking on 100 Feet Road was allegedly approached and harassed by a two-wheeler rider.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7f932b3b-9818-4ad5-8ec1-71ac909b64cc",
+    "id": "d3ba627f-fa5a-5bfa-aa82-5ed898ecdcfe",
     "lat": 13.0677327,
     "lng": 80.2770427,
     "weight": 2.0,
@@ -884,11 +884,11 @@
     "category": "physical_harassment",
     "affected_group": "woman",
     "confirmations": 1,
-    "note": "Government Estate Metro Railway Station subway: 2025 police report: woman was sexually harassed in the subway near Government Estate Metro Station.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "note": "Government Estate Metro Station subway: 2025 police report: woman was sexually harassed in the subway near Government Estate Metro Station.",
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c4d60ed0-6148-4892-a952-f88f7801e786",
+    "id": "30cb3861-7eb6-55d1-90d5-2bd4823426da",
     "lat": 13.0587496,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -897,10 +897,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Thousand Lights Metro Station: 2025 police report: suspect was apprehended at Thousand Lights Metro Station after a reported sexual assault on a Metro train.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7be2ed0e-0f32-4cd3-9402-d8ea5d517151",
+    "id": "4c42962f-6557-5aca-acf4-161ee6492689",
     "lat": 13.0318002,
     "lng": 80.2429309,
     "weight": 2.0,
@@ -909,10 +909,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nandanam, Government Arts College vicinity: 2025 report: footpaths near Government Arts College were obstructed by debris, machines, trees and poles; users reported falls and difficulty walking.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "dc47dded-0478-41ec-ac38-fde2566f108e",
+    "id": "02af55df-2554-567d-87b5-841c4b35eafd",
     "lat": 13.0614445,
     "lng": 80.2807304,
     "weight": 2.0,
@@ -921,10 +921,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chepauk, New State Guest House vicinity: 2025 report: police barricades occupied footpaths near the New State Guest House, forcing students/pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cdf8b182-a899-4e65-ae1c-7c2fcd23444e",
+    "id": "464ef741-98f0-5c51-b4d7-cc1ce7ed1b03",
     "lat": 12.9787999,
     "lng": 80.2189604,
     "weight": 2.0,
@@ -933,10 +933,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Velachery 100 Feet Road: 2025 report: pushcarts and parked vehicles encroached footpaths, making pedestrian movement difficult and dangerous.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3cb246f5-ad37-4a93-b8ce-0a988816b5cb",
+    "id": "d5e8cb59-2376-5e92-b852-733933c8654a",
     "lat": 13.1243263,
     "lng": 80.2899498,
     "weight": 2.0,
@@ -945,10 +945,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thiruvottiyur High Road, Tondiarpet \u2014 SWD work stretch: 2026 report: about 500 m affected by storm-water-drain work, with damaged pathways, inadequate barricading and excavation pits forcing pedestrians close to traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "84ba9446-229d-49b9-ba2e-69a7de595a92",
+    "id": "30505995-34d5-53b9-83b4-bdafad0b3334",
     "lat": 13.1144448,
     "lng": 80.1581123,
     "weight": 2.0,
@@ -957,10 +957,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Murugappa Reddy Street, Vivekanandar Nagar, Ambattur: 2025 report: pothole-ridden interior road near Ambattur Old Terminus; monsoon water can conceal potholes and increase accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b5f07177-0b18-4707-9fa1-a95de0273b93",
+    "id": "1f61618f-4ca1-5991-8c01-4365fd452237",
     "lat": 13.1135465,
     "lng": 80.1571904,
     "weight": 2.0,
@@ -969,10 +969,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "First Cross Street, Vivekanandar Nagar, Ambattur: 2025 report names this interior street among the worst-affected pothole-ridden roads near Ambattur Old Terminus.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9ee6b6ab-4718-40b8-b64c-a63af10a4098",
+    "id": "336155e0-119b-5e47-9b57-bdc910127fa8",
     "lat": 13.1126482,
     "lng": 80.1581123,
     "weight": 2.0,
@@ -981,10 +981,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kanniah Chetty Street, Vivekanandar Nagar, Ambattur: 2025 report names this street among the worst-affected pothole-ridden roads near Ambattur Old Terminus.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8abcf8f6-7c22-42b3-98cf-d91ba2eb7cfe",
+    "id": "c427fcbd-38da-5134-895e-65bcb401c9ce",
     "lat": 13.1126482,
     "lng": 80.1590343,
     "weight": 2.0,
@@ -993,10 +993,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Balaji Street, Vivekanandar Nagar, Ambattur: 2025 report names this street among the worst-affected pothole-ridden roads near Ambattur Old Terminus.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8684a29e-1b31-404b-95f1-4fabdab80987",
+    "id": "f5e2192a-e868-5334-9e6d-9b516778630f",
     "lat": 13.1108516,
     "lng": 80.1608782,
     "weight": 2.0,
@@ -1005,10 +1005,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thiruvengada Nagar, Ambattur: 2025 report says this road had not been repaved for nearly a decade and was associated with accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "2e9cfff8-dbc0-433e-8f87-96745a7746d1",
+    "id": "d4a12486-3b55-593a-8c44-03e8f2347c5a",
     "lat": 13.109055,
     "lng": 80.1618001,
     "weight": 2.0,
@@ -1017,10 +1017,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "West Main Road, Ambattur: 2025 report says this road had not been repaved for nearly a decade; worn condition creates safety problems.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c74ba14c-80ba-4875-b3d0-ba7bc49922a2",
+    "id": "b9dae71b-8b4f-57f5-b3ce-1ded0621a3cf",
     "lat": 13.0057492,
     "lng": 80.255838,
     "weight": 2.0,
@@ -1029,10 +1029,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Adyar Bridge Road: 2025 report: milled but unpaved sections, potholes, stagnant rainwater and construction debris created hazards, especially for two-wheelers.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a7a317e6-9631-4df7-bbb2-b4679470fae9",
+    "id": "fa965688-4f01-5e5b-bffc-47d61a4d1d0e",
     "lat": 13.1135465,
     "lng": 80.287184,
     "weight": 2.0,
@@ -1041,10 +1041,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Monegar Choultry Road (MC Road), cemetery junction to BSNL junction: 2025 report: 1 km pedestrian-plaza project remained incomplete, with open drains, dug-up stretches and two-wheelers encroaching walking space.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6d5decd8-ab19-4946-ae57-0917b7c22184",
+    "id": "fdb9d318-fe31-5d93-8910-7d48793cfb18",
     "lat": 13.0722242,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -1053,10 +1053,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Arumbakkam 100 Feet Road, near SAF Games Village: 2025 report: motorists routinely make an illegal turn near SAF Games Village, clogging lanes and endangering pedestrians.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e8c8c8d2-3e35-4945-b853-b2a222c0fc53",
+    "id": "29ca3481-de57-5bca-a1e5-f49c0366fa7e",
     "lat": 13.0704276,
     "lng": 80.1645659,
     "weight": 2.0,
@@ -1065,10 +1065,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nolambur-Poonamallee High Road Junction: 2025 report: illegal right turns at the junction create congestion and safety risks for pedestrians and commuters.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f1d13f04-6568-4f5f-bbe0-6d718921a789",
+    "id": "a10397e4-1ef4-550f-bfc6-4127aa3ff66c",
     "lat": 13.0982752,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -1077,10 +1077,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Basin Bridge four-way junction, GNT Road: 2025 report: wrong-side turns and displaced barricades cause traffic from four directions to pile up, particularly after 9 pm.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6c620546-4112-4091-a990-a57d834199ee",
+    "id": "a688c8c1-4cec-5b31-a286-9001c4dc3829",
     "lat": 12.9805965,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -1089,10 +1089,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Velachery road, Chennai: 2026 police-report-based article documents alleged sexual harassment of a woman walking on a road in Velachery. Source does not provide a more precise street name; road-level seed only.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d1f9417b-881b-417a-936e-e18dd30172fb",
+    "id": "3ff03542-02ea-5daa-9ca8-26ddf76abb52",
     "lat": 13.1225296,
     "lng": 80.2881059,
     "weight": 2.0,
@@ -1101,10 +1101,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Maharani Theatre bus stop, Tiruvottiyur High Road, Old Washermenpet: 2026 report: two-wheelers and autos parked directly in front of the bus stop, forcing buses to stop away from the designated stop and making boarding/alighting unsafe.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6d6dd378-187f-44d6-acc4-8cc5a6c22f72",
+    "id": "4dd9ebda-fcd4-5e23-8882-f9cb0c512c03",
     "lat": 13.0758175,
     "lng": 80.2595258,
     "weight": 2.0,
@@ -1113,10 +1113,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gengu Reddy Road subway: 2026 report: GCC subway renovation remained stalled; source says long-pending subway works affected daily commuting and pedestrian safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e7386fea-e681-404c-84a9-705aa12d96b9",
+    "id": "0e637565-5038-520b-a509-765dac2e8869",
     "lat": 13.0614445,
     "lng": 80.2438528,
     "weight": 2.0,
@@ -1125,10 +1125,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nungambakkam subway: 2026 report: Nungambakkam subway was among GCC subways whose planned renovation had seen little progress, with reported effects on commuting and pedestrian safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "db4b3a8f-2956-4b6c-af2c-1253c8c8ca5e",
+    "id": "854dfc86-b61a-521c-9f97-b05529d10e45",
     "lat": 13.0731225,
     "lng": 80.240165,
     "weight": 2.0,
@@ -1137,10 +1137,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Harrington Road subway: 2026 report: Harrington Road subway was among the identified long-pending renovation locations affecting daily commuting and pedestrian safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5f830b46-d0fd-46ca-9d89-9a9528a4dc58",
+    "id": "5d98453f-6bcd-5a2c-a9b8-375e7bedb9cc",
     "lat": 13.1081567,
     "lng": 80.1839267,
     "weight": 2.0,
@@ -1149,10 +1149,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Korattur subway: 2026 report: Korattur subway was among planned GCC renovation locations with little progress; included in the report's pedestrian-safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3ec8e6d0-d219-4de8-9c5f-ddba4526b10f",
+    "id": "5ea85a32-42cb-5d83-9d98-f1142492457d",
     "lat": 13.1072584,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -1161,10 +1161,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Villivakkam subway: 2026 report: Villivakkam subway was among planned GCC renovation locations with little progress, affecting daily commuting and pedestrian safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5b09c857-2db9-471f-8576-74758c27899d",
+    "id": "36c3d1d8-c105-5b61-8410-3b6b0cbfcb67",
     "lat": 13.1072584,
     "lng": 80.255838,
     "weight": 2.0,
@@ -1173,10 +1173,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Vyasarpadi bus stop, MTC route 38-A: 2026 police report: a passenger allegedly sexually harassed a college student after boarding at Vyasarpadi bus stop; passengers intervened. Location is a documented incident point, not a claim that the s",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "38ee49c9-38ec-4060-b37c-816e406a2efd",
+    "id": "06024f4d-4d03-5226-9226-fb8228b33f2c",
     "lat": 13.0560546,
     "lng": 80.2429309,
     "weight": 2.0,
@@ -1185,10 +1185,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Nungambakkam \u2014 walking route to work, location reported in July 2026 case: 2026 police report: a woman walking to work in Nungambakkam was allegedly sexually harassed by a two-wheeler rider. Source does not identify a more precise street, s",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "375eaaa4-ad3c-48cc-85e2-285cc8f6bc6c",
+    "id": "256af08c-39c4-5c3c-b51c-dfc5dfca6c8c",
     "lat": 13.0228171,
     "lng": 80.2235701,
     "weight": 2.0,
@@ -1197,10 +1197,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Saidapet college exit area: 2026 police report: a college student was allegedly followed and harassed after leaving college in Saidapet and was assaulted when she refused to speak to the accused. Area-level incident seed; no personal identi",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "31d7725a-3746-433f-9c60-2221719a04f1",
+    "id": "69884a50-9c8c-5d4a-81fa-67a3be407ebf",
     "lat": 13.0362918,
     "lng": 80.2438528,
     "weight": 2.0,
@@ -1209,10 +1209,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Anna Salai, Teynampet\u2013Saidapet flyover diversion stretch: 2026 report: construction diversions on Theagaraya Road/Teynampet-side corridor and Cenotaph Road left uneven surfaces and craters that were difficult for motorists, especially two-w",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9efc8b5e-3563-40e0-bade-15ffe8276f83",
+    "id": "0d5edcc8-9247-5633-b478-1d4c3ff0ffa6",
     "lat": 13.0407833,
     "lng": 80.2512283,
     "weight": 2.0,
@@ -1221,10 +1221,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Cenotaph Road, Teynampet: 2026 report: flyover-related traffic diversions were associated with uneven roads and craters on Cenotaph Road, creating difficulty for motorists.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c5e10203-3554-47fc-a1ca-984c20912748",
+    "id": "07754b74-676b-5343-8408-ba9c5ac1d398",
     "lat": 13.0524614,
     "lng": 80.2429309,
     "weight": 2.0,
@@ -1233,10 +1233,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Valluvar Kottam High Road, Valluvar Kottam: 2026 report: eateries, vegetable vendors, water tankers and parked two-wheelers occupy the footpath, squeezing pedestrians onto Valluvar Kottam High Road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "63d8064a-a709-4792-aea6-c6bbb69b3c0f",
+    "id": "844a0434-b819-512f-9059-061a8da55233",
     "lat": 13.0722242,
     "lng": 80.241087,
     "weight": 2.0,
@@ -1245,10 +1245,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Guruswamy Bridge footpath, Chetpet: 2026 report: paver tiles along the Guruswamy Bridge footpath were broken and pedestrians reportedly slipped; source specifically identifies the location.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a0e3abcb-6dde-429d-9adf-8c6835649cb0",
+    "id": "e6d0e9bc-8f0a-5d1c-af2e-2206a21bf9ab",
     "lat": 12.9958678,
     "lng": 80.2456967,
     "weight": 2.0,
@@ -1257,10 +1257,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Madhya Kailash Junction, Taramani: 2026 report: repeated road cave-ins at Madhya Kailash junction; six instances were listed from 2015\u20132024 and another cave-in occurred near the Institute of Chemical Technology.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "efacb80a-21e8-4ff0-95b7-5eab311f20a8",
+    "id": "c3bbd993-7211-5097-825d-bd5c05c70646",
     "lat": 12.9949695,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -1269,10 +1269,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rajiv Gandhi IT Expressway near Institute of Chemical Technology / Taramani U-shaped bridge: 2026 report: a road cave-in occurred beside the start of the U-shaped bridge because of a burst sewage pipeline; recurring subsidence has raised sa",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a4cf5624-a46c-49f6-a145-a46095ee0cd0",
+    "id": "70771a3f-bedb-53bd-8b2d-5b6adee8de52",
     "lat": 13.1081567,
     "lng": 80.2493844,
     "weight": 2.0,
@@ -1281,10 +1281,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur High Road, Jamalia Higher Secondary School to Cooks Road junction: 2026 report: broken, uneven and encroached footpaths along both sides of this named stretch force pedestrians onto the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f0cc1575-cff4-4d63-88b8-35716575f788",
+    "id": "c556a18a-5c9d-5473-a798-02db9f9b06e7",
     "lat": 13.10636,
     "lng": 80.2318676,
     "weight": 2.0,
@@ -1293,10 +1293,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Semmbiam area, MTC bus route 242 toward Shenoy Nagar: 2026 police-report-based article: woman was allegedly harassed and threatened on MTC route 242 in the Semmbiam area. Incident-level seed; not a claim that the whole route is unsafe.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "505a9fe9-269f-4999-90cc-de21dbf94272",
+    "id": "4052be58-94d2-5bd5-8f69-aa520b18f3e9",
     "lat": 13.0506648,
     "lng": 80.209741,
     "weight": 2.0,
@@ -1305,10 +1305,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Avichi School bus stop, Vadapalani: 2025 report: a group boarded Route 26 near Avichi School bus stop and verbally abused female passengers with derogatory remarks.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "2047d10c-5e06-4fa2-925c-b1796e39059c",
+    "id": "d6d71288-c5a2-593f-93e7-9ef9c92dbd85",
     "lat": 13.0344951,
     "lng": 80.2023655,
     "weight": 2.0,
@@ -1317,10 +1317,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "KK Nagar, MTC bus route 70V: 2026 police-report-based article: nursing student reported alleged sexual harassment and death threats on an MTC route in KK Nagar.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "98059616-1826-4697-b907-d2c449679081",
+    "id": "1f2c2510-c7ea-5e16-9f65-382afc2172d2",
     "lat": 13.1225296,
     "lng": 80.2881059,
     "weight": 2.0,
@@ -1329,10 +1329,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Maharani Theatre bus stop, Tiruvottiyur High Road: 2026 report: parked vehicles block the designated bus stop, forcing buses to stop away from the stop and passengers to board/alight in traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "79f2c66a-2b49-40d9-97df-d6064a1871df",
+    "id": "62e6d0aa-a417-5070-a7a8-322efc7e5099",
     "lat": 13.0443766,
     "lng": 80.2493844,
     "weight": 2.0,
@@ -1341,10 +1341,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ellaiamman Colony, Teynampet: 2026 Madras High Court case specifically identifies road/footpath encroachments at Ellaiamman Colony and ordered GCC/CMDA/police action. Area/street-level seed; source does not identify a single numbered street",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cd6ada78-a11d-457b-b745-5fc614c8d1dc",
+    "id": "0b970827-d251-51bc-bd4b-d4ed3804ed87",
     "lat": 13.0309019,
     "lng": 80.255838,
     "weight": 2.0,
@@ -1353,10 +1353,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "CIT Colony interior streets, Mylapore: 2026 report: pavements that had not been properly repaired for about 15 years were broken/uneven and encroached by debris and parked vehicles.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "851ed000-ec40-42b4-9306-6bf01f4fe8b8",
+    "id": "b35271e2-d73d-56fd-89a8-8533cc4250c4",
     "lat": 13.1647503,
     "lng": 80.2106629,
     "weight": 2.0,
@@ -1365,10 +1365,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kamarajar Salai, Manjambakkam: 2026 report: multiple storm-water-drain manholes remained open for more than four months along a busy road carrying heavy vehicles.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7b2b9806-c005-44ec-b3db-0a59452be7c3",
+    "id": "3e1b49e3-ed28-55e2-b4d4-c1d3a98a1087",
     "lat": 12.9617319,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -1377,10 +1377,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "OMR service road near World Trade Centre Chennai, Perungudi: 2026 report: uncovered storm-water-drain manhole and sewage overflow created a major hazard for motorists and pedestrians using the service road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "23a08dc1-3673-496f-a299-7a6309cf062b",
+    "id": "d2901b06-c5c9-55b7-9be0-cb4bbb995abc",
     "lat": 13.0326985,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -1389,10 +1389,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Lake View Road, West Mambalam: 2026 report: slow storm-water-drain construction with inadequate safety measures created hazards for motorists and two-wheeler riders.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "61eea278-3ed2-445f-affa-e03feae9e443",
+    "id": "dbbc05f2-a80d-582b-ab82-5e8a9d85defc",
     "lat": 13.0614445,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -1401,10 +1401,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "100 Feet Jawaharlal Nehru Road, Koyambedu\u2013Ashok Nagar: 2026 report: damaged paving blocks, uneven surfaces, potholes and construction debris made footpaths unusable on multiple stretches.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c8865e5c-7fc9-4642-a01e-12ee3cef3703",
+    "id": "41fe62b8-e954-5bab-89ef-50064f22f70a",
     "lat": 13.0623428,
     "lng": 80.224492,
     "weight": 2.0,
@@ -1413,10 +1413,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "West Namasivaya Bridge, Choolaimedu: 2026 report: garbage dumping, illegal parking and poor maintenance obstruct the pedestrian walkway, forcing people toward the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "57a16bb0-421a-445f-b6b3-51b985e29ff9",
+    "id": "be9fa291-56d2-55df-9019-251eece560f0",
     "lat": 13.120733,
     "lng": 80.2180385,
     "weight": 2.0,
@@ -1425,10 +1425,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Poompuhar Nagar 1st Main Road, Kolathur: 2026 report: approximately 600 m of the road has heavily encroached footpaths, leaving little walking space.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d2bea0cb-2e12-496d-9591-5295b22b71a5",
+    "id": "1b634142-5be9-5549-b791-9106402f8620",
     "lat": 13.0722242,
     "lng": 80.2632135,
     "weight": 2.0,
@@ -1437,10 +1437,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pantheon Road near Amma Unavagam: 2025 report: damaged Corporation dustbins and illegal parking block the footpath, forcing pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4b646e0f-25b4-4de1-a4ad-add506d0f1c8",
+    "id": "fe22c57c-ec1e-52fe-865b-2ae712b46df6",
     "lat": 13.1027668,
     "lng": 80.1553465,
     "weight": 2.0,
@@ -1449,10 +1449,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ambattur-Vanagaram Road near Athipet: 2026 report: battered stretch near Athipet has potholes, damaged manholes and uneven surfaces; pedestrians and schoolchildren face hazardous conditions.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4f71f1fd-9ddf-48e8-8f13-769b05de2e60",
+    "id": "4c2fa9e8-97f7-5c5d-8edd-5ba4958d8666",
     "lat": 13.1881064,
     "lng": 80.2696671,
     "weight": 2.0,
@@ -1461,10 +1461,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Manali New Town Phase 1: 2026 report: container-trailer lorries reportedly move through residential streets at unsafe speeds; three accidents were reported in one month.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "11ba417a-10da-4335-bc35-8215327a5d95",
+    "id": "45cd73fa-2415-5b3b-8b3c-059166217767",
     "lat": 13.189903,
     "lng": 80.2742768,
     "weight": 2.0,
@@ -1473,10 +1473,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Manali New Town Phase 2: 2026 report: heavy container traffic through residential areas was reported as a public-safety risk, particularly for students.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d9c7bfef-5968-4307-b63a-5f366e17f04b",
+    "id": "5fafc877-8432-5d91-9ab1-2f320157536e",
     "lat": 13.1863097,
     "lng": 80.2761207,
     "weight": 2.0,
@@ -1485,10 +1485,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dwaraka Nagar, Manali New Town: 2026 report: container-trailer movement and informal truck parking were reported as safety hazards in this residential stretch.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "122d4e30-cb8f-4718-ba24-e22d64ed04d0",
+    "id": "e3361537-f0a5-5810-a4bd-9e36cd64ad7c",
     "lat": 13.161157,
     "lng": 80.2604477,
     "weight": 2.0,
@@ -1497,10 +1497,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kadumbadi Amman Koil Street, Selaivayal, Kodungaiyur: 2026 report: narrow road affected by delayed storm-water-drain works; GCC and traffic police converted the road to one-way to reduce congestion and accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cd7b7413-8acf-4766-a783-6e5af66e4e0e",
+    "id": "0c65623d-b2c4-5caa-a0f9-1df19274ea50",
     "lat": 13.109055,
     "lng": 80.255838,
     "weight": 2.0,
@@ -1509,10 +1509,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "AA Road, Vyasarpadi commercial stretch: 2026 report: vehicles continue to mount the pavement outside commercial stretches, obstructing pedestrian space.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "280c6a75-7aa1-42be-9413-886fc287b26d",
+    "id": "b75a0437-a65e-5788-987d-de391f084a83",
     "lat": 13.109055,
     "lng": 80.2521503,
     "weight": 2.0,
@@ -1521,10 +1521,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Ambedkar College Road, Jamalia Nagar: 2026 report: broken and removed pavement blocks have left the walkway difficult to use.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3ebf0214-e1da-43f7-9768-d98dda1b716a",
+    "id": "c6053f3c-e9a1-5913-8178-befa0f593063",
     "lat": 13.0596479,
     "lng": 80.2521503,
     "weight": 2.0,
@@ -1533,10 +1533,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Greams Road near Shafee Muhammad Road junction: 2026 report: garbage and sludge spread onto the pavement along a busy pedestrian stretch near the junction, obstructing walking space.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "16f1702e-68e4-418f-84fe-c4c95987e9d8",
+    "id": "fe9806f8-1f34-522d-a955-99bd3c397220",
     "lat": 13.1548688,
     "lng": 80.1968338,
     "weight": 2.0,
@@ -1545,10 +1545,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Redhills-Tiruvallur Highway opposite Bethal Church: 2026 report: approximately 1 km section was described as accident-prone; multiple damaged points and recent crashes were reported.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "68252848-e318-45d8-8974-773a70cbdfc9",
+    "id": "e5ca209a-aeff-5069-a7db-2c72ad6f0f49",
     "lat": 13.161157,
     "lng": 80.2613697,
     "weight": 2.0,
@@ -1557,10 +1557,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Selaivayal, Kodungaiyur SWD-work stretch: 2026 report: delayed storm-water-drain work caused traffic chaos and prompted traffic restrictions to reduce accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "860952f3-f89d-4b38-be02-6d1bcbc2aed3",
+    "id": "7f9e3e78-4c64-563a-bd7d-f99e1abd5179",
     "lat": 13.0344951,
     "lng": 80.2023655,
     "weight": 2.0,
@@ -1569,10 +1569,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Anna Main Road, KK Nagar: 2026 report: non-functional streetlights and unmarked speed breakers on a busy road were reported as increasing accident risk, particularly at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "91ff50d4-b56b-40bc-93df-afd7952ddaa4",
+    "id": "cda15cdb-3449-5a97-9845-6731c3a4f1af",
     "lat": 12.9868847,
     "lng": 80.2493844,
     "weight": 2.0,
@@ -1581,10 +1581,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Tidel Park U-turn flyover, Tiruvanmiyur: 2026 report: non-functional streetlights left the U-turn flyover in darkness at night; sharp turns and poor visibility increased accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "40bccc47-7853-4bbf-ba5d-fdb17f3a16ca",
+    "id": "488d489b-d48f-544d-8b0f-5a7d0457039e",
     "lat": 12.9311894,
     "lng": 80.2300237,
     "weight": 2.0,
@@ -1593,10 +1593,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Eswaran Koil Street / Kannagi Nagar Main Road, Thoraipakkam: 2026 report: road cracked within a month after relaying and became accident-prone amid heavy-vehicle traffic and unfinished storm-water-drain work.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9f4b8f0d-7ffd-4ece-8794-ebe761aa87d2",
+    "id": "fff10bd6-4bbf-5609-84fa-139863ceff23",
     "lat": 13.1117499,
     "lng": 80.1848486,
     "weight": 2.0,
@@ -1605,10 +1605,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Palla Street, Agraharam, Korattur: 2026 report: approximately 1 km stretch had potholes, uneven surface and sunken silt catch pits; a resident reported a fall and fracture.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "05546f9e-09f2-4a42-8959-8d8edc3487af",
+    "id": "c173d7cc-ce08-5710-a54e-ef576ddb486a",
     "lat": 13.146784,
     "lng": 80.2318676,
     "weight": 2.0,
@@ -1617,10 +1617,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thattankulam Road, Madhavaram: 2026 report: road remained pothole-ridden for months, with loose gravel and inadequate street lighting increasing accident risk, especially for two-wheelers.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "066cbe36-a2b1-4527-a935-3d3934e15281",
+    "id": "ac4302b8-cb65-5c02-b8b7-cfb49b6b5076",
     "lat": 13.0776141,
     "lng": 80.2208043,
     "weight": 2.0,
@@ -1629,10 +1629,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Poonamallee High Road near Shenoy Nagar traffic signal: 2025 report: sunken manhole in the middle of the busy arterial road created a serious hazard; sewage splashing and sudden braking were also reported.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6c3795f9-00ad-4b6c-bed8-e82f8aad4110",
+    "id": "ff4e751c-07af-52ab-8f69-68cbdaaa8b36",
     "lat": 13.0713259,
     "lng": 80.240165,
     "weight": 2.0,
@@ -1641,10 +1641,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ormes Road, Kilpauk: 2026 report: routine wrong-side driving forces oncoming vehicles to brake/swerve; schoolchildren and pedestrians are present on the stretch.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5492c512-e5a3-4ed6-b350-6ab1fac42054",
+    "id": "4fb80527-06ca-5356-8bf6-c0c910660861",
     "lat": 13.1000719,
     "lng": 80.2208043,
     "weight": 2.0,
@@ -1653,10 +1653,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Constable Road, Ayanavaram\u2013Villivakkam: 2026 report: damaged three-kilometre stretch, concealed potholes and skidding/wobbling were associated with accidents, especially at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3bd78fcd-737a-4d0f-a753-7467c3d08f78",
+    "id": "f6bd72d6-227c-502d-bc40-674f13c7afae",
     "lat": 13.0201222,
     "lng": 80.1986777,
     "weight": 2.0,
@@ -1665,10 +1665,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "100 Feet Road near Kalaimagal Nagar bus stop, Ekkattuthangal: 2026 report: poorly restored pipeline trench left loose gravel and dust on the road; a two-wheeler rider reportedly skidded and fell.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3d8dfb2c-3493-4bd2-b590-8d3a4c70129e",
+    "id": "15334fde-2715-5da4-ade6-c6b0b3f87f4d",
     "lat": 13.0785124,
     "lng": 80.225414,
     "weight": 2.0,
@@ -1677,10 +1677,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ayyavoo Second Lane, Shenoy Nagar: 2025 report: cattle tied/roaming at the entrance to a dead-end lane obstructed pedestrians and traffic; residents reported road mess and night-time obstruction.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7a0d1ed5-c792-47a2-a1dc-6458af9d08f6",
+    "id": "1dfab03d-255c-57d7-8012-0e569f9c8c4e",
     "lat": 13.0578512,
     "lng": 80.2235701,
     "weight": 2.0,
@@ -1689,10 +1689,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thiruvengadapuram Main Road, Choolaimedu: 2026 report: road was relaid without milling the old surface, leaving an unnaturally elevated and uneven stretch that was already crumbling.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cdeb34f5-58f3-4394-b49e-281ce2c2d9d4",
+    "id": "7f5112fc-34c4-5de2-b3d6-45e8e6e4d927",
     "lat": 13.0587496,
     "lng": 80.2226482,
     "weight": 2.0,
@@ -1701,10 +1701,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ameerjan Street, Choolaimedu: 2026 report: road was among four Choolaimedu roads rapidly relaid without milling, leaving uneven levels and crumbling surfaces.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4ee9111e-ea74-44b2-8e15-a8eb5625dc60",
+    "id": "72ee164d-cf57-5298-b921-3d987712fb32",
     "lat": 13.0587496,
     "lng": 80.2217262,
     "weight": 2.0,
@@ -1713,10 +1713,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Abdullah Street, Choolaimedu: 2026 report: road was among the Choolaimedu stretches relaid without milling, creating uneven road levels and safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "72fc50ba-ee92-4f94-9537-01247077919f",
+    "id": "8e9dc93b-d176-509e-af4f-5cab789a026d",
     "lat": 13.0596479,
     "lng": 80.2208043,
     "weight": 2.0,
@@ -1725,10 +1725,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Khan Street, Choolaimedu: 2026 report: rapid relaying without milling left the surface elevated/uneven and beginning to crumble.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a4f2eb18-a5ce-4504-a3c0-d8f71422b738",
+    "id": "bee36caf-6099-55ab-8a5f-b437aabaa1d4",
     "lat": 13.0731225,
     "lng": 80.2604477,
     "weight": 2.0,
@@ -1737,10 +1737,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Halls Road, Egmore: 2025 report: uneven drains and inadequate streetlights leave portions of Halls Road poorly illuminated and difficult to navigate, especially in rain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4dc6424a-c134-4e91-b4ee-ab5ae647620a",
+    "id": "8ca88158-6787-5e9f-92b0-62cdca35df90",
     "lat": 13.0722242,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -1749,10 +1749,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Razzak Garden Main Road, MMDA Colony, Arumbakkam: 2026 report: MMDA Petrol Bunk bus shelter had a missing roof and unusably high seats, leaving commuters exposed and raising safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "731e36e8-f65e-4777-b409-44ebc21fdc38",
+    "id": "6a2a6170-9f56-561d-9e06-69390b15ae76",
     "lat": 13.0722242,
     "lng": 80.2042094,
     "weight": 2.0,
@@ -1761,10 +1761,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "MMDA Colony Main Road / Vinayakapuram Main Road junction, Arumbakkam: 2026 report: banners were tied to view cutters and footpaths at the junction and around the MMDA bus stop, obstructing pedestrian space and visibility.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "78face24-91c5-4782-bf46-ae6ed71b47a5",
+    "id": "e43f61b8-bb3e-5d57-9776-b7ef363037f8",
     "lat": 13.109055,
     "lng": 80.2484625,
     "weight": 2.0,
@@ -1773,10 +1773,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur High Road near Perambur Railway Station: 2026 report: Metro construction narrowed the carriageway and barricades restricted vehicle movement; congestion affected the bus-stop/railway-station area.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "851d5bdc-fce6-4afe-a232-a4af20d8c92b",
+    "id": "1b5ff94f-ccf7-57ff-9cf3-093c42a3c974",
     "lat": 13.109055,
     "lng": 80.2475406,
     "weight": 2.0,
@@ -1785,10 +1785,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur Railway Station approach footpath: 2026 report: shop extensions, advertisement boards and displayed goods blocked the footpaths between the railway station and a busy bus stop.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8ec4b462-04f9-45d8-bc0b-ee4218c1f97f",
+    "id": "71acf848-3580-5c36-a3a0-d27c1cb33cf6",
     "lat": 13.080309,
     "lng": 80.2392431,
     "weight": 2.0,
@@ -1797,10 +1797,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kilpauk Garden Road: 2026 report specifically cites stretches near hospitals and schools including Kilpauk Garden Road among roads affected by potholes, utility cuts and delayed relaying.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a7c6b2c9-54ca-43b8-a065-9be0d6432c76",
+    "id": "1a436e54-cb40-5482-92d3-a27ae4e5c816",
     "lat": 13.0309019,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -1809,10 +1809,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "MRC Nagar Main Road, RA Puram: 2026 Madras High Court petition: illegal parking, vendors and encroachments obstructed the road/footpath, reducing a narrow residential road to effectively one lane and creating safety/access problems.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7b8365bc-9354-4a19-85ac-729775ef254d",
+    "id": "e7b69b52-2a13-5f5c-ad32-d8ef3ee89c75",
     "lat": 13.028207,
     "lng": 80.2678232,
     "weight": 2.0,
@@ -1821,10 +1821,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "South Beach Avenue, RA Puram: 2026 High Court petition specifically names this street among MRC Nagar-area roads affected by obstruction, encroachment, parking and sanitation issues.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d7df33ae-d4b5-4243-bd86-64276dac3872",
+    "id": "f50243ca-d7b6-5ec4-85d8-a6d9889f2ca9",
     "lat": 13.0291053,
     "lng": 80.2687452,
     "weight": 2.0,
@@ -1833,10 +1833,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Janaki Avenue, RA Puram: 2026 High Court petition specifically names this street among roads affected by persistent obstruction, parking and pavement encroachment.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e75e93cd-99c0-4134-9dec-de51c9bf5e4c",
+    "id": "251c77a8-fff4-5927-bb67-60f59a152b56",
     "lat": 13.0291053,
     "lng": 80.2696671,
     "weight": 2.0,
@@ -1845,10 +1845,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kasthuri Avenue, RA Puram: 2026 High Court petition specifically names this street among roads affected by illegal parking, vendors and encroachments.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "deb4a10d-48ea-453e-923c-ca9747a0945e",
+    "id": "efcc0aa0-e2ed-5c36-8f1a-fd81646e235c",
     "lat": 13.0300036,
     "lng": 80.2687452,
     "weight": 2.0,
@@ -1857,10 +1857,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thandavarayan Street, RA Puram: 2026 High Court petition: narrow road obstructed by parking/vendors; residents said congestion made ambulance access difficult.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5eff4cb8-6ea7-4712-8654-c12f2d565f60",
+    "id": "c8b007a9-ac61-58f5-aec8-d1b1dfba36d6",
     "lat": 13.1135465,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -1869,10 +1869,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vyasarpadi Cooperative Industrial Estate internal roads: 2026 report: internal roads are severely damaged and largely unlaid, with heavy vehicles, sewage overflow and industrial waste making movement difficult.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b3eb3051-60cd-4e1e-a7ef-65aa1377a1b6",
+    "id": "81651c12-83f4-55b2-bedf-cbf6f836c0de",
     "lat": 13.1135465,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -1881,10 +1881,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vyasarpadi Cooperative Industrial Estate: 2026 report: adequate street lighting is almost non-existent; workers reported the premises become dark after 6:30 pm and specifically raised women's safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1e0e3807-84b1-4ac1-bdfc-b5879bf918bd",
+    "id": "5580658e-20e5-579f-8096-568f733a3e3d",
     "lat": 13.0066475,
     "lng": 80.2383212,
     "weight": 2.0,
@@ -1893,10 +1893,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sardar Patel Road near CLRI: Documented pedestrian hazard: footpath near CLRI was only about 10 inches wide, forcing pedestrians onto the busy road. Older source; retain only as historical infrastructure evidence.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "07dba983-8ad0-4db0-9eac-50ef19a94150",
+    "id": "6370e16e-ca3b-5f04-898b-13f981a84bad",
     "lat": 13.0776141,
     "lng": 80.255838,
     "weight": 2.0,
@@ -1905,10 +1905,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Taylors Road / EVR Periyar Salai junction: 2026 GCC junction-safety programme specifically includes this junction for bell-mouth improvement intended to improve turning, congestion and pedestrian crossing safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "434d68c6-db94-4754-91bb-7c25a1381adb",
+    "id": "adddffb0-e43f-50a5-9de3-c61693e56d7f",
     "lat": 13.080309,
     "lng": 80.2539941,
     "weight": 2.0,
@@ -1917,10 +1917,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Flowers Road / EVR Periyar Salai junction: 2026 GCC junction-safety programme specifically includes this junction; works are intended to improve traffic movement and pedestrian crossing safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "18e00794-56fd-4715-bc25-13c689c1868b",
+    "id": "f183bfb0-b4cc-5f88-92a5-eec59b53cebb",
     "lat": 13.1216313,
     "lng": 80.2779646,
     "weight": 2.0,
@@ -1929,10 +1929,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chigirintha Palayam 3rd Street, Korukkupet: 2026 report: temporary exposed electricity cables run across the footpath/road; residents, schoolchildren, women and senior citizens use the stretch.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1b74d39c-421d-4d3a-80e6-fb3e1c4b7799",
+    "id": "76cc034e-8cb7-5c5e-bf39-45a34750a34f",
     "lat": 13.1225296,
     "lng": 80.2788865,
     "weight": 2.0,
@@ -1941,10 +1941,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chigirintha Palayam 4th Street, Korukkupet: 2026 report: temporary exposed electricity cables were laid openly across pedestrian/road space, creating a safety risk especially during rain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "820703b2-81f3-4644-897a-726f42b73ff9",
+    "id": "5250a753-b827-5a0b-9562-ca3131ee524a",
     "lat": 13.123428,
     "lng": 80.2788865,
     "weight": 2.0,
@@ -1953,10 +1953,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chigirintha Palayam 5th Street, Korukkupet: 2026 report: exposed temporary EB cables cross the footpath/road and force pedestrians to move carefully around them.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "49cac700-2ff3-4d9e-aa32-8115ad537447",
+    "id": "ceddd263-f00e-53c9-8683-0bcd1b26da25",
     "lat": 13.0632411,
     "lng": 80.2816524,
     "weight": 2.0,
@@ -1965,10 +1965,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Bells Road bus stop, Chepauk: 2026 report: parked two-wheelers and autos force buses to stop away from the bus bay, making passengers board/alight unsafely.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "17a2571a-3dff-4f27-aaa8-44cd369cd0de",
+    "id": "2f9b41c3-2907-5228-86ee-00e7680f2c04",
     "lat": 13.0883938,
     "lng": 80.2115849,
     "weight": 2.0,
@@ -1977,10 +1977,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "14th MTC bus stop, Anna Nagar 3rd Avenue East: 2026 report: two-wheelers parked outside an Aadhaar centre block the bus bay, forcing buses to halt on the main carriageway and passengers to board there.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "61b09623-773e-46b3-a138-9e061a5e5544",
+    "id": "23dfaa9f-03b9-5f3f-bd49-7c0ffa999923",
     "lat": 13.109055,
     "lng": 80.2484625,
     "weight": 2.0,
@@ -1989,10 +1989,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Madhavaram High Road near Perambur Railway Station: 2026 report: shop extensions, advertising boards and displayed goods blocked footpaths on the busy railway-station/bus-stop connection.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "66f6d3fb-6474-493c-aaca-aebd51743502",
+    "id": "e6b356a3-41b4-516f-86a8-94a0614eeed0",
     "lat": 12.9635286,
     "lng": 80.2060532,
     "weight": 2.0,
@@ -2001,10 +2001,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rajalakshmi Nagar 3rd Street, Pallikaranai: 2026 report: construction debris was covered with gravel instead of being removed, raising the street level and obstructing natural drainage, increasing monsoon waterlogging risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4e1dc848-740b-4b9b-aeae-50e4875ed4e6",
+    "id": "ddcd218f-494b-5409-9408-5bb9332e74db",
     "lat": 13.0057492,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -2013,10 +2013,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Race Course Road, Guindy: 2026 road-safety programme identifies the corridor as part of Chennai's accident-prone/high-risk network subject to safety improvements; corridor-level seed, not a single blackspot.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "785a82dd-4d3f-4fbd-b983-21c0aecd4d7e",
+    "id": "905ff4c9-9e52-5511-bda3-9c46601d09db",
     "lat": 12.9787999,
     "lng": 80.2180385,
     "weight": 2.0,
@@ -2025,10 +2025,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Velachery Bypass Road (SH48C): 2026 road-safety programme identifies this corridor for safety upgrades after road-safety audits and crash-data analysis found high-risk/blackspot-prone stretches.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e2491e2e-2f82-408b-b357-407fbd0148db",
+    "id": "31a46bd0-2112-5a3c-a416-6a8e056e1a81",
     "lat": 12.9913762,
     "lng": 80.2373992,
     "weight": 2.0,
@@ -2037,10 +2037,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Taramani Link Road (SH48B): 2026 road-safety programme identifies this corridor for safety upgrades after audits/crash-data analysis found high-risk stretches and pedestrian-infrastructure issues.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a9cafeed-ddce-4ab8-8ddf-7807683c727b",
+    "id": "c44f464a-ec44-5010-bf72-0d5dd3f86b0a",
     "lat": 13.0650377,
     "lng": 80.2604477,
     "weight": 2.0,
@@ -2049,10 +2049,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Anna Salai subway opposite Higginbothams: 2026 report: only about 6 of roughly 24 lights were working; leaking walls, stagnant water and a loose drainage cover also created pedestrian hazards.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ff6725c5-15fe-4d00-ab35-fbc6866715d5",
+    "id": "f181f4b3-3ee0-57dd-a8c9-0552ba2c4613",
     "lat": 13.0533597,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2061,10 +2061,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Ameer Mahal bus stop, Royapettah: 2026 report: vehicles parked near the bus stop create inconvenience and constrain commuter access.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "57cbf188-5ddb-4857-9a35-5bde0dd0cfa0",
+    "id": "885e3f31-2f52-5030-90bb-d88d0de60f17",
     "lat": 13.1189364,
     "lng": 80.1664098,
     "weight": 2.0,
@@ -2073,10 +2073,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Balaji Nagar bus stop, Kallikuppam, Ambattur: 2025 report: two-wheelers routinely park in front of the bus stop, obstructing commuters and bus-stop access.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3df940c1-a8be-455c-90ce-a364fee2b6b5",
+    "id": "758c5c75-0a7a-5bff-80d4-508b971c7bbe",
     "lat": 13.0533597,
     "lng": 80.1922241,
     "weight": 2.0,
@@ -2085,10 +2085,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Virugambakkam bus stop: 2026 report: open/uncovered bus stops force commuters to wait in the open; inadequate shelter is a documented stop-level problem.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "75a0ef61-da48-4da4-a098-c757bb720fcd",
+    "id": "53376076-8c40-56d2-9f31-43d0b4651b6d",
     "lat": 13.0874955,
     "lng": 80.2549161,
     "weight": 2.0,
@@ -2097,10 +2097,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Pattalam bus shelter: 2026 report: damaged bus shelter provides poor protection for commuters and was reported as a public concern.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7b1c809a-6196-4e14-a05a-ba885aa3f02c",
+    "id": "bc168fd9-51c9-5dbb-a9f3-e90d2e930d16",
     "lat": 13.0353935,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -2109,10 +2109,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Thiruvalluvar Statue bus stop, Mylapore: 2026 report: temporary shelter accommodates fewer than 10 people while this high-use stop receives a bus roughly every two minutes, leaving many commuters exposed.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "03379853-e418-4168-8e07-15a0cd8d9618",
+    "id": "dd7a0e89-5b61-5ce1-9f22-359f8c3b96ed",
     "lat": 12.9976644,
     "lng": 80.2005216,
     "weight": 2.0,
@@ -2121,10 +2121,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Asar Khana bus stop, Alandur: 2026 report: bus-stop shelter was removed during road widening and no temporary replacement was provided; commuters were forced to wait on the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a970959d-cf5a-49d0-95db-c70300f7337f",
+    "id": "3bd92f4e-0564-507e-85ee-38354ca56a9b",
     "lat": 13.0057492,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -2133,10 +2133,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Race Course Road bus stop, Guindy: 2026 report: stop lacked seating, drinking water and CCTV; lighting was non-functional at night and buses often stopped away from the designated point.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "70232206-fcb0-4f5b-8c3d-5cf1d89758d5",
+    "id": "551bdbce-b88c-56e3-9803-48a8899b99f9",
     "lat": 13.0821056,
     "lng": 80.2844182,
     "weight": 2.0,
@@ -2145,10 +2145,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "NSC Bose Road outside Madras High Court: 2026 report: extensive advocate parking and barricades consumed lanes, pushing pedestrians onto the carriageway and severely restricting traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "53da388a-a6bb-491e-8603-6dfbee814842",
+    "id": "f880f335-3b13-57ab-bee7-efa3f03fd31d",
     "lat": 13.0039526,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2157,10 +2157,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Besant Avenue Road, Adyar health-walk track near Karpagam Garden police booth: 2026 report: parked vehicles completely blocked the footpath near the police booth; walkers repeatedly switched sides or used the road because of encroachments.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "91d57006-e804-4a4b-bf15-28d856eeceab",
+    "id": "b16217b7-2bef-58c3-8927-6ddb83bc5ff0",
     "lat": 12.9886813,
     "lng": 80.2539941,
     "weight": 2.0,
@@ -2169,10 +2169,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "West Avenue Road, Thiruvanmiyur, near OMR approach: 2026 report: underground cable work left debris and barricades occupying the pavement, forcing pedestrians onto the roughly 1.5-lane road; minor trips/falls were reported.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9ff7d996-4943-4ee5-8a93-24cf679fa2f4",
+    "id": "c4ac0f81-7052-51fe-bf1b-8b0c35130f8d",
     "lat": 12.9689184,
     "lng": 80.2042094,
     "weight": 2.0,
@@ -2181,10 +2181,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "200 Feet Radial Road service lanes, Pallavaram\u2013Thoraipakkam section within Chennai: 2026 report: service lanes had water-filled craters and unrepaired surfaces; the main carriageway also had potholes near the Velachery Main Road junction. R",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "20c79188-6582-49e4-a895-f746f4890ad5",
+    "id": "506db132-7ee8-5897-bc0e-f96fb6450fd9",
     "lat": 12.9752066,
     "lng": 80.2115849,
     "weight": 2.0,
@@ -2193,10 +2193,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Velachery Main Road junction, 200 Feet Radial Road: 2026 report: potholes were specifically reported near the Velachery Main Road junction on the Radial Road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d405ac92-ded3-4bf3-991f-7d3680787f4e",
+    "id": "7895fafb-3082-5c4a-ac20-7243f3d938d9",
     "lat": 13.080309,
     "lng": 80.2521503,
     "weight": 2.0,
@@ -2205,10 +2205,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "New Avadi Road / EVR Periyar Salai junction: 2026 GCC programme specifically includes this junction for bell-mouth improvement; project rationale includes safer pedestrian crossing spaces and reduced congestion.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ab748219-6bbb-46f6-97e7-0aa4455b97d7",
+    "id": "43c6b6a0-f959-5195-8a2b-1112d0142e45",
     "lat": 13.0812073,
     "lng": 80.2512283,
     "weight": 2.0,
@@ -2217,10 +2217,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vasu Street / EVR Periyar Salai junction: 2026 GCC programme specifically includes this junction for bell-mouth improvement and pedestrian-safety upgrades.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "66afefba-7e89-45c0-bcff-f937f3082d46",
+    "id": "51013096-1a78-5277-a3fa-8f4be492b59a",
     "lat": 13.0812073,
     "lng": 80.2503064,
     "weight": 2.0,
@@ -2229,10 +2229,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Alagappa Road / EVR Periyar Salai junction: 2026 GCC programme specifically includes this junction for bell-mouth improvement and safer pedestrian crossing spaces.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3f925779-b919-482b-9459-9f1a8ebfa28c",
+    "id": "30320734-712d-5626-953c-6ffae2edc710",
     "lat": 13.0821056,
     "lng": 80.2493844,
     "weight": 2.0,
@@ -2241,10 +2241,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Nair Road / EVR Periyar Salai junction: 2026 GCC programme specifically includes this junction for bell-mouth improvement and pedestrian-safety improvements.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "08179895-80cd-4ff9-b0b0-9f4f0e45e1eb",
+    "id": "87194d31-4946-54a7-937c-51d280f7e22e",
     "lat": 13.0758175,
     "lng": 80.2595258,
     "weight": 2.0,
@@ -2253,10 +2253,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gengu Reddy Subway Road / EVR Periyar Salai junction: 2026 GCC programme specifically includes this junction for bell-mouth improvement intended to improve traffic flow and pedestrian crossing safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e8aac6bc-17a9-4e27-8519-626a41bad8f0",
+    "id": "45ede5b0-427e-5b1a-b0d6-33c1ab147d75",
     "lat": 13.0416816,
     "lng": 80.2346334,
     "weight": 2.0,
@@ -2265,10 +2265,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sir Thyagaraya Road near Pondy Bazaar: 2026 report: damaged manhole cover with protruding iron rods remained in the middle of the road for months; poor cable-work patching was also reported along the stretch.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c97c3e2f-28fc-4d9a-8745-1a33c97e60ed",
+    "id": "5033b4e9-21f3-5ea1-8d70-38c3c3cbd04d",
     "lat": 13.0326985,
     "lng": 80.2189604,
     "weight": 2.0,
@@ -2277,10 +2277,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ellaiamman Kovil Street, West Mambalam: 2026 report: manhole and rainwater intake points were below road level after SWD work; riders reportedly lose balance and fall frequently.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7fc33cbd-2f43-42f4-84a9-17c77cca460b",
+    "id": "b546d927-3274-5428-aad7-2f068b2d8390",
     "lat": 12.9392742,
     "lng": 80.2327895,
     "weight": 2.0,
@@ -2289,10 +2289,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pillaiyar Koil Street, SBI Colony, Thoraipakkam: 2025 report: damaged, almost-open manhole cover remained unrepaired for more than a week and was only marked with a branch to warn commuters.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f28e7e7d-8964-4119-82ad-4acb547a190b",
+    "id": "a8fd9a89-7f56-519c-843b-d8ebfa31469b",
     "lat": 13.0335968,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -2301,10 +2301,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kavarai Street, West Mambalam: 2025 report: damaged/open manhole, slush and water-pipeline leakage created a serious hazard for motorists and pedestrians, especially during rain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8d903fb8-3e2d-453a-8a84-f6954bf78f6c",
+    "id": "c68c6918-6487-5dc8-8c5a-1d07244cde42",
     "lat": 13.0318002,
     "lng": 80.2420089,
     "weight": 2.0,
@@ -2313,10 +2313,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nandanam near Government Arts College footpath: 2025 accessibility report: debris, encroachments, poles and vendors obstruct the footpath; a heavily used route to Government Arts College was difficult for pedestrians and visually impaired u",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8a5b03f8-649f-4fc8-8e0d-0bcb300ba819",
+    "id": "9ad5226a-cf60-5060-b2c9-6ad70335934b",
     "lat": 13.0614445,
     "lng": 80.2807304,
     "weight": 2.0,
@@ -2325,10 +2325,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chepauk near New State Guest House footpath: 2025 report: police barricades stored on footpaths near the New State Guest House force pedestrians onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f227dcc1-bdf7-4c3e-8561-3b0fc520fac9",
+    "id": "7fff7f4c-5219-50cf-a5e6-16be4a7d8941",
     "lat": 13.0722242,
     "lng": 80.2189604,
     "weight": 2.0,
@@ -2337,10 +2337,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "NSK Nagar 4th Street, Aminjikarai: 2026 police report documents a knifepoint residential robbery on NSK Nagar 4th Street. Incident-level seed only; it does not establish that the entire street has a high robbery rate.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "2eee4adc-ced2-43fd-8e9c-6ab3c628e65b",
+    "id": "c68b3cb0-99ad-50e8-91b1-cf11a8718217",
     "lat": 13.0461732,
     "lng": 80.2613697,
     "weight": 2.0,
@@ -2349,10 +2349,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Radhakrishnan Salai / Royapettah High Road junction, Mylapore: 2026 report: a 4-ft section of road caved in at this junction due to a damaged storm-water drain; it was the third cave-in at the same spot.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3ebbba8b-004f-4f3f-a8c6-19732eedf643",
+    "id": "cfb8a036-6368-5e46-be28-0a2fb6c06431",
     "lat": 13.1189364,
     "lng": 80.2917937,
     "weight": 2.0,
@@ -2361,10 +2361,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kalmandapam near marriage hall, Royapuram: 2026 report: a large political cut-out/hoarding placed on the footpath near a marriage hall blocked pedestrian access and raised concern that it could fall.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bab73a20-d662-4226-8a8a-3bca8c6e36fb",
+    "id": "ac416ce0-a101-59b7-99fa-0b8c0465ee46",
     "lat": 13.0156306,
     "lng": 80.2355553,
     "weight": 2.0,
@@ -2373,10 +2373,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gandhi Mandapam Road, Anna University\u2013Adyar stretch: 2025 report: pedestrian walkways were reduced to nearly half their previous width during road-extension works, forcing some pedestrians to use the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a4977cf2-5919-48ff-b6c3-d3070bb850df",
+    "id": "7f4135a6-282d-58fc-9bbc-bc8fa0d886ea",
     "lat": 13.1162415,
     "lng": 80.2917937,
     "weight": 2.0,
@@ -2385,10 +2385,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Suriya Narayanan Chetty Street, Royapuram: 2025 report: civic works left the road dug up, muddy and dusty; uneven road conditions were reported as dangerous for motorists in the Royapuram/Kasimedu corridor.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "db94a732-01d0-4fb7-b41c-50309821b3df",
+    "id": "331f758b-85cc-530b-89ca-231dc33dc692",
     "lat": 13.0389867,
     "lng": 80.2346334,
     "weight": 2.0,
@@ -2397,10 +2397,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ranganathan Street, T Nagar: 2025 report: shops encroach on the footpath and walking becomes chaotic; low-lying utility cables further obstruct pedestrian movement.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "dafe2d9f-396a-4710-99b4-b56965fa3497",
+    "id": "13b2152a-cd79-5ea6-8e23-84a747dc4458",
     "lat": 13.0183255,
     "lng": 80.1719414,
     "weight": 2.0,
@@ -2409,10 +2409,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Ambedkar Nagar 3rd Main Road, Manapakkam: 2025 report: damaged manhole in the middle of the road had exposed iron rods, underground pipelines and open sewage; barricade was reportedly difficult to see at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "07e4f057-0e1b-4a58-bd16-d3783c1675e2",
+    "id": "573c0dc1-6135-5dc5-835a-65f717559095",
     "lat": 12.9689184,
     "lng": 80.1995997,
     "weight": 2.0,
@@ -2421,10 +2421,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ramamurthy Nagar Main Road, Madipakkam: 2024 report: a raised Metro Water manhole on the road was struck by a two-wheeler in a fatal crash. Incident-level infrastructure hazard.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "85816fdb-26d6-4f98-9970-05f73f54b5df",
+    "id": "4c90aae9-e3ee-5a06-adc9-8d5af086c707",
     "lat": 12.9680201,
     "lng": 80.2005216,
     "weight": 2.0,
@@ -2433,10 +2433,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ram Nagar South 7th Main Road, Madipakkam: 2024 report: two open storm-water manholes were documented on the street during flooding; residents warned pedestrians to walk in the centre of the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "00bfe15e-bba0-489f-b343-bd5594acefdb",
+    "id": "342c77d5-cdbb-5f73-b062-79d39b30e491",
     "lat": 13.1162415,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -2445,10 +2445,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Mullai bus stop, Sathya Murthy Nagar, Vyasarpadi: 2024 report: an uncovered drain opposite the bus stop was hidden under floodwater without barricades or warning signs; schoolchildren were seen warning pedestrians.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5f0b76b6-4ebe-4f8d-97c2-051b1bc22abd",
+    "id": "077f95c0-55f3-5dfb-aab9-807b23e6ad05",
     "lat": 13.0973769,
     "lng": 80.1461271,
     "weight": 2.0,
@@ -2457,10 +2457,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Galaxy Road, Ayanambakkam: 2021 report: four open potholes/manholes remained on Galaxy Road after cyclone damage; residents reported frequent accidents and inadequate lighting.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "cd592660-c0d2-4853-95f1-32fb9ad5d4a0",
+    "id": "2fa83b84-ba5d-53fa-a3e4-b7b331977554",
     "lat": 13.0973769,
     "lng": 80.1461271,
     "weight": 2.0,
@@ -2469,10 +2469,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Galaxy Road, Ayanambakkam: 2021 report: street lights were missing on most access roads in the area and traffic lights did not work on most access roads; source also records night-time safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "20cdd218-e996-4d6f-923f-3ad54c5e9a78",
+    "id": "cbd198fa-248e-5e78-a43c-f756a14307e1",
     "lat": 13.0551563,
     "lng": 80.2586038,
     "weight": 2.0,
@@ -2481,10 +2481,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Whites Road, Royapettah: 2017 historical report: damaged/loose storm-water-drain covers and poor pavements created pedestrian hazards, especially on rainy nights.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bfc322c8-9e54-4f6f-9294-63584565dc92",
+    "id": "ca2e0657-9816-5163-91fa-630a350b8652",
     "lat": 13.054258,
     "lng": 80.2604477,
     "weight": 2.0,
@@ -2493,10 +2493,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Peters Road, Royapettah: 2017 historical report: damaged/loose storm-water-drain covers and poor pavements created pedestrian hazards.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "39e1ba34-8df5-4416-995d-477aaf7bd6b7",
+    "id": "e74d018c-c5cc-52b1-b03d-4637d2aaf493",
     "lat": 13.0551563,
     "lng": 80.2613697,
     "weight": 2.0,
@@ -2505,10 +2505,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pattulos Road, Royapettah: 2017 historical report: damaged/loose storm-water-drain covers and poor pavements created pedestrian hazards.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "aa9aed63-6d73-47ba-9685-a0af1f492bd6",
+    "id": "4a35e639-cea6-5107-a7a6-bae42bfac596",
     "lat": 13.1503773,
     "lng": 80.2936376,
     "weight": 2.0,
@@ -2517,10 +2517,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ennore Express Highway, Tiruvottiyur manhole/barricade incident stretch: 2026 report: a two-wheeler hit a barricade around a road manhole, causing a passenger to fall into the path of a container lorry. Residents also cited construction deb",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4d7f336f-8647-429f-b702-dd2851108ab9",
+    "id": "103e0db4-e127-5ff2-9bcd-8427f1bcf116",
     "lat": 13.0623428,
     "lng": 80.2355553,
     "weight": 2.0,
@@ -2529,10 +2529,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Nungambakkam Subway, Nelson Manickam Road: 2026 report: pothole-ridden subway with stalled repair work; the route serves school and college students and hospital users.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9500dc73-23f1-4568-9610-208e7915d666",
+    "id": "cf18fbd4-0193-5df1-92a5-42517e894fe8",
     "lat": 13.0371901,
     "lng": 80.224492,
     "weight": 2.0,
@@ -2541,10 +2541,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Duraisamy Subway, T Nagar\u2013West Mambalam: 2025 report: water leakage, eroded tar, damaged concrete, potholes and stagnant rainwater made the subway risky for commuters.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "12df615b-06d3-49c8-b08d-56ca6fb8225a",
+    "id": "601f147e-39d4-5a05-8f20-83a0099de875",
     "lat": 13.0362918,
     "lng": 80.2226482,
     "weight": 2.0,
@@ -2553,10 +2553,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Madley Subway, West Mambalam\u2013T Nagar: 2025 report: rainwater seepage created slushy sections and the subway remained in poor condition.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "848cec38-e075-43ce-9398-31d93eb9598c",
+    "id": "ebeb1a79-3a6b-5f0c-a520-b4b9747a755a",
     "lat": 13.0479698,
     "lng": 80.2373992,
     "weight": 2.0,
@@ -2565,10 +2565,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Thirumalai Pillai Road near Vidyodaya School bus stop, T Nagar: 2026 report: vendors and tanker lorries obstruct the footpath and bus-stop area; buses stop away from the designated point and commuters cross heavy traffic to board.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a2d47db4-e90e-453c-a2ac-d13cd80ab37b",
+    "id": "27fde7c8-dffa-53e5-ac4f-5d01fee4f265",
     "lat": 13.0821056,
     "lng": 80.2733549,
     "weight": 2.0,
@@ -2577,10 +2577,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Wall Tax Road near Chennai Central Railway Station: 2026 report: lack of signals/designated zebra crossings and frequent jaywalking create repeated near-misses and minor accidents on the busy road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "759019c6-2c5a-49d5-8e02-58643fae46ea",
+    "id": "1c6c4aa1-8c87-5bb2-bd29-a25dfdc1c3af",
     "lat": 13.1126482,
     "lng": 80.2512283,
     "weight": 2.0,
@@ -2589,10 +2589,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Low-height railway culvert linking Poleri Amman Koil Street/AA Road to Perambur High Road: 2026 report: narrow, low-clearance culvert is used by pedestrians and two-wheelers as a shortcut; riders bend while passing and residents describe it",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5989f546-bb39-44a2-ad85-003b57b51d31",
+    "id": "2c70c267-5814-5017-bad9-2678fc49eefe",
     "lat": 13.1261229,
     "lng": 80.2908718,
     "weight": 2.0,
@@ -2601,10 +2601,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vaithyanathan Road, Tondiarpet: 2026 report: incomplete road excavation narrowed the one-way street; damaged sewage chambers, stagnant sewage, debris and inadequate barricades increased accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f57b371f-a017-45d8-9578-37f2d50d96e1",
+    "id": "040c2682-4aa1-5318-99d8-5a11593ec93d",
     "lat": 13.1171398,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -2613,10 +2613,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Teacher's Colony 1st Cross Street, Kolathur: 2026 report: underground utility works damaged a recently laid road, leaving potholes, loose stones and a narrowed usable stretch.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9c019089-8f74-4b53-aec8-c22514d944f0",
+    "id": "816c7c1a-fd10-5af8-ba11-b7fe114b0cc0",
     "lat": 13.1189364,
     "lng": 80.2069752,
     "weight": 2.0,
@@ -2625,10 +2625,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "VV Nagar 3rd Street, Kolathur: 2026 report: underground works left the road uneven with potholes and loose stones; residents reported non-functional/inadequate street lighting at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "16a4fd64-75ff-40bf-82c9-88449206ea91",
+    "id": "06c66187-a074-5205-b0cb-f4aca7ba6a99",
     "lat": 13.0641394,
     "lng": 80.2779646,
     "weight": 2.0,
@@ -2637,10 +2637,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Swami Sivananda Salai, section beyond MLA Hostel: 2026 report: roughly 100 m damaged by heavy water-tanker traffic; potholes, slush and waterlogging create skidding/accident risk.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "dd3ef5b2-c766-4c14-8158-e8e7e71c3b4f",
+    "id": "731ddcfb-45af-50ab-90fa-f41e35580f3d",
     "lat": 13.0353935,
     "lng": 80.2088191,
     "weight": 2.0,
@@ -2649,10 +2649,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "11th Avenue, Ashok Nagar near 67th Cross Street: 2026 report: Metro Water works left a large unrepaired stretch with loose gravel at a turning point, creating a serious hazard for two-wheelers.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "568acd1c-ad75-46f7-9382-2f12291495a9",
+    "id": "0fb7b7e8-bbe1-59c0-a3cb-441745b3ee31",
     "lat": 13.0192239,
     "lng": 80.2078971,
     "weight": 2.0,
@@ -2661,10 +2661,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "School Street, West Jafferkhanpet: 2026 report: exposed underground electrical cable remained on the road surface for nearly two months, creating a trip/vehicle hazard, especially in rain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bd62c494-5e3d-408b-910e-1b8f58f2761d",
+    "id": "ed8f5bc6-e248-5195-88ea-2f622de9ad6a",
     "lat": 13.0848006,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2673,10 +2673,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "GCC Herbal Park, Purasawalkam: 2025 report: only a few lights were functional and much of the park was dark after 6 pm; visitors also reported no CCTV/security.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f31de8cb-a509-4a04-9970-4635cc8dad3a",
+    "id": "120376c9-4445-5845-8fa3-7107d3e7498c",
     "lat": 13.0848006,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2685,10 +2685,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "GCC Herbal Park, Purasawalkam: 2025 report: visitors reported no CCTV cameras and no security guard, with concerns about evening safety.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bc376063-5b8f-4ade-b0a7-ffee5bac3587",
+    "id": "573e3d13-5075-5de0-8054-a77e33b02a2b",
     "lat": 13.1144448,
     "lng": 80.2586038,
     "weight": 2.0,
@@ -2697,10 +2697,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vyasarpadi railway-station approach pathway: 2023 report: pathway lacked adequate lighting and a proper road; residents said women/students were using an unsafe route along the railway track.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a9dc56e2-26c4-492e-86fc-27dfb79889f6",
+    "id": "a2c11c9a-4c82-5a2d-a908-647fc9aefe3e",
     "lat": 13.0865972,
     "lng": 80.2816524,
     "weight": 2.0,
@@ -2709,10 +2709,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Broadway Bus Terminus: 2023 women-safety audit: poor lighting, encroachments, lack of seating/signage and poor accessibility were documented at Broadway Bus Terminus.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5b21d508-f3df-487f-b8e1-8b0675f42776",
+    "id": "5d532a8d-30a0-5af5-95cf-9b9b74b37b5c",
     "lat": 13.0057492,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -2721,10 +2721,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Guindy Bus Terminus: 2023 women-safety audit: poor lighting, encroachments, lack of ramps/seating/signage were documented at Guindy Bus Terminus.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9ce19801-7b33-42f1-b56f-3eba43a06dbc",
+    "id": "cb4d20d1-0e00-5532-a081-71522556770a",
     "lat": 13.135106,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -2733,10 +2733,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "IOC Bus Stand, Chennai: 2023 women-safety audit: dark spaces behind the bus stand were reportedly used for illegal activities; the report flagged the location as unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "14dc5aba-e155-4fa5-98dc-5f2b7069d470",
+    "id": "578dfe83-6a99-5c10-a400-68e62b60bc1c",
     "lat": 13.1261229,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2745,10 +2745,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "KKD Nagar Bus Depot: 2023 women-safety audit: men were reportedly drinking on the approach road to the depot, with the location flagged for women's safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0994611c-ccbf-421e-9dce-b36d358b1298",
+    "id": "af35ca3d-0bec-59b2-845c-ab79b532c64a",
     "lat": 13.1369026,
     "lng": 80.2576819,
     "weight": 2.0,
@@ -2757,10 +2757,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Muthamizh Nagar Bus Depot: 2023 women-safety audit: substance abuse was observed behind depot toilets and the site was flagged for safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0a2a6ab2-1230-4a74-9b0e-c2c718177f89",
+    "id": "6f3a69e7-c95f-5cc8-9f38-a7756aee710e",
     "lat": 13.109055,
     "lng": 80.2521503,
     "weight": 2.0,
@@ -2769,10 +2769,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Ambedkar College Bus Stop: 2023 women-safety audit: substance abuse and public urination were reported around the bus stop.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "538d3972-9f0c-4910-92b2-4944e957a4a7",
+    "id": "e556d1df-d9db-5925-be5f-447d9b0aac3f",
     "lat": 13.0362918,
     "lng": 80.2115849,
     "weight": 2.0,
@@ -2781,10 +2781,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Ashok Pillar Bus Stop: 2023 women-safety audit: substance abuse and rowdyism were reported around the bus stop.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f22dcc9b-8962-4679-ba22-967e6bd8b82e",
+    "id": "89479e00-6e3a-50e4-985a-c227a596f61c",
     "lat": 13.025512,
     "lng": 80.2632135,
     "weight": 2.0,
@@ -2793,10 +2793,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mandaveli CMRL pedestrian walkway starting from V K Iyer Road: 2025 inspection: narrow barricaded walkway was ill-lit; some lights did not work in the evening and users reported drinking/broken bottles near the route.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5305a396-985e-48fe-a340-ea6900d24146",
+    "id": "887c28cc-99a9-54a4-8509-e963a0290b0e",
     "lat": 13.025512,
     "lng": 80.2632135,
     "weight": 2.0,
@@ -2805,10 +2805,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mandaveli CMRL pedestrian walkway starting from V K Iyer Road: 2025 report: CMRL temporary pedestrian walkways were created without CCTV in the project cost; the Mandaveli route was among inspected locations with safety concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "27a44938-b88a-423a-8dcc-65669fd01745",
+    "id": "c33915b6-b7da-5f26-b4f1-a48582c58502",
     "lat": 13.0326985,
     "lng": 80.2678232,
     "weight": 2.0,
@@ -2817,10 +2817,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Luz Church Road CMRL pedestrian walkway: 2025 inspection: CMRL barricaded walkway was described as narrow, ill-lit, uneven and unsafe for women.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d41b651d-057b-499b-9534-223bef95d431",
+    "id": "07a64243-85b0-5287-b43a-33f9bc02e248",
     "lat": 13.0326985,
     "lng": 80.2678232,
     "weight": 2.0,
@@ -2829,10 +2829,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Luz Church Road CMRL pedestrian walkway: 2025 report: temporary CMRL walkways lacked consistent CCTV coverage; the inspected Luz Church Road route had blind, enclosed sections.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "349f66df-570f-4db7-923c-1789ddebef4b",
+    "id": "781147f8-be29-5a5e-9969-e15a569158db",
     "lat": 13.0407833,
     "lng": 80.2327895,
     "weight": 2.0,
@@ -2841,10 +2841,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Venkatanarayana Road\u2013Sivagnanam Street CMRL walkway, T Nagar: 2025 inspection: six-foot-high barricades created blind spots and the walkway was only about 1 m wide, below pedestrian standards.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bd7402aa-1a4a-4cd4-bf88-946a3588ee9b",
+    "id": "e9c4d385-5ffc-5d5f-b0ed-e07d091b981a",
     "lat": 13.0596479,
     "lng": 80.25676,
     "weight": 2.0,
@@ -2853,10 +2853,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thousand Lights CMRL pedestrian walkway/crossover, Anna Salai: 2025 inspection: temporary barricaded walkway was among the CMRL construction paths criticised as dark, narrow and difficult to navigate.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b220f323-74ad-4228-92ba-dab6fba4218d",
+    "id": "f7b9dc7c-bb66-57c0-8b06-1e7381a7b60d",
     "lat": 13.0704276,
     "lng": 80.241087,
     "weight": 2.0,
@@ -2865,10 +2865,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sterling Road CMRL pedestrian walkway: 2025 inspection: CMRL construction walkway was among the locations described as narrow, ill-lit and unsafe.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a671350c-4a4b-4c7a-9420-c4e249f771f3",
+    "id": "ce7a5806-877c-5796-a5e3-592f4c899963",
     "lat": 13.039885,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -2877,10 +2877,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pondy Bazaar pedestrian plaza\u2013Venkatanarayana Road CMRL walkway: 2025 report: walkway connecting the pedestrian plaza to Venkatanarayana Road was about 1 m wide, below the 1.8 m IRC comfort standard, with opaque barricades limiting visibili",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5e709e8f-1c33-403f-b219-c0ab3d8ba955",
+    "id": "4d8705d1-96da-512f-9c33-1b6ada4b0432",
     "lat": 13.1144448,
     "lng": 80.2051313,
     "weight": 2.0,
@@ -2889,10 +2889,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Srinivasan Nagar CMRL pedestrian walkway, Kolathur: 2025 inspection: this was one of the eight CMRL pedestrian-walkway locations visited and was part of the reported dark/dirty/dangerous construction-path problem.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "654c2017-0435-4ffa-81fc-ea085bab999c",
+    "id": "be398533-6a22-5d16-bbe0-09ec5514411c",
     "lat": 13.054258,
     "lng": 80.2217262,
     "weight": 2.0,
@@ -2901,10 +2901,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rathinammal Street / Dr Ambedkar Road junction, Kodambakkam: 2026 report: temporary steel cover over a storm-water-drain manhole shifts under traffic and exposes a hole; night-time two-wheeler riders reportedly lose control.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ba97f4db-edd0-47d7-b03b-e4a3eb35cb4f",
+    "id": "6ab5432b-4024-516e-a26c-f69993787da1",
     "lat": 12.9383759,
     "lng": 80.2291018,
     "weight": 2.0,
@@ -2913,10 +2913,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "3rd Main Road, Secretariat Colony, Thoraipakkam: 2026 report: delayed UGD work leaves the road muddy and slippery; a severely broken manhole cover creates a hazard for commuters, pedestrians and children.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9ad6602f-d77c-414d-96ee-f49d0aa065f0",
+    "id": "c02f5268-bd0e-5dc2-8d3b-8fa17ddaf5a4",
     "lat": 13.0318002,
     "lng": 80.2696671,
     "weight": 2.0,
@@ -2925,10 +2925,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Appu Street, Mylapore: 2025 report: milled road remained unrelaid for nearly a month; slippery surface and sewage manhole posed accident risk to motorists and pedestrians.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "4188cf04-3829-4621-8c07-833360da3531",
+    "id": "440a5199-e56d-5edc-abc7-874e5ddf0c72",
     "lat": 13.0318002,
     "lng": 80.2687452,
     "weight": 2.0,
@@ -2937,10 +2937,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Chitrakulam North Street / Appu Street intersection, Mylapore: 2025 report: damaged manhole lid at the intersection was explicitly described as making the stretch accident-prone.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ec83ce0f-1c9e-40f9-8ee1-84cf43f9a509",
+    "id": "ab902aeb-b089-5a8b-93f4-69fb028f9f7c",
     "lat": 13.0371901,
     "lng": 80.209741,
     "weight": 2.0,
@@ -2949,10 +2949,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vaigai 1st Cross Street near Ashok Nagar 12th Avenue: 2025 report: damaged Metro Water manhole was temporarily covered; the busy bypass stretch was particularly vulnerable at night because of poor street lighting.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "fc2e382d-0fb8-40ca-a940-0abeee0c89e7",
+    "id": "c59062de-de2a-587c-b16b-5ef49b024230",
     "lat": 13.0371901,
     "lng": 80.209741,
     "weight": 2.0,
@@ -2961,10 +2961,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vaigai 1st Cross Street near Ashok Nagar 12th Avenue: 2025 report: manhole cover gave way under a vehicle and was temporarily covered with tin sheets/bricks without proper barricading.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f4da73bc-bfa8-4cfd-a7b5-3e3d2f4c5188",
+    "id": "5fbfac4b-13e1-5141-81e0-8cd2cd969999",
     "lat": 13.028207,
     "lng": 80.2742768,
     "weight": 2.0,
@@ -2973,10 +2973,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Madha Church Road, Santhome: 2025 report: sewage overflowed from multiple manholes; one sewer manhole was reportedly left open for months.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e948f5d8-6899-4e55-a157-e4a4fc0abd22",
+    "id": "97fbf842-b66a-54f5-9a0c-d5f9c59194c0",
     "lat": 13.083004,
     "lng": 80.2761207,
     "weight": 2.0,
@@ -2985,10 +2985,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Southern Railway Headquarters pavement, EVR Periyar Salai / PH Road: 2024 report: open sewage-filled manhole with broken lid and protruding iron rods on a high-footfall pavement near Chennai Central.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "86ada9b0-1f24-4797-a053-1bd521ca1e91",
+    "id": "b97911d6-c480-5f78-bcf9-df891de856c0",
     "lat": 13.1072584,
     "lng": 80.2549161,
     "weight": 2.0,
@@ -2997,10 +2997,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Gurumurthy Garden Street, Perambur Corporation Girls High School frontage: 2024 report: collapsed school compound wall and construction debris near the road/footpath created a public safety concern.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c474dfaf-3a7e-4122-b332-d97a19fc2f63",
+    "id": "d9b79558-bfe4-5500-9e48-452a0cd4205d",
     "lat": 13.1252246,
     "lng": 80.2899498,
     "weight": 2.0,
@@ -3009,10 +3009,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thiruvottiyur High Road, Tondiarpet \u2014 500 m SWD-work stretch: 2026 report: about 500 m affected by SWD work; broken/missing temporary walkways, collapsed or missing barricades, rubble and open pits force pedestrians close to traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e7be98a6-d650-4479-9e72-65334e17fe7c",
+    "id": "9f9b3712-8bd2-5557-9a92-b38f9d245df7",
     "lat": 13.163852,
     "lng": 80.3010131,
     "weight": 2.0,
@@ -3021,10 +3021,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Wimco Nagar Metro station access area: 2026 CUMTA/ITDP/Sensing Local walkability study: Wimco Nagar ranked among the lowest stations for footpath width and continuity.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5cc3d316-bddc-4961-b18f-613463f0b16d",
+    "id": "e6f70512-9cb2-5f00-87e3-c28f48a0d778",
     "lat": 13.1584621,
     "lng": 80.3037789,
     "weight": 2.0,
@@ -3033,10 +3033,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Thiruvottriyur Theradi Metro station access area: 2026 walkability study: Thiruvottriyur Theradi ranked among the lowest for footpath width and continuity.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "5279e7e4-139f-4255-b466-23e9d4e47275",
+    "id": "7adf4d22-27c3-55c0-a883-6e28f9e6468d",
     "lat": 13.1395976,
     "lng": 80.2917937,
     "weight": 2.0,
@@ -3045,10 +3045,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Tollgate Metro station access area, Tondiarpet: 2026 walkability study: Tollgate ranked among lower-performing station areas for footpath width; encroachment-free performance was also assessed.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f1b6c982-380d-49bb-b814-bac19b7a285c",
+    "id": "025d811b-1a81-5920-888f-d30c65202aee",
     "lat": 13.0910888,
     "lng": 80.2853401,
     "weight": 2.0,
@@ -3057,10 +3057,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mannadi Metro station access area: 2026 walkability study: Mannadi ranked lowest for junction safety and obstruction-free/footpath continuity indicators.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "436ebddd-c3fe-4d31-bf0a-868bd0db5878",
+    "id": "ee13b769-5138-50d8-bdc5-04c66dba9108",
     "lat": 13.0695293,
     "lng": 80.2733549,
     "weight": 2.0,
@@ -3069,10 +3069,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Government Estate Metro station access area: 2026 walkability study: Government Estate performed poorly for encroachment-free footpaths; station surroundings also require better last-mile pedestrian infrastructure.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "dd0af8b5-2175-4ab7-b848-2d178a8b5832",
+    "id": "a68f322f-5d66-5049-a384-2f10424be458",
     "lat": 13.0821056,
     "lng": 80.2853401,
     "weight": 2.0,
@@ -3081,10 +3081,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "High Court Metro station access area: 2026 walkability study: High Court station surroundings performed poorly on encroachment-free footpaths, despite relatively better junction safety than some stations.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "065214b4-85e6-436f-8785-f869d172cf7f",
+    "id": "3c4adee8-4877-5686-813b-9b1a9e1d0a5e",
     "lat": 13.0767158,
     "lng": 80.2429309,
     "weight": 2.0,
@@ -3093,10 +3093,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kilpauk Metro station access area: 2026 walkability study: Kilpauk had weak crossing frequency and surrounding pedestrian-infrastructure gaps.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "63bd4dcb-ce53-41eb-ad30-ef209c3ef308",
+    "id": "1c73e4d9-13ff-5824-8fef-f55817a15e85",
     "lat": 12.9940711,
     "lng": 80.1986777,
     "weight": 2.0,
@@ -3105,10 +3105,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "St Thomas Mount Metro station access area: 2026 walkability study: crossing frequency was weak around St Thomas Mount, indicating a pedestrian-safety deficiency in the station surroundings.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f428f0b8-d067-49f5-8697-2dfcfbb3e8bb",
+    "id": "65cd8439-d5fc-51bc-9f3d-c37e0ee53915",
     "lat": 13.1153432,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -3117,10 +3117,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur Loco Works Railway Station pedestrian subway: 2026 report: few lights were functional, long sections remained dim and commuters reported safety concerns in the subway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "20cdb630-83d4-4ce7-a043-e348b0826fa7",
+    "id": "7dd5519a-815e-5995-8f89-2dd148bdabb6",
     "lat": 13.1153432,
     "lng": 80.2337115,
     "weight": 2.0,
@@ -3129,10 +3129,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Perambur Loco Works Railway Station pedestrian subway: 2026 report: subway was described as uncomfortable to walk through and was reportedly used by men for alcohol consumption.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "0d17abf5-d309-4159-8d41-5904bff9e9cc",
+    "id": "2c185711-7660-501c-9d06-7f13ababb681",
     "lat": 13.0731225,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -3141,10 +3141,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Guruswamy Bridge\u2013Chetpet Eco Park railway-station pathway: 2026 report: insufficient street lighting causes pedestrians to avoid the route at night; garbage and overgrown bushes also reduce usability.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7b2079a4-bd23-49b0-b44e-61539730d1b5",
+    "id": "39c7f259-644b-5b61-b59a-295c491186c8",
     "lat": 13.0731225,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -3153,10 +3153,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Dr Guruswamy Bridge\u2013Chetpet Eco Park railway-station pathway: 2026 report: poor upkeep, garbage and bushes along the roughly 150 m pathway discourage use, particularly after dark.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "a3d5d6a9-a578-475d-a4fc-a498f2672773",
+    "id": "18f7bdd2-739b-5dc8-83a2-9a4071fabb7d",
     "lat": 13.1189364,
     "lng": 80.25676,
     "weight": 2.0,
@@ -3165,10 +3165,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "MKB Nagar 11th Cross Street, Vyasarpadi: 2026 report: temporary electrical wires were laid along about 60 m of road surface, obstructing pedestrians and motorists for nearly two weeks.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "735519e6-08f8-4985-991b-20622dbe3112",
+    "id": "324f353d-da68-566d-bc41-f741fc84a34f",
     "lat": 13.1288178,
     "lng": 80.2604477,
     "weight": 2.0,
@@ -3177,10 +3177,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Tondiarpet High Road opposite Kodungaiyur dump yard: 2026 report: garbage spills from uncovered trucks create a slippery road surface; the report says several people were injured and one fatality occurred over the preceding month.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1d633c1e-fc0c-4387-8024-8d1137229fbc",
+    "id": "162a40a8-c697-53db-bb86-55edb97dd4be",
     "lat": 13.0731225,
     "lng": 80.2641355,
     "weight": 2.0,
@@ -3189,10 +3189,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Gandhi Irwin Road, Nest Hotel bus stop near Mayor Radhakrishnan Stadium: 2026 report: some scheduled MTC buses reportedly pass the designated stop without halting, affecting patients, hospital staff and other commuters relying on the stop.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c3e58d47-6f41-46a0-9642-bca419738980",
+    "id": "0b28dfff-346d-5a3f-be6f-d99fca1cff3c",
     "lat": 13.1081567,
     "lng": 80.2530722,
     "weight": 2.0,
@@ -3201,10 +3201,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Jamalia Bus Stop, Perambur High Road South: 2026 report: ramp access and surrounding pedestrian infrastructure were damaged/incomplete during SWD work, affecting passengers, senior citizens and persons with disabilities.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d1427bd5-4aca-41ce-b512-32faccddf2df",
+    "id": "ed113a4c-14f8-5716-9972-82b5bb43be25",
     "lat": 13.1081567,
     "lng": 80.2503064,
     "weight": 2.0,
@@ -3213,10 +3213,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Mangalapuram Bus Stop, Perambur High Road South: 2026 report: surrounding access infrastructure was incomplete/damaged during SWD works, creating accessibility problems for bus users.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "243863d9-13cc-49ce-ad95-fe022e13f15e",
+    "id": "a52f14a0-4fa7-5c1c-ad27-6e1c771cbbb2",
     "lat": 13.0192239,
     "lng": 80.2042094,
     "weight": 2.0,
@@ -3225,10 +3225,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Sardar Colony 4th Street, Ekkatuthangal: 2026 report: worn road surface, uneven patches and an unattended stormwater-drain cover made navigation difficult for pedestrians and motorists.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "015dbdf5-14e2-4024-95c7-f060aa8d69e7",
+    "id": "0f8f6dcc-0db5-52d6-8d0f-6090d44dad93",
     "lat": 13.0856989,
     "lng": 80.209741,
     "weight": 2.0,
@@ -3237,10 +3237,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Anna Nagar 2nd Avenue near Anna Nagar Post Office: 2026 report: uncovered roadside drain with stagnant water, waste and protruding iron rods creates a hazard for pedestrians and motorists near a route used by metro commuters.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "10c8b265-bb38-47ff-9762-638f2ff6b0ed",
+    "id": "44b95dd0-40f5-5cdb-94af-330f9718ec87",
     "lat": 13.0623428,
     "lng": 80.224492,
     "weight": 2.0,
@@ -3249,10 +3249,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Choolaimedu High Road / West Namasivaya Bridge pedestrian walkway: 2026 report: garbage dumping and vehicle parking obstruct the pedestrian walkway, forcing women, senior citizens and office-goers onto the carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ef0f787a-7491-473d-a1aa-826973694d15",
+    "id": "416dd679-3742-5dd7-b826-55b19df447a0",
     "lat": 13.0892921,
     "lng": 80.2632135,
     "weight": 2.0,
@@ -3261,10 +3261,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Otteri Bus Stop, Brick Kiln Road: 2024 report: commuters said people drinking near the bus stop created safety concerns for women, children and motorists, especially at night; the stop had become busier after another stop was relocated.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c275d3a0-15ae-4aec-b974-5bd1f66d971b",
+    "id": "876a1f3d-9fa6-58fd-85e8-472593eccd86",
     "lat": 13.215954,
     "lng": 80.3222177,
     "weight": 2.0,
@@ -3273,10 +3273,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Nehru Nagar Bus Stop, Ennore: 2026 report: residents said a nearby liquor outlet caused crowding, traffic disruption and safety concerns for women and senior citizens during evening/night hours.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "d5518aa6-c60a-45ea-bd31-6399d9efa1a3",
+    "id": "c356d714-fb2e-5951-a6ec-11adf1c07541",
     "lat": 13.1081567,
     "lng": 80.1839267,
     "weight": 2.0,
@@ -3285,10 +3285,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Korattur Railway Station pedestrian subway: 2023 report: subway had no lights, water stagnation and poor footpath maintenance; residents specifically described it as unsafe for women at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "81e72f54-2ee2-4aab-98d6-865eb048d055",
+    "id": "3e1c5627-f372-55d3-8418-4e5c3697f52d",
     "lat": 13.1081567,
     "lng": 80.1839267,
     "weight": 2.0,
@@ -3297,10 +3297,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Korattur Railway Station pedestrian subway: 2023 report: poor maintenance and a circuitous approach led passengers to avoid the subway and cross railway tracks instead.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "96fe9fb7-a65d-4ccc-91ba-b260017bdd33",
+    "id": "fc8472f8-6056-5693-a9f6-f27203fe6ba5",
     "lat": 13.0776141,
     "lng": 80.2078971,
     "weight": 2.0,
@@ -3309,10 +3309,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Poonamallee High Road footpath near DG Vaishnav College, Arumbakkam: 2024 report: broken/uneven footpath with open manholes and litter; students reported injuries and pedestrians said the road felt safer than the footpath.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "52307261-5716-45c2-8637-856b72ce8a7f",
+    "id": "eff3864e-4656-59e9-ae41-d8667203257e",
     "lat": 13.0497664,
     "lng": 80.2143507,
     "weight": 2.0,
@@ -3321,10 +3321,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Saamiyar Madam bus stop, Subbarayan Nagar, Kodambakkam: 2013 historical record: no proper shelter, buses not stopping at the earmarked point, slush during rain and a reported near-miss involving a woman waiting at the stop. Historical; veri",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "6253af28-94b8-44f4-ba1e-4604319e597b",
+    "id": "e4652858-3097-5485-a5e0-3d1cf05efd0c",
     "lat": 13.0506648,
     "lng": 80.2125068,
     "weight": 2.0,
@@ -3333,10 +3333,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Arcot Road, Vadapalani Bus Terminus to Vadapalani Junction: 2026-08-20 report: no proper footpath on parts of the stretch; Metro Rail and SWD works further narrowed road space, forcing pedestrians to walk among moving vehicles.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f98c26a3-742b-4176-94e4-d3080df60b3c",
+    "id": "c3c4b494-f1fc-5141-9473-8630182d53e3",
     "lat": 13.0506648,
     "lng": 80.2161946,
     "weight": 2.0,
@@ -3345,10 +3345,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rangarajapuram Main Road / Viswanathapuram Main Road junction, Kodambakkam: 2026-07-27 report: shop displays, parked two-wheelers/cars and other encroachments block footpaths, forcing schoolchildren, women and senior citizens onto the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "69d9a6d4-f898-4f99-aa5f-f3dba3629170",
+    "id": "7eee9fe9-77bc-5a30-9106-1473233b1404",
     "lat": 12.9689184,
     "lng": 80.2456967,
     "weight": 2.0,
@@ -3357,10 +3357,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "OMR service road near World Trade Centre Chennai, Perungudi: 2026-06-02 report: inadequate lighting on the Perungudi/Thoraipakkam service-road stretches makes night travel hazardous.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7b9d3503-9530-406c-a942-05ca183e7803",
+    "id": "12b4122b-cfe3-5317-b699-98e3810bd756",
     "lat": 13.1386992,
     "lng": 80.2318676,
     "weight": 2.0,
@@ -3369,10 +3369,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Moolachatram Main Road, Madhavaram: 2026-04-26 report: an over-raised manhole chamber occupies road space and reduces usable width; motorists can lose control when encountering its slope-like structure.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "021f37b3-8539-4264-aaaa-de5ed22fd6e1",
+    "id": "21d7c53f-7011-5796-b789-70858b9d64e7",
     "lat": 12.9698167,
     "lng": 80.2447747,
     "weight": 2.0,
@@ -3381,10 +3381,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Anna Nedum Salai, Kandanchavadi: 2026-09-11 report: road surface has deteriorated for about six months; loose gravel/exposed stones and lack of proper footpaths force pedestrians onto the busy carriageway.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8c9fea12-0740-4e30-9689-97fb37313de1",
+    "id": "cbee3804-ab4f-52d8-9062-0d61cb628c75",
     "lat": 13.0291053,
     "lng": 80.2825743,
     "weight": 2.0,
@@ -3393,10 +3393,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Lighthouse bus stop, opposite D5 Marina Police Station, Pattinampakkam: 2026-09-13 report: dilapidated shelter has rusted/leaking roof, inadequate seating and encroachment; passengers are exposed to rain and heat.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "52568bf6-2e4f-4dee-9189-42dddbe1f295",
+    "id": "4da2c3bf-edd5-5bbe-8d51-552d6ef285b8",
     "lat": 13.0461732,
     "lng": 80.2669013,
     "weight": 2.0,
@@ -3405,10 +3405,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Avvai Shanmugam Road school-zone corridor, Gopalapuram: 2026-09 report: school-access corridor had earlier received wider footpaths and crossings, but school vans and shop encroachments had returned, forcing children to share the road.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "35631623-a3c5-4988-a1e0-9257d20e32c7",
+    "id": "7be6b04f-de0b-5bd0-9d40-adf6458e9d64",
     "lat": 13.0452749,
     "lng": 80.2687452,
     "weight": 2.0,
@@ -3417,10 +3417,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Conran Smith Road school-zone corridor, Gopalapuram: 2026-09 report: part of the CUMTA safe-school pilot corridor; renewed parking/encroachment undermines pedestrian safety and forces children toward moving traffic.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "99ea629a-8b85-402e-bd2a-7b8bf318f0c1",
+    "id": "e4118c0d-25e1-5f0d-8afb-8fee7fc1a9db",
     "lat": 13.0443766,
     "lng": 80.2696671,
     "weight": 2.0,
@@ -3429,10 +3429,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Padmavathy Road school-zone corridor, Gopalapuram: 2026-09 report: school-zone infrastructure has been undermined by school-van parking and renewed footpath encroachment.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "14b1ac65-b539-474e-939d-0d07a3ac157d",
+    "id": "4c1143f7-46c3-5780-85c5-faffc6e34615",
     "lat": 13.0874955,
     "lng": 80.2586038,
     "weight": 2.0,
@@ -3441,10 +3441,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Purasaiwalkam High Road outside ELM Fabricius Higher Secondary School: 2026-09 report: footpath obstructed at multiple points by bollards and garbage bins; walkway also ends abruptly, reducing safe pedestrian space outside the school.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "2e16520e-b460-445e-8d2d-aed367cd81b9",
+    "id": "302bb321-61fd-52b2-85c2-257635bbb38e",
     "lat": 13.0587496,
     "lng": 80.2733549,
     "weight": 2.0,
@@ -3453,10 +3453,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Big Street near Hindu Nursery and Primary School, Triplicane: 2026-09 report: pushcarts and roadside shops narrow Big Street near the school, creating an unsafe school-access environment.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "9851ccc0-e1cb-49f3-9d86-77aa38196cfe",
+    "id": "e46284de-99e8-580a-943d-ce731fb5fc19",
     "lat": 13.1189364,
     "lng": 80.2908718,
     "weight": 2.0,
@@ -3465,10 +3465,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Rajarathinam Nagar outside Kalaimagal Vidhayala High School, Royapuram: 2026-09 report: transformer unit is located directly outside the school gate; school management reported repeated requests to relocate the power unit.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "f6c8b6bd-db96-414a-aead-c1521d099890",
+    "id": "91fb3bf3-4492-5016-896d-91f7f3158d3b",
     "lat": 13.0767158,
     "lng": 80.2263359,
     "weight": 2.0,
@@ -3477,10 +3477,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pulla Avenue outside TNHB Towers Flats & Skating Rink, Shenoy Nagar: 2026-09-10 social-media report: open pit dug for the Pulla Avenue Complete Street Project was described as a serious safety issue for road users; request made to barricade",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3940ea54-458b-421e-9768-bfd5b58f392c",
+    "id": "05582c74-b472-5c52-8aa5-f7d29a2bddec",
     "lat": 13.0848006,
     "lng": 80.2152726,
     "weight": 2.0,
@@ -3489,10 +3489,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "13th Main Road near gym, Anna Nagar: 2026-09-08 social-media report: two blocks were placed on the pedestrian platform on both sides of a gate near the gym, obstructing the footpath. Ward 104.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ec60cefb-1223-4189-8388-d83e2258bff1",
+    "id": "cc374e29-d835-5f2e-a7c4-22f93ac2e14d",
     "lat": 13.0767158,
     "lng": 80.2263359,
     "weight": 2.0,
@@ -3501,10 +3501,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Pulla Avenue Road near TNHB Towers Flats, Shenoy Nagar: 2026-09-05 social-media report: overgrown trees near an EB transformer were reported as a safety risk close to the power supply.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "ecc5c550-0b69-4a59-9e69-ddc0a4ce4fbb",
+    "id": "e0a65782-f0a5-5473-b421-2b14037db185",
     "lat": 12.9698167,
     "lng": 80.2595258,
     "weight": 2.0,
@@ -3513,10 +3513,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kottivakkam, Rajiv Gandhi Salai (OMR): 2026-09-14 report: resident said lighting had been improved but was still ineffective at night; jaywalking and lack of effective lighting were cited as safety concerns. Retained because Kottivakkam is ",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "2396ac2f-295e-4baf-9b14-2a19ba9a3a03",
+    "id": "eb821e02-3425-59f1-86c3-001fc3b75c7f",
     "lat": 12.9796982,
     "lng": 80.2208043,
     "weight": 2.0,
@@ -3525,10 +3525,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vijayanagar 1st Cross Street near 100 Feet Road, Velachery: 2026-09-17 report: multiple deep potholes on interior stretches near Vijayanagar; people were reportedly falling while crossing the damaged section, with greater risk at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1a1a00c8-2da5-44ee-8296-fb9fa6ac3a1a",
+    "id": "8394225e-375e-5a5b-be75-7bba230d706e",
     "lat": 12.9787999,
     "lng": 80.2198823,
     "weight": 2.0,
@@ -3537,10 +3537,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "100 Feet Road near Vijayanagar bus stand, Velachery: 2026-09-17 report: pothole-laden stretch near the Vijayanagar bus stand; pedestrians and two-wheelers face difficulty crossing the damaged surface.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "3b04d4d6-5f5d-4d2c-94a2-435ab5476e04",
+    "id": "e293ded9-e89d-51ec-9845-56df4e9ba217",
     "lat": 12.9796982,
     "lng": 80.2208043,
     "weight": 2.0,
@@ -3549,10 +3549,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Vijayanagar 1st Cross Street, Velachery: 2026-09-17 report: damaged road is particularly risky at night, according to a local shopkeeper; retained as a night-safety evidence record.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "bf3762c1-c4a2-4efb-8270-368c90f8143e",
+    "id": "ec52a391-aa9d-5a19-aa9e-afac5916209a",
     "lat": 13.0228171,
     "lng": 80.2235701,
     "weight": 2.0,
@@ -3561,10 +3561,10 @@
     "affected_group": "woman",
     "confirmations": 1,
     "note": "Saidapet Court bus-shelter area: 2026-08-12 report: under-construction shelter had an excessively high platform and substandard ramp width; buses were stopping away from existing shelters and two-wheelers/other encroachments blocked stops.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "b00941cc-771e-4dc6-9bc9-da76e328a3ea",
+    "id": "01b819a0-ea0f-5d31-9d05-c2cb209b94db",
     "lat": 12.8997485,
     "lng": 80.2272579,
     "weight": 2.0,
@@ -3573,10 +3573,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "OMR / Sholinganallur service-road section: 2026 Reddit report: a woman described being catcalled and followed around 10 pm while walking roughly 200\u2013300 m from the SRP Tools bus stop/Indian Oil area. Social evidence only; not independently ",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "45540438-c8b3-48a3-a726-c519bfbc8003",
+    "id": "a33f49fc-7e7f-5bf7-b944-33c6f908b649",
     "lat": 13.0380884,
     "lng": 80.1452052,
     "weight": 2.0,
@@ -3585,10 +3585,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "4th Main Road, VGN Nagar, Iyyappanthangal: 2026-09-18 report: roughly 100 m of road has remained battered and unlaid for five years, with deep potholes, exposed gravel and water stagnation; a 61-year-old woman recently fell there.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "8f4894b9-dd7b-4b0a-93cc-f9704b531546",
+    "id": "d26bed08-7309-54d1-bfd1-160527cffdb7",
     "lat": 13.0928854,
     "lng": 80.2291018,
     "weight": 2.0,
@@ -3597,10 +3597,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Constable Road, Ayanavaram: 2026-09-15 report: multiple damaged stretches and potholes recur along the road; two-wheelers can lose balance and the damage is harder to see at night.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "77429743-2d5f-4052-8b25-0af73155e7d9",
+    "id": "7fbe90fa-482d-5da2-84de-d4cb737e3570",
     "lat": 13.0192239,
     "lng": 80.2069752,
     "weight": 2.0,
@@ -3609,10 +3609,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mangai Nagar 2nd Street, Jafferkhanpet: 2026-09-12 report: sewage had stagnated on the road for more than 10 days, forcing pedestrians and two-wheelers through polluted water; children and senior citizens were specifically affected.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7fc88676-55de-4ef5-83cb-3edf497fa3a0",
+    "id": "bfef1742-d520-5cbb-9aab-b2b3fe6bc28f",
     "lat": 13.1117499,
     "lng": 80.163644,
     "weight": 2.0,
@@ -3621,10 +3621,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Road near Ambattur lake bund, Ayappakkam: 2026-09-18 report: an open sewage drain alongside the road was involved in a fatal fall on September 16; police suspected the victim lost balance near the open drain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "1a67465d-c2f2-4d7c-a97a-265cf8f572d4",
+    "id": "68207d24-f61f-5082-8bc6-de02845fc1d8",
     "lat": 12.9787999,
     "lng": 80.2217262,
     "weight": 2.0,
@@ -3633,10 +3633,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Shastri Street, Annai Indira Nagar, Velachery: 2026-09-17 report: residents identified Shastri Street among several Velachery streets in poor condition, with pothole/patching problems expected to worsen during rain.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "e6bfe848-d94d-4d6f-af9f-6752817173e9",
+    "id": "d0d9867b-822c-5697-a5b2-c9dc9ffb9a72",
     "lat": 12.9779015,
     "lng": 80.2217262,
     "weight": 2.0,
@@ -3645,10 +3645,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Kambar Street, Annai Indira Nagar, Velachery: 2026-09-17 report: residents identified Kambar Street among Velachery streets in poor condition requiring road restoration.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "c6ff88e2-4612-49e9-9380-317f01f6b898",
+    "id": "ec203d0f-231c-50ec-9b98-76ff3ff018e1",
     "lat": 12.9779015,
     "lng": 80.2226482,
     "weight": 2.0,
@@ -3657,10 +3657,10 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Mahatma Gandhi Street, Annai Indira Nagar, Velachery: 2026-09-17 report: residents identified Mahatma Gandhi Street among Velachery streets in poor condition; potholes and weak patching were cited as monsoon concerns.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
   },
   {
-    "id": "7db8610e-1425-40a0-a9c8-b2b46732db9c",
+    "id": "82bb7623-8dda-5973-aa5a-06d8d6fce005",
     "lat": 12.9796982,
     "lng": 80.2189604,
     "weight": 2.0,
@@ -3669,6 +3669,186 @@
     "affected_group": "general",
     "confirmations": 1,
     "note": "Ram Nagar 5th Street, Velachery: 2026-09-17 report: residents identified Ram Nagar 5th Street among Velachery roads in poor condition ahead of the northeast monsoon.",
-    "created_at": "2026-09-18T00:00:00.000Z"
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "f7af6562-0ef1-5e43-b671-701585ea2884",
+    "lat": 12.9608336,
+    "lng": 80.2456967,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Balraj Second Street, Santhosh Nagar, Perungudi: 2026-09-20 report: road restoration remained incomplete after Metro Water sewage work; potholes and dust make the street difficult for motorists, especially at night.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "6691ba19-9744-526d-a871-e1972f297faa",
+    "lat": 12.9608336,
+    "lng": 80.2447747,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "St Thomas Street, Santhosh Nagar, Perungudi: 2026-09-20 report: delayed road restoration after sewage-pipeline replacement left potholes and damaged surface; night-time visibility of potholes is poor.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "fc4895b0-90a5-5968-a4bd-311ff34147ae",
+    "lat": 12.9599353,
+    "lng": 80.2447747,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Rajeswari Street, Santhosh Nagar, Perungudi: 2026-09-20 report: delayed restoration left the road riddled with potholes and dust after Metro Water works.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "4ea1fa15-2623-5c60-9d1f-1c6c2edb5e56",
+    "lat": 12.9599353,
+    "lng": 80.2438528,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Ambedkar Main Road, Santhosh Nagar, Perungudi: 2026-09-20 report: road remained damaged after sewage-pipeline replacement; potholes affect motorists and residents.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "efc0f2a7-7a2d-521d-b30c-89b05a041a3f",
+    "lat": 13.0407833,
+    "lng": 80.2512283,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Anna Salai near AG-DMS Metro Station: 2026-09-24 report: silt-filled gunny bags from monsoon desilting were left on pedestrian walkways for over a week, obstructing pedestrians on a busy arterial road.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "e8829d53-c1b8-5525-8e90-b4f395046c14",
+    "lat": 13.0470715,
+    "lng": 80.2521503,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Anna Salai near Anna Flyover: 2026-09-24 report: bags containing excavated silt were left along pedestrian walkways during monsoon works, obstructing pedestrian movement.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "c5947140-0c3b-58aa-935c-3c38863eb9c6",
+    "lat": 13.0731225,
+    "lng": 80.2503064,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Poonamallee High Road near St Andrew's Kirk: 2026-09-24 report: silt-filled bags from desilting were left on pedestrian/road margins for more than a week, affecting pedestrians and motorists.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "c061f928-5ded-5a9c-93e9-9de01755488f",
+    "lat": 13.0560546,
+    "lng": 80.2659794,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Peters Road near government-aided school, Royapettah: 2026-09-24 report: vehicles park along roughly 50\u2013100 m near the school during arrival/dismissal hours, leaving little pedestrian space and increasing conflict with moving traffic.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "d77f7208-0275-5dcb-93a7-c8361799a3de",
+    "lat": 13.0362918,
+    "lng": 80.1452052,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "RR Nagar 6th Street, Iyyappanthangal: 2026-09-21 report: road damaged for more than six months due to Metro Water pipeline work; potholes fill with water during rain and affect pedestrians and two-wheelers.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "14b58538-d5e6-5f0f-ab4e-8eb9437dcd6e",
+    "lat": 13.1647503,
+    "lng": 80.2014435,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "GNT Road near Puzhal Cycle Shop area: 2026-09-07 report: pipeline rupture caused an approximately 4 m deep, 6 m long and 3 m wide sinkhole in the middle of GNT Road, producing severe traffic disruption and a major road hazard.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "146116dd-57f8-551b-9914-62d5d438960d",
+    "lat": 13.0749192,
+    "lng": 80.2613697,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Egmore Maternity Hospital corridor, Nelson Manickam Road: 2026-09-21 firsthand Reddit report: pedestrians are forced onto the road because food vendors occupy the footpath; the poster says the narrow road, parked/standing autos and pedestri",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "10b5ad00-453f-5b74-8f9c-98debd06f7bf",
+    "lat": 13.0470715,
+    "lng": 80.2521503,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Anna Flyover approach roads: 2026-09-21 firsthand Reddit report describes potholes/ditches and poor road conditions around Anna Flyover. Social-media evidence; location is broad and should be field-verified before production use.",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "cb136034-c7e2-561f-b706-4194938034b1",
+    "lat": 12.9976644,
+    "lng": 80.2005216,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Alandur Metro station pedestrian approach, GST Road: 2025 Reddit report documenting pedestrians being squeezed by Metro pillars/parking onto GST Road; the author reported that CMRL subsequently widened/reclaimed the footpath. Retained as hi",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "349e4ec8-e494-58bb-be27-a78ad00023e4",
+    "lat": 13.0021559,
+    "lng": 80.1968338,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "North Parade Road, St Thomas Mount: 2026-09-21 public social-media report: Civil Issues described North Parade Road as riddled with large, dangerous potholes and specifically flagged risk to two-wheelers; request was made for immediate repa",
+    "created_at": "2026-09-24T00:00:00.000Z"
+  },
+  {
+    "id": "06359252-b781-58cd-9363-63f609fdfba1",
+    "lat": 12.9347826,
+    "lng": 80.2346334,
+    "weight": 2.0,
+    "status": "unsafe",
+    "category": "unsafe_road",
+    "affected_group": "general",
+    "confirmations": 1,
+    "note": "Ezhil Nagar T15 Police Station opposite road, Okkiyam Thoraipakkam: 2026-09-21 public social-media report: sewage main overflow was reported on the road opposite T15 Police Station near Block 40; Metro Water said rectification of a damaged ",
+    "created_at": "2026-09-24T00:00:00.000Z"
   }
 ]

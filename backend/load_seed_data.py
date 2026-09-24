@@ -61,10 +61,10 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
         reader = csv.DictReader(f)
         for row_idx, row in enumerate(reader, start=1):
             try:
-                raw_lat = float(row.get("approx_lat") or row.get("lat"))
-                raw_lng = float(row.get("approx_lng") or row.get("lng"))
+                raw_lat = float(row.get("approx_lat") or row.get("lat") or row.get("grid_lat"))
+                raw_lng = float(row.get("approx_lng") or row.get("lng") or row.get("grid_lng"))
                 raw_category = (row.get("category") or "").strip().lower()
-                location_name = (row.get("location_name") or row.get("notes") or "").strip()
+                location_name = (row.get("location_name") or row.get("notes") or row.get("note") or "").strip()
 
                 # Map category
                 category = CATEGORY_MAP.get(raw_category)

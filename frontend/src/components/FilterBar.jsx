@@ -231,8 +231,8 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                 <option value="6">Past 6 Hours (Live reports only)</option>
                 <option value="24">Past 24 Hours (Live reports only)</option>
                 <option value="72">Past 3 Days</option>
-                <option value="168">Past 7 Days (Includes 18/09/2026 data)</option>
-                <option value="720">Past 30 Days (Includes 18/09/2026 data)</option>
+                <option value="168">Past 7 Days (Includes 24/09/2026 data)</option>
+                <option value="720">Past 30 Days (Includes 24/09/2026 data)</option>
               </select>
             </div>
 
