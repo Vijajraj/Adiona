@@ -85,7 +85,7 @@ def process_csv():
                 "affected_group": affected,
                 "confirmations": 1,
                 "note": note,
-                "created_at": "2026-09-24T00:00:00.000Z",
+                "created_at": "2026-09-29T00:00:00.000Z",
             })
             
     print(f"Processed {len(reports)} incident records from seed_raw.csv")
@@ -123,7 +123,7 @@ async def seed_neon(reports):
             await conn.execute(
                 """
                 INSERT INTO reports (id, grid_lat, grid_lng, status, category, affected_group, note, device_id, confirmations, is_flagged, is_seed, created_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, TRUE, '2026-09-24T00:00:00.000Z')
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, TRUE, '2026-09-29T00:00:00.000Z')
                 """,
                 r["id"], r["grid_lat"], r["grid_lng"], r["status"], r["category"], r["affected_group"], r["note"], r["device_id"], r["confirmations"], r["is_flagged"]
             )
@@ -149,7 +149,7 @@ def seed_sqlite(reports):
                 cur.execute(
                     """
                     INSERT OR REPLACE INTO reports (id, grid_lat, grid_lng, status, category, affected_group, note, device_id, confirmations, is_flagged, is_seed, created_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-09-24 00:00:00')
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-09-29 00:00:00')
                     """,
                     (r["id"], r["grid_lat"], r["grid_lng"], r["status"], r["category"], r["affected_group"], r["note"], r["device_id"], r["confirmations"], r["is_flagged"])
                 )
