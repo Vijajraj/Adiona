@@ -1,3 +1,4 @@
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
 from app.config import settings
 from app.models import Base
@@ -43,9 +44,14 @@ async_session = async_sessionmaker(
 
 
 async def init_db():
-    """Create all database tables."""
+    """Create all database tables and apply lightweight backward-compatible migrations."""
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+        # Add missing columns on existing tables (SQLite/PostgreSQL schema upgrade)
+        try:
+            await conn.execute(text("ALTER TABLE reports ADD COLUMN time_bucket VARCHAR(20)"))
+        except Exception:
+            pass  # Column already exists
 
 
 async def get_db():

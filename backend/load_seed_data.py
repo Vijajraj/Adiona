@@ -14,9 +14,10 @@ import uuid
 
 from sqlalchemy.exc import IntegrityError
 from app.db import async_session, init_db
-from app.models import Report, ReportCategory, ReportStatus
+from app.models import Report, ReportCategory, ReportStatus, TimeBucket
 from app.services.geo_validator import validate_chennai_bounds
 from app.services.grid_snap import snap_to_grid
+from app.services.scoring import get_ist_time_bucket, recompute_cell_scores
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 logger = logging.getLogger(__name__)
@@ -90,6 +91,16 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
                 # Generate unique deterministic seed device_id per row to avoid constraint collisions
                 seed_device_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"chennai-seed-{row_idx}-{grid_lat}-{grid_lng}"))
 
+                # Assign appropriate time bucket for seed data
+                if category in (ReportCategory.poor_lighting, ReportCategory.isolated_area, ReportCategory.stalking, ReportCategory.catcalling):
+                    time_bucket = TimeBucket.night
+                elif category in (ReportCategory.robbery_theft, ReportCategory.unsafe_transport, ReportCategory.physical_harassment):
+                    time_bucket = TimeBucket.evening
+                elif row_idx % 2 == 0:
+                    time_bucket = TimeBucket.morning
+                else:
+                    time_bucket = TimeBucket.afternoon
+
                 # Prepare report object
                 report = Report(
                     grid_lat=grid_lat,
@@ -102,6 +113,7 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
                     confirmations=0,
                     is_flagged=False,
                     is_seed=True,
+                    time_bucket=time_bucket,
                 )
                 records_to_insert.append(report)
 
@@ -118,6 +130,13 @@ async def load_seed_data(csv_path: str = "seed_data.csv") -> tuple[int, int]:
             except IntegrityError:
                 await session.rollback()
                 skipped_count += 1
+
+        # Precompute initial cell_scores (Phase 2 Spec §3.1)
+        try:
+            scores_count = await recompute_cell_scores(session)
+            logger.info(f"  Precomputed cell_scores entries: {scores_count}")
+        except Exception as e:
+            logger.warning(f"Could not recompute cell scores: {e}")
 
     logger.info("=" * 60)
     logger.info("SEED DATA LOAD COMPLETE:")

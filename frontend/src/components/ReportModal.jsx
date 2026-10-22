@@ -20,6 +20,20 @@ import {
 import { CategoryIcon } from './CategoryIcon';
 import { InlinePrivacyNotice } from './PrivacyNotice';
 import { submitReport } from '../utils/api';
+import { useTranslation } from '../i18n/LanguageContext';
+
+function getISTBucketNow() {
+  const now = new Date();
+  const utcHours = now.getUTCHours();
+  const utcMinutes = now.getUTCMinutes();
+  const totalMinutes = utcHours * 60 + utcMinutes + 330;
+  const istHour = Math.floor((totalMinutes / 60) % 24);
+
+  if (istHour >= 5 && istHour < 12) return 'morning';
+  if (istHour >= 12 && istHour < 17) return 'afternoon';
+  if (istHour >= 17 && istHour < 21) return 'evening';
+  return 'night';
+}
 
 export function ReportModal({
   isOpen,
@@ -29,8 +43,10 @@ export function ReportModal({
   onReportSubmitted,
   onOpenPrivacy,
 }) {
+  const { t, language } = useTranslation();
   const [status, setStatus] = useState('unsafe');
   const [selectedCategory, setSelectedCategory] = useState('');
+  const [timeBucket, setTimeBucket] = useState(getISTBucketNow);
   const [note, setNote] = useState('');
   const [showAffectedGroup, setShowAffectedGroup] = useState(false);
   const [affectedGroup, setAffectedGroup] = useState('');
@@ -102,6 +118,7 @@ export function ReportModal({
         lng,
         status,
         category: selectedCategory,
+        time_bucket: timeBucket,
         affected_group: showAffectedGroup && affectedGroup ? affectedGroup : null,
         note: note.trim() || null,
         device_id: deviceId,
@@ -287,6 +304,34 @@ export function ReportModal({
                 </div>
               </>
             )}
+
+            {/* Time of Day selection (Phase 2 Spec §3.2) */}
+            <div className="form-group">
+              <label className="form-label">
+                <span>{language === 'ta' ? 'எப்போது நிகழ்ந்தது / கவனிக்கப்பட்டது?' : 'When does this issue occur / most relevant?'}</span>
+              </label>
+              <div className="grid grid-cols-4 gap-1.5">
+                {[
+                  { id: 'morning', label: language === 'ta' ? 'காலை' : 'Morning' },
+                  { id: 'afternoon', label: language === 'ta' ? 'மதியம்' : 'Afternoon' },
+                  { id: 'evening', label: language === 'ta' ? 'மாலை' : 'Evening' },
+                  { id: 'night', label: language === 'ta' ? 'இரவு' : 'Night' },
+                ].map((b) => (
+                  <button
+                    key={b.id}
+                    type="button"
+                    onClick={() => setTimeBucket(b.id)}
+                    className={`py-1.5 px-2 rounded-lg border text-xs font-semibold text-center transition-all ${
+                      timeBucket === b.id
+                        ? 'bg-indigo-600/20 border-indigo-500 text-indigo-300 ring-1 ring-indigo-500/50'
+                        : 'bg-slate-800/80 border-slate-700 text-slate-400 hover:text-slate-200'
+                    }`}
+                  >
+                    {b.label}
+                  </button>
+                ))}
+              </div>
+            </div>
 
             {/* Optional Note Field */}
             <div className="form-group">

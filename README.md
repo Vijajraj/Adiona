@@ -8,13 +8,15 @@ Adiona is a crowdsourced, privacy-first civic safety mapping platform built spec
 
 - **100% Anonymous & Privacy-First**: No sign-ups, phone numbers, or cookies. User click coordinates are snapped server-side to ~100m grid cell centroids before database storage.
 - **Cross-Device Clustered Map**: Powered by MapLibre GL with self-contained Vite worker bundling. Runs smoothly on all mobile devices, iOS Safari, Android WebViews, tablets, and desktops.
-- **Instant 0ms Cluster Rendering**: Bundled with 289 pre-verified Chennai seed safety reports. Markers and clusters render instantly even during backend cold-starts.
+- **Bilingual Tamil & English Interface (தமிழ் / English)**: Full localized experience including category descriptions, modal inputs, emergency tags, and privacy disclosures.
+- **Time-of-Day (IST) & Recency Views**: Dynamic views filtered by Indian Standard Time buckets (`morning`, `afternoon`, `evening`, `night`) and configurable recency windows (`past24h`, `past7d`, `past30d`, `past90d`).
+- **Emergency Help Layer**: Verified, static Chennai points of safety including 24/7 Police Stations, Trauma Care Hospitals, 24/7 Pharmacies, and Transit Hubs.
+- **Institutional Civic Dashboard ($K \ge 5$)**: Aggregated, privacy-preserving analytics protected by `X-Admin-Key` for colleges, residents' welfare associations, and civic authorities.
+- **Open Data Export (CC BY 4.0)**: Public downloadable aggregated safety scores per grid cell in JSON and CSV formats with strict small-number suppression ($K \ge 5$).
+- **Lower-Reported-Risk Route Assessment**: Transit corridor evaluation against lighting and safety incident history with plain-language risk summaries.
+- **Time-Decay & Anti-Manipulation Scoring Engine**: Exponential decay ($t_{1/2} = 90$d for infrastructure, $30$d for incidents, $180$d for seed data) precomputed in the `cell_scores` table, with single-device multi-cell flood detection.
 - **0ms Instant Dark / Light Map Themes**: Uses high-performance vector tiles from OpenFreeMap (`bright` and `dark`) with in-memory GeoJSON caching for instant theme switching.
-- **Hyperlocal Instant Search**: Combines a curated instant cache of 40+ major Chennai localities (T. Nagar, Velachery, Anna Nagar, Adyar, OMR, etc.) with OpenStreetMap Nominatim geocoding.
-- **Private Community Feedback**: In-app feedback system routed through secure backend background tasks directly to maintainers with zero email exposure in frontend code.
-- **Time-Decay Heatmap Algorithm**: Older unverified reports fade gracefully using an exponential decay schedule (~30-day half-life), while community-confirmed reports remain visible.
-- **Automated ML Profanity Moderation**: Notes are screened via an `alt-profanity-check` machine learning classifier. Flagged reports are held in a secure moderation queue.
-- **Deep-Link Coordinate Sharing**: Shareable URLs that sync map center coordinates and zoom levels in real time.
+- **Hyperlocal Instant Search**: Combines a curated instant cache of 40+ major Chennai localities with OpenStreetMap Nominatim geocoding.
 
 ---
 
@@ -351,11 +353,11 @@ Frontend application running at: `http://localhost:5173`
 ### 3. Running Test Suites
 
 ```bash
-# Run backend test suite (77 tests)
+# Run backend test suite (85 tests)
 cd backend
 pytest tests/ -v
 
-# Run frontend test suite (40 tests, 11 files)
+# Run frontend test suite (44 tests, 12 files)
 cd frontend
 npx vitest run
 ```

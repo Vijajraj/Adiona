@@ -8,7 +8,7 @@ from typing import Optional
 from pydantic import BaseModel, Field, field_validator
 
 from app.config import settings
-from app.models import AffectedGroup, ReportCategory, ReportStatus
+from app.models import AffectedGroup, ReportCategory, ReportStatus, TimeBucket
 
 
 def _parse_uuid(v: str) -> str:
@@ -30,6 +30,7 @@ class ReportCreate(BaseModel):
     status: ReportStatus
     category: ReportCategory
     affected_group: Optional[AffectedGroup] = None
+    time_bucket: Optional[TimeBucket] = None
     note: Optional[str] = Field(None, max_length=settings.NOTE_MAX_LENGTH)
     device_id: str
 
@@ -67,6 +68,7 @@ class ReportResponse(BaseModel):
     id: str
     grid_lat: float
     grid_lng: float
+    time_bucket: Optional[TimeBucket] = None
     created_at: datetime
 
     model_config = {"from_attributes": True}
@@ -86,6 +88,7 @@ class HeatmapPoint(BaseModel):
     status: Optional[ReportStatus] = None
     confirmations: Optional[int] = None
     note: Optional[str] = None
+    time_bucket: Optional[TimeBucket] = None
     created_at: Optional[datetime] = None
 
 
@@ -143,4 +146,84 @@ class ModerationActionResponse(BaseModel):
     success: bool
     message: str
     report_id: str
+
+
+# ---------------------------------------------------------------------------
+# Phase 2: Credibility, Dashboard, Open Data, & Routing Schemas
+# ---------------------------------------------------------------------------
+
+class CellScoreResponse(BaseModel):
+    grid_lat: float
+    grid_lng: float
+    score_unsafe: float
+    score_safe: float
+    unique_devices: int
+    last_report_at: Optional[datetime] = None
+    updated_at: datetime
+
+    model_config = {"from_attributes": True}
+
+
+class DashboardSummaryResponse(BaseModel):
+    total_reports: int
+    unique_devices: int
+    safe_reports_count: int
+    unsafe_reports_count: int
+    top_categories: dict[str, int]
+    time_bucket_breakdown: dict[str, int]
+    active_cells_count: int
+    suppressed_cells_count: int
+    min_k_threshold: int = 5
+
+
+class DashboardTopZoneResponse(BaseModel):
+    grid_lat: float
+    grid_lng: float
+    report_count: int
+    unique_devices: int
+    score_unsafe: float
+    dominant_category: str
+    top_categories: dict[str, int]
+
+
+class OpenDataExportItem(BaseModel):
+    grid_lat: float
+    grid_lng: float
+    report_count: int
+    score_unsafe: float
+    score_safe: float
+    unique_devices: int
+    category_breakdown: dict[str, int]
+    last_updated_date: str
+    license: str = "CC BY 4.0"
+
+
+class RoutePoint(BaseModel):
+    lat: float
+    lng: float
+
+
+class RouteRiskRequest(BaseModel):
+    coordinates: list[list[float]]  # list of [lng, lat] or [lat, lng]
+    detour_factor: Optional[float] = 1.0
+
+
+class RouteRiskSummary(BaseModel):
+    total_points: int
+    cells_traversed: int
+    unsafe_cells_count: int
+    max_cell_risk: float
+    aggregate_risk_score: float
+    lighting_flags_after_dark: int
+    high_risk_categories: list[str]
+    plain_language_summary: str
+
+
+class RouteOptionResponse(BaseModel):
+    route_id: str
+    is_lower_reported_risk: bool
+    risk_summary: RouteRiskSummary
+    geometry: list[list[float]]
+    distance_meters: float
+    duration_seconds: float
 

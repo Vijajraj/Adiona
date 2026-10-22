@@ -30,7 +30,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import settings
 from app.db import get_db
-from app.models import AffectedGroup, Confirmation, Report, ReportCategory
+from app.models import AffectedGroup, Confirmation, Report, ReportCategory, TimeBucket
 from app.schemas import (
     ConfirmRequest,
     ConfirmResponse,
@@ -44,6 +44,11 @@ from app.services.profanity import check_profanity
 from app.services.rate_limiter import (
     check_device_daily_limit,
     check_grid_cell_cooldown,
+)
+from app.services.scoring import (
+    calculate_report_decay_weight,
+    detect_and_flag_adjacent_clusters,
+    get_ist_time_bucket,
 )
 
 router = APIRouter(prefix="/reports", tags=["reports"])
@@ -83,6 +88,9 @@ async def create_report(
     # 5. Profanity check — flag, don't reject (spec §10)
     is_flagged = check_profanity(body.note)
 
+    # Compute IST time bucket if not provided (Phase 2 Spec §3.2)
+    time_bucket = body.time_bucket or get_ist_time_bucket()
+
     # 6. Insert with DB constraint protection against race conditions
     report = Report(
         grid_lat=grid_lat,
@@ -93,6 +101,7 @@ async def create_report(
         note=body.note,
         device_id=body.device_id,
         is_flagged=is_flagged,
+        time_bucket=time_bucket,
     )
     db.add(report)
     try:
@@ -105,6 +114,12 @@ async def create_report(
                 detail="You have already reported this location within the last 24 hours.",
             )
         raise exc
+
+    # Check for rapid adjacent cluster spam asynchronously (Phase 2 Spec §3.1)
+    try:
+        await detect_and_flag_adjacent_clusters(db, body.device_id)
+    except Exception:
+        pass  # Non-blocking for report creation
 
     return report
 
@@ -175,22 +190,27 @@ async def confirm_report(
 
 
 # --------------------------------------------------------------------------
-# GET /reports/heatmap — with Spec §4.2 Time-Decay Heatmap Weighting
+# GET /reports/heatmap — Phase 2 Spec §3.1 & §3.2 Time-Decay & Recency
 # --------------------------------------------------------------------------
 @router.get("/heatmap", response_model=list[HeatmapPoint])
 async def get_heatmap(
     request: Request,
     category: Optional[ReportCategory] = None,
     hours_back: Optional[int] = Query(None, ge=1, le=8760, description="Time window in hours"),
+    days_back: Optional[int] = Query(None, ge=1, le=365, description="Time window in days"),
+    time_bucket: Optional[TimeBucket] = Query(None, description="IST time-of-day bucket"),
     affected_group: Optional[AffectedGroup] = None,
     db: AsyncSession = Depends(get_db),
 ):
-    """Return aggregated heatmap data with Spec §4.2 Time-Decay Weighting.
+    """Return aggregated heatmap data with Spec §3.1 Category-Aware Time-Decay & Time-of-Day filtering.
 
-    Older reports without recent confirmations gradually decay in weight (half-life ~30 days,
-    floored at 0.1), while confirmed spots retain high intensity.
+    - 180-day half-life for seed/historical data
+    - 90-day half-life for infrastructure categories
+    - 30-day half-life for incident categories
+    - Unique device and confirmation weighting
     """
-    import math
+    if days_back and not hours_back:
+        hours_back = days_back * 24
 
     # Query all matching reports to calculate precise time-decay weights per cell
     query = select(
@@ -203,6 +223,8 @@ async def get_heatmap(
         Report.confirmations,
         Report.created_at,
         Report.note,
+        Report.is_seed,
+        Report.time_bucket,
     )
 
     # Strongly-typed filters
@@ -211,6 +233,9 @@ async def get_heatmap(
 
     if affected_group:
         query = query.where(Report.affected_group == affected_group)
+
+    if time_bucket:
+        query = query.where(Report.time_bucket == time_bucket)
 
     if hours_back and hours_back > 0:
         cutoff = datetime.now(timezone.utc) - timedelta(hours=hours_back)
@@ -232,10 +257,14 @@ async def get_heatmap(
         if created_at.tzinfo is None:
             created_at = created_at.replace(tzinfo=timezone.utc)
 
-        age_days = (now - created_at).total_seconds() / 86400.0
-        # Time decay exponential formula: e^(-0.023 * age_days) -> ~30 day half-life, min floor 0.10
-        base_decayed_weight = max(0.10, math.exp(-0.023 * max(0.0, age_days)))
-        report_weight = base_decayed_weight + float(r.confirmations or 0)
+        # Calculate time-decay weight using scoring engine formula
+        base_decayed_weight = calculate_report_decay_weight(
+            created_at=created_at,
+            category=r.category,
+            is_seed=bool(r.is_seed),
+            now=now,
+        )
+        report_weight = base_decayed_weight + (0.5 * float(r.confirmations or 0))
 
         if key not in cells:
             cells[key] = {
@@ -248,6 +277,7 @@ async def get_heatmap(
                 "status": r.status,
                 "confirmations": 0,
                 "note": r.note,
+                "time_bucket": r.time_bucket,
                 "created_at": created_at,
             }
 
@@ -258,6 +288,7 @@ async def get_heatmap(
         cells[key]["category"] = r.category
         cells[key]["affected_group"] = r.affected_group
         cells[key]["status"] = r.status
+        cells[key]["time_bucket"] = r.time_bucket or cells[key]["time_bucket"]
         cells[key]["created_at"] = created_at
         if r.note:
             cells[key]["note"] = r.note
@@ -273,6 +304,7 @@ async def get_heatmap(
             status=c["status"],
             confirmations=c["confirmations"],
             note=c.get("note"),
+            time_bucket=c.get("time_bucket"),
             created_at=c.get("created_at"),
         )
         for c in cells.values()

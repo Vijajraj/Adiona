@@ -1,14 +1,22 @@
 import { useState, useMemo } from 'react';
-import { Filter, X, Clock, Users, Layers, RotateCcw, Sparkles } from 'lucide-react';
+import { Filter, X, Clock, Users, Layers, RotateCcw, Sparkles, LifeBuoy, Sun, Moon, Sunset, Sunrise } from 'lucide-react';
 import {
   GENERAL_SAFETY_CATEGORIES,
   WOMEN_SAFETY_CATEGORIES,
   AFFECTED_GROUPS,
 } from '../utils/categories';
+import { useTranslation } from '../i18n/LanguageContext';
 import seedReports from '../data/seedReports.json';
 
-export function FilterBar({ filters, onFilterChange, onResetFilters }) {
+export function FilterBar({
+  filters,
+  onFilterChange,
+  onResetFilters,
+  showHelpPoints,
+  onToggleHelpPoints,
+}) {
   const [isOpen, setIsOpen] = useState(false);
+  const { t, language } = useTranslation();
 
   // Compute live incident counts for all categories and demographic groups
   const categoryCounts = useMemo(() => {
@@ -27,7 +35,6 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
     return counts;
   }, []);
 
-  const totalReportsCount = seedReports.length;
   const womenSafetyTotal = (seedReports || []).filter(
     (r) => r.affected_group === 'woman' || WOMEN_SAFETY_CATEGORIES.some((c) => c.id === r.category)
   ).length;
@@ -36,6 +43,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
     filters.category,
     filters.hours_back,
     filters.affected_group,
+    filters.time_bucket && filters.time_bucket !== 'all' ? filters.time_bucket : null,
   ].filter(Boolean).length;
 
   const hasActiveFilters = activeCount > 0;
@@ -51,7 +59,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
         aria-expanded={isOpen}
       >
         <Filter size={18} />
-        <span>Filters{activeCount > 0 ? ` (${activeCount})` : ''}</span>
+        <span>{t('filters')}{activeCount > 0 ? ` (${activeCount})` : ''}</span>
         {hasActiveFilters && <span className="filter-active-dot" />}
       </button>
 
@@ -61,7 +69,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
           <div className="filter-panel-header">
             <div className="flex items-center gap-2">
               <Filter size={16} />
-              <h3>Heatmap Filters</h3>
+              <h3>{t('heatmapFilters')}</h3>
               {activeCount > 0 && (
                 <span className="text-[11px] font-medium px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-400 border border-indigo-500/30">
                   {activeCount} active
@@ -77,7 +85,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                   title="Reset all filters"
                 >
                   <RotateCcw size={14} />
-                  <span>Reset</span>
+                  <span>{t('clearFilters')}</span>
                 </button>
               )}
               <button
@@ -93,9 +101,28 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
 
           {/* Quick presets with actual incident numbers */}
           <div className="px-4 pt-3 pb-1 border-b border-slate-700/40">
-            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2 flex items-center gap-1.5">
-              <Sparkles size={12} className="text-amber-400" />
-              <span>Quick Presets</span>
+            <div className="text-[11px] uppercase tracking-wider text-slate-400 font-semibold mb-2 flex items-center justify-between">
+              <div className="flex items-center gap-1.5">
+                <Sparkles size={12} className="text-amber-400" />
+                <span>{language === 'ta' ? 'விரைவு வடிப்புகள்' : 'Quick Presets'}</span>
+              </div>
+
+              {/* Nearby Emergency Help Layer Toggle */}
+              {onToggleHelpPoints && (
+                <button
+                  type="button"
+                  onClick={onToggleHelpPoints}
+                  className={`text-[11px] font-semibold px-2 py-0.5 rounded-full border transition-all flex items-center gap-1 ${
+                    showHelpPoints
+                      ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300'
+                      : 'bg-slate-800 border-slate-700 text-slate-400 hover:text-slate-200'
+                  }`}
+                  title={t('nearbyHelpDesc')}
+                >
+                  <LifeBuoy size={11} className={showHelpPoints ? 'text-emerald-400 animate-pulse' : ''} />
+                  <span>{t('nearbyHelp')}</span>
+                </button>
+              )}
             </div>
             <div className="flex flex-wrap gap-1.5 pb-2">
               <button
@@ -112,7 +139,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                   )
                 }
               >
-                👩 Women Safety ({womenSafetyTotal})
+                👩 {t('group_woman')} ({womenSafetyTotal})
               </button>
               <button
                 type="button"
@@ -128,7 +155,7 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                   )
                 }
               >
-                💡 Poor Lighting ({categoryCounts['poor_lighting'] || 0})
+                💡 {t('cat_poor_lighting')} ({categoryCounts['poor_lighting'] || 0})
               </button>
               <button
                 type="button"
@@ -144,69 +171,93 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                   )
                 }
               >
-                🚧 Accident Spots ({categoryCounts['unsafe_road'] || 0})
+                🚧 {t('cat_unsafe_road')} ({categoryCounts['unsafe_road'] || 0})
               </button>
               <button
                 type="button"
                 className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
-                  filters.category === 'unsafe_transport'
-                    ? 'bg-cyan-500/25 border-cyan-400 text-cyan-300 font-medium ring-1 ring-cyan-400/50'
+                  filters.time_bucket === 'night'
+                    ? 'bg-purple-500/25 border-purple-400 text-purple-300 font-medium ring-1 ring-purple-400/50'
                     : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
                 }`}
                 onClick={() =>
                   onFilterChange(
-                    'category',
-                    filters.category === 'unsafe_transport' ? null : 'unsafe_transport'
+                    'time_bucket',
+                    filters.time_bucket === 'night' ? 'all' : 'night'
                   )
                 }
               >
-                🚌 Transit Stops ({categoryCounts['unsafe_transport'] || 0})
-              </button>
-              <button
-                type="button"
-                className={`text-xs px-2.5 py-1 rounded-full border transition-all ${
-                  filters.hours_back === 24
-                    ? 'bg-emerald-500/25 border-emerald-400 text-emerald-300 font-medium ring-1 ring-emerald-400/50'
-                    : 'bg-slate-800/80 border-slate-700 text-slate-300 hover:bg-slate-700/60'
-                }`}
-                onClick={() =>
-                  onFilterChange('hours_back', filters.hours_back === 24 ? null : 24)
-                }
-              >
-                ⏱️ Past 24h
+                🌙 {t('timeNight')}
               </button>
             </div>
           </div>
 
           <div className="filter-panel-body space-y-4">
-            {/* Category Filter */}
+            {/* Time of Day Bucket Filter (Phase 2 Spec §3.2) */}
+            <div className="filter-group">
+              <label className="filter-label">
+                <Clock size={14} />
+                <span>{t('timeOfDay')}</span>
+              </label>
+              <div className="grid grid-cols-2 gap-1.5">
+                {[
+                  { id: 'all', label: t('timeAll'), icon: null },
+                  { id: 'morning', label: t('timeMorning'), icon: Sunrise },
+                  { id: 'afternoon', label: t('timeAfternoon'), icon: Sun },
+                  { id: 'evening', label: t('timeEvening'), icon: Sunset },
+                  { id: 'night', label: t('timeNight'), icon: Moon },
+                ].map((item) => {
+                  const Icon = item.icon;
+                  const isSelected = (filters.time_bucket || 'all') === item.id;
+                  return (
+                    <button
+                      key={item.id}
+                      type="button"
+                      onClick={() => onFilterChange('time_bucket', item.id)}
+                      className={`text-left px-2.5 py-1.5 rounded-lg border text-xs font-medium transition-all flex items-center gap-1.5 ${
+                        isSelected
+                          ? 'bg-indigo-600/30 border-indigo-400 text-indigo-300 shadow-sm'
+                          : 'bg-slate-900 border-slate-800 text-slate-400 hover:bg-slate-800 hover:text-slate-200'
+                      }`}
+                    >
+                      {Icon && <Icon size={12} className={isSelected ? 'text-indigo-400' : 'text-slate-500'} />}
+                      <span className="truncate">{item.label}</span>
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Problem Category Filter */}
             <div className="filter-group">
               <label className="filter-label">
                 <Layers size={14} />
-                <span>Problem Category</span>
+                <span>{t('problemCategory')}</span>
               </label>
               <select
                 className="filter-select"
                 value={filters.category || ''}
                 onChange={(e) => onFilterChange('category', e.target.value || null)}
               >
-                <option value="">All Categories (Default)</option>
-                <optgroup label="General Safety">
+                <option value="">{language === 'ta' ? 'அனைத்து வகைகளும்' : 'All Categories (Default)'}</option>
+                <optgroup label={language === 'ta' ? 'பொதுப் பாதுகாப்பு' : 'General Safety'}>
                   {GENERAL_SAFETY_CATEGORIES.map((cat) => {
                     const count = categoryCounts[cat.id] || 0;
+                    const label = t(`cat_${cat.id}`) || cat.label;
                     return (
                       <option key={cat.id} value={cat.id}>
-                        {cat.label} {count > 0 ? `(${count})` : '(0)'}
+                        {label} {count > 0 ? `(${count})` : '(0)'}
                       </option>
                     );
                   })}
                 </optgroup>
-                <optgroup label="Women Safety">
+                <optgroup label={language === 'ta' ? 'பெண்கள் பாதுகாப்பு' : 'Women Safety'}>
                   {WOMEN_SAFETY_CATEGORIES.map((cat) => {
                     const count = categoryCounts[cat.id] || 0;
+                    const label = t(`cat_${cat.id}`) || cat.label;
                     return (
                       <option key={cat.id} value={cat.id}>
-                        {cat.label} {count > 0 ? `(${count})` : '(0)'}
+                        {label} {count > 0 ? `(${count})` : '(0)'}
                       </option>
                     );
                   })}
@@ -214,11 +265,11 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
               </select>
             </div>
 
-            {/* Time Filter */}
+            {/* Recency Filter */}
             <div className="filter-group">
               <label className="filter-label">
                 <Clock size={14} />
-                <span>Time Range</span>
+                <span>{t('timeRange')}</span>
               </label>
               <select
                 className="filter-select"
@@ -227,12 +278,11 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
                   onFilterChange('hours_back', e.target.value ? parseInt(e.target.value, 10) : null)
                 }
               >
-                <option value="">All Time (Cumulative)</option>
-                <option value="6">Past 6 Hours (Live reports only)</option>
-                <option value="24">Past 24 Hours (Live reports only)</option>
-                <option value="72">Past 3 Days</option>
-                <option value="168">Past 7 Days (Includes 29/09/2026 data)</option>
-                <option value="720">Past 30 Days (Includes 29/09/2026 data)</option>
+                <option value="">{t('allTime')}</option>
+                <option value="24">{t('past24h')}</option>
+                <option value="168">{t('past7d')}</option>
+                <option value="720">{t('past30d')}</option>
+                <option value="2160">{t('past90d')}</option>
               </select>
             </div>
 
@@ -240,19 +290,20 @@ export function FilterBar({ filters, onFilterChange, onResetFilters }) {
             <div className="filter-group">
               <label className="filter-label">
                 <Users size={14} />
-                <span>Affected Demographic</span>
+                <span>{t('affectedDemographic')}</span>
               </label>
               <select
                 className="filter-select"
                 value={filters.affected_group || ''}
                 onChange={(e) => onFilterChange('affected_group', e.target.value || null)}
               >
-                <option value="">All Groups</option>
+                <option value="">{language === 'ta' ? 'அனைத்து குழுக்கள்' : 'All Groups'}</option>
                 {AFFECTED_GROUPS.map((group) => {
                   const count = groupCounts[group.id] || 0;
+                  const label = t(`group_${group.id}`) || group.label;
                   return (
                     <option key={group.id} value={group.id}>
-                      {group.label} {count > 0 ? `(${count})` : '(0)'}
+                      {label} {count > 0 ? `(${count})` : '(0)'}
                     </option>
                   );
                 })}

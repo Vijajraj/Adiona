@@ -34,6 +34,13 @@ class ReportStatus(str, enum.Enum):
     unsafe = "unsafe"
 
 
+class TimeBucket(str, enum.Enum):
+    morning = "morning"
+    afternoon = "afternoon"
+    evening = "evening"
+    night = "night"
+
+
 class ReportCategory(str, enum.Enum):
     """Two separate lists per spec §4.1 — stored in one DB enum but
     kept semantically distinct.  'other' is distinguished per list."""
@@ -90,6 +97,27 @@ SAFE_SPOT_CATEGORIES = frozenset({
     ReportCategory.other_general,
 })
 
+# Phase 2: Category decay half-life groupings (spec §3.1)
+# Infrastructure: 90 days half-life
+INFRASTRUCTURE_CATEGORIES = frozenset({
+    ReportCategory.poor_lighting,
+    ReportCategory.isolated_area,
+    ReportCategory.no_cctv,
+    ReportCategory.unsafe_road,
+})
+
+# Incidents: 30 days half-life
+INCIDENT_CATEGORIES = frozenset({
+    ReportCategory.catcalling,
+    ReportCategory.stalking,
+    ReportCategory.physical_harassment,
+    ReportCategory.robbery_theft,
+    ReportCategory.stray_animal,
+    ReportCategory.unsafe_transport,
+    ReportCategory.other_general,
+    ReportCategory.other_women,
+})
+
 
 class AffectedGroup(str, enum.Enum):
     woman = "woman"
@@ -125,6 +153,7 @@ class Report(Base):
     confirmations = Column(Integer, default=0, nullable=False)
     is_flagged = Column(Boolean, default=False, nullable=False)
     is_seed = Column(Boolean, default=False, nullable=False, index=True)
+    time_bucket = Column(Enum(TimeBucket, native_enum=False), nullable=True, index=True)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)
 
     __table_args__ = (
@@ -161,4 +190,38 @@ class Feedback(Base):
     category = Column(String(50), default="suggestion", nullable=False)
     rating = Column(Integer, nullable=True)
     message = Column(String(1000), nullable=True)
+    created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)
+
+
+# ---------------------------------------------------------------------------
+# Phase 2: Credibility & Moderation Models (Spec §3.1)
+# ---------------------------------------------------------------------------
+
+class CellScore(Base):
+    """Precomputed aggregated score per ~100m grid cell (spec §3.1)."""
+    __tablename__ = "cell_scores"
+
+    grid_lat = Column(Float, primary_key=True, nullable=False)
+    grid_lng = Column(Float, primary_key=True, nullable=False)
+    score_unsafe = Column(Float, default=0.0, nullable=False)
+    score_safe = Column(Float, default=0.0, nullable=False)
+    unique_devices = Column(Integer, default=0, nullable=False)
+    last_report_at = Column(DateTime(timezone=True), nullable=True)
+    updated_at = Column(DateTime(timezone=True), default=_utcnow, onupdate=_utcnow, nullable=False)
+
+    __table_args__ = (
+        Index("ix_cell_scores_grid", "grid_lat", "grid_lng"),
+    )
+
+
+class ReportFlag(Base):
+    """Moderation flags for anti-manipulation & rapid adjacent flooding (spec §3.1)."""
+    __tablename__ = "report_flags"
+
+    id = Column(String(36), primary_key=True, default=_uuid)
+    report_id = Column(
+        String(36), ForeignKey("reports.id", ondelete="CASCADE"), nullable=False, index=True
+    )
+    reason = Column(String(200), nullable=False)
+    reviewed = Column(Boolean, default=False, nullable=False, index=True)
     created_at = Column(DateTime(timezone=True), default=_utcnow, nullable=False)

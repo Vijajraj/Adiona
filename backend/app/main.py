@@ -11,10 +11,13 @@ from slowapi.errors import RateLimitExceeded
 from sqlalchemy import text
 
 from app.config import settings
-from app.db import engine, init_db
+from app.db import engine, init_db, async_session
+from app.routers.admin_dashboard import router as admin_dashboard_router
+from app.routers.export import router as export_router
 from app.routers.feedback import router as feedback_router
 from app.routers.moderation import router as moderation_router
 from app.routers.reports import limiter, router as reports_router
+from app.routers.routing import router as routing_router
 
 logger = logging.getLogger(__name__)
 
@@ -29,6 +32,14 @@ async def lifespan(app: FastAPI):
     try:
         await init_db()
         logger.info("Database initialized successfully.")
+        async with async_session() as session:
+            from app.models import CellScore
+            from app.services.scoring import recompute_cell_scores
+            from sqlalchemy import func, select
+            res = await session.execute(select(func.count(CellScore.grid_lat)))
+            if (res.scalar() or 0) == 0:
+                await recompute_cell_scores(session)
+                logger.info("Computed initial cell_scores.")
     except Exception as e:
         logger.warning(f"Database initialization notice on startup (will retry on query): {e}")
 
@@ -90,6 +101,9 @@ app.add_middleware(
 app.include_router(reports_router)
 app.include_router(moderation_router)
 app.include_router(feedback_router)
+app.include_router(admin_dashboard_router)
+app.include_router(export_router)
+app.include_router(routing_router)
 
 
 # --------------------------------------------------------------------------

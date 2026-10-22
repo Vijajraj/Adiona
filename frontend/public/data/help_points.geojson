@@ -1,0 +1,283 @@
+{
+  "type": "FeatureCollection",
+  "name": "chennai_emergency_help_points",
+  "crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2635, 13.0833] },
+      "properties": {
+        "id": "pol_vepery",
+        "name": "Greater Chennai Police Commissionerate & Vepery Station",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452359",
+        "address": "EVK Sampath Road, Vepery, Chennai 600007",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2335, 13.0418] },
+      "properties": {
+        "id": "pol_tnagar",
+        "name": "T. Nagar Police Station (R-1 Mambalam)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452582",
+        "address": "Madley Road, T Nagar, Chennai 600017",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2678, 13.0335] },
+      "properties": {
+        "id": "pol_mylapore",
+        "name": "Mylapore Police Station (E-1)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452586",
+        "address": "Kutchery Road, Mylapore, Chennai 600004",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2155, 13.0850] },
+      "properties": {
+        "id": "pol_annanagar",
+        "name": "Anna Nagar Police Station (K-4)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452654",
+        "address": "2nd Avenue, Anna Nagar, Chennai 600040",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2568, 13.0064] },
+      "properties": {
+        "id": "pol_adyar",
+        "name": "Adyar Police Station (J-2)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452592",
+        "address": "Lattice Bridge Road, Adyar, Chennai 600020",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2133, 13.0076] },
+      "properties": {
+        "id": "pol_guindy",
+        "name": "Guindy Police Station (J-3)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452594",
+        "address": "GST Road, Guindy, Chennai 600032",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2238, 12.9782] },
+      "properties": {
+        "id": "pol_velachery",
+        "name": "Velachery Police Station (J-7)",
+        "type": "police",
+        "emergency_phone": "100 / 044-23452598",
+        "address": "Velachery Bypass Road, Chennai 600042",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.1235, 12.9248] },
+      "properties": {
+        "id": "pol_tambaram",
+        "name": "Tambaram Police Station",
+        "type": "police",
+        "emergency_phone": "100 / 044-22266200",
+        "address": "GST Road, Tambaram, Chennai 600045",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2785, 13.0788] },
+      "properties": {
+        "id": "hosp_rggh",
+        "name": "Rajiv Gandhi Government General Hospital (Trauma Care)",
+        "type": "hospital",
+        "emergency_phone": "108 / 044-25305000",
+        "address": "EVR Periyar Salai, Park Town, Chennai 600003",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2872, 13.1075] },
+      "properties": {
+        "id": "hosp_stanley",
+        "name": "Govt Stanley Medical College Hospital (Casualty)",
+        "type": "hospital",
+        "emergency_phone": "108 / 044-25281351",
+        "address": "Old Jail Road, Royapuram, Chennai 600001",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2432, 13.0792] },
+      "properties": {
+        "id": "hosp_kilpauk",
+        "name": "Government Kilpauk Medical College Hospital",
+        "type": "hospital",
+        "emergency_phone": "108 / 044-28364951",
+        "address": "Poonamallee High Road, Kilpauk, Chennai 600010",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2618, 13.0545] },
+      "properties": {
+        "id": "hosp_royapettah",
+        "name": "Government Royapettah Hospital",
+        "type": "hospital",
+        "emergency_phone": "108 / 044-28483051",
+        "address": "Westcott Road, Royapettah, Chennai 600014",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2520, 13.0612] },
+      "properties": {
+        "id": "hosp_apollo_greams",
+        "name": "Apollo Hospitals 24/7 Emergency",
+        "type": "hospital",
+        "emergency_phone": "1066 / 044-28290200",
+        "address": "Greams Lane, Thousand Lights, Chennai 600006",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2105, 13.0515] },
+      "properties": {
+        "id": "hosp_sims",
+        "name": "SIMS Hospital Emergency Care",
+        "type": "hospital",
+        "emergency_phone": "044-20002001",
+        "address": "Jawaharlal Nehru Salai, Vadapalani, Chennai 600026",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2365, 13.0425] },
+      "properties": {
+        "id": "pharm_apollo_pondy",
+        "name": "Apollo Pharmacy 24/7 (Pondy Bazaar)",
+        "type": "pharmacy",
+        "emergency_phone": "044-24340555",
+        "address": "Pondy Bazaar, T Nagar, Chennai 600017",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2555, 13.0048] },
+      "properties": {
+        "id": "pharm_medplus_adyar",
+        "name": "MedPlus 24/7 Pharmacy (Adyar)",
+        "type": "pharmacy",
+        "emergency_phone": "044-24451122",
+        "address": "LB Road, Adyar, Chennai 600020",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2162, 13.0845] },
+      "properties": {
+        "id": "pharm_apollo_annanagar",
+        "name": "Apollo 24/7 Pharmacy (Anna Nagar)",
+        "type": "pharmacy",
+        "emergency_phone": "044-26210088",
+        "address": "2nd Avenue, Anna Nagar, Chennai 600040",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2225, 12.9775] },
+      "properties": {
+        "id": "pharm_medplus_velachery",
+        "name": "MedPlus 24/7 Pharmacy (Velachery)",
+        "type": "pharmacy",
+        "emergency_phone": "044-22443322",
+        "address": "100 Feet Bypass Road, Velachery, Chennai 600042",
+        "open_hours": "24/7"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2755, 13.0818] },
+      "properties": {
+        "id": "transit_central",
+        "name": "Chennai Central Metro & Railway Station",
+        "type": "transit",
+        "emergency_phone": "139 (Railway Police 1512)",
+        "address": "Poonamallee High Road, Chennai 600003",
+        "open_hours": "05:00 - 23:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2612, 13.0782] },
+      "properties": {
+        "id": "transit_egmore",
+        "name": "Chennai Egmore Metro & Station",
+        "type": "transit",
+        "emergency_phone": "139 / 1512",
+        "address": "Gandhi Irwin Road, Egmore, Chennai 600008",
+        "open_hours": "05:00 - 23:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2052, 13.0694] },
+      "properties": {
+        "id": "transit_cmbt",
+        "name": "CMBT Metro Station (Koyambedu)",
+        "type": "transit",
+        "emergency_phone": "1800-425-1515",
+        "address": "Inner Ring Road, Koyambedu, Chennai 600107",
+        "open_hours": "05:00 - 23:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.2015, 13.0082] },
+      "properties": {
+        "id": "transit_alandur",
+        "name": "Alandur Metro Interchange",
+        "type": "transit",
+        "emergency_phone": "1800-425-1515",
+        "address": "GST Road, Alandur, Chennai 600016",
+        "open_hours": "05:00 - 23:00"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [80.1638, 12.9805] },
+      "properties": {
+        "id": "transit_airport",
+        "name": "Chennai Airport Metro Station",
+        "type": "transit",
+        "emergency_phone": "1800-425-1515",
+        "address": "Airport Terminal, Meenambakkam, Chennai 600027",
+        "open_hours": "05:00 - 23:00"
+      }
+    }
+  ]
+}

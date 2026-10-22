@@ -23,6 +23,11 @@ import { ModerationModal } from './ModerationModal';
 import { FeedbackModal } from './FeedbackModal';
 import { SearchBar } from './SearchBar';
 import { AppContextCard } from './AppContextCard';
+import LanguageToggle from './LanguageToggle';
+import { NearbyHelpLayer, HELP_POINTS_LAYER_ID } from './NearbyHelpLayer';
+import { DashboardModal } from './DashboardModal';
+import { RouteSafetyModal } from './RouteSafetyModal';
+import { useTranslation } from '../i18n/LanguageContext';
 import {
   ReportMarkersLayer,
   UNCLUSTERED_LAYER_ID,
@@ -47,6 +52,9 @@ import {
   Flame,
   AlertTriangle,
   X,
+  Building2,
+  Route,
+  LifeBuoy,
 } from 'lucide-react';
 
 function GithubIcon({ size = 16, className = '' }) {
@@ -105,7 +113,21 @@ function getInitialMapParams() {
   return { initialCenter, initialZoom };
 }
 
+function getCurrentISTBucket() {
+  const now = new Date();
+  const utcHours = now.getUTCHours();
+  const utcMinutes = now.getUTCMinutes();
+  const totalMinutes = utcHours * 60 + utcMinutes + 330;
+  const istHour = Math.floor((totalMinutes / 60) % 24);
+
+  if (istHour >= 5 && istHour < 12) return 'morning';
+  if (istHour >= 12 && istHour < 17) return 'afternoon';
+  if (istHour >= 17 && istHour < 21) return 'evening';
+  return 'night';
+}
+
 export function MapView({ deviceId }) {
+  const { t, language } = useTranslation();
   const mapContainerRef = useRef(null);
   const mapRef = useRef(null);
   const clickMarkerRef = useRef(null);
@@ -116,17 +138,21 @@ export function MapView({ deviceId }) {
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [refreshKey, setRefreshKey] = useState(0);
   const [showShareToast, setShowShareToast] = useState(false);
-  const [filters, setFilters] = useState({
+  const [showHelpPoints, setShowHelpPoints] = useState(false);
+  const [isDashboardModalOpen, setIsDashboardModalOpen] = useState(false);
+  const [isRouteModalOpen, setIsRouteModalOpen] = useState(false);
+  const [filters, setFilters] = useState(() => ({
     category: null,
     hours_back: null,
     affected_group: null,
-  });
+    time_bucket: getCurrentISTBucket(),
+  }));
 
   const [viewMode, setViewMode] = useState('both'); // 'both' | 'heatmap' | 'clusters'
   const [filterStats, setFilterStats] = useState({ totalCount: 330, filteredCount: 330 });
 
   const hasActiveFilters = Boolean(
-    filters.category || filters.hours_back || filters.affected_group
+    filters.category || filters.hours_back || filters.affected_group || (filters.time_bucket && filters.time_bucket !== 'all')
   );
 
   const activeFilterLabel = useMemo(() => {
@@ -146,6 +172,16 @@ export function MapView({ deviceId }) {
 
     if (filters.hours_back) {
       parts.push(`Past ${filters.hours_back}h`);
+    }
+
+    if (filters.time_bucket && filters.time_bucket !== 'all') {
+      const bucketLabels = {
+        morning: language === 'ta' ? 'காலை' : 'Morning',
+        afternoon: language === 'ta' ? 'மதியம்' : 'Afternoon',
+        evening: language === 'ta' ? 'மாலை' : 'Evening',
+        night: language === 'ta' ? 'இரவு' : 'Night',
+      };
+      parts.push(bucketLabels[filters.time_bucket] || filters.time_bucket);
     }
 
     return parts.length > 0 ? parts.join(' • ') : 'All Incidents';
@@ -207,6 +243,8 @@ export function MapView({ deviceId }) {
     setIsPrivacyModalOpen(false);
     setIsModerationModalOpen(false);
     setIsFeedbackModalOpen(false);
+    setIsDashboardModalOpen(false);
+    setIsRouteModalOpen(false);
   }, []);
 
   const handleModalCloseRef = useRef(handleModalClose);
@@ -307,6 +345,14 @@ export function MapView({ deviceId }) {
         lat > CHENNAI_BOUNDS[1][1]
       ) {
         return;
+      }
+
+      // Check if user clicked emergency help point marker (Spec §3.10)
+      if (map.getLayer(HELP_POINTS_LAYER_ID)) {
+        const helpFeatures = map.queryRenderedFeatures(e.point, { layers: [HELP_POINTS_LAYER_ID] });
+        if (helpFeatures && helpFeatures.length > 0) {
+          return; // Handled by NearbyHelpLayer popup
+        }
       }
 
       // Check if user clicked a cluster or unclustered marker
@@ -425,7 +471,7 @@ export function MapView({ deviceId }) {
   };
 
   const handleResetFilters = () => {
-    setFilters({ category: null, hours_back: null, affected_group: null });
+    setFilters({ category: null, hours_back: null, affected_group: null, time_bucket: 'all' });
   };
 
   const handleReportSuccess = () => {
@@ -454,9 +500,9 @@ export function MapView({ deviceId }) {
             <Shield size={22} className="text-white" />
           </div>
           <div>
-            <h1 className="brand-title">Chennai Safety Map</h1>
+            <h1 className="brand-title">{t('appTitle')} — {t('appSubtitle')}</h1>
             <p className="brand-subtitle">
-              Hyperlocal Open Safety Network <span className="opacity-40">•</span> Information updated: 29/09/2026
+              Hyperlocal Open Safety Network <span className="opacity-40">•</span> {t('betaTag')}
             </p>
           </div>
         </div>
@@ -465,6 +511,45 @@ export function MapView({ deviceId }) {
         <SearchBar onSelectLocation={handleSelectLocality} />
 
         <div className="header-actions">
+          {/* Language Toggle (Spec §3.3) */}
+          <LanguageToggle />
+
+          {/* Safe Route Suggestion Spike (Spec §3.7) */}
+          <button
+            type="button"
+            className="action-btn"
+            onClick={() => setIsRouteModalOpen(true)}
+            title={t('lowerRiskRoute')}
+            aria-label={t('lowerRiskRoute')}
+          >
+            <Route size={18} className="text-indigo-400" />
+            <span className="hidden xl:inline">{t('lowerRiskRoute')}</span>
+          </button>
+
+          {/* Institutional Dashboard & Open Data (Spec §3.5 & §3.6) */}
+          <button
+            type="button"
+            className="action-btn"
+            onClick={() => setIsDashboardModalOpen(true)}
+            title={t('institutionalDashboard')}
+            aria-label={t('institutionalDashboard')}
+          >
+            <Building2 size={18} className="text-amber-400" />
+            <span className="hidden xl:inline">{t('institutionalDashboard')}</span>
+          </button>
+
+          {/* Nearby Emergency Help Layer Toggle (Spec §3.10) */}
+          <button
+            type="button"
+            className={`action-btn ${showHelpPoints ? 'bg-emerald-500/20 border-emerald-400 text-emerald-300' : ''}`}
+            onClick={() => setShowHelpPoints((p) => !p)}
+            title={t('nearbyHelp')}
+            aria-label={t('nearbyHelp')}
+          >
+            <LifeBuoy size={18} className={showHelpPoints ? 'text-emerald-400 animate-pulse' : ''} />
+            <span className="hidden lg:inline">{t('nearbyHelp')}</span>
+          </button>
+
           {/* Star on GitHub */}
           <a
             href="https://github.com/Vijajraj/Adiona"
@@ -676,6 +761,23 @@ export function MapView({ deviceId }) {
         filters={filters}
         onFilterChange={handleFilterChange}
         onResetFilters={handleResetFilters}
+        showHelpPoints={showHelpPoints}
+        onToggleHelpPoints={() => setShowHelpPoints((p) => !p)}
+      />
+
+      {/* Nearby Emergency Help Layer (Spec §3.10) */}
+      <NearbyHelpLayer map={mapInstance} visible={showHelpPoints} />
+
+      {/* Institutional Dashboard & Open Data (Spec §3.5 & §3.6) */}
+      <DashboardModal
+        isOpen={isDashboardModalOpen}
+        onClose={() => setIsDashboardModalOpen(false)}
+      />
+
+      {/* Lower-Risk Route Safety Spike (Spec §3.7) */}
+      <RouteSafetyModal
+        isOpen={isRouteModalOpen}
+        onClose={() => setIsRouteModalOpen(false)}
       />
 
       {/* Share Toast Banner */}

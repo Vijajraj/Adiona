@@ -27,6 +27,7 @@ export function toGeoJSON(heatmapData) {
         affected_group: point.affected_group,
         confirmations: Number(point.confirmations) || 0,
         note: point.note,
+        time_bucket: point.time_bucket,
         created_at: point.created_at,
       },
     })),
@@ -41,8 +42,8 @@ export function applyFiltersToGeoJSON(geojson, filters = {}) {
   if (!geojson || !Array.isArray(geojson.features)) return geojson;
   if (!filters) return geojson;
 
-  const { category, hours_back, affected_group } = filters;
-  if (!category && !hours_back && !affected_group) {
+  const { category, hours_back, affected_group, time_bucket } = filters;
+  if (!category && !hours_back && !affected_group && (!time_bucket || time_bucket === 'all')) {
     return geojson;
   }
 
@@ -62,7 +63,14 @@ export function applyFiltersToGeoJSON(geojson, filters = {}) {
       return false;
     }
 
-    // 3. Time filter (hours_back)
+    // 3. Time of day filter (Phase 2 Spec §3.2)
+    if (time_bucket && time_bucket !== 'all') {
+      if (props.time_bucket && props.time_bucket !== time_bucket) {
+        return false;
+      }
+    }
+
+    // 4. Time filter (hours_back)
     if (cutoffTime && props.created_at) {
       const createdAtTime = new Date(props.created_at).getTime();
       if (!isNaN(createdAtTime) && createdAtTime < cutoffTime) {
