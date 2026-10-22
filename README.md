@@ -355,10 +355,18 @@ Frontend application running at: `http://localhost:5173`
 cd backend
 pytest tests/ -v
 
-# Run frontend test suite (29 tests)
+# Run frontend test suite (40 tests, 11 files)
 cd frontend
 npx vitest run
 ```
+
+---
+
+## Specifications & Roadmap
+
+- **[Phase 1 MVP Specification](chennai-safety-map-spec.md)**: Product definition, core architecture, bounding box, grid snapping, and privacy constraints.
+- **[Deployment & Operations Specification](chennai-safety-map-deployment-spec.md)**: Environments, CI/CD, launch sequence, monitoring, backups, and maintenance runbooks.
+- **[Phase 2 Specification](chennai-safety-map-phase-2-spec.md)**: Credibility & anti-manipulation, time-of-day views, Tamil language UI, institutional dashboard, open data export, and nearby help layer.
 
 ---
 
