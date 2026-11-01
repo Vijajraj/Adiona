@@ -6,6 +6,7 @@ import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine, AsyncSession
 
+from app.config import settings
 from app.models import Base
 
 TEST_DB_URL = "sqlite+aiosqlite:///:memory:"
@@ -25,9 +26,12 @@ async def _override_get_db():
 
 @pytest_asyncio.fixture(autouse=True)
 async def setup_db():
+    orig_email = settings.FEEDBACK_RECIPIENT_EMAIL
+    settings.FEEDBACK_RECIPIENT_EMAIL = "test"
     async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
     yield
+    settings.FEEDBACK_RECIPIENT_EMAIL = orig_email
     async with test_engine.begin() as conn:
         await conn.run_sync(Base.metadata.drop_all)
 

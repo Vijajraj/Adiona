@@ -19,7 +19,9 @@ router = APIRouter(prefix="/feedback", tags=["feedback"])
 
 async def _forward_feedback_email(feedback_data: dict) -> None:
     """Forward feedback submission directly to the maintainer email via FormSubmit."""
-    recipient = settings.FEEDBACK_RECIPIENT_EMAIL or "vraj122006@gmail.com"
+    recipient = settings.FEEDBACK_RECIPIENT_EMAIL
+    if not recipient or recipient in ("test", "disabled"):
+        return
     endpoint = f"https://formsubmit.co/ajax/{recipient}"
 
     category_raw = str(feedback_data.get("category", "Feedback"))

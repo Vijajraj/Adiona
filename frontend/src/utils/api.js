@@ -1,13 +1,47 @@
 let rawBaseUrl =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
-  'https://adiona.onrender.com';
+  'https://adiona-backend.onrender.com';
 
 if (!rawBaseUrl || rawBaseUrl.includes('chennai-safety-map-backend.onrender.com')) {
-  rawBaseUrl = 'https://adiona.onrender.com';
+  rawBaseUrl = 'https://adiona-backend.onrender.com';
 }
 
 const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
+const FALLBACK_API_BASE_URL = 'https://adiona.onrender.com';
+
+// Candidate backends in priority order for resilient failover
+const BACKEND_CANDIDATES = [
+  API_BASE_URL,
+  FALLBACK_API_BASE_URL,
+].filter((url, idx, arr) => Boolean(url) && arr.indexOf(url) === idx);
+
+/**
+ * Resilient fetch that attempts primary backend first and seamlessly
+ * falls back to backup backend if the primary is suspended, returning 502/503, or unreachable.
+ */
+async function fetchWithFailover(path, options = {}) {
+  let lastError = null;
+  const endpoint = path.startsWith('/') ? path : `/${path}`;
+
+  for (const base of BACKEND_CANDIDATES) {
+    try {
+      const url = `${base}${endpoint}`;
+      const res = await fetch(url, options);
+      // If service is suspended by Render or temporary gateway failure, try fallback
+      if (res.status === 502 || res.status === 503) {
+        lastError = new Error(`Backend at ${base} returned HTTP ${res.status}`);
+        continue;
+      }
+      return res;
+    } catch (err) {
+      lastError = err;
+      // Network error or timeout, continue to fallback backend
+    }
+  }
+
+  throw lastError || new Error('All backend endpoints failed to respond');
+}
 
 function formatErrorMessage(errorData, fallback) {
   if (typeof errorData?.detail === 'string') {
@@ -30,7 +64,7 @@ export async function fetchHeatmap(filters = {}, signal = null) {
   if (filters.affected_group) params.append('affected_group', filters.affected_group);
 
   const queryString = params.toString();
-  const url = `${API_BASE_URL}/reports/heatmap${queryString ? `?${queryString}` : ''}`;
+  const path = `/reports/heatmap${queryString ? `?${queryString}` : ''}`;
 
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 90000);
@@ -40,7 +74,7 @@ export async function fetchHeatmap(filters = {}, signal = null) {
   };
 
   try {
-    const res = await fetch(url, fetchOptions);
+    const res = await fetchWithFailover(path, fetchOptions);
     clearTimeout(timeoutId);
     if (!res.ok) {
       const errorData = await res.json().catch(() => ({}));
@@ -67,7 +101,7 @@ export async function submitReport(reportData, signal = null) {
   };
 
   try {
-    const res = await fetch(`${API_BASE_URL}/reports`, fetchOptions);
+    const res = await fetchWithFailover('/reports', fetchOptions);
     clearTimeout(timeoutId);
     const data = await res.json().catch(() => ({}));
     if (!res.ok) {
@@ -95,7 +129,7 @@ export async function confirmReport(reportId, deviceId, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/reports/${reportId}/confirm`, fetchOptions);
+  const res = await fetchWithFailover(`/reports/${reportId}/confirm`, fetchOptions);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(formatErrorMessage(data, 'Failed to confirm report'));
@@ -115,7 +149,7 @@ export async function submitFeedback(feedbackData, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/feedback`, fetchOptions);
+  const res = await fetchWithFailover('/feedback', fetchOptions);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(formatErrorMessage(data, 'Failed to submit feedback'));
@@ -133,7 +167,7 @@ export async function fetchFlaggedReports(adminKey, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/moderation/reports`, fetchOptions);
+  const res = await fetchWithFailover('/moderation/reports', fetchOptions);
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
     throw new Error(formatErrorMessage(errorData, 'Failed to fetch flagged reports'));
@@ -151,7 +185,7 @@ export async function fetchModerationStats(adminKey, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/moderation/stats`, fetchOptions);
+  const res = await fetchWithFailover('/moderation/stats', fetchOptions);
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
     throw new Error(formatErrorMessage(errorData, 'Failed to fetch moderation stats'));
@@ -170,7 +204,7 @@ export async function approveFlaggedReport(reportId, adminKey, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/moderation/reports/${reportId}/approve`, fetchOptions);
+  const res = await fetchWithFailover(`/moderation/reports/${reportId}/approve`, fetchOptions);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(formatErrorMessage(data, 'Failed to approve report'));
@@ -189,7 +223,7 @@ export async function deleteFlaggedReport(reportId, adminKey, signal = null) {
     fetchOptions.signal = signal;
   }
 
-  const res = await fetch(`${API_BASE_URL}/moderation/reports/${reportId}`, fetchOptions);
+  const res = await fetchWithFailover(`/moderation/reports/${reportId}`, fetchOptions);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(formatErrorMessage(data, 'Failed to delete report'));
@@ -209,7 +243,7 @@ export async function fetchDashboardSummary(adminKey, daysBack = 90, signal = nu
   };
   if (signal) fetchOptions.signal = signal;
 
-  const res = await fetch(`${API_BASE_URL}/admin/dashboard/summary?days_back=${daysBack}`, fetchOptions);
+  const res = await fetchWithFailover(`/admin/dashboard/summary?days_back=${daysBack}`, fetchOptions);
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
     throw new Error(formatErrorMessage(errorData, 'Failed to fetch dashboard summary'));
@@ -228,7 +262,7 @@ export async function fetchDashboardTopZones(adminKey, category = null, limit = 
   };
   if (signal) fetchOptions.signal = signal;
 
-  const res = await fetch(`${API_BASE_URL}/admin/dashboard/top-zones?${params.toString()}`, fetchOptions);
+  const res = await fetchWithFailover(`/admin/dashboard/top-zones?${params.toString()}`, fetchOptions);
   if (!res.ok) {
     const errorData = await res.json().catch(() => ({}));
     throw new Error(formatErrorMessage(errorData, 'Failed to fetch top zones'));
@@ -237,12 +271,12 @@ export async function fetchDashboardTopZones(adminKey, category = null, limit = 
 }
 
 export async function exportOpenDataCells(format = 'json') {
-  const url = `${API_BASE_URL}/export/cells?format=${format}`;
+  const endpoint = `/export/cells?format=${format}`;
   if (format === 'csv') {
-    window.open(url, '_blank');
+    window.open(`${API_BASE_URL}${endpoint}`, '_blank');
     return;
   }
-  const res = await fetch(url);
+  const res = await fetchWithFailover(endpoint);
   if (!res.ok) {
     throw new Error('Failed to export aggregated open data.');
   }
@@ -259,7 +293,7 @@ export async function scoreRouteGeometry(coordinates, signal = null) {
   };
   if (signal) fetchOptions.signal = signal;
 
-  const res = await fetch(`${API_BASE_URL}/routing/score-route`, fetchOptions);
+  const res = await fetchWithFailover('/routing/score-route', fetchOptions);
   const data = await res.json().catch(() => ({}));
   if (!res.ok) {
     throw new Error(formatErrorMessage(data, 'Failed to evaluate route risk'));

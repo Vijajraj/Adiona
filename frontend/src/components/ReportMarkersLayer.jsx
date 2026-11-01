@@ -269,14 +269,20 @@ export default function ReportMarkersLayer({
         endpointsToTry.push(`/reports/heatmap${queryString}`);
       }
 
-      // 2. Absolute production backend URL (Render)
+      // 2. Absolute production backend URL (Render) with failover
       const resolvedBaseUrl = (
         apiBaseUrl ||
         import.meta.env.VITE_API_BASE_URL ||
         import.meta.env.VITE_API_URL ||
-        "https://adiona.onrender.com"
+        "https://adiona-backend.onrender.com"
       ).replace(/\/+$/, "");
       endpointsToTry.push(`${resolvedBaseUrl}/reports/heatmap${queryString}`);
+
+      const fallbackBaseUrl = "https://adiona.onrender.com";
+      const fallbackEndpoint = `${fallbackBaseUrl}/reports/heatmap${queryString}`;
+      if (!endpointsToTry.includes(fallbackEndpoint)) {
+        endpointsToTry.push(fallbackEndpoint);
+      }
 
       let data = null;
 
