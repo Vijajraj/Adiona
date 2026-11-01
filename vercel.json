@@ -6,39 +6,39 @@
   "rewrites": [
     {
       "source": "/reports",
-      "destination": "https://adiona-backend.onrender.com/reports"
+      "destination": "https://adiona.onrender.com/reports"
     },
     {
       "source": "/reports/:path*",
-      "destination": "https://adiona-backend.onrender.com/reports/:path*"
+      "destination": "https://adiona.onrender.com/reports/:path*"
     },
     {
       "source": "/moderation",
-      "destination": "https://adiona-backend.onrender.com/moderation"
+      "destination": "https://adiona.onrender.com/moderation"
     },
     {
       "source": "/moderation/:path*",
-      "destination": "https://adiona-backend.onrender.com/moderation/:path*"
+      "destination": "https://adiona.onrender.com/moderation/:path*"
     },
     {
       "source": "/admin/:path*",
-      "destination": "https://adiona-backend.onrender.com/admin/:path*"
+      "destination": "https://adiona.onrender.com/admin/:path*"
     },
     {
       "source": "/export/:path*",
-      "destination": "https://adiona-backend.onrender.com/export/:path*"
+      "destination": "https://adiona.onrender.com/export/:path*"
     },
     {
       "source": "/routing/:path*",
-      "destination": "https://adiona-backend.onrender.com/routing/:path*"
+      "destination": "https://adiona.onrender.com/routing/:path*"
     },
     {
       "source": "/feedback",
-      "destination": "https://adiona-backend.onrender.com/feedback"
+      "destination": "https://adiona.onrender.com/feedback"
     },
     {
       "source": "/health",
-      "destination": "https://adiona-backend.onrender.com/health"
+      "destination": "https://adiona.onrender.com/health"
     },
     {
       "source": "/((?!assets/|.*\\.(?:js|mjs|css|png|svg|ico|json|woff2?|map)).*)",

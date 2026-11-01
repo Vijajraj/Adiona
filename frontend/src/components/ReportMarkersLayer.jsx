@@ -269,16 +269,17 @@ export default function ReportMarkersLayer({
         endpointsToTry.push(`/reports/heatmap${queryString}`);
       }
 
-      // 2. Absolute production backend URL (Render) with failover
-      const resolvedBaseUrl = (
+      // 2. Present primary production backend URL (Render)
+      const primaryBaseUrl = (
         apiBaseUrl ||
         import.meta.env.VITE_API_BASE_URL ||
         import.meta.env.VITE_API_URL ||
-        "https://adiona-backend.onrender.com"
+        "https://adiona.onrender.com"
       ).replace(/\/+$/, "");
-      endpointsToTry.push(`${resolvedBaseUrl}/reports/heatmap${queryString}`);
+      endpointsToTry.push(`${primaryBaseUrl}/reports/heatmap${queryString}`);
 
-      const fallbackBaseUrl = "https://adiona.onrender.com";
+      // 3. Fallback backend URL (used if present is failed or suspended)
+      const fallbackBaseUrl = "https://adiona-backend.onrender.com";
       const fallbackEndpoint = `${fallbackBaseUrl}/reports/heatmap${queryString}`;
       if (!endpointsToTry.includes(fallbackEndpoint)) {
         endpointsToTry.push(fallbackEndpoint);
@@ -294,11 +295,16 @@ export default function ReportMarkersLayer({
           clearTimeout(timeoutId);
 
           if (res.ok) {
+            const contentType = res.headers.get("content-type") || "";
+            if (contentType.includes("text/html")) {
+              // Suspended or error HTML page from Render, try fallback
+              continue;
+            }
             data = await res.json();
             break;
           }
         } catch (err) {
-          // Keep trying next endpoint
+          // Keep trying next endpoint (fallback)
         }
       }
 

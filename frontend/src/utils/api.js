@@ -1,24 +1,26 @@
 let rawBaseUrl =
   import.meta.env.VITE_API_BASE_URL ||
   import.meta.env.VITE_API_URL ||
-  'https://adiona-backend.onrender.com';
+  'https://adiona.onrender.com';
 
 if (!rawBaseUrl || rawBaseUrl.includes('chennai-safety-map-backend.onrender.com')) {
-  rawBaseUrl = 'https://adiona-backend.onrender.com';
+  rawBaseUrl = 'https://adiona.onrender.com';
 }
 
-const API_BASE_URL = rawBaseUrl.replace(/\/+$/, '');
-const FALLBACK_API_BASE_URL = 'https://adiona.onrender.com';
+const PRIMARY_API_URL = rawBaseUrl.replace(/\/+$/, '');
+const FALLBACK_API_URL = 'https://adiona-backend.onrender.com';
+const API_BASE_URL = PRIMARY_API_URL;
 
-// Candidate backends in priority order for resilient failover
+// Present primary first, fallback backend used if present fails or is suspended
 const BACKEND_CANDIDATES = [
-  API_BASE_URL,
-  FALLBACK_API_BASE_URL,
+  PRIMARY_API_URL,
+  FALLBACK_API_URL,
 ].filter((url, idx, arr) => Boolean(url) && arr.indexOf(url) === idx);
 
 /**
- * Resilient fetch that attempts primary backend first and seamlessly
- * falls back to backup backend if the primary is suspended, returning 502/503, or unreachable.
+ * Resilient fetch: queries the present backend first.
+ * If the present backend is failed, suspended, unreachable, or returns 502/503/HTML suspension,
+ * it immediately and seamlessly falls back to the backup backend (https://adiona-backend.onrender.com).
  */
 async function fetchWithFailover(path, options = {}) {
   let lastError = null;
@@ -28,19 +30,28 @@ async function fetchWithFailover(path, options = {}) {
     try {
       const url = `${base}${endpoint}`;
       const res = await fetch(url, options);
-      // If service is suspended by Render or temporary gateway failure, try fallback
-      if (res.status === 502 || res.status === 503) {
-        lastError = new Error(`Backend at ${base} returned HTTP ${res.status}`);
+
+      // If Render service is suspended (503/502) or returning gateway errors, failover
+      if (res.status === 502 || res.status === 503 || res.status === 504) {
+        lastError = new Error(`Present backend ${base} is unavailable (HTTP ${res.status})`);
         continue;
       }
+
+      // If Render serves an HTML suspension notice page with HTTP 200 on an API endpoint
+      const contentType = res.headers.get('content-type') || '';
+      if (res.ok && contentType.includes('text/html') && !endpoint.includes('.html')) {
+        lastError = new Error(`Present backend ${base} returned HTML suspension notice`);
+        continue;
+      }
+
       return res;
     } catch (err) {
       lastError = err;
-      // Network error or timeout, continue to fallback backend
+      // Network error, DNS failure, or timeout -> seamlessly try fallback
     }
   }
 
-  throw lastError || new Error('All backend endpoints failed to respond');
+  throw lastError || new Error('Both present and fallback backends failed to respond');
 }
 
 function formatErrorMessage(errorData, fallback) {
