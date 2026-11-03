@@ -1,7 +1,5 @@
 import csv
 import uuid
-import asyncio
-import asyncpg
 import json
 import sqlite3
 from pathlib import Path
@@ -62,6 +60,16 @@ def process_csv():
             rep_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"chennai_safety_report_{i}_{grid_lat}_{grid_lng}_{cat}"))
             dev_id = str(uuid.uuid5(uuid.NAMESPACE_DNS, f"seed_v3_dev_{i}_{grid_lat}_{grid_lng}"))
             
+            # Phase 2 time_bucket determination
+            if cat in ("poor_lighting", "isolated_area", "stalking", "catcalling"):
+                time_bucket = "night"
+            elif cat in ("robbery_theft", "unsafe_transport", "physical_harassment"):
+                time_bucket = "evening"
+            elif i % 2 == 0:
+                time_bucket = "morning"
+            else:
+                time_bucket = "afternoon"
+
             reports.append({
                 "id": rep_id,
                 "grid_lat": grid_lat,
@@ -73,6 +81,8 @@ def process_csv():
                 "device_id": dev_id,
                 "confirmations": 1,
                 "is_flagged": False,
+                "is_seed": True,
+                "time_bucket": time_bucket,
             })
 
             frontend_reports.append({
@@ -85,16 +95,22 @@ def process_csv():
                 "affected_group": affected,
                 "confirmations": 1,
                 "note": note,
-                "created_at": "2026-09-29T00:00:00.000Z",
+                "created_at": "2026-11-02T00:00:00.000Z",
+                "time_bucket": time_bucket,
             })
             
     print(f"Processed {len(reports)} incident records from seed_raw.csv")
     
     # Save canonical seed_data.csv
     with open(out_csv_path, mode="w", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=["id", "grid_lat", "grid_lng", "status", "category", "affected_group", "note", "device_id", "confirmations", "is_flagged"])
+        writer = csv.DictWriter(
+            f, 
+            fieldnames=["id", "grid_lat", "grid_lng", "status", "category", "affected_group", "note", "device_id", "confirmations", "is_flagged"]
+        )
         writer.writeheader()
-        writer.writerows(reports)
+        for r in reports:
+            # write rows matching seed_data schema
+            writer.writerow({k: r[k] for k in ["id", "grid_lat", "grid_lng", "status", "category", "affected_group", "note", "device_id", "confirmations", "is_flagged"]})
     print(f"Wrote canonical seed_data.csv ({len(reports)} rows)")
 
     # Save frontend seedReports.json
@@ -105,35 +121,6 @@ def process_csv():
         
     return reports
 
-async def seed_neon(reports):
-    neon_url = "postgresql://neondb_owner:npg_YpLFqA8fXCt5@ep-sparkling-boat-b304gj5m-pooler.c-4.ap-southeast-1.aws.neon.tech/neondb?sslmode=require"
-    print("Connecting to Neon Database...")
-    try:
-        conn = await asyncpg.connect(neon_url, timeout=10)
-    except Exception as err:
-        print(f"Failed to connect to Neon DB: {err}. Skipping remote seed.")
-        return
-    
-    print("Clearing old test reports in Neon DB...")
-    await conn.execute("TRUNCATE reports CASCADE;")
-    
-    inserted = 0
-    for r in reports:
-        try:
-            await conn.execute(
-                """
-                INSERT INTO reports (id, grid_lat, grid_lng, status, category, affected_group, note, device_id, confirmations, is_flagged, is_seed, created_at)
-                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, TRUE, '2026-09-29T00:00:00.000Z')
-                """,
-                r["id"], r["grid_lat"], r["grid_lng"], r["status"], r["category"], r["affected_group"], r["note"], r["device_id"], r["confirmations"], r["is_flagged"]
-            )
-            inserted += 1
-        except Exception as e:
-            print(f"Skipping duplicate/invalid row: {e}")
-            
-    print(f"Successfully inserted {inserted} verified records into Neon DB!")
-    await conn.close()
-
 def seed_sqlite(reports):
     backend_dir = Path(__file__).parent
     db_paths = [backend_dir / "safety_map.db", backend_dir.parent / "safety_map.db"]
@@ -143,27 +130,46 @@ def seed_sqlite(reports):
         try:
             conn = sqlite3.connect(db_path)
             cur = conn.cursor()
-            cur.execute("DELETE FROM reports WHERE is_seed = 1 OR confirmations = 1;")
+            
+            # Remove old seed records
+            cur.execute("DELETE FROM reports WHERE is_seed = 1;")
             inserted = 0
             for r in reports:
                 cur.execute(
                     """
-                    INSERT OR REPLACE INTO reports (id, grid_lat, grid_lng, status, category, affected_group, note, device_id, confirmations, is_flagged, is_seed, created_at)
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-09-29 00:00:00')
+                    INSERT OR REPLACE INTO reports (id, grid_lat, grid_lng, status, category, affected_group, note, device_id, confirmations, is_flagged, is_seed, created_at, time_bucket)
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 1, '2026-11-02 00:00:00', ?)
                     """,
-                    (r["id"], r["grid_lat"], r["grid_lng"], r["status"], r["category"], r["affected_group"], r["note"], r["device_id"], r["confirmations"], r["is_flagged"])
+                    (r["id"], r["grid_lat"], r["grid_lng"], r["status"], r["category"], r["affected_group"], r["note"], r["device_id"], r["confirmations"], r["is_flagged"], r["time_bucket"])
                 )
                 inserted += 1
+            
+            # Precompute/recompute cell_scores for Phase 2
+            cur.execute("DELETE FROM cell_scores;")
+            cur.execute(
+                """
+                INSERT INTO cell_scores (grid_lat, grid_lng, score_unsafe, score_safe, unique_devices, last_report_at, updated_at)
+                SELECT 
+                    grid_lat, 
+                    grid_lng, 
+                    ROUND(COUNT(DISTINCT device_id) * 1.5, 2) AS score_unsafe,
+                    0.0 AS score_safe,
+                    COUNT(DISTINCT device_id) AS unique_devices,
+                    MAX(created_at) AS last_report_at,
+                    datetime('now') AS updated_at
+                FROM reports
+                WHERE is_flagged = 0
+                GROUP BY grid_lat, grid_lng;
+                """
+            )
+            
             conn.commit()
+            scores_count = cur.execute("SELECT COUNT(*) FROM cell_scores;").fetchone()[0]
             conn.close()
-            print(f"Synced {inserted} reports to local SQLite: {db_path.name}")
+            print(f"Synced {inserted} reports & {scores_count} cell_scores to SQLite: {db_path.name}")
         except Exception as e:
             print(f"SQLite sync warning for {db_path.name}: {e}")
 
 if __name__ == "__main__":
     recs = process_csv()
     seed_sqlite(recs)
-    try:
-        asyncio.run(seed_neon(recs))
-    except Exception as e:
-        print(f"Neon seeding completed with note: {e}")
